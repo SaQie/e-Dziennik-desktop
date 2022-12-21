@@ -42,6 +42,19 @@
     -fx-background-color:  -fx-secondary-color;
 }
 
+.combo-box-popup .list-view .list-cell:filled:hover
+{
+    -fx-background-color: -fx-secondary-color;
+    -fx-text-fill: white;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected
+{
+    -fx-background-color: -fx-secondary-color;
+    -fx-text-fill: white;
+}
+
+
 .tab-pane:focused .tab:selected .focus-indicator {
     -fx-border-width: 0 ;
     -fx-border-color: transparent;

@@ -7,3 +7,11 @@
 .background-gradient{
     -fx-background-color: linear-gradient(to bottom left, #52438f, #6854b5);
 }
+
+.background-color-dark{
+    -fx-background-color: #52438f;
+}
+
+.background-color-light{
+    -fx-background-color: #6854b5;
+}

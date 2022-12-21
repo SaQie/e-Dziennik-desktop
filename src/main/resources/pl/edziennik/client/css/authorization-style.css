@@ -1,0 +1,54 @@
+.authorization-header-background{
+    -fx-background-radius: 15;
+    -fx-background-color: -fx-secondary-color;
+}
+
+.tab-header-background{
+    -fx-background-color: transparent;
+    -fx-background-radius: 15;
+}
+
+.tab{
+    -fx-alignment: center;
+    -fx-padding: 10px;
+    -fx-background-radius: 8;
+    -fx-background-color: transparent;
+    -fx-text-base-color: white;
+    -fx-text-alignment: center;
+    -fx-font-weight: BOLD;
+    -fx-font-size: 14px;
+}
+
+.tab:selected{
+    -fx-background-color: -fx-secondary-color;
+}
+
+.tab:hover{
+    -fx-transition: 5s;
+    -fx-background-color: -fx-secondary-color;
+}
+
+.authorization-label{
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.authorization-button{
+    -fx-background-color:  -fx-primary-color;
+}
+
+.authorization-button:hover{
+    -fx-background-color:  -fx-secondary-color;
+}
+
+.tab-pane:focused .tab:selected .focus-indicator {
+    -fx-border-width: 0 ;
+    -fx-border-color: transparent;
+    -fx-border-insets: 0;
+    -fx-border-radius: 0;
+}
+
+.text-field:focused{
+    -fx-focus-color: transparent;
+}

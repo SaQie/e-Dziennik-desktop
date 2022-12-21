@@ -1,0 +1,27 @@
+.options-panel-label{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-family: Arial;
+}
+
+.options-panel-header-label{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-family: Arial;
+    -fx-font-size: 36px;
+}
+
+.options-panel-button{
+    -fx-background-color:  -fx-primary-color;
+}
+
+.options-panel-button:hover{
+    -fx-background-color:  -fx-secondary-color;
+}
+
+.button:focused .button:selected .focus-indicator {
+    -fx-border-width: 0 ;
+    -fx-border-color: transparent;
+    -fx-border-insets: 0;
+    -fx-border-radius: 0;
+}

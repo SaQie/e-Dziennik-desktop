@@ -1,0 +1,9 @@
+*{
+    -fx-primary-color: #52438f;
+    -fx-secondary-color: #6854b5;
+    -fx-gradient-background: linear-gradient(to bottom left, #52438f, #6854b5);
+}
+
+.background-gradient{
+    -fx-background-color: linear-gradient(to bottom left, #52438f, #6854b5);
+}

@@ -1,0 +1,19 @@
+.left-side-button{
+    -fx-background-color: -fx-secondary-color;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+    -fx-background-radius: 15;
+}
+
+.left-side-button:hover{
+    -fx-background-color: -fx-primary-color;
+}
+
+.button:focused .button:selected .focus-indicator {
+    -fx-border-width: 0 ;
+    -fx-border-color: transparent;
+    -fx-border-insets: 0;
+    -fx-border-radius: 0;
+}

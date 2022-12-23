@@ -75,6 +75,7 @@
 }
 
 .table-row-cell{
+    -fx-min-height: 25px;
     -fx-font-weight: bold;
     -fx-font-family: Arial;
 }

@@ -1,0 +1,36 @@
+.tab-pane .tab-header-area .tab-header-background{
+    -fx-opacity: 0px;
+}
+
+.tab{
+    -fx-background-insets: 0 0 0 0,0,0,0;
+}
+
+.tab-pane{
+    -fx-tab-min-width: 100px;
+    -fx-tab-min-height: 30px;
+
+}
+
+.tab-pane .tab{
+    -fx-background-color: white;
+}
+
+.tab-pane:focused .tab:selected .focus-indicator {
+    -fx-border-width: 0 ;
+    -fx-border-color: transparent;
+    -fx-border-insets: 0;
+    -fx-border-radius: 0;
+}
+
+.tab-pane .tab:selected{
+    -fx-border-width: 3px 3px 3px 3px;
+    -fx-border-color: -fx-primary-color;
+
+}
+
+
+.tab .tab-label{
+    -fx-alignment: center;
+    -fx-text-fill: gray;
+}

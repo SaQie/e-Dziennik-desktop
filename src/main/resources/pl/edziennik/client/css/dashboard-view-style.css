@@ -1,0 +1,47 @@
+.pane{
+    -fx-background-color: -fx-secondary-color;
+    -fx-background-radius: 15;
+}
+
+.pane:hover{
+    -fx-background-color: -fx-primary-color;
+}
+
+.dashboard-label{
+    -fx-font-family: Arial;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: white;
+
+}
+
+.dashboard-label-number{
+    -fx-font-family: Arial;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FAEBD7;
+    -fx-font-size: 28px;
+
+}
+.dashboard-crud-button{
+    -fx-background-color: transparent;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: -fx-primary-color;
+    -fx-text-fill: gray;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+}
+
+.dashboard-crud-button:hover{
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+
+.button:focused .button:selected .focus-indicator {
+    -fx-border-width: 0 ;
+    -fx-border-color: transparent;
+    -fx-border-insets: 0;
+    -fx-border-radius: 0;
+}

@@ -65,3 +65,17 @@
 .text-field:focused{
     -fx-focus-color: transparent;
 }
+
+.text-field:error{
+    -fx-border-insets: 0;
+    -fx-border-width: 2px;
+    -fx-border-color: red;
+    -fx-border-style: hidden hidden solid hidden;
+}
+
+.text-field:valid{
+    -fx-border-insets: 0;
+    -fx-border-width: 2px;
+    -fx-border-color: lawngreen;
+    -fx-border-style: hidden hidden solid hidden;
+}

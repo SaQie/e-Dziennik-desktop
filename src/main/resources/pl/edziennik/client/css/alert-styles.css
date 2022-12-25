@@ -1,0 +1,26 @@
+.dialog-pane{
+    -fx-background-color: #6854b5;
+}
+
+.dialog-pane:header *.header-panel{
+    -fx-background-color: #52438f;
+}
+
+.dialog-pane > *.button-bar *.button{
+    -fx-background-color:  transparent;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-color: #52438f;
+    -fx-text-fill: white;
+    -fx-font-family: Arial;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.dialog-pane > *.button-bar *.button:hover{
+    -fx-background-color:  #52438f;
+    -fx-text-fill: lightgreen;
+}
+
+.label{
+    -fx-text-fill: white;
+}

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Tab text="%label.register" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.auth.RegisterController">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <children>
+                <VBox alignment="TOP_CENTER" layoutX="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="625.0" spacing="5.0">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="55.0" prefWidth="625.0" spacing="50.0">
+                            <children>
+                                <Label contentDisplay="CENTER" prefWidth="200.0" styleClass="authorization-label" stylesheets="@css/authorization-style.css" text="%label.username" />
+                                <TextField fx:id="usernameInput" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="55.0" prefWidth="200.0" spacing="50.0">
+                            <children>
+                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@css/authorization-style.css" text="%label.email" />
+                                <TextField fx:id="emailInput" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="55.0" prefWidth="200.0" spacing="50.0">
+                            <children>
+                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@css/authorization-style.css" text="%label.password" />
+                        <PasswordField fx:id="passwordInput" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="55.0" prefWidth="200.0" spacing="50.0">
+                            <children>
+                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@css/authorization-style.css" text="%label.repeat.password" />
+                        <PasswordField fx:id="repeatPasswordInput" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="85.0" prefWidth="625.0" spacing="210.0">
+                            <children>
+                                <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="authorization-button" stylesheets="@css/authorization-style.css" text="%exit.button" textFill="WHITE">
+                                    <graphic>
+                                        <ImageView fitHeight="27.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@icons/Close.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="authorization-button" stylesheets="@css/authorization-style.css" text="%register.button" textFill="WHITE">
+                                    <graphic>
+                                        <ImageView fitHeight="28.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@icons/Done.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </VBox>
+            </children></AnchorPane>
+    </content>
+</Tab>

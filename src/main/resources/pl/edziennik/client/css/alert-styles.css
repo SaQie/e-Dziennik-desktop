@@ -16,6 +16,10 @@
     -fx-font-size: 14px;
 }
 
+.dialog-pane > .button-bar > .container > .details-button {
+    -fx-text-fill: white;
+}
+
 .dialog-pane > *.button-bar *.button:hover{
     -fx-background-color:  #52438f;
     -fx-text-fill: lightgreen;

@@ -1,5 +1,6 @@
 package pl.edziennik.client.utils;
 
+import javafx.beans.binding.Bindings;
 import javafx.css.PseudoClass;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -76,9 +77,11 @@ public class ValidationUtil {
 
         for (TextField input : textFields) {
             input.tooltipProperty().addListener(field -> {
-                List<Boolean> fieldsHasNoErrors = Arrays.stream(textFields).filter(e -> !e.equals(input)).map(e -> e.getText() != null && e.getTooltip() == null).toList();
-                button.setDisable(fieldsHasNoErrors.contains(false) || input.getText() == null || input.getTooltip() != null);
+                boolean hasErrors = Arrays.stream(textFields)
+                        .allMatch(e -> (!e.getText().isEmpty() || !e.getText().isBlank()) && e.getTooltip() == null);
+                button.setDisable(!hasErrors);
             });
         }
     }
+
 }

@@ -21,8 +21,11 @@ public class ResourcesConstants {
 
     public static final String EXIT_CONFIRMATION_MESSAGE_KEY = "exit.confirmation.message";
     public static final String EXIT_CONFIRMATION_HEADER_KEY = "exit.confirmation.header";
+    public static final String ERROR_DIALOG_MESSAGE_KEY = "error.dialog.message";
+    public static final String ERROR_DIALOG_HEADER_MESSAGE_KEY = "error.dialog.header";
     public static final String BUTTON_YES_KEY = "button.yes";
     public static final String BUTTON_NO_KEY = "button.no";
+    public static final String BUTTON_OK_KEY = "button.ok";
 
     // errors codes
 
@@ -35,6 +38,8 @@ public class ResourcesConstants {
     public static final String EMAIL_NOT_VALID_KEY = "email.field.not.valid";
     public static final String PASSWORD_NOT_VALID_KEY = "password.field.not.valid";
     public static final String PASSWORD_AND_REPEAT_PASSWORD_NOT_EQUALS_KEY = "password.field.not.equals.to.repeat.password";
+    public static final String PARSE_ERROR = "restclient.parese.error";
+    public static final String SERVER_NOT_RESPONDING_MESSAGE_KEY = "restclient.server.not.respond";
 
 
 

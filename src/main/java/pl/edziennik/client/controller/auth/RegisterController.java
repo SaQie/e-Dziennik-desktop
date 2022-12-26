@@ -1,5 +1,6 @@
 package pl.edziennik.client.controller.auth;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -7,6 +8,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.ConfirmationDialogFactory;
+import pl.edziennik.client.rest.TeacherPojo;
+import pl.edziennik.client.rest.TeacherRestClient;
 import pl.edziennik.client.validator.auth.AuthValidator;
 
 import java.net.URL;
@@ -20,11 +23,13 @@ public class RegisterController implements Initializable {
 
     private final ConfirmationDialogFactory dialogFactory;
     private final AuthValidator authValidator;
+    private final TeacherRestClient teacherRestClient;
 
 
     public RegisterController() {
         this.dialogFactory = ConfirmationDialogFactory.getInstance();
         this.authValidator = new AuthValidator();
+        this.teacherRestClient = new TeacherRestClient();
     }
 
     /*
@@ -55,11 +60,15 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setRegisterButtonAction();
         setExitButtonAction();
         initializeFieldValidators();
         initializeRegisterButton();
     }
 
+    private void setRegisterButtonAction() {
+        registerButton.setOnAction(e -> teacherRestClient.get(1L));
+    }
 
     private void setExitButtonAction() {
         exitButton.setOnAction(button -> dialogFactory.createExitConfirmationDialog(getStage()));

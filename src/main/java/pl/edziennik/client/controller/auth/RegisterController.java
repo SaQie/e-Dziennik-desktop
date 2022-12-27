@@ -1,6 +1,5 @@
 package pl.edziennik.client.controller.auth;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -8,8 +7,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.ConfirmationDialogFactory;
-import pl.edziennik.client.rest.TeacherPojo;
-import pl.edziennik.client.rest.TeacherRestClient;
+import pl.edziennik.client.rest.AdminRestClient;
+import pl.edziennik.client.rest.pojo.AdminPojo;
+import pl.edziennik.client.utils.ThreadUtils;
 import pl.edziennik.client.validator.auth.AuthValidator;
 
 import java.net.URL;
@@ -23,13 +23,13 @@ public class RegisterController implements Initializable {
 
     private final ConfirmationDialogFactory dialogFactory;
     private final AuthValidator authValidator;
-    private final TeacherRestClient teacherRestClient;
+    private final AdminRestClient adminRestClient;
 
 
     public RegisterController() {
         this.dialogFactory = ConfirmationDialogFactory.getInstance();
         this.authValidator = new AuthValidator();
-        this.teacherRestClient = new TeacherRestClient();
+        this.adminRestClient = new AdminRestClient();
     }
 
     /*
@@ -66,12 +66,23 @@ public class RegisterController implements Initializable {
         initializeRegisterButton();
     }
 
+
     private void setRegisterButtonAction() {
-        registerButton.setOnAction(e -> teacherRestClient.get(1L));
+        registerButton.setOnAction(e -> {
+            AdminPojo adminPojo = new AdminPojo();
+            adminPojo.setPassword(passwordInput.getText());
+            adminPojo.setEmail(emailInput.getText());
+            adminPojo.setUsername(usernameInput.getText());
+            ThreadUtils.runInBackgroundThread(() -> adminRestClient.registerUser(adminPojo));
+        });
     }
 
+
     private void setExitButtonAction() {
-        exitButton.setOnAction(button -> dialogFactory.createExitConfirmationDialog(getStage()));
+//        exitButton.setOnAction(button -> dialogFactory.createExitConfirmationDialog(getStage()));
+        exitButton.setOnAction(button -> {
+            ThreadUtils.runInBackgroundThread(() -> adminRestClient.get(1L));
+        });
     }
 
 

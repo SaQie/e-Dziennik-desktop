@@ -13,6 +13,8 @@ import pl.edziennik.client.rest.ApiErrors;
 
 import static pl.edziennik.client.common.ResourcesConstants.*;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -65,6 +67,7 @@ public class ConfirmationDialogFactory {
         basicErrorAlert.showAndWait();
     }
 
+
     public void createErrorConfirmationDialog(String stackTrace, String message){
         Alert basicErrorAlert = createBasicErrorAlert();
         basicErrorAlert.setHeaderText(ERROR_DIALOG_HEADER_MESSAGE);
@@ -72,6 +75,19 @@ public class ConfirmationDialogFactory {
 
         if (stackTrace != null){
             GridPane expContent = getStackTraceListView(stackTrace);
+            basicErrorAlert.getDialogPane().setExpandableContent(expContent);
+        }
+
+        basicErrorAlert.showAndWait();
+    }
+
+    public void createErrorConfirmationDialogFromRawStackTrace(StackTraceElement[] stackTrace, String message){
+        Alert basicErrorAlert = createBasicErrorAlert();
+        basicErrorAlert.setHeaderText(ERROR_DIALOG_HEADER_MESSAGE);
+        basicErrorAlert.setContentText(ERROR_DIALOG_MESSAGE + "\n" + resourceBundle.getString(message));
+
+        if (stackTrace != null){
+            GridPane expContent = getStackTraceListView(Arrays.toString(stackTrace));
             basicErrorAlert.getDialogPane().setExpandableContent(expContent);
         }
 

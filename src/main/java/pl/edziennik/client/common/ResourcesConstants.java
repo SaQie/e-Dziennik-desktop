@@ -39,6 +39,7 @@ public class ResourcesConstants {
     public static final String PASSWORD_NOT_VALID_KEY = "password.field.not.valid";
     public static final String PASSWORD_AND_REPEAT_PASSWORD_NOT_EQUALS_KEY = "password.field.not.equals.to.repeat.password";
     public static final String PARSE_ERROR = "restclient.parese.error";
+    public static final String SERVER_ERROR_MESSAGE_KEY = "restclient.server.error";
     public static final String SERVER_NOT_RESPONDING_MESSAGE_KEY = "restclient.server.not.respond";
 
 

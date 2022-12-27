@@ -17,5 +17,6 @@ module pl.edziennik.client {
     exports pl.edziennik.client.rest;
     opens pl.edziennik.client.controller.auth to javafx.fxml;
     exports pl.edziennik.client.rest.client;
+    exports pl.edziennik.client.rest.pojo;
 
 }

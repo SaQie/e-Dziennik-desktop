@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import pl.edziennik.client.common.ConfirmationDialogFactory;
 import pl.edziennik.client.rest.ApiResponse;
+import pl.edziennik.client.utils.ThreadUtils;
 
 import java.util.Arrays;
 
@@ -25,7 +26,7 @@ class RestClientObjectMapper {
                 String readedObjectAsString = objectMapper.writeValueAsString(body.getResult());
                 return objectMapper.readValue(readedObjectAsString, responseObject);
             } catch (JsonProcessingException e) {
-                dialogFactory.createErrorConfirmationDialog(Arrays.toString(e.getStackTrace()), PARSE_ERROR);
+                ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialog(Arrays.toString(e.getStackTrace()), PARSE_ERROR));
             }
         }
         return null;

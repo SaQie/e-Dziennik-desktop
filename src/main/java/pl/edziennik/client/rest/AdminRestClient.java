@@ -13,10 +13,10 @@ public class AdminRestClient {
     }
 
     public TeacherPojo get(Long id) {
-        return restClient.get("http://localhost:8080/api/teachers/15", TeacherPojo.class);
+        return restClient.get("http://localhost:8080/api/teachers/1", TeacherPojo.class);
     }
 
-    public AdminPojo registerUser(AdminPojo adminPojo){
+    public AdminPojo register(AdminPojo adminPojo){
         return restClient.post("http://localhost:8080/api/admins", adminPojo, AdminPojo.class);
     }
 }

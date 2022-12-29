@@ -9,7 +9,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.AccountType;
-import pl.edziennik.client.common.ConfirmationDialogFactory;
+import pl.edziennik.client.common.DialogFactory;
+import pl.edziennik.client.common.ProgressFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,11 +21,12 @@ public class LoginController implements Initializable {
         CLASSES
      */
 
-    private final ConfirmationDialogFactory dialogFactory;
-
+    private final DialogFactory dialogFactory;
+    private final ProgressFactory progressFactory;
 
     public LoginController() {
-        this.dialogFactory = ConfirmationDialogFactory.getInstance();
+        this.dialogFactory = DialogFactory.getInstance();
+        this.progressFactory = ProgressFactory.getInstance();
     }
 
      /*

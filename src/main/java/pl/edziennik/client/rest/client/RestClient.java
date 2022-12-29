@@ -4,19 +4,19 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
-import pl.edziennik.client.common.ConfirmationDialogFactory;
+import pl.edziennik.client.common.DialogFactory;
+import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.ApiResponse;
 import pl.edziennik.client.utils.ThreadUtils;
 
 import static pl.edziennik.client.common.ResourcesConstants.*;
 
 import java.util.List;
-import java.util.Objects;
 
 public class RestClient {
 
     private final RestClientStatusCodesHandler statusCodesHandler;
-    private final ConfirmationDialogFactory dialogFactory;
+    private final DialogFactory dialogFactory;
     private RestTemplate restTemplate;
     private RestClientObjectMapper mapper;
 
@@ -25,7 +25,7 @@ public class RestClient {
         this.statusCodesHandler = new RestClientStatusCodesHandler();
         this.restTemplate = new RestTemplate();
         this.restTemplate.setErrorHandler(new RestClientErrorLogger());
-        this.dialogFactory = ConfirmationDialogFactory.getInstance();
+        this.dialogFactory = DialogFactory.getInstance();
     }
 
     public <T> T get(String url, Class<T> response){
@@ -38,7 +38,7 @@ public class RestClient {
             return mapper.mapToObject(result.getBody(), response);
         }catch (ResourceAccessException e){
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY));
-            return null;
+            throw new RestClientException("Server not responding");
         }
 
     }
@@ -52,7 +52,7 @@ public class RestClient {
             return mapper.mapToObject(result.getBody(), response);
         }catch (ResourceAccessException e){
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY));
-            return null;
+            throw new RestClientException("Server not responding");
         }
     }
 
@@ -64,6 +64,7 @@ public class RestClient {
             statusCodesHandler.checkStatusCodes(result);
         }catch (ResourceAccessException e){
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY));
+            throw new RestClientException("Server not responding");
         }
     }
 

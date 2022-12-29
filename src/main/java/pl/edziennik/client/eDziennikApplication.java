@@ -1,9 +1,7 @@
 package pl.edziennik.client;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.ConfirmationDialogFactory;
 import pl.edziennik.client.controller.auth.AuthorizationController;
 
 import java.io.IOException;

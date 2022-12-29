@@ -1,7 +1,9 @@
 package pl.edziennik.client.common;
 
-import javafx.beans.value.ObservableValue;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -11,26 +13,25 @@ import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import pl.edziennik.client.rest.ApiErrors;
 
-import static pl.edziennik.client.common.ResourcesConstants.*;
-
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class ConfirmationDialogFactory {
+import static pl.edziennik.client.common.ResourcesConstants.*;
+
+public class DialogFactory {
 
     private final String alertStylesPath = getClass().getResource(ALERT_STYLES_ADDRESS).toExternalForm();
     private final ImageView informationIcon = new ImageView(getClass().getResource(INFORMATION_ICON_ADDRESS).toExternalForm());
+    private final ImageView successIcon = new ImageView(getClass().getResource(SUCCESS_ICON_ADDRESS).toExternalForm());
     private final ImageView errorIcon = new ImageView(getClass().getResource(ERROR_ICON_ADDRESS).toExternalForm());
     private final ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGES_RESOURCES_ADDRESS);
 
-    private static ConfirmationDialogFactory factory;
+    private static DialogFactory factory;
 
-    public static ConfirmationDialogFactory getInstance(){
+    public static DialogFactory getInstance(){
         if (factory == null){
-            factory = new ConfirmationDialogFactory();
+            factory = new DialogFactory();
         }
         return factory;
     }
@@ -39,6 +40,8 @@ public class ConfirmationDialogFactory {
     private final String EXIT_CONFIRMATION_DIALOG_HEADER_MESSAGE = resourceBundle.getString(EXIT_CONFIRMATION_HEADER_KEY);
     private final String ERROR_DIALOG_MESSAGE = resourceBundle.getString(ERROR_DIALOG_MESSAGE_KEY);
     private final String ERROR_DIALOG_HEADER_MESSAGE = resourceBundle.getString(ERROR_DIALOG_HEADER_MESSAGE_KEY);
+    private final String SUCCESS_DIALOG_HEADER_MESSAGE = resourceBundle.getString(SUCCESS_DIALOG_HEADER_MESSAGE_KEY);
+    private final String BASIC_SUCCESS_DIALOG_MESSAGE = resourceBundle.getString(SUCCESS_DIALOG_CONTENT_MESSAGE_KEY);
     private final ButtonType YES_BUTTON = new ButtonType(resourceBundle.getString(BUTTON_YES_KEY));
     private final ButtonType NO_BUTTON = new ButtonType(resourceBundle.getString(BUTTON_NO_KEY));
     private final ButtonType OK_BUTTON = new ButtonType(resourceBundle.getString(BUTTON_OK_KEY));
@@ -92,6 +95,29 @@ public class ConfirmationDialogFactory {
         }
 
         basicErrorAlert.showAndWait();
+    }
+
+    public void createSuccessInformationDialog(String message){
+        Alert basicSuccessAlert = createBasicSuccessAlert();
+        basicSuccessAlert.setHeaderText(SUCCESS_DIALOG_HEADER_MESSAGE);
+        if (message != null) {
+            basicSuccessAlert.setContentText(resourceBundle.getString(message));
+        }else{
+            basicSuccessAlert.setContentText(BASIC_SUCCESS_DIALOG_MESSAGE);
+        }
+        basicSuccessAlert.showAndWait();
+    }
+
+    private Alert createBasicSuccessAlert(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, null, OK_BUTTON);
+        alert.initStyle(StageStyle.UTILITY);
+        Stage stage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+        if (stage != null){
+            alert.initOwner(stage);
+        }
+        alert.getDialogPane().getStylesheets().add(alertStylesPath);
+        alert.getDialogPane().setGraphic(successIcon);
+        return alert;
     }
 
     private Alert createBasicInformationAlert(){

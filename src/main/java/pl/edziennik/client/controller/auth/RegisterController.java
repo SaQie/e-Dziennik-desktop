@@ -6,10 +6,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.ConfirmationDialogFactory;
+import pl.edziennik.client.common.DialogFactory;
+import pl.edziennik.client.common.ProgressFactory;
+import pl.edziennik.client.controller.ProgressTaskExample;
 import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.pojo.AdminPojo;
+import pl.edziennik.client.task.RegisterAdminTask;
 import pl.edziennik.client.utils.ThreadUtils;
+import pl.edziennik.client.utils.ValidationUtil;
 import pl.edziennik.client.validator.auth.AuthValidator;
 
 import java.net.URL;
@@ -21,15 +25,19 @@ public class RegisterController implements Initializable {
         CLASSES
      */
 
-    private final ConfirmationDialogFactory dialogFactory;
+    private final DialogFactory dialogFactory;
     private final AuthValidator authValidator;
     private final AdminRestClient adminRestClient;
+    private final ValidationUtil validationUtil;
+    private final ProgressFactory progressFactory;
 
 
     public RegisterController() {
-        this.dialogFactory = ConfirmationDialogFactory.getInstance();
+        this.dialogFactory = DialogFactory.getInstance();
         this.authValidator = new AuthValidator();
         this.adminRestClient = new AdminRestClient();
+        this.validationUtil = ValidationUtil.getInstance();
+        this.progressFactory = ProgressFactory.getInstance();
     }
 
     /*
@@ -73,16 +81,15 @@ public class RegisterController implements Initializable {
             adminPojo.setPassword(passwordInput.getText());
             adminPojo.setEmail(emailInput.getText());
             adminPojo.setUsername(usernameInput.getText());
-            ThreadUtils.runInBackgroundThread(() -> adminRestClient.registerUser(adminPojo));
+            progressFactory.createLittleProgressBar(new RegisterAdminTask(adminPojo), (response) -> {
+                dialogFactory.createSuccessInformationDialog(null);
+            });
         });
     }
 
 
     private void setExitButtonAction() {
-//        exitButton.setOnAction(button -> dialogFactory.createExitConfirmationDialog(getStage()));
-        exitButton.setOnAction(button -> {
-            ThreadUtils.runInBackgroundThread(() -> adminRestClient.get(1L));
-        });
+        exitButton.setOnAction(button -> dialogFactory.createExitConfirmationDialog(getStage()));
     }
 
 
@@ -94,7 +101,7 @@ public class RegisterController implements Initializable {
 
 
     private void initializeRegisterButton() {
-        authValidator.enableButtonIfNoErrors(registerButton, usernameInput, emailInput, passwordInput, repeatPasswordInput);
+        validationUtil.enableButtonIfFieldsHasNoErrors(registerButton, usernameInput, emailInput, passwordInput, repeatPasswordInput);
     }
 
     private Stage getStage() {

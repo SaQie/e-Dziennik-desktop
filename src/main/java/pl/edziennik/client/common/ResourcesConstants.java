@@ -11,8 +11,9 @@ public class ResourcesConstants {
 
     public static final String ALERT_STYLES_ADDRESS = "/pl/edziennik/client/css/alert-styles.css";
     public static final String INFORMATION_ICON_ADDRESS = "/pl/edziennik/client/icons/Information.png";
-    public static final String ERROR_ICON_ADDRESS = "/pl/edziennik/client/icons/error.png";
     public static final String MESSAGES_RESOURCES_ADDRESS = "pl/edziennik/client/bundles.messages";
+    public static final String ERROR_ICON_ADDRESS = "/pl/edziennik/client/icons/error.png";
+    public static final String SUCCESS_ICON_ADDRESS = "/pl/edziennik/client/icons/success.png";
 
 
     /*
@@ -23,9 +24,12 @@ public class ResourcesConstants {
     public static final String EXIT_CONFIRMATION_HEADER_KEY = "exit.confirmation.header";
     public static final String ERROR_DIALOG_MESSAGE_KEY = "error.dialog.message";
     public static final String ERROR_DIALOG_HEADER_MESSAGE_KEY = "error.dialog.header";
+    public static final String SUCCESS_DIALOG_HEADER_MESSAGE_KEY = "success.dialog.header";
+    public static final String SUCCESS_DIALOG_CONTENT_MESSAGE_KEY = "success.dialog.content";
     public static final String BUTTON_YES_KEY = "button.yes";
     public static final String BUTTON_NO_KEY = "button.no";
     public static final String BUTTON_OK_KEY = "button.ok";
+    public static final String WAITING_REGISTER_MESSAGE_KEY = "waiting.register.message";
 
     // errors codes
 

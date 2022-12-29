@@ -102,10 +102,6 @@ public class AuthValidator {
         });
     }
 
-    public void enableButtonIfNoErrors(Button button, TextField... textFields){
-        validationUtil.enableButtonIfFieldsHasNoErrors(button,textFields);
-    }
-
     private Tooltip passwordNotMatch() {
         return validationUtil.prepareValidationTooltip(PASSWORD_AND_REPEAT_PASSWORD_NOT_EQUALS_KEY);
     }

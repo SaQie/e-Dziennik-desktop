@@ -2,16 +2,22 @@ package pl.edziennik.client.rest.client;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import pl.edziennik.client.common.DialogFactory;
+import pl.edziennik.client.common.PropertiesLoader;
 import pl.edziennik.client.exception.RestClientException;
-import pl.edziennik.client.rest.ApiResponse;
+import pl.edziennik.client.rest.common.ApiResponse;
+import pl.edziennik.client.utils.AuthorizationUtils;
 import pl.edziennik.client.utils.ThreadUtils;
 
 import static pl.edziennik.client.common.ResourcesConstants.*;
 
-import java.util.List;
+import java.util.*;
 
 public class RestClient {
 
@@ -26,54 +32,88 @@ public class RestClient {
         this.restTemplate = new RestTemplate();
         this.restTemplate.setErrorHandler(new RestClientErrorLogger());
         this.dialogFactory = DialogFactory.getInstance();
+        configureRestClient();
     }
 
-    public <T> T get(String url, Class<T> response){
+    public <T> T get(String url, Class<T> response) {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
-        HttpEntity<Void> entityToSend = new HttpEntity<>(null ,authorizationHeader);
+        HttpEntity<Void> entityToSend = new HttpEntity<>(null, authorizationHeader);
         try {
             ResponseEntity<ApiResponse<T>> result = restTemplate.exchange(url, HttpMethod.GET, entityToSend, new ParameterizedTypeReference<>() {
             });
             statusCodesHandler.checkStatusCodes(result);
             return mapper.mapToObject(result.getBody(), response);
-        }catch (ResourceAccessException e){
+        } catch (ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY));
             throw new RestClientException("Server not responding");
         }
 
     }
 
-    public <T, E> T post(String url, E request, Class<T> response){
+    public <T, E> T post(String url, E request, Class<T> response) {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
-        HttpEntity<E> entityToSend = new HttpEntity<>(request ,authorizationHeader);
-        try{
-            ResponseEntity<ApiResponse<T>> result = restTemplate.exchange(url, HttpMethod.POST, entityToSend, new ParameterizedTypeReference<>(){});
+        HttpEntity<E> entityToSend = new HttpEntity<>(request, authorizationHeader);
+        String token = PropertiesLoader.readProperty("token");
+        try {
+            ResponseEntity<ApiResponse<T>> result = restTemplate.exchange(url, HttpMethod.POST, entityToSend, new ParameterizedTypeReference<>() {
+            });
             statusCodesHandler.checkStatusCodes(result);
             return mapper.mapToObject(result.getBody(), response);
-        }catch (ResourceAccessException e){
+        } catch (ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY));
             throw new RestClientException("Server not responding");
         }
     }
 
-    public <E> void post(String url, E request){
+    public <E> void post(String url, E request) {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
-        HttpEntity<E> entityToSend = new HttpEntity<>(request ,authorizationHeader);
-        try{
-            ResponseEntity<ApiResponse<Void>> result = restTemplate.exchange(url, HttpMethod.POST, entityToSend, new ParameterizedTypeReference<>(){});
+        HttpEntity<E> entityToSend = new HttpEntity<>(request, authorizationHeader);
+        try {
+            ResponseEntity<ApiResponse<Void>> result = restTemplate.exchange(url, HttpMethod.POST, entityToSend, new ParameterizedTypeReference<>() {
+            });
             statusCodesHandler.checkStatusCodes(result);
-        }catch (ResourceAccessException e){
+        } catch (ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY));
             throw new RestClientException("Server not responding");
         }
     }
 
-    private HttpHeaders createAuthorizationHeader(){
+    public <E> void login(String url, E request) {
+        HttpHeaders authorizationHeader = createAuthorizationHeader();
+        HttpEntity<E> entityToSend = new HttpEntity<>(request, authorizationHeader);
+        try {
+            ResponseEntity<ApiResponse<Void>> result = restTemplate.exchange(url, HttpMethod.POST, entityToSend, new ParameterizedTypeReference<>() {
+            });
+            statusCodesHandler.checkStatusCodes(result);
+            HttpHeaders headers = result.getHeaders();
+            AuthorizationUtils.readAuthorizationDataAndSaveLocally(headers);
+
+        } catch (HttpServerErrorException e) {
+            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY));
+            throw new RestClientException("Server not responding");
+        }
+    }
+
+    private HttpHeaders createAuthorizationHeader() {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-//        httpHeaders.setBearerAuth(PropertiesLoader.readProperty("token"));
+        if (PropertiesLoader.isExist("token")) {
+            httpHeaders.setBearerAuth(PropertiesLoader.readProperty("token"));
+        }
         return httpHeaders;
+    }
+
+
+    private void configureRestClient() {
+        SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
+        requestFactory.setOutputStreaming(false);
+        List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
+        messageConverters.add(converter);
+        restTemplate.setMessageConverters(messageConverters);
+        restTemplate.setRequestFactory(requestFactory);
     }
 
 }

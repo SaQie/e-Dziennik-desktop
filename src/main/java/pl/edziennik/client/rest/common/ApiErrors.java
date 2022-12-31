@@ -1,4 +1,4 @@
-package pl.edziennik.client.rest;
+package pl.edziennik.client.rest.common;
 
 import lombok.Data;
 

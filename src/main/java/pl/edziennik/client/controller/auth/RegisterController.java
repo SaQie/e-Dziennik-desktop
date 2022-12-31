@@ -83,6 +83,7 @@ public class RegisterController implements Initializable {
             adminPojo.setUsername(usernameInput.getText());
             progressFactory.createLittleProgressBar(new RegisterAdminTask(adminPojo), (response) -> {
                 dialogFactory.createSuccessInformationDialog(null);
+                validationUtil.clearFields(usernameInput,passwordInput,emailInput,repeatPasswordInput);
             });
         });
     }

@@ -3,6 +3,7 @@ package pl.edziennik.client.controller.auth;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.AccessibleRole;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
@@ -11,6 +12,9 @@ import javafx.stage.Stage;
 import pl.edziennik.client.common.AccountType;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.common.ProgressFactory;
+import pl.edziennik.client.rest.AuthorizationRestClient;
+import pl.edziennik.client.rest.pojo.LoginCredentialsPojo;
+import pl.edziennik.client.utils.AuthorizationUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,10 +27,12 @@ public class LoginController implements Initializable {
 
     private final DialogFactory dialogFactory;
     private final ProgressFactory progressFactory;
+    private final AuthorizationRestClient authorizationRestClient;
 
     public LoginController() {
         this.dialogFactory = DialogFactory.getInstance();
         this.progressFactory = ProgressFactory.getInstance();
+        this.authorizationRestClient = new AuthorizationRestClient();
     }
 
      /*
@@ -52,9 +58,20 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initializeLoginButton();
         initializeCheckBox();
         setExitButtonAction();
         bindLoginButtonToFields();
+    }
+
+    private void initializeLoginButton() {
+        loginButton.setOnAction(button -> {
+            LoginCredentialsPojo credentialsPojo = new LoginCredentialsPojo();
+            credentialsPojo.setUsername(usernameInput.getText());
+            credentialsPojo.setPassword(passwordInput.getText());
+            authorizationRestClient.login(credentialsPojo);
+            AuthorizationUtils.showCorrectSceneAfterLogin(getStage());
+        });
     }
 
 

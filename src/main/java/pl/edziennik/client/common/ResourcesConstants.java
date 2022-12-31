@@ -15,6 +15,8 @@ public class ResourcesConstants {
     public static final String ERROR_ICON_ADDRESS = "/pl/edziennik/client/icons/error.png";
     public static final String SUCCESS_ICON_ADDRESS = "/pl/edziennik/client/icons/success.png";
 
+    public static final String DASHBOARD_ADMIN_VIEW_ADDRESS = "/pl/edziennik/client/admin-dashboard-view.fxml";
+
 
     /*
         MESSAGES CONSTS
@@ -26,12 +28,13 @@ public class ResourcesConstants {
     public static final String ERROR_DIALOG_HEADER_MESSAGE_KEY = "error.dialog.header";
     public static final String SUCCESS_DIALOG_HEADER_MESSAGE_KEY = "success.dialog.header";
     public static final String SUCCESS_DIALOG_CONTENT_MESSAGE_KEY = "success.dialog.content";
+    public static final String SUCCESS_DIALOG_TITLE_MESSAGE_KEY = "success.dialog.title";
     public static final String BUTTON_YES_KEY = "button.yes";
     public static final String BUTTON_NO_KEY = "button.no";
     public static final String BUTTON_OK_KEY = "button.ok";
     public static final String WAITING_REGISTER_MESSAGE_KEY = "waiting.register.message";
 
-    // errors codes
+    // ERROR CODES
 
     public static final String USERNAME_FIELD_IS_EMPTY_KEY = "field.username.empty";
     public static final String EMAIL_FIELD_IS_EMPTY_KEY = "field.email.empty";
@@ -45,6 +48,8 @@ public class ResourcesConstants {
     public static final String PARSE_ERROR = "restclient.parese.error";
     public static final String SERVER_ERROR_MESSAGE_KEY = "restclient.server.error";
     public static final String SERVER_NOT_RESPONDING_MESSAGE_KEY = "restclient.server.not.respond";
+    public static final String UNAUTHORIZED_ERROR_MESSAGE_KEY = "restclient.unauthorized.message";
+    public static final String ACCESS_DENIED_ERROR_MESSAGE_KEY = "restclient.access.denied.message";
 
 
 

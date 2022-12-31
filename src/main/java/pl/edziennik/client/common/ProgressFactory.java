@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 import lombok.SneakyThrows;
 import pl.edziennik.client.controller.ProgressController;
 
@@ -65,12 +66,17 @@ public class ProgressFactory {
         ProgressController controller = loader.<ProgressController>getController();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.TRANSPARENT);
-//        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initModality(Modality.APPLICATION_MODAL);
         scene.setFill(Color.TRANSPARENT);
         stage.requestFocus();
         stage.setAlwaysOnTop(true);
         stage.setScene(scene);
+        Stage actualStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+        if (actualStage != null){
+            stage.initOwner(actualStage);
+        }
         stage.show();
+        stage.centerOnScreen();
         return controller;
     }
 }

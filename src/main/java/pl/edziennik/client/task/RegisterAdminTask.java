@@ -14,7 +14,7 @@ public class RegisterAdminTask extends Task<AdminPojo> {
     private final ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGES_RESOURCES_ADDRESS);
 
     private final AdminRestClient restClient;
-    private final AdminPojo adminPojo;
+    private AdminPojo adminPojo;
 
 
     public RegisterAdminTask(AdminPojo adminPojo) {
@@ -27,10 +27,11 @@ public class RegisterAdminTask extends Task<AdminPojo> {
     protected AdminPojo call() throws Exception {
         try{
             updateMessage(resourceBundle.getString(WAITING_REGISTER_MESSAGE_KEY));
-            restClient.register(adminPojo);
+            adminPojo = restClient.register(adminPojo);
         }catch (RestClientException e){
             cancel(true);
+            return null;
         }
-        return null;
+        return adminPojo;
     }
 }

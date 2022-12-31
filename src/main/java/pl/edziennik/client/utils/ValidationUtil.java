@@ -44,6 +44,11 @@ public class ValidationUtil {
         textField.pseudoClassStateChanged(PseudoClass.getPseudoClass("valid"), true);
     }
 
+    public static void clearMark(TextField textField){
+        textField.pseudoClassStateChanged(PseudoClass.getPseudoClass("error"), false);
+        textField.pseudoClassStateChanged(PseudoClass.getPseudoClass("valid"), false);
+    }
+
 
     public Tooltip prepareValidationTooltip(String errorMessage){
         Image icon = new Image(getClass().getResource(ERROR_ICON_ADDRESS).toExternalForm(), 20, 20, false, false);
@@ -81,6 +86,13 @@ public class ValidationUtil {
                         .allMatch(e -> (!e.getText().isEmpty() || !e.getText().isBlank()) && e.getTooltip() == null);
                 button.setDisable(!hasErrors);
             });
+        }
+    }
+
+    public void clearFields(TextField... textFields){
+        for (TextField textField : textFields) {
+            textField.clear();
+            clearMark(textField);
         }
     }
 

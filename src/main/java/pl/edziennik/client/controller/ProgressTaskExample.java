@@ -15,17 +15,8 @@ public class ProgressTaskExample extends Task<Void> {
     @Override
     protected Void call() throws Exception {
         try {
-            adminRestClient.get(1L);
-            adminRestClient.get(1L);
             Thread.sleep(2000);
-            adminRestClient.get(1L);
-            adminRestClient.get(1L);
-            adminRestClient.get(1L);
-            adminRestClient.get(1L);
-            adminRestClient.get(1L);
-            adminRestClient.get(1L);
-            adminRestClient.get(1L);
-            adminRestClient.get(1L);
+
             succeeded();
             return null;
         }catch (RestClientException e){

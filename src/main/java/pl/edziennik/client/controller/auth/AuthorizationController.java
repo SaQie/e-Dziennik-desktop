@@ -38,9 +38,8 @@ public class AuthorizationController implements Initializable {
      */
 
     public void loadAuthorizationView(Stage stage) throws IOException {
-        Locale.setDefault(new Locale("pl"));
         FXMLLoader fxmlLoader = new FXMLLoader(eDziennikApplication.class.getResource("authorization-view.fxml"));
-        ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGES_RESOURCES_ADDRESS);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGES_RESOURCES_ADDRESS, Locale.forLanguageTag("PL"));
         fxmlLoader.setResources(resourceBundle);
         Scene scene = new Scene(fxmlLoader.load(), WIDTH, HEIGHT);
         stage.setTitle(AUTHORIZATION_VIEW_TITLE);

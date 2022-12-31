@@ -53,11 +53,11 @@ public class ProgressController implements Initializable {
         });
 
         task.setOnFailed(failed -> {
-            getStageLittle().close();
+            getStage().close();
         });
 
         task.setOnCancelled(cancelled -> {
-            getStageLittle().close();
+            getStage().close();
         });
 
         ThreadUtils.runInBackgroundThread(task);

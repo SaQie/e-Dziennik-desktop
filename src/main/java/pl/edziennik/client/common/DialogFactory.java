@@ -11,7 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
-import pl.edziennik.client.rest.ApiErrors;
+import pl.edziennik.client.rest.common.ApiErrors;
 
 import java.util.Arrays;
 import java.util.ResourceBundle;
@@ -42,6 +42,7 @@ public class DialogFactory {
     private final String ERROR_DIALOG_HEADER_MESSAGE = resourceBundle.getString(ERROR_DIALOG_HEADER_MESSAGE_KEY);
     private final String SUCCESS_DIALOG_HEADER_MESSAGE = resourceBundle.getString(SUCCESS_DIALOG_HEADER_MESSAGE_KEY);
     private final String BASIC_SUCCESS_DIALOG_MESSAGE = resourceBundle.getString(SUCCESS_DIALOG_CONTENT_MESSAGE_KEY);
+    private final String SUCCESS_DIALOG_TITLE = resourceBundle.getString(SUCCESS_DIALOG_TITLE_MESSAGE_KEY);
     private final ButtonType YES_BUTTON = new ButtonType(resourceBundle.getString(BUTTON_YES_KEY));
     private final ButtonType NO_BUTTON = new ButtonType(resourceBundle.getString(BUTTON_NO_KEY));
     private final ButtonType OK_BUTTON = new ButtonType(resourceBundle.getString(BUTTON_OK_KEY));
@@ -117,6 +118,7 @@ public class DialogFactory {
         }
         alert.getDialogPane().getStylesheets().add(alertStylesPath);
         alert.getDialogPane().setGraphic(successIcon);
+        alert.setTitle(SUCCESS_DIALOG_TITLE);
         return alert;
     }
 

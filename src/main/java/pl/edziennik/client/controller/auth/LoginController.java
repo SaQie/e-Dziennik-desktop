@@ -26,12 +26,10 @@ public class LoginController implements Initializable {
      */
 
     private final DialogFactory dialogFactory;
-    private final ProgressFactory progressFactory;
     private final AuthorizationRestClient authorizationRestClient;
 
     public LoginController() {
         this.dialogFactory = DialogFactory.getInstance();
-        this.progressFactory = ProgressFactory.getInstance();
         this.authorizationRestClient = new AuthorizationRestClient();
     }
 

@@ -15,6 +15,11 @@ public class ThreadUtils {
         Platform.runLater(runnable);
     }
 
+    public static void runInNewFxThread(final Runnable runnable){
+        Objects.requireNonNull(runnable);
+        Platform.runLater(runnable);
+    }
+
     public static void runInBackgroundThread(Runnable runnable){
         Objects.requireNonNull(runnable);
         if (Platform.isFxApplicationThread()){

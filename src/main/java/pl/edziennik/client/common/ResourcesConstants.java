@@ -29,6 +29,8 @@ public class ResourcesConstants {
     public static final String SUCCESS_DIALOG_HEADER_MESSAGE_KEY = "success.dialog.header";
     public static final String SUCCESS_DIALOG_CONTENT_MESSAGE_KEY = "success.dialog.content";
     public static final String SUCCESS_DIALOG_TITLE_MESSAGE_KEY = "success.dialog.title";
+    public static final String LOGOUT_DIALOG_TITLE_MESSAGE_KEY = "logout.dialog.title";
+    public static final String LOGOUT_DIALOG_HEADER_MESSAGE_KEY = "logout.dialog.header";
     public static final String BUTTON_YES_KEY = "button.yes";
     public static final String BUTTON_NO_KEY = "button.no";
     public static final String BUTTON_OK_KEY = "button.ok";

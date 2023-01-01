@@ -1,6 +1,7 @@
 package pl.edziennik.client.task;
 
 import javafx.concurrent.Task;
+import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.pojo.AdminPojo;
@@ -27,6 +28,7 @@ public class RegisterAdminTask extends Task<AdminPojo> {
     protected AdminPojo call() throws Exception {
         try{
             updateMessage(resourceBundle.getString(WAITING_REGISTER_MESSAGE_KEY));
+            Thread.sleep(5000);
             adminPojo = restClient.register(adminPojo);
         }catch (RestClientException e){
             cancel(true);

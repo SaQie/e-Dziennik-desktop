@@ -8,6 +8,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.edziennik.client.eDziennikApplication;
+import pl.edziennik.client.utils.AuthorizationUtils;
+import pl.edziennik.client.utils.NodeUtils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,29 +28,11 @@ public class AuthorizationController implements Initializable {
     private AnchorPane authorizationViewPane;
 
     /*
-        VARIABLES
-     */
-
-    private static final String AUTHORIZATION_VIEW_TITLE = "e-Dziennik";
-    private static final int WIDTH = 650;
-    private static final int HEIGHT = 450;
-
-    /*
         CODE
      */
 
     public void loadAuthorizationView(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(eDziennikApplication.class.getResource("authorization-view.fxml"));
-        ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGES_RESOURCES_ADDRESS, Locale.forLanguageTag("PL"));
-        fxmlLoader.setResources(resourceBundle);
-        Scene scene = new Scene(fxmlLoader.load(), WIDTH, HEIGHT);
-        stage.setTitle(AUTHORIZATION_VIEW_TITLE);
-        stage.setMinWidth(WIDTH);
-        stage.setMinHeight(HEIGHT);
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.UTILITY);
-        stage.show();
+        AuthorizationUtils.loadAuthorizationPage();
     }
 
 

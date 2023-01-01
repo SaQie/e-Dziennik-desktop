@@ -3,6 +3,7 @@ package pl.edziennik.client.utils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -11,15 +12,23 @@ import lombok.SneakyThrows;
 import org.springframework.http.HttpHeaders;
 import pl.edziennik.client.common.PropertiesLoader;
 import pl.edziennik.client.common.Role;
+import pl.edziennik.client.controller.ProgressController;
+import pl.edziennik.client.controller.admin.AdminController;
+import pl.edziennik.client.eDziennikApplication;
 
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import static pl.edziennik.client.common.ResourcesConstants.*;
 
 public class AuthorizationUtils {
+
+    /*
+        VARIABLES
+     */
+
+    private static final String AUTHORIZATION_VIEW_TITLE = "e-Dziennik";
+    private static final int WIDTH = 650;
+    private static final int HEIGHT = 450;
 
     public static void readAuthorizationDataAndSaveLocally(HttpHeaders headers) {
         if (headers != null) {
@@ -41,18 +50,34 @@ public class AuthorizationUtils {
     }
 
     @SneakyThrows
+    public static void loadAuthorizationPage(){
+        Stage stage = new Stage();
+        FXMLLoader loader = NodeUtils.getLoaderWithResources(eDziennikApplication.class.getResource("authorization-view.fxml"));
+        Scene scene = new Scene(loader.load(), WIDTH, HEIGHT);
+        stage.setTitle(AUTHORIZATION_VIEW_TITLE);
+        stage.setMinWidth(WIDTH);
+        stage.setMinHeight(HEIGHT);
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UTILITY);
+        stage.show();
+    }
+
+    @SneakyThrows
     public static void showCorrectSceneAfterLogin(Stage currentStage){
         String role = PropertiesLoader.readProperty("role");
         if (role == null){
             return;
         }
         if (role.equals(Role.ROLE_ADMIN.name())){
-            FXMLLoader loader = new FXMLLoader(AuthorizationUtils.class.getResource(DASHBOARD_ADMIN_VIEW_ADDRESS));
+            FXMLLoader loader = NodeUtils.getLoaderWithResources(AuthorizationUtils.class.getResource(DASHBOARD_ADMIN_VIEW_ADDRESS));
             Scene scene = new Scene((AnchorPane) loader.load(), 1200, 800);
             Stage stage = new Stage();
-            stage.initStyle(StageStyle.UTILITY);
+            stage.initStyle(StageStyle.DECORATED);
+            stage.setMinWidth(1100);
             stage.requestFocus();
             stage.setScene(scene);
+            stage.initOwner(currentStage);
             currentStage.close();
             stage.show();
             return;

@@ -19,7 +19,7 @@ public class ProgressFactory {
 
     private static ProgressFactory factory;
 
-    private String viewUrl = "/pl/edziennik/client/waiting-pop-up.fxml";
+    private String viewLargeUrl = "/pl/edziennik/client/waiting-pop-up.fxml";
     private String viewLittleUrl = "/pl/edziennik/client/waiting-pop-up-little.fxml";
 
     private ProgressFactory() {
@@ -33,10 +33,10 @@ public class ProgressFactory {
     }
 
     @SneakyThrows
-    public <T> void createLargeProgressBar(Task<T> task,Consumer<T> consumer){
-        ProgressController controller = createBasicProgressBarView(400 , 150);
-        controller.startLarge(task,() -> {
-            if (task.isDone()){
+    public <T> void createLargeProgressBar(Task<T> task, Consumer<T> consumer) {
+        ProgressController controller = createBasicProgressBarView(300, 200, viewLargeUrl);
+        controller.startLarge(task, () -> {
+            if (task.isDone()) {
                 try {
                     consumer.accept(task.get());
                 } catch (InterruptedException | ExecutionException e) {
@@ -46,10 +46,10 @@ public class ProgressFactory {
         });
     }
 
-    public <T> void createLittleProgressBar(Task<T> task, Consumer<T> consumer){
-        ProgressController controller = createBasicProgressBarView(250, 150);
-        controller.startLittle(task,() -> {
-            if (task.isDone()){
+    public <T> void createLittleProgressBar(Task<T> task, Consumer<T> consumer) {
+        ProgressController controller = createBasicProgressBarView(250, 150, viewLittleUrl);
+        controller.startLittle(task, () -> {
+            if (task.isDone()) {
                 try {
                     consumer.accept(task.get());
                 } catch (InterruptedException | ExecutionException e) {
@@ -60,8 +60,8 @@ public class ProgressFactory {
     }
 
     @SneakyThrows
-    private ProgressController createBasicProgressBarView(int width, int height){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(viewLittleUrl));
+    private ProgressController createBasicProgressBarView(int width, int height, String view) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
         Scene scene = new Scene((AnchorPane) loader.load(), width, height);
         ProgressController controller = loader.<ProgressController>getController();
         Stage stage = new Stage();
@@ -70,13 +70,14 @@ public class ProgressFactory {
         scene.setFill(Color.TRANSPARENT);
         stage.requestFocus();
         stage.setAlwaysOnTop(true);
-        stage.setScene(scene);
         Stage actualStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
-        if (actualStage != null){
+        if (actualStage != null) {
             stage.initOwner(actualStage);
+            stage.setX(actualStage.getX() + actualStage.getWidth() / 2 - scene.getWidth() / 2);
+            stage.setY(actualStage.getY() + actualStage.getHeight() / 2 - scene.getHeight() / 2);
         }
+        stage.setScene(scene);
         stage.show();
-        stage.centerOnScreen();
         return controller;
     }
 }

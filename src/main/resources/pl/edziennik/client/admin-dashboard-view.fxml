@@ -18,18 +18,34 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.admin.AdminController">
    <children>
       <BorderPane layoutX="206.0" layoutY="105.0" prefHeight="159.0" prefWidth="138.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
             <VBox prefHeight="735.0" prefWidth="160.0" styleClass="background-color-light" stylesheets="@css/left-side-bar-global-styles.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="Lista studentów" />
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="Lista studentów">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></Button>
                   <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" styleClass="left-side-button" text="Lista szkół" />
                   <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="Twoje dane" />
                   <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="Zmiana hasła" />
                   <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="Konfiguracja" />
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="Wyjście" />
+                  <Button fx:id="logoutButton" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%button.logout" />
+                  <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%exit.button" />
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="393.0" prefWidth="160.0">
+                     <children>
+                        <Label fx:id="timerLabel" contentDisplay="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </VBox>
                </children></VBox>
          </left>
          <top>
@@ -54,7 +70,7 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <TabPane layoutX="3.0" layoutY="10.0" prefHeight="290.0" prefWidth="297.0" stylesheets="@css/global-tab-pane-styles.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TabPane fx:id="testPane" layoutX="3.0" layoutY="10.0" prefHeight="290.0" prefWidth="297.0" stylesheets="@css/global-tab-pane-styles.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <tabs>
                       <Tab text="Statystyki">
                         <content>
@@ -62,32 +78,48 @@
                                  <children>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <top>
-                                          <HBox alignment="CENTER" prefHeight="113.0" prefWidth="1058.0" spacing="50.0" stylesheets="@css/dashboard-view-style.css" BorderPane.alignment="CENTER">
+                                          <HBox alignment="CENTER" prefHeight="120.0" prefWidth="1036.0" spacing="50.0" stylesheets="@css/dashboard-view-style.css" BorderPane.alignment="CENTER">
                                              <children>
-                                                <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane">
+                                                <AnchorPane prefHeight="106.0" prefWidth="187.0">
                                                    <children>
-                                                      <Label layoutX="78.0" layoutY="14.0" styleClass="dashboard-label" text="Szkoły" />
-                                                      <Label layoutX="92.0" layoutY="57.0" styleClass="dashboard-label-number" text="3" />
+                                                      <Pane prefHeight="120.0" prefWidth="200.0" styleClass="pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <Label layoutX="71.0" layoutY="14.0" styleClass="dashboard-label" text="Szkoły" />
+                                                            <Label layoutX="85.0" layoutY="60.0" styleClass="dashboard-label-number" text="3" />
+                                                         </children>
+                                                      </Pane>
                                                    </children>
-                                                </Pane>
-                                                <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane">
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="146.0" prefWidth="198.0">
                                                    <children>
-                                                      <Label layoutX="66.0" layoutY="14.0" styleClass="dashboard-label" text="Uczniowie" />
-                                                      <Label layoutX="77.0" layoutY="57.0" styleClass="dashboard-label-number" text="120" />
+                                                      <Pane prefHeight="120.0" prefWidth="200.0" styleClass="pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <Label layoutX="59.0" layoutY="14.0" styleClass="dashboard-label" text="Nauczyciele" />
+                                                            <Label contentDisplay="CENTER" layoutX="83.0" layoutY="60.0" styleClass="dashboard-label-number" text="25" />
+                                                         </children>
+                                                      </Pane>
                                                    </children>
-                                                </Pane>
-                                                <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane">
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="146.0" prefWidth="198.0">
                                                    <children>
-                                                      <Label layoutX="60.0" layoutY="14.0" styleClass="dashboard-label" text="Nauczyciele" />
-                                                      <Label layoutX="84.0" layoutY="57.0" styleClass="dashboard-label-number" text="28" />
+                                                      <Pane prefHeight="120.0" prefWidth="200.0" styleClass="pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <Label layoutX="78.0" layoutY="14.0" styleClass="dashboard-label" text="Szkoły" />
+                                                            <Label layoutX="92.0" layoutY="57.0" styleClass="dashboard-label-number" text="3" />
+                                                         </children>
+                                                      </Pane>
                                                    </children>
-                                                </Pane>
-                                                <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane">
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="146.0" prefWidth="198.0">
                                                    <children>
-                                                      <Label layoutX="54.0" layoutY="14.0" styleClass="dashboard-label" text="Administracja" />
-                                                      <Label layoutX="93.0" layoutY="57.0" styleClass="dashboard-label-number" text="2" />
+                                                      <Pane prefHeight="120.0" prefWidth="200.0" styleClass="pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <Label layoutX="78.0" layoutY="14.0" styleClass="dashboard-label" text="Szkoły" />
+                                                            <Label layoutX="92.0" layoutY="57.0" styleClass="dashboard-label-number" text="3" />
+                                                         </children>
+                                                      </Pane>
                                                    </children>
-                                                </Pane>
+                                                </AnchorPane>
                                              </children>
                                              <BorderPane.margin>
                                                 <Insets top="10.0" />

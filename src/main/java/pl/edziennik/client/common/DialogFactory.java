@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import pl.edziennik.client.rest.common.ApiErrors;
+import pl.edziennik.client.utils.AuthorizationUtils;
+import pl.edziennik.client.utils.NodeUtils;
 
 import java.util.Arrays;
 import java.util.ResourceBundle;
@@ -46,6 +48,8 @@ public class DialogFactory {
     private final ButtonType YES_BUTTON = new ButtonType(resourceBundle.getString(BUTTON_YES_KEY));
     private final ButtonType NO_BUTTON = new ButtonType(resourceBundle.getString(BUTTON_NO_KEY));
     private final ButtonType OK_BUTTON = new ButtonType(resourceBundle.getString(BUTTON_OK_KEY));
+    private final String LOGOUT_CONFIRMATION_DIALOG_TITLE_MESSAGE = resourceBundle.getString(LOGOUT_DIALOG_TITLE_MESSAGE_KEY);
+    private final String LOGOUT_CONFIRMATION_DIALOG_HEADER_MESSAGE = resourceBundle.getString(LOGOUT_DIALOG_HEADER_MESSAGE_KEY);
 
 
     public void createExitConfirmationDialog(Stage stage){
@@ -96,6 +100,19 @@ public class DialogFactory {
         }
 
         basicErrorAlert.showAndWait();
+    }
+
+
+    public void createLogoutConfirmationDialog(Stage stage) {
+        Alert logoutConfirmationDialog = createBasicInformationAlert();
+        logoutConfirmationDialog.setTitle(LOGOUT_CONFIRMATION_DIALOG_TITLE_MESSAGE);
+        logoutConfirmationDialog.setHeaderText(LOGOUT_CONFIRMATION_DIALOG_HEADER_MESSAGE);
+        logoutConfirmationDialog.showAndWait();
+        if (logoutConfirmationDialog.getResult() == YES_BUTTON){
+            stage.close();
+            AuthorizationUtils.clearAuthorizationData();
+            AuthorizationUtils.loadAuthorizationPage();
+        }
     }
 
     public void createSuccessInformationDialog(String message){

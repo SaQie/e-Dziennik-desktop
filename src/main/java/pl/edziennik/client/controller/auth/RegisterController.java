@@ -8,11 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.common.ProgressFactory;
-import pl.edziennik.client.controller.ProgressTaskExample;
 import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.pojo.AdminPojo;
 import pl.edziennik.client.task.RegisterAdminTask;
-import pl.edziennik.client.utils.ThreadUtils;
 import pl.edziennik.client.utils.ValidationUtil;
 import pl.edziennik.client.validator.auth.AuthValidator;
 

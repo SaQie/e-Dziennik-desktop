@@ -13,7 +13,7 @@
             <ProgressIndicator fx:id="indicator" prefHeight="77.0" prefWidth="73.0" stylesheets="@css/loading-styles.css" BorderPane.alignment="CENTER" />
          </center>
          <bottom>
-            <Label fx:id="label" alignment="CENTER" prefHeight="40.0" prefWidth="500.0" text="Wczytywanie" textFill="WHITE" BorderPane.alignment="BASELINE_CENTER">
+            <Label fx:id="label" alignment="CENTER" prefHeight="40.0" prefWidth="500.0" text="Wczytywanie" textFill="#1885db" BorderPane.alignment="BASELINE_CENTER">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>

@@ -1,4 +1,4 @@
 .progress-indicator:indeterminate .segment {
-    -fx-background-color: white;
+    -fx-background-color: #1094fa;
 }
 .root { -fx-background-color: transparent; }

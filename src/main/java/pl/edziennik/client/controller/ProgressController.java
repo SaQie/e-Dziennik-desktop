@@ -33,9 +33,6 @@ public class ProgressController implements Initializable {
     @FXML
     private Label label;
 
-    @FXML
-    private AnchorPane littlePane;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -4,9 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import pl.edziennik.client.common.ProgressFactory;
-import pl.edziennik.client.task.LoadAdminDashboardView;
+import pl.edziennik.client.task.LoadSchoolsTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ThreadUtils;
 
@@ -22,26 +23,43 @@ public class AdminController implements Initializable {
     }
 
     @FXML
+    private AdminSchoolsTabController schoolsTabController;
+
+    @FXML
     private Label timerLabel;
 
     @FXML
-    private Button exitButton;
+    private Button exitButton, logoutButton;
 
     @FXML
-    private Button logoutButton;
+    private TabPane mainViewPane;
+
+    @FXML
+    private Tab schoolsTab, statisticsTab, chartsTab, accountsTab;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         NodeUtils.createExitButtonAction(exitButton);
         NodeUtils.createTimer(timerLabel);
-        ThreadUtils.runInNewFxThread(() -> progressFactory.createLargeProgressBar(new LoadAdminDashboardView(), (response) -> {
-            System.out.println("skonczylem");
-        }));
-        System.out.println("asd");
+        // chhyba powinienem dac tutaj ladnowanie wszystkiego z bomby
+        // dopiero "refresh" bedzie ladowalo to odpowiednio
+        // bo tak to co klikniecie bedzie request- a to bez sensu
+
+        // Drugi pomysl
+        // przed ladowaniem sprawdzac czy tabela byla juz zaladowana (if table.isEmpty) to wtedy laduj dane(request)
+        // jesli juz ma jakies dane to zostawiamy w spokoju (nie robimy nic)
         NodeUtils.createLogoutButton(logoutButton);
+        mainViewPane.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals(schoolsTab)) {
+                if (schoolsTabController.isTableDataEmpty()) {
+                    ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new LoadSchoolsTask(), (response) -> {
+                        schoolsTabController.fetchTabData(response);
+                    }));
+                }
+            }
+        });
 
     }
-
 
 
 }

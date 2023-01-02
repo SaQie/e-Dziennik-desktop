@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<Tab fx:id="schoolsTab" text="%tab.schools" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.admin.AdminSchoolsTabController">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@css/global-colors.css">
+            <children>
+                <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <top>
+                        <HBox prefHeight="40.0" prefWidth="1040.0" spacing="15.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="dashboard-crud-button" text="Dodaj">
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@icons/add.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="dashboard-crud-button" text="Pokaż">
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@icons/show.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="dashboard-crud-button" text="Edytuj">
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@icons/edit.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="dashboard-crud-button" text="Usuń">
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@icons/minus.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
+                            <BorderPane.margin>
+                                <Insets left="5.0" top="5.0" />
+                            </BorderPane.margin>
+                        </HBox>
+                    </top>
+               <center>
+                  <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/student-list-style.css" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TableColumn fx:id="nameColumn" prefWidth="75.0" text="%name.column.text" />
+                      <TableColumn fx:id="postalCodeColumn" prefWidth="75.0" text="%postal.code.column.text" />
+                        <TableColumn fx:id="cityColumn" prefWidth="75.0" text="%city.column.text" />
+                        <TableColumn fx:id="nipColumn" prefWidth="75.0" text="%nip.column.text" />
+                        <TableColumn fx:id="regonColumn" prefWidth="75.0" text="%regon.column.text" />
+                        <TableColumn fx:id="addressColumn" prefWidth="75.0" text="%address.column.text" />
+                        <TableColumn fx:id="phoneNumberColumn" prefWidth="75.0" text="%phone.number.column.text" />
+                    </columns>
+                  </TableView>
+               </center>
+                </BorderPane>
+            </children>
+        </AnchorPane>
+    </content>
+</Tab>

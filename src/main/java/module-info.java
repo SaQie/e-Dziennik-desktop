@@ -23,6 +23,7 @@ module pl.edziennik.client {
     exports pl.edziennik.client.exception;
     exports pl.edziennik.client.utils;
     exports pl.edziennik.client.validator.auth;
+    exports pl.edziennik.client.controller.model.admin;
     opens pl.edziennik.client.controller.auth to javafx.fxml;
     opens pl.edziennik.client.controller.admin to javafx.fxml;
     opens pl.edziennik.client.controller to javafx.fxml;

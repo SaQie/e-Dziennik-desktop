@@ -70,9 +70,9 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <TabPane fx:id="testPane" layoutX="3.0" layoutY="10.0" prefHeight="290.0" prefWidth="297.0" stylesheets="@css/global-tab-pane-styles.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TabPane fx:id="mainViewPane" layoutX="3.0" layoutY="10.0" prefHeight="290.0" prefWidth="297.0" stylesheets="@css/global-tab-pane-styles.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <tabs>
-                      <Tab text="Statystyki">
+                      <Tab fx:id="statisticsTab" text="%tab.statistics">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -131,12 +131,12 @@
                               </AnchorPane>
                         </content>
                       </Tab>
-                      <Tab text="Wykresy">
+                      <Tab fx:id="chartsTab" text="%tab.charts">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                         </content>
                       </Tab>
-                        <Tab text="Konta">
+                        <Tab fx:id="accountsTab" text="%tab.accounts">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -242,64 +242,7 @@
                               </AnchorPane>
                           </content>
                         </Tab>
-                        <Tab text="Szkoły">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <center>
-                                          <TreeView fx:id="treeView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-                                       </center>
-                                       <top>
-                                          <HBox prefHeight="40.0" prefWidth="1040.0" spacing="15.0" BorderPane.alignment="CENTER">
-                                             <children>
-                                                <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="dashboard-crud-button" text="Dodaj">
-                                                   <graphic>
-                                                      <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@icons/add.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </graphic>
-                                                </Button>
-                                                <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="dashboard-crud-button" text="Pokaż">
-                                                   <graphic>
-                                                      <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@icons/show.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </graphic>
-                                                </Button>
-                                                <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="dashboard-crud-button" text="Edytuj">
-                                                   <graphic>
-                                                      <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@icons/edit.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </graphic>
-                                                </Button>
-                                                <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="dashboard-crud-button" text="Usuń">
-                                                   <graphic>
-                                                      <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@icons/minus.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </graphic>
-                                                </Button>
-                                             </children>
-                                             <BorderPane.margin>
-                                                <Insets left="5.0" top="5.0" />
-                                             </BorderPane.margin>
-                                          </HBox>
-                                       </top>
-                                    </BorderPane>
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </Tab>
+                        <fx:include fx:id="schoolsTab" source="admin-dashboard-schools-tab.fxml" />
                     </tabs>
                   </TabPane>
                </children>

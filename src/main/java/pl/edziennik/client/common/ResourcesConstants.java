@@ -35,6 +35,7 @@ public class ResourcesConstants {
     public static final String BUTTON_NO_KEY = "button.no";
     public static final String BUTTON_OK_KEY = "button.ok";
     public static final String WAITING_REGISTER_MESSAGE_KEY = "waiting.register.message";
+    public static final String FETCHING_SCHOOL_LIST_DATA_MESSAGE_KEY = "fetch.school.list.data.message";
 
     // ERROR CODES
 

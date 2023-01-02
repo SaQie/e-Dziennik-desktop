@@ -24,7 +24,7 @@
 }
 
 .tab-pane .tab:selected{
-    -fx-border-width: 3px 3px 3px 3px;
+    -fx-border-width: 3px 0px 0px 0px;
     -fx-border-color: -fx-primary-color;
 
 }

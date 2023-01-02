@@ -11,6 +11,7 @@ import pl.edziennik.client.common.ProgressFactory;
 import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.pojo.AdminPojo;
 import pl.edziennik.client.task.RegisterAdminTask;
+import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ValidationUtil;
 import pl.edziennik.client.validator.auth.AuthValidator;
 
@@ -25,7 +26,6 @@ public class RegisterController implements Initializable {
 
     private final DialogFactory dialogFactory;
     private final AuthValidator authValidator;
-    private final AdminRestClient adminRestClient;
     private final ValidationUtil validationUtil;
     private final ProgressFactory progressFactory;
 
@@ -33,7 +33,6 @@ public class RegisterController implements Initializable {
     public RegisterController() {
         this.dialogFactory = DialogFactory.getInstance();
         this.authValidator = new AuthValidator();
-        this.adminRestClient = new AdminRestClient();
         this.validationUtil = ValidationUtil.getInstance();
         this.progressFactory = ProgressFactory.getInstance();
     }
@@ -66,8 +65,8 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        NodeUtils.createExitButtonAction(exitButton);
         setRegisterButtonAction();
-        setExitButtonAction();
         initializeFieldValidators();
         initializeRegisterButton();
     }
@@ -84,11 +83,6 @@ public class RegisterController implements Initializable {
                 validationUtil.clearFields(usernameInput,passwordInput,emailInput,repeatPasswordInput);
             });
         });
-    }
-
-
-    private void setExitButtonAction() {
-        exitButton.setOnAction(button -> dialogFactory.createExitConfirmationDialog(getStage()));
     }
 
 

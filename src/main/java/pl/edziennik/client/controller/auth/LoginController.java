@@ -15,6 +15,7 @@ import pl.edziennik.client.common.ProgressFactory;
 import pl.edziennik.client.rest.AuthorizationRestClient;
 import pl.edziennik.client.rest.pojo.LoginCredentialsPojo;
 import pl.edziennik.client.utils.AuthorizationUtils;
+import pl.edziennik.client.utils.NodeUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,9 +57,9 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        NodeUtils.createExitButtonAction(exitButton);
         initializeLoginButton();
         initializeCheckBox();
-        setExitButtonAction();
         bindLoginButtonToFields();
     }
 
@@ -76,10 +77,6 @@ public class LoginController implements Initializable {
     private void initializeCheckBox() {
         accountTypeCheckBox.getItems().setAll(AccountType.STUDENT.getDescription(), AccountType.WORKER.getDescription());
         accountTypeCheckBox.getSelectionModel().selectFirst();
-    }
-
-    private void setExitButtonAction() {
-        exitButton.setOnAction(button -> dialogFactory.createExitConfirmationDialog(getStage()));
     }
 
     private void bindLoginButtonToFields() {

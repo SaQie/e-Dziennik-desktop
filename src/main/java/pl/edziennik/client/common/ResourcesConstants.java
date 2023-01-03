@@ -36,6 +36,13 @@ public class ResourcesConstants {
     public static final String BUTTON_OK_KEY = "button.ok";
     public static final String WAITING_REGISTER_MESSAGE_KEY = "waiting.register.message";
     public static final String FETCHING_SCHOOL_LIST_DATA_MESSAGE_KEY = "fetch.school.list.data.message";
+    public static final String NAME_COLUMN_KEY = "name.column.text";
+    public static final String ADDRESS_COLUMN_KEY = "address.column.text";
+    public static final String PHONE_COLUMN_KEY = "phone.number.column.text";
+    public static final String REGON_COLUMN_KEY = "regon.column.text";
+    public static final String NIP_COLUMN_KEY = "nip.column.text";
+    public static final String CITY_COLUMN_KEY = "city.column.text";
+    public static final String POSTAL_CODE_COLUMN_KEY = "postal.code.column.text";
 
     // ERROR CODES
 

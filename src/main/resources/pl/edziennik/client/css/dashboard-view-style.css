@@ -26,7 +26,7 @@
 }
 .dashboard-crud-button{
     -fx-background-color: transparent;
-    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-width: 0px 0px 0px 0px;
     -fx-border-color: -fx-primary-color;
     -fx-text-fill: gray;
     -fx-font-weight: bold;
@@ -35,7 +35,7 @@
 }
 
 .dashboard-crud-button:hover{
-    -fx-background-color: -fx-primary-color;
+    -fx-background-color: grey;
     -fx-text-fill: white;
 }
 

@@ -1,11 +1,15 @@
 package pl.edziennik.client.utils;
 
 import javafx.animation.AnimationTimer;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.DialogFactory;
+import pl.edziennik.client.controller.model.admin.SchoolListModel;
 
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -45,8 +49,30 @@ public class NodeUtils {
     }
 
     public static FXMLLoader getLoaderWithResources(URL viewLocation){
-        ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGES_RESOURCES_ADDRESS, Locale.forLanguageTag("PL"));
+        ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGES_RESOURCES_ADDRESS, new Locale("en", "EN"));
         return new FXMLLoader(viewLocation,resourceBundle);
+    }
+
+    public static <T> TableColumn<T, ?> getTableColumnByName(TableView<T> tableView, String name) {
+        for (TableColumn<T, ?> column : tableView.getColumns())
+            if (column.getText().equals(name)){
+                return column ;
+            }
+        return null ;
+    }
+
+    public static <T> boolean isColumnVisible(TableView<T> tableView, String name){
+        for (TableColumn<T, ?> column : tableView.getColumns())
+            if (column.getText().equals(name)){
+                return column.isVisible();
+            }
+        return false ;
+    }
+
+    public static <T> void enableButtonsIfSelectionModelIsNotEmpty(TableView<T> tableView, Button... buttons){
+        for (Button button : buttons) {
+            button.disableProperty().bind(Bindings.isNull(tableView.getSelectionModel().selectedItemProperty()));
+        }
     }
 
 }

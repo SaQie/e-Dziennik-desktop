@@ -57,6 +57,11 @@ public class TableViewControllerMaker {
             return this;
         }
 
+        public SchoolTableViewBuilder withHidedSchoolLevelColumn(){
+            columns.add(SchoolTableViewColumns.getSchoolLevelColumn());
+            return this;
+        }
+
         public List<TableColumn<SchoolListModel, ?>> build() {
             return columns;
         }

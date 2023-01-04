@@ -11,7 +11,7 @@ public class ResourcesConstants {
 
     public static final String ALERT_STYLES_ADDRESS = "/pl/edziennik/client/css/alert-styles.css";
     public static final String INFORMATION_ICON_ADDRESS = "/pl/edziennik/client/icons/Information.png";
-    public static final String MESSAGES_RESOURCES_ADDRESS = "pl/edziennik/client/bundles.messages";
+    public static final String MESSAGES_RESOURCES_ADDRESS = "pl.edziennik.client.bundles.messages";
     public static final String ERROR_ICON_ADDRESS = "/pl/edziennik/client/icons/error.png";
     public static final String SUCCESS_ICON_ADDRESS = "/pl/edziennik/client/icons/success.png";
 
@@ -43,6 +43,7 @@ public class ResourcesConstants {
     public static final String NIP_COLUMN_KEY = "nip.column.text";
     public static final String CITY_COLUMN_KEY = "city.column.text";
     public static final String POSTAL_CODE_COLUMN_KEY = "postal.code.column.text";
+    public static final String SCHOOL_LEVEL_NAME_COLUMN_KEY = "school.level.column.text";
 
     // ERROR CODES
 

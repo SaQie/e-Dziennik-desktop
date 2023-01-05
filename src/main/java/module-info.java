@@ -9,8 +9,6 @@ module pl.edziennik.client {
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
 
-    requires org.kordamp.ikonli.javafx;
-
     opens pl.edziennik.client to javafx.fxml;
     exports pl.edziennik.client;
     exports pl.edziennik.client.controller.auth;

@@ -1,9 +1,11 @@
 package pl.edziennik.client.controller.auth;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -26,6 +28,9 @@ public class AuthorizationController implements Initializable {
 
     @FXML
     private AnchorPane authorizationViewPane;
+
+    @FXML
+    private Tab registerTab;
 
     /*
         CODE

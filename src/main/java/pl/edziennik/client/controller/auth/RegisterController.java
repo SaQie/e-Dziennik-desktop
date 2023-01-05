@@ -1,9 +1,11 @@
 package pl.edziennik.client.controller.auth;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.DialogFactory;
@@ -58,6 +60,9 @@ public class RegisterController implements Initializable {
 
     @FXML
     private TextField usernameInput;
+
+    @FXML
+    private Tab registerTab;
 
     /*
         CODE

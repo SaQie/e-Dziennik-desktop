@@ -3,17 +3,14 @@ package pl.edziennik.client.utils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.SneakyThrows;
 import org.springframework.http.HttpHeaders;
-import pl.edziennik.client.common.PropertiesLoader;
+import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.common.Role;
-import pl.edziennik.client.controller.ProgressController;
-import pl.edziennik.client.controller.admin.AdminController;
 import pl.edziennik.client.eDziennikApplication;
 
 import java.util.*;

@@ -9,17 +9,23 @@ import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import pl.edziennik.client.common.DialogFactory;
-import pl.edziennik.client.common.PropertiesLoader;
+import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.exception.RestClientException;
-import pl.edziennik.client.rest.common.ApiResponse;
+import pl.edziennik.client.rest.client.response.ApiAuthResponse;
+import pl.edziennik.client.rest.client.response.ApiResponse;
 import pl.edziennik.client.utils.AuthorizationUtils;
 import pl.edziennik.client.utils.ThreadUtils;
 
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import static pl.edziennik.client.common.ResourcesConstants.*;
 
-import java.util.*;
-
 public class RestClient {
+
+    public static final String BASE_URL = PropertiesLoader.readProperty("serverAddress");
 
     private final RestClientStatusCodesHandler statusCodesHandler;
     private final DialogFactory dialogFactory;
@@ -82,13 +88,13 @@ public class RestClient {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
         HttpEntity<E> entityToSend = new HttpEntity<>(request, authorizationHeader);
         try {
-            ResponseEntity<ApiResponse<Void>> result = restTemplate.exchange(url, HttpMethod.POST, entityToSend, new ParameterizedTypeReference<>() {
+            ResponseEntity<ApiResponse<ApiAuthResponse>> result = restTemplate.exchange(url, HttpMethod.POST, entityToSend, new ParameterizedTypeReference<>() {
             });
             statusCodesHandler.checkStatusCodes(result);
             HttpHeaders headers = result.getHeaders();
             AuthorizationUtils.readAuthorizationDataAndSaveLocally(headers);
 
-        } catch (HttpServerErrorException e) {
+        } catch (HttpServerErrorException | ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY));
             throw new RestClientException("Server not responding");
         }

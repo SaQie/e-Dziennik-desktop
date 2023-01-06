@@ -1,10 +1,10 @@
 package pl.edziennik.client.rest.client;
 
-import org.springframework.http.HttpStatusCode;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.exception.RestClientException;
-import pl.edziennik.client.rest.common.ApiResponse;
+import pl.edziennik.client.rest.client.response.ApiResponse;
 import pl.edziennik.client.utils.ThreadUtils;
 
 import static pl.edziennik.client.common.ResourcesConstants.*;
@@ -24,13 +24,13 @@ class RestClientStatusCodesHandler {
             throw new RestClientException("500 - internal server error");
         }
 
-        if (result.getStatusCode().equals(HttpStatusCode.valueOf(401))){
+        if (result.getStatusCode().value() == HttpStatus.UNAUTHORIZED.value()){
             ThreadUtils.runInFxThread(() ->
                     dialogFactory.createErrorConfirmationDialog(null, UNAUTHORIZED_ERROR_MESSAGE_KEY));
             throw new RestClientException("401 - unauthorized");
         }
 
-        if (result.getStatusCode().equals(HttpStatusCode.valueOf(403))){
+        if (result.getStatusCode().value() == HttpStatus.FORBIDDEN.value()){
             ThreadUtils.runInFxThread(() ->
                     dialogFactory.createErrorConfirmationDialog(null, ACCESS_DENIED_ERROR_MESSAGE_KEY));
             throw new RestClientException("403 - access denied");

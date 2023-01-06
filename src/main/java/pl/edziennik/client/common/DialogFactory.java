@@ -11,12 +11,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
-import pl.edziennik.client.rest.common.ApiErrors;
+import pl.edziennik.client.configuration.PropertiesLoader;
+import pl.edziennik.client.configuration.converter.PropertiesLanguageConverter;
+import pl.edziennik.client.rest.client.response.ApiErrors;
 import pl.edziennik.client.utils.AuthorizationUtils;
-import pl.edziennik.client.utils.NodeUtils;
 
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -28,7 +28,7 @@ public class DialogFactory {
     private final ImageView informationIcon = new ImageView(getClass().getResource(INFORMATION_ICON_ADDRESS).toExternalForm());
     private final ImageView successIcon = new ImageView(getClass().getResource(SUCCESS_ICON_ADDRESS).toExternalForm());
     private final ImageView errorIcon = new ImageView(getClass().getResource(ERROR_ICON_ADDRESS).toExternalForm());
-    private final ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGES_RESOURCES_ADDRESS, new Locale("en", "EN"));
+    private final ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGES_RESOURCES_ADDRESS, PropertiesLoader.readProperty("language", new PropertiesLanguageConverter()));
 
     private static DialogFactory factory;
 

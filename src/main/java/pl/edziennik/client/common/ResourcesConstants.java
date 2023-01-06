@@ -44,6 +44,7 @@ public class ResourcesConstants {
     public static final String CITY_COLUMN_KEY = "city.column.text";
     public static final String POSTAL_CODE_COLUMN_KEY = "postal.code.column.text";
     public static final String SCHOOL_LEVEL_NAME_COLUMN_KEY = "school.level.column.text";
+    public static final String SUCCESS_DIALOG_SAVE_CONFIGURATION_MESSAGE = "success.dialog.configuration.message";
 
     // ERROR CODES
 

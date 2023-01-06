@@ -9,6 +9,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.DialogFactory;
+import pl.edziennik.client.configuration.PropertiesLoader;
+import pl.edziennik.client.configuration.converter.PropertiesLanguageConverter;
 import pl.edziennik.client.controller.model.admin.SchoolListModel;
 
 import java.net.URL;
@@ -49,7 +51,7 @@ public class NodeUtils {
     }
 
     public static FXMLLoader getLoaderWithResources(URL viewLocation){
-        ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGES_RESOURCES_ADDRESS, new Locale("en", "EN"));
+        ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGES_RESOURCES_ADDRESS, PropertiesLoader.readProperty("language", new PropertiesLanguageConverter()));
         return new FXMLLoader(viewLocation,resourceBundle);
     }
 

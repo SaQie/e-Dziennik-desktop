@@ -17,6 +17,7 @@ module pl.edziennik.client {
     exports pl.edziennik.client.controller.admin;
     exports pl.edziennik.client.rest.client;
     exports pl.edziennik.client.rest.pojo;
+    exports pl.edziennik.client.rest.client.response;
     exports pl.edziennik.client.task;
     exports pl.edziennik.client.exception;
     exports pl.edziennik.client.utils;
@@ -26,6 +27,5 @@ module pl.edziennik.client {
     opens pl.edziennik.client.controller.admin to javafx.fxml;
     opens pl.edziennik.client.controller to javafx.fxml;
     opens pl.edziennik.client.task to javafx.fxml;
-    exports pl.edziennik.client.rest.common;
 
 }

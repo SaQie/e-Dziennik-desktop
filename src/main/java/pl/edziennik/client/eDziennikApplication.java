@@ -2,6 +2,7 @@ package pl.edziennik.client;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.controller.auth.AuthorizationController;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ public class eDziennikApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        PropertiesLoader.loadDataFromFile();
         authorizationController.loadAuthorizationView(stage);
     }
 

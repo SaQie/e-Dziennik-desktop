@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.exception.RestClientException;
-import pl.edziennik.client.rest.common.ApiResponse;
+import pl.edziennik.client.rest.client.response.ApiResponse;
 import pl.edziennik.client.utils.ThreadUtils;
 
 import java.util.Arrays;

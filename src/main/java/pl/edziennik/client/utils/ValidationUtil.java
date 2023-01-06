@@ -47,6 +47,7 @@ public class ValidationUtil {
     public static void clearMark(TextField textField){
         textField.pseudoClassStateChanged(PseudoClass.getPseudoClass("error"), false);
         textField.pseudoClassStateChanged(PseudoClass.getPseudoClass("valid"), false);
+        textField.setTooltip(null);
     }
 
 
@@ -93,6 +94,7 @@ public class ValidationUtil {
         for (TextField textField : textFields) {
             textField.clear();
             clearMark(textField);
+
         }
     }
 

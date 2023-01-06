@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -30,7 +32,7 @@ public class AuthorizationController implements Initializable {
     private AnchorPane authorizationViewPane;
 
     @FXML
-    private Tab registerTab;
+    private TabPane authorizationTabPane;
 
     /*
         CODE
@@ -43,5 +45,6 @@ public class AuthorizationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

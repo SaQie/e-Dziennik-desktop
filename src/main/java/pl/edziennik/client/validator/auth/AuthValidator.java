@@ -65,7 +65,7 @@ public class AuthValidator {
             }else if (passwordInput.getText().length() < PASSWORD_MIN_LENGTH || passwordInput.getText().length() > PASSWORD_MAX_LENGTH){
                 passwordInput.setTooltip(fieldLengthLimit(Field.PASSWORD, PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH));
                 ValidationUtil.markTextFieldAsError(passwordInput);
-            }else if (!passwordInput.getText().matches(PASSWORD_REGEX)){
+            }else if (!passwordInput.getText().isEmpty() && !passwordInput.getText().matches(PASSWORD_REGEX)){
                 passwordInput.setTooltip(passwordNotValid());
                 ValidationUtil.markTextFieldAsError(passwordInput);
             }else if (repeatPasswordInput.getText() != null && !passwordInput.getText().equals(repeatPasswordInput.getText())){
@@ -87,7 +87,7 @@ public class AuthValidator {
                 repeatPasswordInput.setTooltip(passwordNotMatch());
                 ValidationUtil.markTextFieldAsError(passwordInput);
                 ValidationUtil.markTextFieldAsError(repeatPasswordInput);
-            }else if (!passwordInput.getText().matches(PASSWORD_REGEX)) {
+            }else if (!passwordInput.getText().isEmpty() && !passwordInput.getText().matches(PASSWORD_REGEX)) {
                 passwordInput.setTooltip(passwordNotValid());
                 ValidationUtil.markTextFieldAsError(repeatPasswordInput);
             }else if (repeatPasswordInput.getText().isEmpty() || repeatPasswordInput.getText().isBlank()){

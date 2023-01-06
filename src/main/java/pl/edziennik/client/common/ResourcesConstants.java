@@ -16,6 +16,7 @@ public class ResourcesConstants {
     public static final String SUCCESS_ICON_ADDRESS = "/pl/edziennik/client/icons/success.png";
 
     public static final String DASHBOARD_ADMIN_VIEW_ADDRESS = "/pl/edziennik/client/admin-dashboard-view.fxml";
+    public static final String DASHBOARD_ADMIN_SCHOOL_ADD_VIEW_ADDRESS = "/pl/edziennik/client/admin-dashboard-schools-tab-add.fxml";
 
 
     /*
@@ -45,6 +46,11 @@ public class ResourcesConstants {
     public static final String POSTAL_CODE_COLUMN_KEY = "postal.code.column.text";
     public static final String SCHOOL_LEVEL_NAME_COLUMN_KEY = "school.level.column.text";
     public static final String SUCCESS_DIALOG_SAVE_CONFIGURATION_MESSAGE = "success.dialog.configuration.message";
+    public static final String FETCHING_SCHOOL_LEVEL_LIST_MESSAGE_KEY = "fetch.school.level.list";
+    public static final String HIGH_SCHOOL_NAME_KEY = "label.high.school";
+    public static final String UNIVERSITY_SCHOOL_NAME_KEY = "label.university.school";
+    public static final String PRIMARY_SCHOOL_NAME_KEY = "label.primary.school";
+    public static final String TABLE_VIEW_PLACEHOLDER_MESSAGE_KEY = "label.table.empty";
 
     // ERROR CODES
 

@@ -27,5 +27,7 @@ module pl.edziennik.client {
     opens pl.edziennik.client.controller.admin to javafx.fxml;
     opens pl.edziennik.client.controller to javafx.fxml;
     opens pl.edziennik.client.task to javafx.fxml;
+    exports pl.edziennik.client.controller.admin.schools;
+    opens pl.edziennik.client.controller.admin.schools to javafx.fxml;
 
 }

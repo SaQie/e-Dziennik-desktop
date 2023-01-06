@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<Tab fx:id="schoolsTab" text="%tab.schools" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.admin.AdminSchoolsTabController">
+<Tab fx:id="schoolsTab" text="%tab.schools" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.admin.schools.AdminSchoolsTabController">
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@css/global-colors.css">
             <children>
@@ -61,10 +61,20 @@
                         </HBox>
                     </top>
                <center>
-                  <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/global-table-styles.css" BorderPane.alignment="CENTER" />
+                  <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/global-table-styles.css" BorderPane.alignment="CENTER">
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy></TableView>
                </center>
                 </BorderPane>
             </children>
         </AnchorPane>
     </content>
+   <graphic>
+      <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons/Graduation%20Cap.png" />
+         </image>
+      </ImageView>
+   </graphic>
 </Tab>

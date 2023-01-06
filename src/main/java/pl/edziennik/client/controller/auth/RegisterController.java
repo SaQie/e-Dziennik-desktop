@@ -74,6 +74,15 @@ public class RegisterController implements Initializable {
         setRegisterButtonAction();
         initializeFieldValidators();
         initializeRegisterButton();
+        clearFieldsAfterChangeTab();
+    }
+
+    private void clearFieldsAfterChangeTab() {
+        registerTab.selectedProperty().addListener(property -> {
+            if (!registerTab.isSelected()){
+                validationUtil.clearFields(emailInput, passwordInput, repeatPasswordInput, usernameInput);
+            }
+        });
     }
 
 

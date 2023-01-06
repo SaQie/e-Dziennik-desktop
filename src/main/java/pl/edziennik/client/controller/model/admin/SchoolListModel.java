@@ -20,7 +20,6 @@ public class SchoolListModel {
     private SimpleStringProperty address;
     private SimpleStringProperty phoneNumber;
     private SimpleLongProperty idSchoolLevel;
-    // TODO dorobic na backendzie endpointy dla schoolLevel - wtedy mozna to pobierac i dociagac dane w tasku od pobierania listy szkol
 
 
     public SchoolListModel(String name, String postalCode, String city, String nip, String regon, String address, String phoneNumber, Long idSchoolLevel) {

@@ -8,7 +8,6 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,21 +21,51 @@
    <children>
       <BorderPane layoutX="206.0" layoutY="105.0" prefHeight="159.0" prefWidth="138.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox prefHeight="735.0" prefWidth="160.0" styleClass="background-color-light" stylesheets="@css/left-side-bar-global-styles.css" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER_LEFT" prefHeight="735.0" prefWidth="160.0" styleClass="background-color-light" stylesheets="@css/left-side-bar-global-styles.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="Lista studentów">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin></Button>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" styleClass="left-side-button" text="Lista szkół" />
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="Twoje dane" />
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="Zmiana hasła" />
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="Konfiguracja" />
-                  <Button fx:id="logoutButton" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%button.logout" />
-                  <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%exit.button" />
-                  <VBox alignment="BOTTOM_CENTER" prefHeight="393.0" prefWidth="160.0">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%button.your.data" wrapText="true">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/User.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%button.change.password" wrapText="true">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/Password%20Reset.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%button.configuration" wrapText="true">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/Services.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="logoutButton" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%button.logout" wrapText="true">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/Logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="exitButton" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%exit.button" wrapText="true">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/Close.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="450.0" prefWidth="160.0">
                      <children>
-                        <Label fx:id="timerLabel" contentDisplay="CENTER" textFill="WHITE">
+                        <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="161.0" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
@@ -130,11 +159,25 @@
                                  </children>
                               </AnchorPane>
                         </content>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/Bar%20Chart.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                       </Tab>
                       <Tab fx:id="chartsTab" text="%tab.charts">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                         </content>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/Pie%20Chart.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                       </Tab>
                         <Tab fx:id="accountsTab" text="%tab.accounts">
                           <content>
@@ -241,6 +284,13 @@
                                  </children>
                               </AnchorPane>
                           </content>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/List.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Tab>
                         <fx:include fx:id="schoolsTab" source="admin-dashboard-schools-tab.fxml" />
                     </tabs>

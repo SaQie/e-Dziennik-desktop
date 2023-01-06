@@ -1,0 +1,17 @@
+.button{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: white;
+    -fx-focus-color: transparent;
+}
+
+.button:hover{
+    -fx-font-weight: bold;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: orange;
+}
+
+.button:selected{
+    -fx-background-color: transparent;
+}

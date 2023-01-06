@@ -1,0 +1,64 @@
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-font-family: Arial;
+}
+
+.text-field:focused {
+    -fx-focus-color: transparent;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: #ffb800;
+    -fx-text-fill: white;
+    -fx-font-family: Arial;
+}
+
+.combo-box{
+    -fx-focus-color: transparent;
+    -fx-background-color: transparent;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: white;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-font-family: Arial;
+}
+
+.combo-box:focused{
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: #ffb800;;
+}
+
+.combo-box .list-cell{
+    -fx-text-fill: white;
+    -fx-background-color: -fx-primary-color;
+}
+
+
+.combo-box-popup .list-view .list-cell:filled:hover
+{
+    -fx-background-color: -fx-secondary-color;
+    -fx-text-fill: white;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected
+{
+    -fx-background-color: -fx-secondary-color;
+    -fx-text-fill: white;
+}
+
+.text-field:error{
+    -fx-border-insets: 0;
+    -fx-border-width: 1px;
+    -fx-border-color: red;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-font-family: Arial;
+}
+
+.text-field:valid{
+    -fx-border-insets: 0;
+    -fx-border-width: 1px;
+    -fx-border-color: lawngreen;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-font-family: Arial;
+}

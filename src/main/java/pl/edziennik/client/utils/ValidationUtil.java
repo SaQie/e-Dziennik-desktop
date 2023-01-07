@@ -22,8 +22,6 @@ public class ValidationUtil {
 
     private static ValidationUtil validationUtil;
 
-    private final ResourceBundle resourceBundles = ResourceBundle.getBundle(MESSAGES_RESOURCES_ADDRESS);
-
     private ValidationUtil() {
     }
 
@@ -57,7 +55,7 @@ public class ValidationUtil {
         Tooltip tooltip = new Tooltip();
         tooltip.setTextAlignment(TextAlignment.CENTER);
         tooltip.setGraphic(errorIcon);
-        tooltip.setText(resourceBundles.getString(errorMessage));
+        tooltip.setText(ResourceUtil.getMessage(errorMessage));
         tooltip.setShowDelay(Duration.millis(0.1));
         tooltip.setHideDelay(Duration.millis(0.1));
         tooltip.setStyle(Styles.getToolTipValidationStyles());
@@ -70,7 +68,7 @@ public class ValidationUtil {
         Tooltip tooltip = new Tooltip();
         tooltip.setTextAlignment(TextAlignment.CENTER);
         tooltip.setGraphic(errorIcon);
-        String pattern = resourceBundles.getString(errorMessage);
+        String pattern = ResourceUtil.getMessage(errorMessage);
         tooltip.setText(MessageFormat.format(pattern, objects));
         tooltip.setShowDelay(Duration.millis(0.1));
         tooltip.setHideDelay(Duration.millis(0.1));

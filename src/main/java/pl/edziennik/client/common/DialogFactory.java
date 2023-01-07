@@ -15,6 +15,7 @@ import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.configuration.converter.PropertiesLanguageConverter;
 import pl.edziennik.client.rest.client.response.ApiErrors;
 import pl.edziennik.client.utils.AuthorizationUtils;
+import pl.edziennik.client.utils.ResourceUtil;
 
 import java.util.Arrays;
 import java.util.ResourceBundle;
@@ -28,7 +29,6 @@ public class DialogFactory {
     private final ImageView informationIcon = new ImageView(getClass().getResource(INFORMATION_ICON_ADDRESS).toExternalForm());
     private final ImageView successIcon = new ImageView(getClass().getResource(SUCCESS_ICON_ADDRESS).toExternalForm());
     private final ImageView errorIcon = new ImageView(getClass().getResource(ERROR_ICON_ADDRESS).toExternalForm());
-    private final ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGES_RESOURCES_ADDRESS, PropertiesLoader.readProperty("language", new PropertiesLanguageConverter()));
 
     private static DialogFactory factory;
 
@@ -39,25 +39,16 @@ public class DialogFactory {
         return factory;
     }
 
-    private final String EXIT_CONFIRMATION_DIALOG_MESSAGE = resourceBundle.getString(EXIT_CONFIRMATION_MESSAGE_KEY);
-    private final String EXIT_CONFIRMATION_DIALOG_HEADER_MESSAGE = resourceBundle.getString(EXIT_CONFIRMATION_HEADER_KEY);
-    private final String ERROR_DIALOG_MESSAGE = resourceBundle.getString(ERROR_DIALOG_MESSAGE_KEY);
-    private final String ERROR_DIALOG_HEADER_MESSAGE = resourceBundle.getString(ERROR_DIALOG_HEADER_MESSAGE_KEY);
-    private final String SUCCESS_DIALOG_HEADER_MESSAGE = resourceBundle.getString(SUCCESS_DIALOG_HEADER_MESSAGE_KEY);
-    private final String BASIC_SUCCESS_DIALOG_MESSAGE = resourceBundle.getString(SUCCESS_DIALOG_CONTENT_MESSAGE_KEY);
-    private final String SUCCESS_DIALOG_TITLE = resourceBundle.getString(SUCCESS_DIALOG_TITLE_MESSAGE_KEY);
-    private final ButtonType YES_BUTTON = new ButtonType(resourceBundle.getString(BUTTON_YES_KEY));
-    private final ButtonType NO_BUTTON = new ButtonType(resourceBundle.getString(BUTTON_NO_KEY));
-    private final ButtonType OK_BUTTON = new ButtonType(resourceBundle.getString(BUTTON_OK_KEY));
-    private final String LOGOUT_CONFIRMATION_DIALOG_TITLE_MESSAGE = resourceBundle.getString(LOGOUT_DIALOG_TITLE_MESSAGE_KEY);
-    private final String LOGOUT_CONFIRMATION_DIALOG_HEADER_MESSAGE = resourceBundle.getString(LOGOUT_DIALOG_HEADER_MESSAGE_KEY);
+    private final ButtonType YES_BUTTON = new ButtonType(ResourceUtil.getMessage(BUTTON_YES_KEY));
+    private final ButtonType NO_BUTTON = new ButtonType(ResourceUtil.getMessage(BUTTON_NO_KEY));
+    private final ButtonType OK_BUTTON = new ButtonType(ResourceUtil.getMessage(BUTTON_OK_KEY));
 
 
     public void createExitConfirmationDialog(Stage stage){
         Alert alert = createBasicInformationAlert();
         alert.initOwner(stage);
-        alert.setTitle(EXIT_CONFIRMATION_DIALOG_HEADER_MESSAGE);
-        alert.setHeaderText(EXIT_CONFIRMATION_DIALOG_MESSAGE);
+        alert.setTitle(ResourceUtil.getMessage(EXIT_CONFIRMATION_HEADER_KEY));
+        alert.setHeaderText(ResourceUtil.getMessage(EXIT_CONFIRMATION_MESSAGE_KEY));
         alert.showAndWait();
         if (alert.getResult() == YES_BUTTON){
             stage.close();
@@ -66,8 +57,8 @@ public class DialogFactory {
 
     public void createErrorConfirmationDialog(String stackTrace, ApiErrors[] cause){
         Alert basicErrorAlert = createBasicErrorAlert();
-        basicErrorAlert.setHeaderText(ERROR_DIALOG_HEADER_MESSAGE);
-        basicErrorAlert.setContentText(ERROR_DIALOG_MESSAGE + "\n" + Arrays.stream(cause).map(ApiErrors::getCause).collect(Collectors.joining("-", "-", "\n")));
+        basicErrorAlert.setHeaderText(ResourceUtil.getMessage(ERROR_DIALOG_HEADER_MESSAGE_KEY));
+        basicErrorAlert.setContentText(ResourceUtil.getMessage(ERROR_DIALOG_MESSAGE_KEY) + "\n" + Arrays.stream(cause).map(ApiErrors::getCause).collect(Collectors.joining("-", "-", "\n")));
 
         GridPane expContent = getStackTraceListView(stackTrace);
 
@@ -79,8 +70,8 @@ public class DialogFactory {
 
     public void createErrorConfirmationDialog(String stackTrace, String message){
         Alert basicErrorAlert = createBasicErrorAlert();
-        basicErrorAlert.setHeaderText(ERROR_DIALOG_HEADER_MESSAGE);
-        basicErrorAlert.setContentText(ERROR_DIALOG_MESSAGE + "\n" + resourceBundle.getString(message));
+        basicErrorAlert.setHeaderText(ResourceUtil.getMessage(ERROR_DIALOG_HEADER_MESSAGE_KEY));
+        basicErrorAlert.setContentText(ResourceUtil.getMessage(ERROR_DIALOG_MESSAGE_KEY) + "\n" + ResourceUtil.getMessage(message));
 
         if (stackTrace != null){
             GridPane expContent = getStackTraceListView(stackTrace);
@@ -92,8 +83,8 @@ public class DialogFactory {
 
     public void createErrorConfirmationDialogFromRawStackTrace(StackTraceElement[] stackTrace, String message){
         Alert basicErrorAlert = createBasicErrorAlert();
-        basicErrorAlert.setHeaderText(ERROR_DIALOG_HEADER_MESSAGE);
-        basicErrorAlert.setContentText(ERROR_DIALOG_MESSAGE + "\n" + resourceBundle.getString(message));
+        basicErrorAlert.setHeaderText(ResourceUtil.getMessage(ERROR_DIALOG_HEADER_MESSAGE_KEY));
+        basicErrorAlert.setContentText(ResourceUtil.getMessage(ERROR_DIALOG_MESSAGE_KEY) + "\n" + ResourceUtil.getMessage(message));
 
         if (stackTrace != null){
             GridPane expContent = getStackTraceListView(Arrays.toString(stackTrace));
@@ -106,8 +97,8 @@ public class DialogFactory {
 
     public void createLogoutConfirmationDialog(Stage stage) {
         Alert logoutConfirmationDialog = createBasicInformationAlert();
-        logoutConfirmationDialog.setTitle(LOGOUT_CONFIRMATION_DIALOG_TITLE_MESSAGE);
-        logoutConfirmationDialog.setHeaderText(LOGOUT_CONFIRMATION_DIALOG_HEADER_MESSAGE);
+        logoutConfirmationDialog.setTitle(ResourceUtil.getMessage(LOGOUT_DIALOG_TITLE_MESSAGE_KEY));
+        logoutConfirmationDialog.setHeaderText(ResourceUtil.getMessage(LOGOUT_DIALOG_HEADER_MESSAGE_KEY));
         logoutConfirmationDialog.showAndWait();
         if (logoutConfirmationDialog.getResult() == YES_BUTTON){
             stage.close();
@@ -118,11 +109,11 @@ public class DialogFactory {
 
     public void createSuccessInformationDialog(String message){
         Alert basicSuccessAlert = createBasicSuccessAlert();
-        basicSuccessAlert.setHeaderText(SUCCESS_DIALOG_HEADER_MESSAGE);
+        basicSuccessAlert.setHeaderText(ResourceUtil.getMessage(SUCCESS_DIALOG_HEADER_MESSAGE_KEY));
         if (message != null) {
-            basicSuccessAlert.setContentText(resourceBundle.getString(message));
+            basicSuccessAlert.setContentText(ResourceUtil.getMessage(message));
         }else{
-            basicSuccessAlert.setContentText(BASIC_SUCCESS_DIALOG_MESSAGE);
+            basicSuccessAlert.setContentText(ResourceUtil.getMessage(SUCCESS_DIALOG_CONTENT_MESSAGE_KEY));
         }
         basicSuccessAlert.showAndWait();
     }
@@ -136,7 +127,7 @@ public class DialogFactory {
         }
         alert.getDialogPane().getStylesheets().add(alertStylesPath);
         alert.getDialogPane().setGraphic(successIcon);
-        alert.setTitle(SUCCESS_DIALOG_TITLE);
+        alert.setTitle(ResourceUtil.getMessage(SUCCESS_DIALOG_TITLE_MESSAGE_KEY));
         return alert;
     }
 

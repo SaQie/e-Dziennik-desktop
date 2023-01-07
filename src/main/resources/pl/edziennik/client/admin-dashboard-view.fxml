@@ -21,61 +21,68 @@
    <children>
       <BorderPane layoutX="206.0" layoutY="105.0" prefHeight="159.0" prefWidth="138.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox alignment="CENTER_LEFT" prefHeight="735.0" prefWidth="160.0" styleClass="background-color-light" stylesheets="@css/left-side-bar-global-styles.css" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="838.0" prefWidth="153.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%button.your.data" wrapText="true">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/User.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%button.change.password" wrapText="true">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/Password%20Reset.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%button.configuration" wrapText="true">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/Services.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button fx:id="logoutButton" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%button.logout" wrapText="true">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/Logout.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button fx:id="exitButton" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%exit.button" wrapText="true">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/Close.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <VBox alignment="BOTTOM_CENTER" prefHeight="450.0" prefWidth="160.0">
+                  <VBox alignment="TOP_CENTER" layoutX="-3.0" layoutY="-1.0" prefHeight="736.0" prefWidth="163.0" styleClass="background-color-light" stylesheets="@css/left-side-bar-global-styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
                      <children>
-                        <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="161.0" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Bold" size="18.0" />
-                           </font>
-                        </Label>
+                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%button.your.data" wrapText="true">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/User.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%button.change.password" wrapText="true">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/Password%20Reset.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%button.configuration" wrapText="true">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/Services.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="logoutButton" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%button.logout" wrapText="true">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/Logout.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="exitButton" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%exit.button" wrapText="true">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/Close.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="462.0" prefWidth="156.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="161.0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
                      </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
                   </VBox>
-               </children></VBox>
+               </children>
+            </AnchorPane>
          </left>
          <top>
             <HBox prefHeight="65.0" prefWidth="960.0" styleClass="background-color-dark" BorderPane.alignment="CENTER">

@@ -25,7 +25,6 @@ import static pl.edziennik.client.common.ResourcesConstants.*;
 
 public class NodeUtils {
 
-    private static final ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGES_RESOURCES_ADDRESS, PropertiesLoader.readProperty("language", new PropertiesLanguageConverter()));
 
     private static DialogFactory dialogFactory = DialogFactory.getInstance();
 
@@ -121,7 +120,6 @@ public class NodeUtils {
     }
 
     public static <T> void setTableViewPlaceHolder(TableView<T> tableView) {
-        tableView.setPlaceholder(new Label(resourceBundle.getString(TABLE_VIEW_PLACEHOLDER_MESSAGE_KEY)));
-//        tableView.setPlaceholder(new Label(resourceBundle.getString(TABLE_VIEW_PLACEHOLDER_MESSAGE_KEY)));
+        tableView.setPlaceholder(new Label(ResourceUtil.getMessage(TABLE_VIEW_PLACEHOLDER_MESSAGE_KEY)));
     }
 }

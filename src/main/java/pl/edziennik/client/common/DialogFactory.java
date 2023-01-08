@@ -58,7 +58,7 @@ public class DialogFactory {
     public void createErrorConfirmationDialog(String stackTrace, ApiErrors[] cause){
         Alert basicErrorAlert = createBasicErrorAlert();
         basicErrorAlert.setHeaderText(ResourceUtil.getMessage(ERROR_DIALOG_HEADER_MESSAGE_KEY));
-        basicErrorAlert.setContentText(ResourceUtil.getMessage(ERROR_DIALOG_MESSAGE_KEY) + "\n" + Arrays.stream(cause).map(ApiErrors::getCause).collect(Collectors.joining("-", "-", "\n")));
+        basicErrorAlert.setContentText(ResourceUtil.getMessage(ERROR_DIALOG_MESSAGE_KEY) + "\n" + Arrays.stream(cause).map(ApiErrors::getCause).collect(Collectors.joining("\n-", "-", "\n")));
 
         GridPane expContent = getStackTraceListView(stackTrace);
 

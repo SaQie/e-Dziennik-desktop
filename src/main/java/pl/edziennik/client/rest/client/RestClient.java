@@ -10,6 +10,7 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.configuration.PropertiesLoader;
+import pl.edziennik.client.configuration.converter.PropertiesBackendLangugageConverter;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.client.response.ApiAuthResponse;
 import pl.edziennik.client.rest.client.response.ApiResponse;
@@ -20,6 +21,7 @@ import pl.edziennik.client.utils.ThreadUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import static pl.edziennik.client.common.ResourcesConstants.*;
 
@@ -104,6 +106,7 @@ public class RestClient {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.set("Accept-Language", PropertiesLoader.readProperty("language", new PropertiesBackendLangugageConverter()));
         if (PropertiesLoader.isExist("token")) {
             httpHeaders.setBearerAuth(PropertiesLoader.readProperty("token"));
         }

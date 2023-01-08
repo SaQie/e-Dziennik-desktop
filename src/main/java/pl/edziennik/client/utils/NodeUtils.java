@@ -4,10 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -19,7 +16,9 @@ import pl.edziennik.client.configuration.converter.PropertiesLanguageConverter;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.function.UnaryOperator;
 
 import static pl.edziennik.client.common.ResourcesConstants.*;
 
@@ -97,12 +96,30 @@ public class NodeUtils {
         stage.show();
     }
 
+    @SneakyThrows
+    public static <T> T getController(String viewLocation, T controller){
+        FXMLLoader loader = getLoaderWithResources(NodeUtils.class.getResource(viewLocation));
+        loader.load();
+        controller = loader.getController();
+        return controller;
+    }
+
     public static <T> TableColumn<T, ?> getTableColumnByName(TableView<T> tableView, String name) {
         for (TableColumn<T, ?> column : tableView.getColumns())
             if (column.getText().equals(name)){
                 return column ;
             }
         return null ;
+    }
+
+    public static void setTextFieldAsNumbersOnly(TextField textField){
+        textField.setTextFormatter(getNumberTextFormatter());
+    }
+
+    public static void setTextFieldAsNumbersOnly(TextField... textFields){
+        Arrays.stream(textFields).forEach(textField -> {
+            textField.setTextFormatter(getNumberTextFormatter());
+        });
     }
 
     public static <T> boolean isColumnVisible(TableView<T> tableView, String name){
@@ -119,7 +136,31 @@ public class NodeUtils {
         }
     }
 
+    public static void enableButtonIfFieldsHasNoErrors(Button button, TextField... textFields){
+        button.setDisable(true);
+
+        for (TextField input : textFields) {
+            input.tooltipProperty().addListener(field -> {
+                boolean hasErrors = Arrays.stream(textFields)
+                        .allMatch(e -> (!e.getText().isEmpty() || !e.getText().isBlank()) && e.getTooltip() == null);
+                button.setDisable(!hasErrors);
+            });
+        }
+    }
+
     public static <T> void setTableViewPlaceHolder(TableView<T> tableView) {
         tableView.setPlaceholder(new Label(ResourceUtil.getMessage(TABLE_VIEW_PLACEHOLDER_MESSAGE_KEY)));
+    }
+
+    private static TextFormatter<String> getNumberTextFormatter(){
+        UnaryOperator<TextFormatter.Change> numberOnlyFilter = change -> {
+            String text = change.getText();
+
+            if (text.matches("[0-9]*")) {
+                return change;
+            }
+            return null;
+        };
+        return new TextFormatter<>(numberOnlyFilter);
     }
 }

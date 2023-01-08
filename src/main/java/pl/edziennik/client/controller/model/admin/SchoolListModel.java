@@ -40,4 +40,10 @@ public class SchoolListModel {
                                 pojo.getRegon(), pojo.getAddress(), pojo.getPhoneNumber(), pojo.getIdSchoolLevel()))
                 .collect(Collectors.toList());
     }
+
+    public static SchoolListModel mapPojoToModel(SchoolPojo pojo){
+        return new SchoolListModel(pojo.getName(), pojo.getPostalCode(),
+                pojo.getCity(), pojo.getNip(), pojo.getRegon(), pojo.getAddress(),
+                pojo.getPhoneNumber(), pojo.getIdSchoolLevel());
+    }
 }

@@ -20,6 +20,12 @@ import static pl.edziennik.client.common.ResourcesConstants.*;
 
 public class AdminSchoolsTabController implements Initializable {
 
+    private static AdminSchoolsTabController instance;
+
+    public AdminSchoolsTabController() {
+        instance = this;
+    }
+
     @FXML
     private TableView<SchoolListModel> tableView;
 
@@ -61,6 +67,14 @@ public class AdminSchoolsTabController implements Initializable {
         ObservableList<SchoolListModel> items = tableView.getItems();
         items.addAll(schoolListModels);
         tableView.setItems(items);
+        tableView.refresh();
+    }
+
+    public void addItem(final SchoolListModel school){
+        ObservableList<SchoolListModel> items = tableView.getItems();
+        items.add(school);
+        tableView.setItems(items);
+        tableView.refresh();
     }
 
     public boolean isTableDataEmpty() {
@@ -69,6 +83,11 @@ public class AdminSchoolsTabController implements Initializable {
 
     private Stage getActualStage() {
         return (Stage) tableView.getScene().getWindow();
+    }
+
+
+    public static AdminSchoolsTabController getInstance(){
+        return instance;
     }
 
 }

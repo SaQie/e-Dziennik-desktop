@@ -40,6 +40,7 @@ public class ValidationUtil {
     public static void unmarkTextFieldAsError(TextField textField){
         textField.pseudoClassStateChanged(PseudoClass.getPseudoClass("error"), false);
         textField.pseudoClassStateChanged(PseudoClass.getPseudoClass("valid"), true);
+        textField.setTooltip(null);
     }
 
     public static void clearMark(TextField textField){
@@ -49,8 +50,8 @@ public class ValidationUtil {
     }
 
 
-    public Tooltip prepareValidationTooltip(String errorMessage){
-        Image icon = new Image(getClass().getResource(ERROR_ICON_ADDRESS).toExternalForm(), 20, 20, false, false);
+    public static Tooltip prepareValidationTooltip(String errorMessage){
+        Image icon = new Image(ValidationUtil.class.getResource(ERROR_ICON_ADDRESS).toExternalForm(), 20, 20, false, false);
         ImageView errorIcon = new ImageView(icon);
         Tooltip tooltip = new Tooltip();
         tooltip.setTextAlignment(TextAlignment.CENTER);
@@ -62,8 +63,8 @@ public class ValidationUtil {
         return tooltip;
     }
 
-    public Tooltip prepareValidationTooltip(String errorMessage, Object... objects){
-        Image icon = new Image(getClass().getResource(ERROR_ICON_ADDRESS).toExternalForm(), 20, 20, false, false);
+    public static Tooltip prepareValidationTooltip(String errorMessage, Object... objects){
+        Image icon = new Image(ValidationUtil.class.getResource(ERROR_ICON_ADDRESS).toExternalForm(), 20, 20, false, false);
         ImageView errorIcon = new ImageView(icon);
         Tooltip tooltip = new Tooltip();
         tooltip.setTextAlignment(TextAlignment.CENTER);
@@ -76,24 +77,32 @@ public class ValidationUtil {
         return tooltip;
     }
 
-    public void enableButtonIfFieldsHasNoErrors(Button button, TextField... textFields){
-        button.setDisable(true);
-
-        for (TextField input : textFields) {
-            input.tooltipProperty().addListener(field -> {
-                boolean hasErrors = Arrays.stream(textFields)
-                        .allMatch(e -> (!e.getText().isEmpty() || !e.getText().isBlank()) && e.getTooltip() == null);
-                button.setDisable(!hasErrors);
-            });
-        }
+    public static void addErrorTooltipToField(String errorMessage, TextField field){
+        Tooltip errorToolTip = prepareValidationTooltip(errorMessage);
+        field.setTooltip(errorToolTip);
+        ValidationUtil.markTextFieldAsError(field);
     }
 
-    public void clearFields(TextField... textFields){
+
+
+    public static void clearFields(TextField... textFields){
         for (TextField textField : textFields) {
             textField.clear();
             clearMark(textField);
 
         }
+    }
+
+    public static boolean isEmpty(TextField field){
+        return field.getText() == null || field.getText().isEmpty() || field.getText().isBlank();
+    }
+
+    public static boolean isFieldHasLengthLimit(TextField field, int max){
+        return field.getText().length() != max;
+    }
+
+    public static boolean isFieldNotValidToRegex(String regex, TextField field){
+        return !field.getText().matches(regex);
     }
 
 }

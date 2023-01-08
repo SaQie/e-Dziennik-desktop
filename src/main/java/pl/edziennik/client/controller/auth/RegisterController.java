@@ -108,7 +108,7 @@ public class RegisterController implements Initializable {
 
 
     private void initializeRegisterButton() {
-        validationUtil.enableButtonIfFieldsHasNoErrors(registerButton, usernameInput, emailInput, passwordInput, repeatPasswordInput);
+        NodeUtils.enableButtonIfFieldsHasNoErrors(registerButton, usernameInput, emailInput, passwordInput, repeatPasswordInput);
     }
 
     private Stage getStage() {

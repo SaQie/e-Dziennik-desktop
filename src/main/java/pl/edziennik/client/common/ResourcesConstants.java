@@ -1,5 +1,7 @@
 package pl.edziennik.client.common;
 
+import java.util.Locale;
+
 public class ResourcesConstants {
 
     public ResourcesConstants() {
@@ -16,6 +18,7 @@ public class ResourcesConstants {
     public static final String SUCCESS_ICON_ADDRESS = "/pl/edziennik/client/icons/success.png";
 
     public static final String DASHBOARD_ADMIN_VIEW_ADDRESS = "/pl/edziennik/client/admin-dashboard-view.fxml";
+    public static final String DASHBOARD_ADMIN_SCHOOL_TAB_VIEW_ADDRESS = "/pl/edziennik/client/admin-dashboard-schools-tab.fxml";
     public static final String DASHBOARD_ADMIN_SCHOOL_ADD_VIEW_ADDRESS = "/pl/edziennik/client/admin-dashboard-schools-tab-add.fxml";
 
 
@@ -51,6 +54,7 @@ public class ResourcesConstants {
     public static final String UNIVERSITY_SCHOOL_NAME_KEY = "label.university.school";
     public static final String PRIMARY_SCHOOL_NAME_KEY = "label.primary.school";
     public static final String TABLE_VIEW_PLACEHOLDER_MESSAGE_KEY = "label.table.empty";
+    public static final String SAVING_NEW_SCHOOL_MESSAGE_KEY = "save.new.school.progress.message";
 
     // ERROR CODES
 
@@ -68,7 +72,23 @@ public class ResourcesConstants {
     public static final String SERVER_NOT_RESPONDING_MESSAGE_KEY = "restclient.server.not.respond";
     public static final String UNAUTHORIZED_ERROR_MESSAGE_KEY = "restclient.unauthorized.message";
     public static final String ACCESS_DENIED_ERROR_MESSAGE_KEY = "restclient.access.denied.message";
+    public static final String NAME_FIELD_IS_EMPTY_KEY = "field.name.empty";
+    public static final String ADDRESS_FIELD_IS_EMPTY_KEY = "field.address.empty";
+    public static final String POSTAL_CODE_IS_EMPTY_KEY = "field.postal.code.empty";
+    public static final String POSTAL_CODE_NOT_VALID_KEY = "field.postal.code.not.valid";
+    public static final String CITY_FIELD_IS_EMPTY_KEY = "field.city.empty";
+    public static final String NIP_FIELD_IS_EMPTY_KEY = "field.nip.empty";
+    public static final String NIP_CODE_NOT_VALID_KEY = "field.nip.not.valid";
+    public static final String REGON_FIELD_IS_EMPTY_KEY = "field.regon.empty";
+    public static final String REGON_CODE_NOT_VALID_KEY = "field.regon.not.valid";
+    public static final String PHONE_NUMBER_FIELD_IS_EMPTY_KEY = "field.phone.number.empty";
+    public static final String PHONE_NUMBER_CODE_NOT_VALID_KEY = "field.phone.number.not.valid";
 
+    // LOCALES
 
+    public static final Locale LOCALE_EN = new Locale("en", "EN");
+    public static final Locale LOCALE_PL = new Locale("pl", "PL");
+    public static final String LOCALE_EN_STRING = "en-EN";
+    public static final String LOCALE_PL_STRING = "pl-PL";
 
 }

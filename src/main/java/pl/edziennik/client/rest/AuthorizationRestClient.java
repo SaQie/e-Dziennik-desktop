@@ -19,9 +19,4 @@ public class AuthorizationRestClient {
     public void login(LoginCredentialsPojo credentialsPojo){
         restClient.login(URLConstants.LOGIN_URL, credentialsPojo);
     }
-
-    public List<SchoolLevelComboBoxItem> loadComboBoxItems(){
-        SchoolLevelComboBoxItem[] schoolLevelComboBoxItems = restClient.get(URLConstants.SCHOOL_LEVELS_URL, SchoolLevelComboBoxItem[].class);
-        return Arrays.asList(schoolLevelComboBoxItems);
-    }
 }

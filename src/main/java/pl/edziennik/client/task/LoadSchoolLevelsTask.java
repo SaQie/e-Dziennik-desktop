@@ -3,6 +3,7 @@ package pl.edziennik.client.task;
 import javafx.concurrent.Task;
 import pl.edziennik.client.controller.model.admin.SchoolLevelComboBoxItem;
 import pl.edziennik.client.exception.RestClientException;
+import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.AuthorizationRestClient;
 
 import java.util.Collections;
@@ -12,10 +13,10 @@ import static pl.edziennik.client.common.ResourcesConstants.FETCHING_SCHOOL_LEVE
 
 public class LoadSchoolLevelsTask extends Task<List<SchoolLevelComboBoxItem>> {
 
-    private final AuthorizationRestClient restClient;
+    private final AdminRestClient restClient;
 
     public LoadSchoolLevelsTask() {
-        this.restClient = new AuthorizationRestClient();
+        this.restClient = new AdminRestClient();
     }
 
     @Override

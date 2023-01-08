@@ -1,37 +1,32 @@
 package pl.edziennik.client.task;
 
 import javafx.concurrent.Task;
-import pl.edziennik.client.common.DialogFactory;
+import pl.edziennik.client.controller.model.admin.SchoolListModel;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;
-import pl.edziennik.client.rest.pojo.AdminPojo;
+import pl.edziennik.client.rest.pojo.SchoolPojo;
 import pl.edziennik.client.utils.ResourceUtil;
-
-import java.util.ResourceBundle;
 
 import static pl.edziennik.client.common.ResourcesConstants.*;
 
-public class RegisterAdminTask extends Task<AdminPojo> {
+public class AddNewSchoolTask extends Task<SchoolPojo> {
 
     private final AdminRestClient restClient;
-    private AdminPojo adminPojo;
+    private SchoolPojo pojo;
 
-
-    public RegisterAdminTask(AdminPojo adminPojo) {
+    public AddNewSchoolTask(SchoolPojo pojo) {
         this.restClient = new AdminRestClient();
-        this.adminPojo = adminPojo;
+        this.pojo = pojo;
     }
 
-
     @Override
-    protected AdminPojo call() throws Exception {
+    protected SchoolPojo call() {
         try{
-            updateMessage(ResourceUtil.getMessage(WAITING_REGISTER_MESSAGE_KEY));
-            adminPojo = restClient.register(adminPojo);
+            updateMessage(ResourceUtil.getMessage(SAVING_NEW_SCHOOL_MESSAGE_KEY));
+            return restClient.saveNewSchool(pojo);
         }catch (RestClientException e){
             cancel(true);
             return null;
         }
-        return adminPojo;
     }
 }

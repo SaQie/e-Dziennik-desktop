@@ -1,22 +1,21 @@
 package pl.edziennik.client.configuration.converter;
 
-import java.util.Locale;
-
 import static pl.edziennik.client.common.ResourcesConstants.*;
 
-public class PropertiesLanguageConverter implements PropertiesValueConverter<Locale>{
+public class PropertiesBackendLangugageConverter implements PropertiesValueConverter<String>{
+
 
     @Override
-    public Locale convertValue(String value) {
+    public String convertValue(String value) {
         switch (value){
             case "Polski" -> {
-                return LOCALE_PL;
+                return LOCALE_PL_STRING;
             }
             case "English" -> {
-                return LOCALE_EN;
+                return LOCALE_EN_STRING;
             }
             default -> {
-                return null;
+                return LOCALE_PL_STRING;
             }
         }
     }

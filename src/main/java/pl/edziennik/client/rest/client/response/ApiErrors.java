@@ -7,6 +7,6 @@ public class ApiErrors {
 
     private String cause;
     private String exceptionType;
-    private String fields;
+    private String[] fields;
 
 }

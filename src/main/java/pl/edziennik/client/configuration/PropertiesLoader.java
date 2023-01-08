@@ -60,7 +60,10 @@ public class PropertiesLoader {
     }
 
     public static boolean isExist(String key) {
-        return properties.getProperty(key) != null;
+        String value = properties.getProperty(key);
+        return value != null &&
+                !value.isEmpty() &&
+                !value.isBlank();
     }
 
     public static void clearProperties() {

@@ -20,11 +20,6 @@ public class AuthValidator {
 
     private final String EMAIL_REGEX = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
 
-    private ValidationUtil validationUtil;
-
-    public AuthValidator() {
-        this.validationUtil = ValidationUtil.getInstance();
-    }
 
     public void createUsernameValidatorListener(TextField usernameInput){
         usernameInput.textProperty().addListener(input -> {
@@ -103,30 +98,30 @@ public class AuthValidator {
     }
 
     private Tooltip passwordNotMatch() {
-        return validationUtil.prepareValidationTooltip(PASSWORD_AND_REPEAT_PASSWORD_NOT_EQUALS_KEY);
+        return ValidationUtil.prepareValidationTooltip(PASSWORD_AND_REPEAT_PASSWORD_NOT_EQUALS_KEY);
     }
 
     private Tooltip passwordNotValid(){
-        return validationUtil.prepareValidationTooltip(PASSWORD_NOT_VALID_KEY);
+        return ValidationUtil.prepareValidationTooltip(PASSWORD_NOT_VALID_KEY);
     }
 
     private Tooltip emailNotValid() {
-        return validationUtil.prepareValidationTooltip(EMAIL_NOT_VALID_KEY);
+        return ValidationUtil.prepareValidationTooltip(EMAIL_NOT_VALID_KEY);
     }
 
     private Tooltip fieldIsEmpty(Field field){
         return switch (field){
-            case USERNAME -> validationUtil.prepareValidationTooltip(USERNAME_FIELD_IS_EMPTY_KEY);
-            case EMAIL -> validationUtil.prepareValidationTooltip(EMAIL_FIELD_IS_EMPTY_KEY);
-            case PASSWORD -> validationUtil.prepareValidationTooltip(PASSWORD_FIELD_IS_EMPTY_KEY);
-            case PASSWORD_REPEAT -> validationUtil.prepareValidationTooltip(PASSWORD_REPEAT_FIELD_IS_EMPTY_KEY);
+            case USERNAME -> ValidationUtil.prepareValidationTooltip(USERNAME_FIELD_IS_EMPTY_KEY);
+            case EMAIL -> ValidationUtil.prepareValidationTooltip(EMAIL_FIELD_IS_EMPTY_KEY);
+            case PASSWORD -> ValidationUtil.prepareValidationTooltip(PASSWORD_FIELD_IS_EMPTY_KEY);
+            case PASSWORD_REPEAT -> ValidationUtil.prepareValidationTooltip(PASSWORD_REPEAT_FIELD_IS_EMPTY_KEY);
         };
     }
 
     private Tooltip fieldLengthLimit(Field field, int min, int max){
         return switch(field){
-            case USERNAME -> validationUtil.prepareValidationTooltip(USERNAME_FIELD_LENGTH_LIMIT_KEY, min,max);
-            case PASSWORD -> validationUtil.prepareValidationTooltip(PASSWORD_FIELD_LENGTH_LIMIT_KEY, min,max);
+            case USERNAME -> ValidationUtil.prepareValidationTooltip(USERNAME_FIELD_LENGTH_LIMIT_KEY, min,max);
+            case PASSWORD -> ValidationUtil.prepareValidationTooltip(PASSWORD_FIELD_LENGTH_LIMIT_KEY, min,max);
             default -> throw new IllegalStateException("Unexpected value: " + field);
         };
     }

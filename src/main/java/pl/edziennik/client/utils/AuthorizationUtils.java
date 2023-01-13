@@ -2,20 +2,21 @@ package pl.edziennik.client.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.SneakyThrows;
 import org.springframework.http.HttpHeaders;
-import pl.edziennik.client.configuration.PropertiesLoader;
+import pl.edziennik.client.common.builder.CommonStageBuilder;
+import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.common.Role;
-import pl.edziennik.client.eDziennikApplication;
+import pl.edziennik.client.configuration.PropertiesLoader;
 
-import java.util.*;
+import static pl.edziennik.client.common.builder.CommonStageBuilder.StageBuilder.ShowMode.*;
 
-import static pl.edziennik.client.common.ResourcesConstants.*;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class AuthorizationUtils {
 
@@ -24,20 +25,22 @@ public class AuthorizationUtils {
      */
 
     private static final String AUTHORIZATION_VIEW_TITLE = "e-Dziennik";
+    private static final String REFRESH_TOKEN_HEADER = "RefreshToken";
+    private static final String AUTHORIZATION_TOKEN_HEADER = "Authorization";
     private static final int WIDTH = 650;
     private static final int HEIGHT = 450;
 
     public static void readAuthorizationDataAndSaveLocally(HttpHeaders headers) {
         if (headers != null) {
-            String token = Objects.requireNonNull(headers.get("Authorization")).get(0);
-            String refreshToken = Objects.requireNonNull(headers.get("RefreshToken")).get(0);
+            String token = Objects.requireNonNull(headers.get(AUTHORIZATION_TOKEN_HEADER)).get(0);
+            String refreshToken = Objects.requireNonNull(headers.get(REFRESH_TOKEN_HEADER)).get(0);
             Map<String, String> dataFromJWT = getDataFromJWT(token);
-            PropertiesLoader.writeProperty("token", token);
-            PropertiesLoader.writeProperty("refreshToken", refreshToken);
-            PropertiesLoader.writeProperty("name", dataFromJWT.get("name"));
-            PropertiesLoader.writeProperty("id", dataFromJWT.get("id"));
-            if (dataFromJWT.get("role") != null){
-                PropertiesLoader.writeProperty("role", dataFromJWT.get("role"));
+            PropertiesLoader.writeProperty(ResourceConst.PROPERTIES_LOADER_TOKEN_KEY.value(), token);
+            PropertiesLoader.writeProperty(ResourceConst.PROPERTIES_LOADER_REFRESH_TOKEN_KEY.value(), refreshToken);
+            PropertiesLoader.writeProperty(ResourceConst.PROPERTIES_LOADER_NAME_KEY.value(), dataFromJWT.get(ResourceConst.PROPERTIES_LOADER_NAME_KEY.value()));
+            PropertiesLoader.writeProperty(ResourceConst.PROPERTIES_LOADER_ID_KEY.value(), dataFromJWT.get(ResourceConst.PROPERTIES_LOADER_ID_KEY.value()));
+            if (dataFromJWT.get(ResourceConst.PROPERTIES_LOADER_ROLE_KEY.value()) != null){
+                PropertiesLoader.writeProperty(ResourceConst.PROPERTIES_LOADER_ROLE_KEY.value(), dataFromJWT.get(ResourceConst.PROPERTIES_LOADER_ROLE_KEY.value()));
             }
         }
     }
@@ -48,36 +51,36 @@ public class AuthorizationUtils {
 
     @SneakyThrows
     public static void loadAuthorizationPage(){
-        Stage stage = new Stage();
-        FXMLLoader loader = NodeUtils.getLoaderWithResources(eDziennikApplication.class.getResource("authorization-view.fxml"));
-        Scene scene = new Scene(loader.load(), WIDTH, HEIGHT);
-        stage.setTitle(AUTHORIZATION_VIEW_TITLE);
-        stage.setMinWidth(WIDTH);
-        stage.setMinHeight(HEIGHT);
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.UTILITY);
-        stage.show();
+        CommonStageBuilder.builder()
+                .withView(ResourceConst.AUTHORIZATION_VIEW_ADDRESS.value())
+                .withTitle(AUTHORIZATION_VIEW_TITLE)
+                .withHeight(HEIGHT)
+                .withWidth(WIDTH)
+                .withResizable(false)
+                .withStyle(StageStyle.UTILITY)
+                .withShowMode(CLOSE_PREVIOUS)
+                .build();
     }
 
     @SneakyThrows
     public static void showCorrectSceneAfterLogin(Stage currentStage){
-        String role = PropertiesLoader.readProperty("role");
+        String role = PropertiesLoader.readProperty(ResourceConst.PROPERTIES_LOADER_ROLE_KEY.value());
         if (role == null){
             return;
         }
         if (role.equals(Role.ROLE_ADMIN.name())){
-            FXMLLoader loader = NodeUtils.getLoaderWithResources(AuthorizationUtils.class.getResource(DASHBOARD_ADMIN_VIEW_ADDRESS));
-            Scene scene = new Scene((AnchorPane) loader.load(), 1200, 800);
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.DECORATED);
-            stage.setMinWidth(1100);
-            stage.requestFocus();
-            stage.setScene(scene);
-            stage.initOwner(currentStage);
-            currentStage.close();
-            stage.show();
+            CommonStageBuilder.builder()
+                    .withView(ResourceConst.DASHBOARD_ADMIN_VIEW_ADDRESS.value())
+                    .withWidth(1200)
+                    .withHeight(800)
+                    .withStyle(StageStyle.UTILITY)
+                    .withMinWidth(1100)
+                    .withFocusRequest(true)
+                    .withOwner(currentStage)
+                    .withShowMode(CLOSE_PREVIOUS)
+                    .build();
             return;
+
         }
         if (role.equals(Role.ROLE_MODERATOR.name())){
             // moderator

@@ -1,12 +1,10 @@
 package pl.edziennik.client.validator.auth;
 
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.utils.ValidationUtil;
-
-import static pl.edziennik.client.common.ResourcesConstants.*;
 
 public class AuthValidator {
 
@@ -98,30 +96,30 @@ public class AuthValidator {
     }
 
     private Tooltip passwordNotMatch() {
-        return ValidationUtil.prepareValidationTooltip(PASSWORD_AND_REPEAT_PASSWORD_NOT_EQUALS_KEY);
+        return ValidationUtil.prepareValidationTooltip(ResourceConst.PASSWORD_AND_REPEAT_PASSWORD_NOT_EQUALS_KEY.value());
     }
 
     private Tooltip passwordNotValid(){
-        return ValidationUtil.prepareValidationTooltip(PASSWORD_NOT_VALID_KEY);
+        return ValidationUtil.prepareValidationTooltip(ResourceConst.PASSWORD_NOT_VALID_KEY.value());
     }
 
     private Tooltip emailNotValid() {
-        return ValidationUtil.prepareValidationTooltip(EMAIL_NOT_VALID_KEY);
+        return ValidationUtil.prepareValidationTooltip(ResourceConst.EMAIL_NOT_VALID_KEY.value());
     }
 
     private Tooltip fieldIsEmpty(Field field){
         return switch (field){
-            case USERNAME -> ValidationUtil.prepareValidationTooltip(USERNAME_FIELD_IS_EMPTY_KEY);
-            case EMAIL -> ValidationUtil.prepareValidationTooltip(EMAIL_FIELD_IS_EMPTY_KEY);
-            case PASSWORD -> ValidationUtil.prepareValidationTooltip(PASSWORD_FIELD_IS_EMPTY_KEY);
-            case PASSWORD_REPEAT -> ValidationUtil.prepareValidationTooltip(PASSWORD_REPEAT_FIELD_IS_EMPTY_KEY);
+            case USERNAME -> ValidationUtil.prepareValidationTooltip(ResourceConst.USERNAME_FIELD_IS_EMPTY_KEY.value());
+            case EMAIL -> ValidationUtil.prepareValidationTooltip(ResourceConst.EMAIL_FIELD_IS_EMPTY_KEY.value());
+            case PASSWORD -> ValidationUtil.prepareValidationTooltip(ResourceConst.PASSWORD_FIELD_IS_EMPTY_KEY.value());
+            case PASSWORD_REPEAT -> ValidationUtil.prepareValidationTooltip(ResourceConst.PASSWORD_REPEAT_FIELD_IS_EMPTY_KEY.value());
         };
     }
 
     private Tooltip fieldLengthLimit(Field field, int min, int max){
         return switch(field){
-            case USERNAME -> ValidationUtil.prepareValidationTooltip(USERNAME_FIELD_LENGTH_LIMIT_KEY, min,max);
-            case PASSWORD -> ValidationUtil.prepareValidationTooltip(PASSWORD_FIELD_LENGTH_LIMIT_KEY, min,max);
+            case USERNAME -> ValidationUtil.prepareValidationTooltip(ResourceConst.USERNAME_FIELD_LENGTH_LIMIT_KEY.value(), min,max);
+            case PASSWORD -> ValidationUtil.prepareValidationTooltip(ResourceConst.PASSWORD_FIELD_LENGTH_LIMIT_KEY.value(), min,max);
             default -> throw new IllegalStateException("Unexpected value: " + field);
         };
     }

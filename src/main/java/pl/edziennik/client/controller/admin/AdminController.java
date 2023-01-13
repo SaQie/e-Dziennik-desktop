@@ -42,13 +42,6 @@ public class AdminController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         NodeUtils.createExitButtonAction(exitButton);
         NodeUtils.createTimer(timerLabel);
-        // chhyba powinienem dac tutaj ladnowanie wszystkiego z bomby
-        // dopiero "refresh" bedzie ladowalo to odpowiednio
-        // bo tak to co klikniecie bedzie request- a to bez sensu
-
-        // Drugi pomysl
-        // przed ladowaniem sprawdzac czy tabela byla juz zaladowana (if table.isEmpty) to wtedy laduj dane(request)
-        // jesli juz ma jakies dane to zostawiamy w spokoju (nie robimy nic)
         NodeUtils.createLogoutButton(logoutButton);
         mainViewPane.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals(schoolsTab)) {

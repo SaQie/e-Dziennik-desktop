@@ -3,15 +3,17 @@ package pl.edziennik.client.utils;
 import javafx.animation.AnimationTimer;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Modality;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.SneakyThrows;
+import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.common.DialogFactory;
+import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.configuration.converter.PropertiesLanguageConverter;
+import pl.edziennik.client.controller.model.admin.TableViewSelection;
 
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -20,7 +22,7 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
-import static pl.edziennik.client.common.ResourcesConstants.*;
+import static pl.edziennik.client.common.builder.CommonStageBuilder.StageBuilder.ShowMode.*;
 
 public class NodeUtils {
 
@@ -60,40 +62,24 @@ public class NodeUtils {
     }
 
     public static FXMLLoader getLoaderWithResources(URL viewLocation){
-        ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGES_RESOURCES_ADDRESS, PropertiesLoader.readProperty("language", new PropertiesLanguageConverter()));
+        ResourceBundle resourceBundle = ResourceBundle.getBundle(ResourceConst.MESSAGES_RESOURCES_ADDRESS.value(), PropertiesLoader.readProperty("language", new PropertiesLanguageConverter()));
         return new FXMLLoader(viewLocation,resourceBundle);
     }
 
     @SneakyThrows
-    public static <T> T openNewStageAbove(String viewLocation, int width, int height, Stage actualStage, T controller){
-        FXMLLoader loader = getLoaderWithResources(NodeUtils.class.getResource(viewLocation));
-        Scene scene = new Scene(loader.load(), width,height);
-        controller = loader.getController();
-        Stage stage = new Stage();
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initStyle(StageStyle.UTILITY);
-        stage.requestFocus();
-        stage.initOwner(actualStage);
-        stage.setX(actualStage.getX() + actualStage.getWidth() / 2 - scene.getWidth() / 2);
-        stage.setY(actualStage.getY() + actualStage.getHeight() / 2 - scene.getHeight() / 2);
-        stage.setScene(scene);
-        stage.show();
-        return controller;
-    }
-
-    @SneakyThrows
-    public static void openNewStageAbove(String viewLocation, int width, int height, Stage actualStage){
-        FXMLLoader loader = getLoaderWithResources(NodeUtils.class.getResource(viewLocation));
-        Scene scene = new Scene(loader.load(), width,height);
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UTILITY);
-        stage.requestFocus();
-        stage.setResizable(false);
-        stage.initOwner(actualStage);
-        stage.setX(actualStage.getX() + actualStage.getWidth() / 2 - scene.getWidth() / 2);
-        stage.setY(actualStage.getY() + actualStage.getHeight() / 2 - scene.getHeight() / 2);
-        stage.setScene(scene);
-        stage.show();
+    public static void openNewStageAbove(String viewLocation,String title, int width, int height, Stage actualStage){
+        CommonStageBuilder.builder()
+                .withWidth(width)
+                .withHeight(height)
+                .withView(viewLocation)
+                .withStyle(StageStyle.UTILITY)
+                .withFocusRequest(true)
+                .withResizable(false)
+                .withOwner(actualStage)
+                .withSetPositionToCenter(true)
+                .withTitle(ResourceUtil.getMessage(title))
+                .withShowMode(OPEN_ABOVE)
+                .build();
     }
 
     @SneakyThrows
@@ -130,8 +116,8 @@ public class NodeUtils {
         return false ;
     }
 
-    public static <T> void enableButtonsIfSelectionModelIsNotEmpty(TableView<T> tableView, Button... buttons){
-        for (Button button : buttons) {
+    public static <T> void enableButtonsIfSelectionModelIsNotEmpty(TableView<T> tableView, ButtonBase... buttons){
+        for (ButtonBase button : buttons) {
             button.disableProperty().bind(Bindings.isNull(tableView.getSelectionModel().selectedItemProperty()));
         }
     }
@@ -149,7 +135,7 @@ public class NodeUtils {
     }
 
     public static <T> void setTableViewPlaceHolder(TableView<T> tableView) {
-        tableView.setPlaceholder(new Label(ResourceUtil.getMessage(TABLE_VIEW_PLACEHOLDER_MESSAGE_KEY)));
+        tableView.setPlaceholder(new Label(ResourceUtil.getMessage(ResourceConst.TABLE_VIEW_PLACEHOLDER_MESSAGE_KEY.value())));
     }
 
     private static TextFormatter<String> getNumberTextFormatter(){
@@ -163,4 +149,23 @@ public class NodeUtils {
         };
         return new TextFormatter<>(numberOnlyFilter);
     }
+
+
+
+
+    public static<T extends TableViewSelection> void setSelectionAfterClick(TableView<T> tableView) {
+        tableView.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            if (mouseEvent.getClickCount() == 2) {
+                tableView.getSelectionModel().getSelectedItem().setSelection();
+            }
+        });
+
+    }
+
+    public static<T> void enableMenuItemsIfSelectionModelIsNotEmpty(TableView<T> tableView, MenuItem... menuItems) {
+        for (MenuItem menuItem : menuItems) {
+            menuItem.disableProperty().bind(Bindings.isNull(tableView.getSelectionModel().selectedItemProperty()));
+        }
+    }
+
 }

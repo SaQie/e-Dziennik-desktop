@@ -62,6 +62,11 @@ public class TableViewControllerMaker {
             return this;
         }
 
+        public SchoolTableViewBuilder withSelectColumn(){
+            columns.add(SchoolTableViewColumns.getSelectColumn());
+            return this;
+        }
+
         public List<TableColumn<SchoolListModel, ?>> build() {
             return columns;
         }

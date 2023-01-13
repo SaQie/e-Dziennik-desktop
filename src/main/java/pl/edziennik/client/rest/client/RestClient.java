@@ -9,6 +9,7 @@ import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import pl.edziennik.client.common.DialogFactory;
+import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.configuration.converter.PropertiesBackendLangugageConverter;
 import pl.edziennik.client.exception.RestClientException;
@@ -17,22 +18,20 @@ import pl.edziennik.client.rest.client.response.ApiResponse;
 import pl.edziennik.client.utils.AuthorizationUtils;
 import pl.edziennik.client.utils.ThreadUtils;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
-import static pl.edziennik.client.common.ResourcesConstants.*;
+import static  pl.edziennik.client.common.ResourceConst.*;
 
 public class RestClient {
 
-    public static final String BASE_URL = PropertiesLoader.readProperty("serverAddress");
+    public static final String BASE_URL = PropertiesLoader.readProperty(PROPERTIES_LOADER_SERVER_ADDRESS_KEY.value());
 
     private final RestClientStatusCodesHandler statusCodesHandler;
     private final DialogFactory dialogFactory;
-    private RestTemplate restTemplate;
-    private RestClientObjectMapper mapper;
+    private final RestTemplate restTemplate;
+    private final RestClientObjectMapper mapper;
 
     public RestClient() {
         this.mapper = new RestClientObjectMapper();
@@ -52,7 +51,7 @@ public class RestClient {
             statusCodesHandler.checkStatusCodes(result);
             return mapper.mapToObject(result.getBody(), response);
         } catch (ResourceAccessException e) {
-            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY));
+            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
             throw new RestClientException("Server not responding");
         }
 
@@ -68,7 +67,7 @@ public class RestClient {
             statusCodesHandler.checkStatusCodes(result);
             return mapper.mapToObject(result.getBody(), response);
         } catch (ResourceAccessException e) {
-            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY));
+            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
             throw new RestClientException("Server not responding");
         }
     }
@@ -81,7 +80,7 @@ public class RestClient {
             });
             statusCodesHandler.checkStatusCodes(result);
         } catch (ResourceAccessException e) {
-            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY));
+            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(),SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
             throw new RestClientException("Server not responding");
         }
     }
@@ -97,7 +96,7 @@ public class RestClient {
             AuthorizationUtils.readAuthorizationDataAndSaveLocally(headers);
 
         } catch (HttpServerErrorException | ResourceAccessException e) {
-            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY));
+            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(),SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
             throw new RestClientException("Server not responding");
         }
     }
@@ -107,8 +106,8 @@ public class RestClient {
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.set("Accept-Language", PropertiesLoader.readProperty("language", new PropertiesBackendLangugageConverter()));
-        if (PropertiesLoader.isExist("token")) {
-            httpHeaders.setBearerAuth(PropertiesLoader.readProperty("token"));
+        if (PropertiesLoader.isExist(PROPERTIES_LOADER_TOKEN_KEY.value())) {
+            httpHeaders.setBearerAuth(PropertiesLoader.readProperty(PROPERTIES_LOADER_TOKEN_KEY.value()));
         }
         return httpHeaders;
     }

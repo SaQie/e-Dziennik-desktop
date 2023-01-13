@@ -1,22 +1,16 @@
 package pl.edziennik.client.utils;
 
-import javafx.beans.binding.Bindings;
 import javafx.css.PseudoClass;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
+import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.common.Styles;
 
 import java.text.MessageFormat;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
-
-import static pl.edziennik.client.common.ResourcesConstants.*;
 
 public class ValidationUtil {
 
@@ -40,18 +34,20 @@ public class ValidationUtil {
     public static void unmarkTextFieldAsError(TextField textField){
         textField.pseudoClassStateChanged(PseudoClass.getPseudoClass("error"), false);
         textField.pseudoClassStateChanged(PseudoClass.getPseudoClass("valid"), true);
+        textField.setTooltip(new Tooltip());
         textField.setTooltip(null);
     }
 
     public static void clearMark(TextField textField){
         textField.pseudoClassStateChanged(PseudoClass.getPseudoClass("error"), false);
         textField.pseudoClassStateChanged(PseudoClass.getPseudoClass("valid"), false);
+        textField.setTooltip(new Tooltip());
         textField.setTooltip(null);
     }
 
 
     public static Tooltip prepareValidationTooltip(String errorMessage){
-        Image icon = new Image(ValidationUtil.class.getResource(ERROR_ICON_ADDRESS).toExternalForm(), 20, 20, false, false);
+        Image icon = new Image(ValidationUtil.class.getResource(ResourceConst.ERROR_ICON_ADDRESS.value()).toExternalForm(), 20, 20, false, false);
         ImageView errorIcon = new ImageView(icon);
         Tooltip tooltip = new Tooltip();
         tooltip.setTextAlignment(TextAlignment.CENTER);
@@ -64,7 +60,7 @@ public class ValidationUtil {
     }
 
     public static Tooltip prepareValidationTooltip(String errorMessage, Object... objects){
-        Image icon = new Image(ValidationUtil.class.getResource(ERROR_ICON_ADDRESS).toExternalForm(), 20, 20, false, false);
+        Image icon = new Image(ValidationUtil.class.getResource(ResourceConst.ERROR_ICON_ADDRESS.value()).toExternalForm(), 20, 20, false, false);
         ImageView errorIcon = new ImageView(icon);
         Tooltip tooltip = new Tooltip();
         tooltip.setTextAlignment(TextAlignment.CENTER);

@@ -1,9 +1,11 @@
 package pl.edziennik.client.common;
 
+import pl.edziennik.client.utils.ResourceUtil;
+
 public enum AccountType {
 
-    WORKER("Pracownik"),
-    STUDENT("Student");
+    WORKER(ResourceUtil.getMessage("worker.combo.box.label")),
+    STUDENT(ResourceUtil.getMessage("student.combo.box.label"));
 
     private final String description;
 

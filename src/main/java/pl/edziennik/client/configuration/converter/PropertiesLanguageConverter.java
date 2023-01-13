@@ -2,9 +2,11 @@ package pl.edziennik.client.configuration.converter;
 
 import java.util.Locale;
 
-import static pl.edziennik.client.common.ResourcesConstants.*;
-
 public class PropertiesLanguageConverter implements PropertiesValueConverter<Locale>{
+
+
+    public static final Locale LOCALE_EN = new Locale("en", "EN");
+    public static final Locale LOCALE_PL = new Locale("pl", "PL");
 
     @Override
     public Locale convertValue(String value) {

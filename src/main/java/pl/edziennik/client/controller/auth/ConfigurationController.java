@@ -6,12 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import pl.edziennik.client.common.DialogFactory;
+import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.configuration.PropertiesLoader;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import static pl.edziennik.client.common.ResourcesConstants.*;
 
 public class ConfigurationController implements Initializable {
 
@@ -46,7 +45,7 @@ public class ConfigurationController implements Initializable {
         configurationButton.setOnAction(input -> {
             if(isValuesChanged()) {
                 PropertiesLoader.writeConfigurationDataToFile(languageComboBox.getSelectionModel().getSelectedItem(), serverAddressInput.getText());
-                dialogFactory.createSuccessInformationDialog(SUCCESS_DIALOG_SAVE_CONFIGURATION_MESSAGE);
+                dialogFactory.createSuccessInformationDialog(ResourceConst.SUCCESS_DIALOG_SAVE_CONFIGURATION_MESSAGE.value());
             }
         });
     }

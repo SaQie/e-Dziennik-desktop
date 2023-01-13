@@ -10,7 +10,6 @@ import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.common.ProgressFactory;
 import pl.edziennik.client.controller.model.admin.SchoolLevelComboBoxItem;
 import pl.edziennik.client.controller.model.admin.SchoolListModel;
-import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.pojo.SchoolPojo;
 import pl.edziennik.client.task.AddNewSchoolTask;
 import pl.edziennik.client.task.LoadSchoolLevelsTask;
@@ -20,8 +19,6 @@ import pl.edziennik.client.validator.school.AddSchoolValidator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import static pl.edziennik.client.common.ResourcesConstants.*;
 
 public class AdminSchoolsTabAddSchoolController implements Initializable {
 

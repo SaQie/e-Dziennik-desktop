@@ -34,3 +34,26 @@
 .table-row-cell:empty {
     -fx-background-color: transparent;
 }
+
+.table-view .table-column {
+    -fx-alignment: CENTER;
+}
+
+.check-box .box {
+
+    -fx-background-color: white;
+    -fx-border-color:grey;
+    -fx-border-radius:3px;
+
+}
+
+.check-box:selected .mark {
+
+    -fx-background-color: white;
+
+}
+
+.check-box:selected .box {
+
+    -fx-background-color: #1094fa;
+}

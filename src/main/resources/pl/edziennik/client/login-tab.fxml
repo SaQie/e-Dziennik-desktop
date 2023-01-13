@@ -58,7 +58,7 @@
                                 </AnchorPane>
                                 <AnchorPane prefHeight="121.0" prefWidth="299.0">
                                     <children>
-                                        <Button fx:id="loginButton" layoutX="100.0" layoutY="61.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="authorization-button" stylesheets="@css/authorization-style.css" text="%login.button" textFill="WHITE">
+                                        <Button fx:id="loginButton" defaultButton="true" layoutX="100.0" layoutY="61.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="authorization-button" stylesheets="@css/authorization-style.css" text="%login.button" textFill="WHITE">
                                             <graphic>
                                                 <ImageView fitHeight="28.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>

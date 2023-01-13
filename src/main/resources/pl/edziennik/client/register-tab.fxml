@@ -57,7 +57,7 @@
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="authorization-button" stylesheets="@css/authorization-style.css" text="%register.button" textFill="WHITE">
+                                <Button fx:id="registerButton" defaultButton="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="authorization-button" stylesheets="@css/authorization-style.css" text="%register.button" textFill="WHITE">
                                     <graphic>
                                         <ImageView fitHeight="28.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                                             <image>

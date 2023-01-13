@@ -1,6 +1,6 @@
 package pl.edziennik.client.configuration.converter;
 
-import static pl.edziennik.client.common.ResourcesConstants.*;
+import pl.edziennik.client.common.ResourceConst;
 
 public class PropertiesBackendLangugageConverter implements PropertiesValueConverter<String>{
 
@@ -9,13 +9,13 @@ public class PropertiesBackendLangugageConverter implements PropertiesValueConve
     public String convertValue(String value) {
         switch (value){
             case "Polski" -> {
-                return LOCALE_PL_STRING;
+                return ResourceConst.LOCALE_PL_STRING.value();
             }
             case "English" -> {
-                return LOCALE_EN_STRING;
+                return ResourceConst.LOCALE_EN_STRING.value();
             }
             default -> {
-                return LOCALE_PL_STRING;
+                return ResourceConst.LOCALE_PL_STRING.value();
             }
         }
     }

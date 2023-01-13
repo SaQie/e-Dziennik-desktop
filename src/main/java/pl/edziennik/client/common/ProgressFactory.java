@@ -1,26 +1,21 @@
 package pl.edziennik.client.common;
 
 import javafx.concurrent.Task;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 import lombok.SneakyThrows;
+import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.controller.ProgressController;
 
 import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
 
+import static  pl.edziennik.client.common.builder.CommonStageBuilder.StageBuilder.ShowMode.*;
+
 public class ProgressFactory {
 
     private static ProgressFactory factory;
-
-    private String viewLargeUrl = "/pl/edziennik/client/waiting-pop-up.fxml";
-    private String viewLittleUrl = "/pl/edziennik/client/waiting-pop-up-little.fxml";
 
     private ProgressFactory() {
     }
@@ -34,50 +29,38 @@ public class ProgressFactory {
 
     @SneakyThrows
     public <T> void createLargeProgressBar(Task<T> task, Consumer<T> consumer) {
-        ProgressController controller = createBasicProgressBarView(300, 200, viewLargeUrl);
-        controller.startLarge(task, () -> {
-            if (task.isDone()) {
-                try {
-                    consumer.accept(task.get());
-                } catch (InterruptedException | ExecutionException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
+        ProgressController controller = createBasicProgressBarView(300, 200, ResourceConst.PROGRESS_BAR_LARGE_VIEW_ADDRESS.value());
+        controller.startLarge(task, () -> checkTaskIsDone(task, consumer));
     }
 
     public <T> void createLittleProgressBar(Task<T> task, Consumer<T> consumer) {
-        ProgressController controller = createBasicProgressBarView(250, 150, viewLittleUrl);
-        controller.startLittle(task, () -> {
-            if (task.isDone()) {
-                try {
-                    consumer.accept(task.get());
-                } catch (InterruptedException | ExecutionException e) {
-                    throw new RuntimeException(e);
-                }
+        ProgressController controller = createBasicProgressBarView(250, 150, ResourceConst.PROGRESS_BAR_LITTLE_VIEW_ADDRESS.value());
+        controller.startLittle(task, () -> checkTaskIsDone(task, consumer));
+    }
+
+    private static <T> void checkTaskIsDone(Task<T> task, Consumer<T> consumer) {
+        if (task.isDone()) {
+            try {
+                consumer.accept(task.get());
+            } catch (InterruptedException | ExecutionException e) {
+                throw new RuntimeException(e);
             }
-        });
+        }
     }
 
     @SneakyThrows
     private ProgressController createBasicProgressBarView(int width, int height, String view) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
-        Scene scene = new Scene((AnchorPane) loader.load(), width, height);
-        ProgressController controller = loader.<ProgressController>getController();
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        scene.setFill(Color.TRANSPARENT);
-        stage.requestFocus();
-        stage.setAlwaysOnTop(true);
-        Stage actualStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
-        if (actualStage != null) {
-            stage.initOwner(actualStage);
-            stage.setX(actualStage.getX() + actualStage.getWidth() / 2 - scene.getWidth() / 2);
-            stage.setY(actualStage.getY() + actualStage.getHeight() / 2 - scene.getHeight() / 2);
-        }
-        stage.setScene(scene);
-        stage.show();
-        return controller;
+        return CommonStageBuilder.builder()
+                .withView(view)
+                .withWidth(width)
+                .withHeight(height)
+                .withStyle(StageStyle.TRANSPARENT)
+                .withModality(Modality.APPLICATION_MODAL)
+                .withFillColor(Color.TRANSPARENT)
+                .withFocusRequest(true)
+                .withAlwaysOnTop(true)
+                .withSearchActualStage(true)
+                .withShowMode(OPEN_ABOVE_AND_RETURN_CONTROLLER)
+                .build();
     }
 }

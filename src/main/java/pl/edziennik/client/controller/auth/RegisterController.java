@@ -28,14 +28,12 @@ public class RegisterController implements Initializable {
 
     private final DialogFactory dialogFactory;
     private final AuthValidator authValidator;
-    private final ValidationUtil validationUtil;
     private final ProgressFactory progressFactory;
 
 
     public RegisterController() {
         this.dialogFactory = DialogFactory.getInstance();
         this.authValidator = new AuthValidator();
-        this.validationUtil = ValidationUtil.getInstance();
         this.progressFactory = ProgressFactory.getInstance();
     }
 
@@ -80,7 +78,7 @@ public class RegisterController implements Initializable {
     private void clearFieldsAfterChangeTab() {
         registerTab.selectedProperty().addListener(property -> {
             if (!registerTab.isSelected()){
-                validationUtil.clearFields(emailInput, passwordInput, repeatPasswordInput, usernameInput);
+                ValidationUtil.clearFields(emailInput, passwordInput, repeatPasswordInput, usernameInput);
             }
         });
     }
@@ -94,7 +92,7 @@ public class RegisterController implements Initializable {
             adminPojo.setUsername(usernameInput.getText());
             progressFactory.createLittleProgressBar(new RegisterAdminTask(adminPojo), (response) -> {
                 dialogFactory.createSuccessInformationDialog(null);
-                validationUtil.clearFields(usernameInput,passwordInput,emailInput,repeatPasswordInput);
+                ValidationUtil.clearFields(usernameInput,passwordInput,emailInput,repeatPasswordInput);
             });
         });
     }

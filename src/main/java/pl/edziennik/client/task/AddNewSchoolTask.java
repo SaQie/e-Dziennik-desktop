@@ -1,13 +1,11 @@
 package pl.edziennik.client.task;
 
 import javafx.concurrent.Task;
-import pl.edziennik.client.controller.model.admin.SchoolListModel;
+import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.pojo.SchoolPojo;
 import pl.edziennik.client.utils.ResourceUtil;
-
-import static pl.edziennik.client.common.ResourcesConstants.*;
 
 public class AddNewSchoolTask extends Task<SchoolPojo> {
 
@@ -22,7 +20,7 @@ public class AddNewSchoolTask extends Task<SchoolPojo> {
     @Override
     protected SchoolPojo call() {
         try{
-            updateMessage(ResourceUtil.getMessage(SAVING_NEW_SCHOOL_MESSAGE_KEY));
+            updateMessage(ResourceUtil.getMessage(ResourceConst.SAVING_NEW_SCHOOL_MESSAGE_KEY.value()));
             return restClient.saveNewSchool(pojo);
         }catch (RestClientException e){
             cancel(true);

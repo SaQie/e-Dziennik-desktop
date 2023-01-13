@@ -1,11 +1,8 @@
 package pl.edziennik.client.validator;
 
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import pl.edziennik.client.controller.model.admin.SchoolLevelComboBoxItem;
+import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.utils.ValidationUtil;
-
-import static pl.edziennik.client.common.ResourcesConstants.*;
 
 public abstract class BasicValidator {
 
@@ -16,7 +13,7 @@ public abstract class BasicValidator {
     protected void createNameValidatorListener(TextField nameField){
         nameField.textProperty().addListener(input -> {
             if (ValidationUtil.isEmpty(nameField)){
-                ValidationUtil.addErrorTooltipToField(NAME_FIELD_IS_EMPTY_KEY, nameField);
+                ValidationUtil.addErrorTooltipToField(ResourceConst.NAME_FIELD_IS_EMPTY_KEY.value(), nameField);
             }else{
                 ValidationUtil.unmarkTextFieldAsError(nameField);
             }
@@ -26,7 +23,7 @@ public abstract class BasicValidator {
     protected void createAddressValidatorListener(TextField addressField){
         addressField.textProperty().addListener(input -> {
             if (ValidationUtil.isEmpty(addressField)){
-                ValidationUtil.addErrorTooltipToField(ADDRESS_FIELD_IS_EMPTY_KEY, addressField);
+                ValidationUtil.addErrorTooltipToField(ResourceConst.ADDRESS_FIELD_IS_EMPTY_KEY.value(), addressField);
             }else{
                 ValidationUtil.unmarkTextFieldAsError(addressField);
             }
@@ -36,9 +33,9 @@ public abstract class BasicValidator {
     protected void createPostalCodeValidatorListener(TextField postalCodeField){
         postalCodeField.textProperty().addListener(input -> {
             if (ValidationUtil.isFieldNotValidToRegex(postalCodeNumberRegex, postalCodeField)){
-                ValidationUtil.addErrorTooltipToField(POSTAL_CODE_NOT_VALID_KEY, postalCodeField);
+                ValidationUtil.addErrorTooltipToField(ResourceConst.POSTAL_CODE_NOT_VALID_KEY.value(), postalCodeField);
             }else if (ValidationUtil.isEmpty(postalCodeField)){
-                ValidationUtil.addErrorTooltipToField(POSTAL_CODE_IS_EMPTY_KEY, postalCodeField);
+                ValidationUtil.addErrorTooltipToField(ResourceConst.POSTAL_CODE_IS_EMPTY_KEY.value(), postalCodeField);
             }else{
                 ValidationUtil.unmarkTextFieldAsError(postalCodeField);
             }
@@ -48,7 +45,7 @@ public abstract class BasicValidator {
     protected void createCityValidatorListener(TextField cityField){
         cityField.textProperty().addListener(input -> {
             if (ValidationUtil.isEmpty(cityField)){
-                ValidationUtil.addErrorTooltipToField(CITY_FIELD_IS_EMPTY_KEY, cityField);
+                ValidationUtil.addErrorTooltipToField(ResourceConst.CITY_FIELD_IS_EMPTY_KEY.value(), cityField);
             }else{
                 ValidationUtil.unmarkTextFieldAsError(cityField);
             }
@@ -58,9 +55,9 @@ public abstract class BasicValidator {
     protected void createNipValidatorListener(TextField nipField){
         nipField.textProperty().addListener(input -> {
             if (ValidationUtil.isEmpty(nipField)) {
-                ValidationUtil.addErrorTooltipToField(NIP_FIELD_IS_EMPTY_KEY, nipField);
+                ValidationUtil.addErrorTooltipToField(ResourceConst.NIP_FIELD_IS_EMPTY_KEY.value(), nipField);
             }else if(ValidationUtil.isFieldHasLengthLimit(nipField, 10)){
-                ValidationUtil.addErrorTooltipToField(NIP_CODE_NOT_VALID_KEY, nipField);
+                ValidationUtil.addErrorTooltipToField(ResourceConst.NIP_CODE_NOT_VALID_KEY.value(), nipField);
             }else{
                 ValidationUtil.unmarkTextFieldAsError(nipField);
             }
@@ -70,9 +67,9 @@ public abstract class BasicValidator {
     protected void createRegonValidatorListener(TextField regonField){
         regonField.textProperty().addListener(input -> {
             if (ValidationUtil.isEmpty(regonField)){
-                ValidationUtil.addErrorTooltipToField(REGON_FIELD_IS_EMPTY_KEY, regonField);
+                ValidationUtil.addErrorTooltipToField(ResourceConst.REGON_FIELD_IS_EMPTY_KEY.value(), regonField);
             }else if(ValidationUtil.isFieldHasLengthLimit(regonField, 9)){
-                ValidationUtil.addErrorTooltipToField(REGON_CODE_NOT_VALID_KEY, regonField);
+                ValidationUtil.addErrorTooltipToField(ResourceConst.REGON_CODE_NOT_VALID_KEY.value(), regonField);
             }else{
                 ValidationUtil.unmarkTextFieldAsError(regonField);
             }
@@ -82,9 +79,9 @@ public abstract class BasicValidator {
     protected void createPhoneNumberValidatorListener(TextField phoneNubmerField){
         phoneNubmerField.textProperty().addListener(input -> {
             if (ValidationUtil.isFieldNotValidToRegex(phoneNumberRegex, phoneNubmerField)) {
-                ValidationUtil.addErrorTooltipToField(PHONE_NUMBER_CODE_NOT_VALID_KEY, phoneNubmerField);
+                ValidationUtil.addErrorTooltipToField(ResourceConst.PHONE_NUMBER_CODE_NOT_VALID_KEY.value(), phoneNubmerField);
             }else if(ValidationUtil.isEmpty(phoneNubmerField)){
-                ValidationUtil.addErrorTooltipToField(PHONE_NUMBER_FIELD_IS_EMPTY_KEY, phoneNubmerField);
+                ValidationUtil.addErrorTooltipToField(ResourceConst.PHONE_NUMBER_FIELD_IS_EMPTY_KEY.value(), phoneNubmerField);
             }else{
                 ValidationUtil.unmarkTextFieldAsError(phoneNubmerField);
             }

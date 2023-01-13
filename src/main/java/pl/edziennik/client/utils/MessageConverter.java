@@ -1,11 +1,6 @@
 package pl.edziennik.client.utils;
 
-import pl.edziennik.client.configuration.PropertiesLoader;
-import pl.edziennik.client.configuration.converter.PropertiesLanguageConverter;
-
-import java.util.ResourceBundle;
-
-import static pl.edziennik.client.common.ResourcesConstants.*;
+import pl.edziennik.client.common.ResourceConst;
 
 public class MessageConverter {
 
@@ -15,13 +10,13 @@ public class MessageConverter {
     public static String converSchoolLevelMessages(String name){
         switch (name){
             case "PRIMARY SCHOOL" -> {
-                return ResourceUtil.getMessage(PRIMARY_SCHOOL_NAME_KEY);
+                return ResourceUtil.getMessage(ResourceConst.PRIMARY_SCHOOL_NAME_KEY.value());
             }
             case "HIGH SCHOOL" -> {
-                return ResourceUtil.getMessage(HIGH_SCHOOL_NAME_KEY);
+                return ResourceUtil.getMessage(ResourceConst.HIGH_SCHOOL_NAME_KEY.value());
             }
             case "UNIVERSITY" -> {
-                return ResourceUtil.getMessage(UNIVERSITY_SCHOOL_NAME_KEY);
+                return ResourceUtil.getMessage(ResourceConst.UNIVERSITY_SCHOOL_NAME_KEY.value());
             }
             default -> {
                 return null;

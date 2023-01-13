@@ -11,24 +11,26 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
-import pl.edziennik.client.configuration.PropertiesLoader;
-import pl.edziennik.client.configuration.converter.PropertiesLanguageConverter;
 import pl.edziennik.client.rest.client.response.ApiErrors;
 import pl.edziennik.client.utils.AuthorizationUtils;
 import pl.edziennik.client.utils.ResourceUtil;
 
 import java.util.Arrays;
-import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-
-import static pl.edziennik.client.common.ResourcesConstants.*;
 
 public class DialogFactory {
 
-    private final String alertStylesPath = getClass().getResource(ALERT_STYLES_ADDRESS).toExternalForm();
-    private final ImageView informationIcon = new ImageView(getClass().getResource(INFORMATION_ICON_ADDRESS).toExternalForm());
-    private final ImageView successIcon = new ImageView(getClass().getResource(SUCCESS_ICON_ADDRESS).toExternalForm());
-    private final ImageView errorIcon = new ImageView(getClass().getResource(ERROR_ICON_ADDRESS).toExternalForm());
+    private final String alertStylesPath = getClass().getResource(ResourceConst.ALERT_STYLES_ADDRESS.value()).toExternalForm();
+    private final ImageView informationIcon = new ImageView(getClass().getResource(ResourceConst.INFORMATION_ICON_ADDRESS.value()).toExternalForm());
+    private final ImageView successIcon = new ImageView(getClass().getResource(ResourceConst.SUCCESS_ICON_ADDRESS.value()).toExternalForm());
+    private final ImageView errorIcon = new ImageView(getClass().getResource(ResourceConst.ERROR_ICON_ADDRESS.value()).toExternalForm());
+
+
+    // Buttons
+
+    private final ButtonType YES_BUTTON = new ButtonType(ResourceUtil.getMessage(ResourceConst.BUTTON_YES_KEY.value()));
+    private final ButtonType NO_BUTTON = new ButtonType(ResourceUtil.getMessage(ResourceConst.BUTTON_NO_KEY.value()));
+    private final ButtonType OK_BUTTON = new ButtonType(ResourceUtil.getMessage(ResourceConst.BUTTON_OK_KEY.value()));
 
     private static DialogFactory factory;
 
@@ -39,16 +41,12 @@ public class DialogFactory {
         return factory;
     }
 
-    private final ButtonType YES_BUTTON = new ButtonType(ResourceUtil.getMessage(BUTTON_YES_KEY));
-    private final ButtonType NO_BUTTON = new ButtonType(ResourceUtil.getMessage(BUTTON_NO_KEY));
-    private final ButtonType OK_BUTTON = new ButtonType(ResourceUtil.getMessage(BUTTON_OK_KEY));
-
 
     public void createExitConfirmationDialog(Stage stage){
         Alert alert = createBasicInformationAlert();
         alert.initOwner(stage);
-        alert.setTitle(ResourceUtil.getMessage(EXIT_CONFIRMATION_HEADER_KEY));
-        alert.setHeaderText(ResourceUtil.getMessage(EXIT_CONFIRMATION_MESSAGE_KEY));
+        alert.setTitle(ResourceUtil.getMessage(ResourceConst.EXIT_CONFIRMATION_HEADER_KEY.value()));
+        alert.setHeaderText(ResourceUtil.getMessage(ResourceConst.EXIT_CONFIRMATION_MESSAGE_KEY.value()));
         alert.showAndWait();
         if (alert.getResult() == YES_BUTTON){
             stage.close();
@@ -57,8 +55,8 @@ public class DialogFactory {
 
     public void createErrorConfirmationDialog(String stackTrace, ApiErrors[] cause){
         Alert basicErrorAlert = createBasicErrorAlert();
-        basicErrorAlert.setHeaderText(ResourceUtil.getMessage(ERROR_DIALOG_HEADER_MESSAGE_KEY));
-        basicErrorAlert.setContentText(ResourceUtil.getMessage(ERROR_DIALOG_MESSAGE_KEY) + "\n" + Arrays.stream(cause).map(ApiErrors::getCause).collect(Collectors.joining("\n-", "-", "\n")));
+        basicErrorAlert.setHeaderText(ResourceUtil.getMessage(ResourceConst.ERROR_DIALOG_HEADER_MESSAGE_KEY.value()));
+        basicErrorAlert.setContentText(ResourceUtil.getMessage(ResourceConst.ERROR_DIALOG_MESSAGE_KEY.value()) + "\n" + Arrays.stream(cause).map(ApiErrors::getCause).collect(Collectors.joining("\n-", "-", "\n")));
 
         GridPane expContent = getStackTraceListView(stackTrace);
 
@@ -70,8 +68,8 @@ public class DialogFactory {
 
     public void createErrorConfirmationDialog(String stackTrace, String message){
         Alert basicErrorAlert = createBasicErrorAlert();
-        basicErrorAlert.setHeaderText(ResourceUtil.getMessage(ERROR_DIALOG_HEADER_MESSAGE_KEY));
-        basicErrorAlert.setContentText(ResourceUtil.getMessage(ERROR_DIALOG_MESSAGE_KEY) + "\n" + ResourceUtil.getMessage(message));
+        basicErrorAlert.setHeaderText(ResourceUtil.getMessage(ResourceConst.ERROR_DIALOG_HEADER_MESSAGE_KEY.value()));
+        basicErrorAlert.setContentText(ResourceUtil.getMessage(ResourceConst.ERROR_DIALOG_MESSAGE_KEY.value()) + "\n" + ResourceUtil.getMessage(message));
 
         if (stackTrace != null){
             GridPane expContent = getStackTraceListView(stackTrace);
@@ -83,8 +81,8 @@ public class DialogFactory {
 
     public void createErrorConfirmationDialogFromRawStackTrace(StackTraceElement[] stackTrace, String message){
         Alert basicErrorAlert = createBasicErrorAlert();
-        basicErrorAlert.setHeaderText(ResourceUtil.getMessage(ERROR_DIALOG_HEADER_MESSAGE_KEY));
-        basicErrorAlert.setContentText(ResourceUtil.getMessage(ERROR_DIALOG_MESSAGE_KEY) + "\n" + ResourceUtil.getMessage(message));
+        basicErrorAlert.setHeaderText(ResourceUtil.getMessage(ResourceConst.ERROR_DIALOG_HEADER_MESSAGE_KEY.value()));
+        basicErrorAlert.setContentText(ResourceUtil.getMessage(ResourceConst.ERROR_DIALOG_MESSAGE_KEY.value()) + "\n" + ResourceUtil.getMessage(message));
 
         if (stackTrace != null){
             GridPane expContent = getStackTraceListView(Arrays.toString(stackTrace));
@@ -97,8 +95,8 @@ public class DialogFactory {
 
     public void createLogoutConfirmationDialog(Stage stage) {
         Alert logoutConfirmationDialog = createBasicInformationAlert();
-        logoutConfirmationDialog.setTitle(ResourceUtil.getMessage(LOGOUT_DIALOG_TITLE_MESSAGE_KEY));
-        logoutConfirmationDialog.setHeaderText(ResourceUtil.getMessage(LOGOUT_DIALOG_HEADER_MESSAGE_KEY));
+        logoutConfirmationDialog.setTitle(ResourceUtil.getMessage(ResourceConst.LOGOUT_DIALOG_TITLE_MESSAGE_KEY.value()));
+        logoutConfirmationDialog.setHeaderText(ResourceUtil.getMessage(ResourceConst.LOGOUT_DIALOG_HEADER_MESSAGE_KEY.value()));
         logoutConfirmationDialog.showAndWait();
         if (logoutConfirmationDialog.getResult() == YES_BUTTON){
             stage.close();
@@ -109,30 +107,29 @@ public class DialogFactory {
 
     public void createSuccessInformationDialog(String message){
         Alert basicSuccessAlert = createBasicSuccessAlert();
-        basicSuccessAlert.setHeaderText(ResourceUtil.getMessage(SUCCESS_DIALOG_HEADER_MESSAGE_KEY));
+        basicSuccessAlert.setHeaderText(ResourceUtil.getMessage(ResourceConst.SUCCESS_DIALOG_HEADER_MESSAGE_KEY.value()));
         if (message != null) {
             basicSuccessAlert.setContentText(ResourceUtil.getMessage(message));
         }else{
-            basicSuccessAlert.setContentText(ResourceUtil.getMessage(SUCCESS_DIALOG_CONTENT_MESSAGE_KEY));
+            basicSuccessAlert.setContentText(ResourceUtil.getMessage(ResourceConst.SUCCESS_DIALOG_CONTENT_MESSAGE_KEY.value()));
         }
         basicSuccessAlert.showAndWait();
     }
 
     private Alert createBasicSuccessAlert(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION, null, OK_BUTTON);
-        alert.initStyle(StageStyle.UTILITY);
-        Stage stage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
-        if (stage != null){
-            alert.initOwner(stage);
-        }
-        alert.getDialogPane().getStylesheets().add(alertStylesPath);
-        alert.getDialogPane().setGraphic(successIcon);
-        alert.setTitle(ResourceUtil.getMessage(SUCCESS_DIALOG_TITLE_MESSAGE_KEY));
+        createBasicAlert(alert, successIcon);
+        alert.setTitle(ResourceUtil.getMessage(ResourceConst.SUCCESS_DIALOG_TITLE_MESSAGE_KEY.value()));
         return alert;
     }
 
     private Alert createBasicInformationAlert(){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, null, NO_BUTTON,YES_BUTTON);
+        createBasicAlert(alert, informationIcon);
+        return alert;
+    }
+
+    private void createBasicAlert(Alert alert, ImageView informationIcon) {
         alert.initStyle(StageStyle.UTILITY);
         Stage stage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
         if (stage != null){
@@ -140,7 +137,6 @@ public class DialogFactory {
         }
         alert.getDialogPane().getStylesheets().add(alertStylesPath);
         alert.getDialogPane().setGraphic(informationIcon);
-        return alert;
     }
 
     private Alert createBasicErrorAlert(){

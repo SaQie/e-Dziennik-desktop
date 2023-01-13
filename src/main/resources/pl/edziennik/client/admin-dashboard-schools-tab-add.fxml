@@ -146,7 +146,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="%save.button">
+                        <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="%save.button">
                            <graphic>
                               <ImageView fitHeight="27.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

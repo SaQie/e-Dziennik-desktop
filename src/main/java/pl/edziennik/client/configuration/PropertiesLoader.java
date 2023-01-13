@@ -1,5 +1,6 @@
 package pl.edziennik.client.configuration;
 
+import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.configuration.converter.PropertiesValueConverter;
 
 import java.io.*;
@@ -18,11 +19,11 @@ public class PropertiesLoader {
     }
 
     public static void loadDataFromFile() {
-        try (InputStream resource = PropertiesLoader.class.getResourceAsStream("/pl/edziennik/client/application.properties");) {
+        try (InputStream resource = PropertiesLoader.class.getResourceAsStream(ResourceConst.APPLICATION_PROPERTIES_ADDRESS.value());) {
             properties.load(resource);
             LOGGER.log(Level.INFO, "Properties loaded succesfully");
         } catch (IOException | NullPointerException e) {
-            try (OutputStream outputStream = new FileOutputStream("src/main/resources/pl/edziennik/client/application.properties");) {
+            try (OutputStream outputStream = new FileOutputStream(ResourceConst.APPLICATION_PROPERTIES_STREAM_ADDRESS.value());) {
                 properties.setProperty("serverAddress", " ");
                 properties.setProperty("language", "Polski");
                 properties.store(outputStream, null);
@@ -67,11 +68,11 @@ public class PropertiesLoader {
     }
 
     public static void clearProperties() {
-        properties.setProperty("token", " ");
-        properties.setProperty("refreshToken", " ");
-        properties.setProperty("name", " ");
-        properties.setProperty("id", " ");
-        properties.setProperty("role", " ");
+        properties.setProperty(ResourceConst.PROPERTIES_LOADER_TOKEN_KEY.value(), " ");
+        properties.setProperty(ResourceConst.PROPERTIES_LOADER_REFRESH_TOKEN_KEY.value(), " ");
+        properties.setProperty(ResourceConst.PROPERTIES_LOADER_NAME_KEY.value(), " ");
+        properties.setProperty(ResourceConst.PROPERTIES_LOADER_ID_KEY.value(), " ");
+        properties.setProperty(ResourceConst.PROPERTIES_LOADER_ROLE_KEY.value(), " ");
     }
 
 }

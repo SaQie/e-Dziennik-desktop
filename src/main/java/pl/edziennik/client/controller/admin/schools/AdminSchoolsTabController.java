@@ -1,5 +1,6 @@
 package pl.edziennik.client.controller.admin.schools;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,10 +9,12 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import pl.edziennik.client.common.ProgressFactory;
 import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.common.controller.columns.TableViewControllerMaker;
 import pl.edziennik.client.controller.model.admin.SchoolListModel;
 import pl.edziennik.client.rest.pojo.SchoolPojo;
+import pl.edziennik.client.task.LoadSchoolLevelsTask;
 import pl.edziennik.client.utils.NodeUtils;
 
 import java.net.URL;
@@ -22,8 +25,11 @@ public class AdminSchoolsTabController implements Initializable {
 
     private static AdminSchoolsTabController instance;
 
+    private ProgressFactory progressFactory;
+
     public AdminSchoolsTabController() {
         instance = this;
+        this.progressFactory = ProgressFactory.getInstance();
     }
 
     @FXML

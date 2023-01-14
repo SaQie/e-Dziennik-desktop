@@ -51,7 +51,7 @@ public class AuthorizationUtils {
 
     @SneakyThrows
     public static void loadAuthorizationPage(){
-        CommonStageBuilder.builder()
+        CommonStageBuilder.stageBuilder()
                 .withView(ResourceConst.AUTHORIZATION_VIEW_ADDRESS.value())
                 .withTitle(AUTHORIZATION_VIEW_TITLE)
                 .withHeight(HEIGHT)
@@ -69,7 +69,7 @@ public class AuthorizationUtils {
             return;
         }
         if (role.equals(Role.ROLE_ADMIN.name())){
-            CommonStageBuilder.builder()
+            CommonStageBuilder.stageBuilder()
                     .withView(ResourceConst.DASHBOARD_ADMIN_VIEW_ADDRESS.value())
                     .withWidth(1200)
                     .withHeight(800)

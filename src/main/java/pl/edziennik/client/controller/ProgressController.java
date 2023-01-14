@@ -10,6 +10,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import pl.edziennik.client.utils.ThreadUtils;
 
 import java.net.URL;
@@ -77,6 +78,9 @@ public class ProgressController implements Initializable {
 
         task.setOnCancelled(cancelled -> {
             getStageLittle().close();
+            Stage actualStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).reduce((first, last) -> last).orElse(null);
+            actualStage.close();
+            // TODO dorobic lapanie wyjatkow tutaj, + czas w jakim zostalo wykonane do loggera + zamykanie poprzedniej sceny
         });
 
         ThreadUtils.runInBackgroundThread(task);

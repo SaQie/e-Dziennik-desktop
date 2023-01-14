@@ -10,7 +10,7 @@ public enum ResourceConst {
     ERROR_ICON_ADDRESS("/pl/edziennik/client/icons/error.png"),
     SUCCESS_ICON_ADDRESS("/pl/edziennik/client/icons/success.png"),
     APPLICATION_PROPERTIES_ADDRESS("/pl/edziennik/client/application.properties"),
-    APPLICATION_PROPERTIES_STREAM_ADDRESS("src/main/resources/pl/edziennik/client/application.properties"),
+    APPLICATION_PROPERTIES_STREAM_ADDRESS("/pl/edziennik/client/application.properties"),
 
     // VIEWS
 

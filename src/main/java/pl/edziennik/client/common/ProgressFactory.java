@@ -50,7 +50,7 @@ public class ProgressFactory {
 
     @SneakyThrows
     private ProgressController createBasicProgressBarView(int width, int height, String view) {
-        return CommonStageBuilder.builder()
+        return CommonStageBuilder.stageBuilder()
                 .withView(view)
                 .withWidth(width)
                 .withHeight(height)

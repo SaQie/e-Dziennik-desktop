@@ -68,7 +68,7 @@ public class NodeUtils {
 
     @SneakyThrows
     public static void openNewStageAbove(String viewLocation,String title, int width, int height, Stage actualStage){
-        CommonStageBuilder.builder()
+        CommonStageBuilder.stageBuilder()
                 .withWidth(width)
                 .withHeight(height)
                 .withView(viewLocation)

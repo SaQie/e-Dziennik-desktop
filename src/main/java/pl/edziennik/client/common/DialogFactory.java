@@ -1,26 +1,19 @@
 package pl.edziennik.client.common;
 
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.rest.client.response.ApiErrors;
 import pl.edziennik.client.utils.AuthorizationUtils;
 import pl.edziennik.client.utils.ResourceUtil;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 import static pl.edziennik.client.common.ResourceConst.*;
-import static pl.edziennik.client.common.builder.CommonStageBuilder.*;
+import static pl.edziennik.client.common.builder.CommonStageBuilder.ALERT_STYLES_PATCH;
+import static pl.edziennik.client.common.builder.CommonStageBuilder.YES_BUTTON;
 
 public class DialogFactory {
 
@@ -72,6 +65,20 @@ public class DialogFactory {
                 .withAlertType(Alert.AlertType.ERROR)
                 .withContentText(ERROR_DIALOG_MESSAGE_KEY.value())
                 .withPlainCause(message)
+                .withStackTrace(stackTrace)
+                .withCssStyles(ALERT_STYLES_PATCH)
+                .withStageStyle(StageStyle.UTILITY)
+                .withModality(Modality.APPLICATION_MODAL)
+                .build();
+        alert.showAndWait();
+    }
+
+    public void createErrorProgressDialog(String stackTrace, String taskName) {
+        Alert alert = CommonStageBuilder.dialogBuilder()
+                .withTitle(EXIT_CONFIRMATION_HEADER_KEY.value())
+                .withHeaderText(ERROR_DIALOG_HEADER_MESSAGE_KEY.value())
+                .withAlertType(Alert.AlertType.ERROR)
+                .withPlainContentText(ResourceUtil.getMessage(TASK_ERROR_MESSAGE_KEY.value()) + taskName)
                 .withStackTrace(stackTrace)
                 .withCssStyles(ALERT_STYLES_PATCH)
                 .withStageStyle(StageStyle.UTILITY)

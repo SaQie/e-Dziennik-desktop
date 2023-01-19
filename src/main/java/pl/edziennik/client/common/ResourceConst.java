@@ -18,6 +18,7 @@ public enum ResourceConst {
     DASHBOARD_ADMIN_SCHOOL_ADD_VIEW_ADDRESS("/pl/edziennik/client/admin-dashboard-schools-tab-add.fxml"),
     PROGRESS_BAR_LITTLE_VIEW_ADDRESS("/pl/edziennik/client/waiting-pop-up-little.fxml"),
     PROGRESS_BAR_LARGE_VIEW_ADDRESS("/pl/edziennik/client/waiting-pop-up.fxml"),
+    TABLE_COLUMN_VIEW_CONFIG_VIEW_ADDRESS("/pl/edziennik/client/table-columns-view-configuration.fxml"),
     AUTHORIZATION_VIEW_ADDRESS("authorization-view.fxml"),
 
     // MESSAGES
@@ -29,6 +30,7 @@ public enum ResourceConst {
     SUCCESS_DIALOG_HEADER_MESSAGE_KEY("success.dialog.header"),
     SUCCESS_DIALOG_CONTENT_MESSAGE_KEY("success.dialog.content"),
     SUCCESS_DIALOG_TITLE_MESSAGE_KEY("success.dialog.title"),
+    COLUMN_VIEW_CONFIGURATION_TITLE_MESSAGE_KEY("configuration.window.title"),
     LOGOUT_DIALOG_TITLE_MESSAGE_KEY("logout.dialog.title"),
     LOGOUT_DIALOG_HEADER_MESSAGE_KEY("logout.dialog.header"),
     BUTTON_YES_KEY("button.yes"),
@@ -52,6 +54,8 @@ public enum ResourceConst {
     TABLE_VIEW_PLACEHOLDER_MESSAGE_KEY("label.table.empty"),
     SAVING_NEW_SCHOOL_MESSAGE_KEY("save.new.school.progress.message"),
     ADD_SCHOOL_VIEW_TITLE_KEY("add.school.view.title.label"),
+    WAITING_DELETE_SCHOOL_MESSAGE_KEY("waiting.delete.school.message"),
+    AUTHORIZATION_VIEW_TITLE_MESSAGE_KEY("authorization.title.message"),
 
     // ERROR CODES
 
@@ -80,6 +84,7 @@ public enum ResourceConst {
     REGON_CODE_NOT_VALID_KEY("field.regon.not.valid"),
     PHONE_NUMBER_FIELD_IS_EMPTY_KEY("field.phone.number.empty"),
     PHONE_NUMBER_CODE_NOT_VALID_KEY("field.phone.number.not.valid"),
+    TASK_ERROR_MESSAGE_KEY("task.execute.error"),
 
     // LOCALES
 

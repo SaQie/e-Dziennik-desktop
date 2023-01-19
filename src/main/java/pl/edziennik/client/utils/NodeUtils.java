@@ -2,34 +2,40 @@ package pl.edziennik.client.utils;
 
 import javafx.animation.AnimationTimer;
 import javafx.beans.binding.Bindings;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.SneakyThrows;
-import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.configuration.converter.PropertiesLanguageConverter;
+import pl.edziennik.client.controller.configuration.TableColumnViewConfigController;
 import pl.edziennik.client.controller.model.admin.TableViewSelection;
 
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
-import static pl.edziennik.client.common.builder.CommonStageBuilder.StageBuilder.ShowMode.*;
+import static pl.edziennik.client.common.ResourceConst.*;
+
+import static pl.edziennik.client.common.builder.CommonStageBuilder.StageBuilder.ShowMode.OPEN_ABOVE;
+import static pl.edziennik.client.common.builder.CommonStageBuilder.StageBuilder.ShowMode.OPEN_ABOVE_AND_RETURN_CONTROLLER;
 
 public class NodeUtils {
 
 
     private static DialogFactory dialogFactory = DialogFactory.getInstance();
 
-    public static void createTimer(Label displayTime){
+    public static void createTimer(Label displayTime) {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -46,7 +52,7 @@ public class NodeUtils {
         });
     }
 
-    public static void createCancelButtonAction(Button cancelButton){
+    public static void createCancelButtonAction(Button cancelButton) {
         cancelButton.setOnAction(button -> {
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             stage.close();
@@ -61,13 +67,13 @@ public class NodeUtils {
         });
     }
 
-    public static FXMLLoader getLoaderWithResources(URL viewLocation){
+    public static FXMLLoader getLoaderWithResources(URL viewLocation) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle(ResourceConst.MESSAGES_RESOURCES_ADDRESS.value(), PropertiesLoader.readProperty("language", new PropertiesLanguageConverter()));
-        return new FXMLLoader(viewLocation,resourceBundle);
+        return new FXMLLoader(viewLocation, resourceBundle);
     }
 
     @SneakyThrows
-    public static void openNewStageAbove(String viewLocation,String title, int width, int height, Stage actualStage){
+    public static void openNewStageAbove(String viewLocation, String title, int width, int height, Stage actualStage) {
         CommonStageBuilder.stageBuilder()
                 .withWidth(width)
                 .withHeight(height)
@@ -77,13 +83,29 @@ public class NodeUtils {
                 .withResizable(false)
                 .withOwner(actualStage)
                 .withSetPositionToCenter(true)
-                .withTitle(ResourceUtil.getMessage(title))
+                .withTitle(title)
                 .withShowMode(OPEN_ABOVE)
                 .build();
     }
 
     @SneakyThrows
-    public static <T> T getController(String viewLocation, T controller){
+    public static <T> T openNewStageAboveWithController(String viewLocation, String title, int width, int height, Stage actualStage) {
+        return CommonStageBuilder.stageBuilder()
+                .withTitle(title)
+                .withWidth(width)
+                .withHeight(height)
+                .withView(viewLocation)
+                .withStyle(StageStyle.DECORATED)
+                .withFocusRequest(true)
+                .withResizable(false)
+                .withOwner(actualStage)
+                .withSetPositionToCenter(true)
+                .withShowMode(OPEN_ABOVE_AND_RETURN_CONTROLLER)
+                .build();
+    }
+
+    @SneakyThrows
+    public static <T> T getController(String viewLocation, T controller) {
         FXMLLoader loader = getLoaderWithResources(NodeUtils.class.getResource(viewLocation));
         loader.load();
         controller = loader.getController();
@@ -92,37 +114,32 @@ public class NodeUtils {
 
     public static <T> TableColumn<T, ?> getTableColumnByName(TableView<T> tableView, String name) {
         for (TableColumn<T, ?> column : tableView.getColumns())
-            if (column.getText().equals(name)){
-                return column ;
+            if (column.getText().equals(name)) {
+                return column;
             }
-        return null ;
+        return null;
     }
 
-    public static void setTextFieldAsNumbersOnly(TextField textField){
+    public static void setTextFieldAsNumbersOnly(TextField textField) {
         textField.setTextFormatter(getNumberTextFormatter());
     }
 
-    public static void setTextFieldAsNumbersOnly(TextField... textFields){
+    public static void setTextFieldAsNumbersOnly(TextField... textFields) {
         Arrays.stream(textFields).forEach(textField -> {
             textField.setTextFormatter(getNumberTextFormatter());
         });
     }
 
-    public static <T> boolean isColumnVisible(TableView<T> tableView, String name){
+    public static <T> boolean isColumnVisible(TableView<T> tableView, String name) {
         for (TableColumn<T, ?> column : tableView.getColumns())
-            if (column.getText().equals(name)){
+            if (column.getText().equals(name)) {
                 return column.isVisible();
             }
-        return false ;
+        return false;
     }
 
-    public static <T> void enableButtonsIfSelectionModelIsNotEmpty(TableView<T> tableView, ButtonBase... buttons){
-        for (ButtonBase button : buttons) {
-            button.disableProperty().bind(Bindings.isNull(tableView.getSelectionModel().selectedItemProperty()));
-        }
-    }
 
-    public static void enableButtonIfFieldsHasNoErrors(Button button, TextField... textFields){
+    public static void enableButtonIfFieldsHasNoErrors(Button button, TextField... textFields) {
         button.setDisable(true);
 
         for (TextField input : textFields) {
@@ -138,7 +155,7 @@ public class NodeUtils {
         tableView.setPlaceholder(new Label(ResourceUtil.getMessage(ResourceConst.TABLE_VIEW_PLACEHOLDER_MESSAGE_KEY.value())));
     }
 
-    private static TextFormatter<String> getNumberTextFormatter(){
+    private static TextFormatter<String> getNumberTextFormatter() {
         UnaryOperator<TextFormatter.Change> numberOnlyFilter = change -> {
             String text = change.getText();
 
@@ -151,21 +168,44 @@ public class NodeUtils {
     }
 
 
-
-
-    public static<T extends TableViewSelection> void setSelectionAfterClick(TableView<T> tableView) {
+    public static <T extends TableViewSelection> void setSelectionAfterClick(TableView<T> tableView) {
         tableView.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-            if (mouseEvent.getClickCount() == 2) {
+            if (tableView.getSelectionModel().getSelectedItem() != null) {
                 tableView.getSelectionModel().getSelectedItem().setSelection();
             }
         });
-
     }
 
-    public static<T> void enableMenuItemsIfSelectionModelIsNotEmpty(TableView<T> tableView, MenuItem... menuItems) {
+    public static <T> void enableMenuItemsIfSelectionModelIsNotEmpty(TableView<T> tableView, MenuItem... menuItems) {
         for (MenuItem menuItem : menuItems) {
             menuItem.disableProperty().bind(Bindings.isNull(tableView.getSelectionModel().selectedItemProperty()));
         }
     }
 
+    public static <T extends TableViewSelection> List<Long> getSelectedTableItems(TableView<T> tableView) {
+        return tableView.getItems()
+                .stream()
+                .filter(TableViewSelection::isSelected)
+                .map(TableViewSelection::getId)
+                .toList();
+    }
+
+    public static <T extends TableViewSelection> void setColumnConfigurationShortcut(TableView<T> tableView) {
+        EventHandler<KeyEvent> eventHandler = event -> {
+            if (TableColumnViewConfigController.KEY_COMBINATION_SHORTCUT.match(event)) {
+                TableColumnViewConfigController controller = openNewStageAboveWithController(TABLE_COLUMN_VIEW_CONFIG_VIEW_ADDRESS.value(),
+                        COLUMN_VIEW_CONFIGURATION_TITLE_MESSAGE_KEY.value(), 350, 400, null);
+                controller.manageTableColumnVisible(tableView.getColumns());
+            }
+        };
+
+        tableView.sceneProperty().addListener((observable, oldValue, newValue) -> {
+            if (oldValue != null) {
+                oldValue.removeEventFilter(KeyEvent.KEY_PRESSED, eventHandler);
+            }
+            if (newValue != null) {
+                newValue.addEventFilter(KeyEvent.KEY_PRESSED, eventHandler);
+            }
+        });
+    }
 }

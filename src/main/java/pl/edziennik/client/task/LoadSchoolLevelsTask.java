@@ -25,9 +25,9 @@ public class LoadSchoolLevelsTask extends Task<List<SchoolLevelComboBoxItem>> {
     protected List<SchoolLevelComboBoxItem> call() throws Exception {
         try {
             updateMessage(ResourceUtil.getMessage(FETCHING_SCHOOL_LEVEL_LIST_MESSAGE_KEY.value()));
-            Thread.sleep(2000);
             return restClient.loadComboBoxItems();
         } catch (RestClientException e) {
+            updateMessage(e.getMessage());
             cancel(true);
             return Collections.emptyList();
         }

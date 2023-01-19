@@ -4,4 +4,8 @@ public interface TableViewSelection {
 
     void setSelection();
 
+    Long getId();
+
+    boolean isSelected();
+
 }

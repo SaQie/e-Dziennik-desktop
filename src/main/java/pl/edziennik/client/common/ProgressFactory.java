@@ -38,6 +38,7 @@ public class ProgressFactory {
         controller.startLittle(task, () -> checkTaskIsDone(task, consumer));
     }
 
+
     private static <T> void checkTaskIsDone(Task<T> task, Consumer<T> consumer) {
         if (task.isDone()) {
             try {

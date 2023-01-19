@@ -34,4 +34,8 @@ public class AdminRestClient {
         SchoolLevelComboBoxItem[] schoolLevelComboBoxItems = restClient.get(URLConstants.SCHOOL_LEVELS_URL, SchoolLevelComboBoxItem[].class);
         return Arrays.asList(schoolLevelComboBoxItems);
     }
+
+    public void deleteSchool(Long idSchool) {
+        restClient.delete(URLConstants.SCHOOL_DELETE_URL, idSchool);
+    }
 }

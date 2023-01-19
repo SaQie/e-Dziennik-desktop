@@ -85,6 +85,19 @@ public class RestClient {
         }
     }
 
+    public void delete(String url, Long id){
+        HttpHeaders authorizationHeader = createAuthorizationHeader();
+        HttpEntity<Long> entityToSend = new HttpEntity<>(null, authorizationHeader);
+        try {
+            ResponseEntity<ApiResponse<Void>> result = restTemplate.exchange(url + id, HttpMethod.DELETE, entityToSend, new ParameterizedTypeReference<>() {
+            });
+            statusCodesHandler.checkStatusCodes(result);
+        } catch (ResourceAccessException e) {
+            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(),SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
+            throw new RestClientException("Server not responding");
+        }
+    }
+
     public <E> void login(String url, E request) {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
         HttpEntity<E> entityToSend = new HttpEntity<>(request, authorizationHeader);
@@ -94,7 +107,6 @@ public class RestClient {
             statusCodesHandler.checkStatusCodes(result);
             HttpHeaders headers = result.getHeaders();
             AuthorizationUtils.readAuthorizationDataAndSaveLocally(headers);
-
         } catch (HttpServerErrorException | ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(),SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
             throw new RestClientException("Server not responding");

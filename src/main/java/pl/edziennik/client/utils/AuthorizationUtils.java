@@ -18,13 +18,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static pl.edziennik.client.common.ResourceConst.*;
+
 public class AuthorizationUtils {
 
     /*
         VARIABLES
      */
 
-    private static final String AUTHORIZATION_VIEW_TITLE = "e-Dziennik";
     private static final String REFRESH_TOKEN_HEADER = "RefreshToken";
     private static final String AUTHORIZATION_TOKEN_HEADER = "Authorization";
     private static final int WIDTH = 650;
@@ -53,7 +54,7 @@ public class AuthorizationUtils {
     public static void loadAuthorizationPage(){
         CommonStageBuilder.stageBuilder()
                 .withView(ResourceConst.AUTHORIZATION_VIEW_ADDRESS.value())
-                .withTitle(AUTHORIZATION_VIEW_TITLE)
+                .withTitle(AUTHORIZATION_VIEW_TITLE_MESSAGE_KEY.value())
                 .withHeight(HEIGHT)
                 .withWidth(WIDTH)
                 .withResizable(false)
@@ -65,7 +66,7 @@ public class AuthorizationUtils {
     @SneakyThrows
     public static void showCorrectSceneAfterLogin(Stage currentStage){
         String role = PropertiesLoader.readProperty(ResourceConst.PROPERTIES_LOADER_ROLE_KEY.value());
-        if (role == null){
+        if (role.equals(Role.ROLE_STUDENT.name())){
             return;
         }
         if (role.equals(Role.ROLE_ADMIN.name())){

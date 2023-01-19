@@ -61,6 +61,7 @@ public class CommonStageBuilder {
         private boolean isSearchActualStage;
         private boolean isDefaultContentText;
         private String cause;
+        private String plainContentText;
 
         public DialogBuilder withCssStyles(String styles) {
             this.styles = styles;
@@ -84,6 +85,11 @@ public class CommonStageBuilder {
 
         public DialogBuilder withContentText(String contentText) {
             this.contentText = contentText;
+            return this;
+        }
+
+        public DialogBuilder withPlainContentText(String plainContentText){
+            this.plainContentText = plainContentText;
             return this;
         }
 
@@ -176,6 +182,10 @@ public class CommonStageBuilder {
 
             } else if (isDefaultContentText) {
                 alert.setContentText(ResourceUtil.getMessage(ResourceConst.SUCCESS_DIALOG_CONTENT_MESSAGE_KEY.value()));
+            }
+
+            if (plainContentText != null){
+                alert.setContentText(plainContentText);
             }
 
             if (errors != null) {
@@ -361,7 +371,7 @@ public class CommonStageBuilder {
                 stage.setMinHeight(minHeight);
             }
             if (title != null) {
-                stage.setTitle(title);
+                stage.setTitle(ResourceUtil.getMessage(title));
             }
             if (stageModality != null) {
                 stage.initModality(stageModality);

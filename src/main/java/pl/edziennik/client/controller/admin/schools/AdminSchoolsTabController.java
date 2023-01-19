@@ -8,13 +8,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.ProgressFactory;
 import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.common.controller.columns.TableViewControllerMaker;
 import pl.edziennik.client.controller.model.admin.SchoolListModel;
 import pl.edziennik.client.rest.pojo.SchoolPojo;
+import pl.edziennik.client.task.DeleteSchoolTask;
 import pl.edziennik.client.task.LoadSchoolLevelsTask;
+import pl.edziennik.client.task.LoadSchoolsTask;
 import pl.edziennik.client.utils.NodeUtils;
 
 import java.net.URL;
@@ -46,21 +52,43 @@ public class AdminSchoolsTabController implements Initializable {
 
 
     @Override
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeTableColumns();
-        NodeUtils.enableButtonsIfSelectionModelIsNotEmpty(tableView, editButton, showButton, deleteButton);
         NodeUtils.setTableViewPlaceHolder(tableView);
         NodeUtils.setSelectionAfterClick(tableView);
+        NodeUtils.setColumnConfigurationShortcut(tableView);
         initializeSelectAllMenuItemAction();
         initializeAddButtonAction();
+        initializeDeleteButtonAction();
+        initializeRefreshButtonAction();
+    }
+
+    private void initializeRefreshButtonAction() {
+        refreshButton.setOnAction(button -> {
+            progressFactory.createLittleProgressBar(new LoadSchoolsTask(), this::fetchTabData);
+        });
+    }
+
+    private void initializeDeleteButtonAction() {
+        deleteButton.setOnAction(button -> {
+            List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(tableView);
+            progressFactory.createLittleProgressBar(new DeleteSchoolTask(selectedTableItems), (action) -> {
+                refreshButton.fire();
+            });
+        });
     }
 
     private void initializeSelectAllMenuItemAction() {
         selectAllMenuItem.setOnAction(item -> {
-            tableView.getItems().forEach(tableItem -> tableItem.getSelect().setSelected(true));
+            tableView.getItems().forEach(tableItem -> {
+                tableItem.getSelect().setSelected(true);
+                tableView.getSelectionModel().selectLast();
+            });
         });
         unselectAllMenuItem.setOnAction(item -> {
             tableView.getItems().forEach(tableItem -> tableItem.getSelect().setSelected(false));
+            tableView.getSelectionModel().clearSelection();
         });
     }
 
@@ -92,8 +120,7 @@ public class AdminSchoolsTabController implements Initializable {
 
     public void fetchTabData(final List<SchoolPojo> schoolList) {
         List<SchoolListModel> schoolListModels = SchoolListModel.mapPojoToModel(schoolList);
-        ObservableList<SchoolListModel> items = tableView.getItems();
-        items.addAll(schoolListModels);
+        ObservableList<SchoolListModel> items = FXCollections.observableList(schoolListModels);
         tableView.setItems(items);
         tableView.refresh();
 
@@ -113,7 +140,6 @@ public class AdminSchoolsTabController implements Initializable {
     private Stage getActualStage() {
         return (Stage) tableView.getScene().getWindow();
     }
-
 
     public static AdminSchoolsTabController getInstance() {
         return instance;

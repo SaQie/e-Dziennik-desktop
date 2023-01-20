@@ -85,6 +85,10 @@ public enum ResourceConst {
     PHONE_NUMBER_FIELD_IS_EMPTY_KEY("field.phone.number.empty"),
     PHONE_NUMBER_CODE_NOT_VALID_KEY("field.phone.number.not.valid"),
     TASK_ERROR_MESSAGE_KEY("task.execute.error"),
+    UNCAUGHT_EXCEPTION_MESSAGE_KEY("uncaught.exception.message.key"),
+    TABLE_VIEW_ROW_NOT_SELECTED_MESSAGE_KEY("rows.not.selected"),
+    ERROR_DIALOG_TITLE_MESSAGE_KEY("dialog.error.title"),
+    TABLE_VIEW_TOO_MANY_ROWS_MESSAGE_KEY("too.many.rows.selected"),
 
     // LOCALES
 

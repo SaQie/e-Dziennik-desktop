@@ -60,7 +60,7 @@ public class DialogFactory {
     public void createErrorConfirmationDialog(String stackTrace, String message) {
         Alert alert = CommonStageBuilder.dialogBuilder()
                 .withSearchActualStage()
-                .withTitle(EXIT_CONFIRMATION_HEADER_KEY.value())
+                .withTitle(ERROR_DIALOG_TITLE_MESSAGE_KEY.value())
                 .withHeaderText(ERROR_DIALOG_HEADER_MESSAGE_KEY.value())
                 .withAlertType(Alert.AlertType.ERROR)
                 .withContentText(ERROR_DIALOG_MESSAGE_KEY.value())

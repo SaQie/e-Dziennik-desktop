@@ -2,26 +2,33 @@ package pl.edziennik.client.utils;
 
 import javafx.animation.AnimationTimer;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.SneakyThrows;
+import pl.edziennik.client.common.ActionType;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.configuration.converter.PropertiesLanguageConverter;
 import pl.edziennik.client.controller.configuration.TableColumnViewConfigController;
+import pl.edziennik.client.controller.model.admin.SchoolListModel;
 import pl.edziennik.client.controller.model.admin.TableViewSelection;
+import pl.edziennik.client.exception.TableViewException;
 
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
@@ -96,9 +103,10 @@ public class NodeUtils {
                 .withHeight(height)
                 .withView(viewLocation)
                 .withStyle(StageStyle.DECORATED)
+                .withModality(Modality.APPLICATION_MODAL)
                 .withFocusRequest(true)
                 .withResizable(false)
-                .withOwner(actualStage)
+                .withSearchActualStage(true)
                 .withSetPositionToCenter(true)
                 .withShowMode(OPEN_ABOVE_AND_RETURN_CONTROLLER)
                 .build();
@@ -167,27 +175,21 @@ public class NodeUtils {
         return new TextFormatter<>(numberOnlyFilter);
     }
 
-
-    public static <T extends TableViewSelection> void setSelectionAfterClick(TableView<T> tableView) {
-        tableView.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-            if (tableView.getSelectionModel().getSelectedItem() != null) {
-                tableView.getSelectionModel().getSelectedItem().setSelection();
-            }
-        });
-    }
-
     public static <T> void enableMenuItemsIfSelectionModelIsNotEmpty(TableView<T> tableView, MenuItem... menuItems) {
         for (MenuItem menuItem : menuItems) {
             menuItem.disableProperty().bind(Bindings.isNull(tableView.getSelectionModel().selectedItemProperty()));
         }
     }
 
-    public static <T extends TableViewSelection> List<Long> getSelectedTableItems(TableView<T> tableView) {
-        return tableView.getItems()
+
+    public static <T extends TableViewSelection> List<Long> getSelectedTableItems(TableView<T> tableView, ActionType actionType) {
+        List<Long> idsSelectedRows = tableView.getItems()
                 .stream()
                 .filter(TableViewSelection::isSelected)
                 .map(TableViewSelection::getId)
                 .toList();
+        checkSelectedTableRows(actionType, idsSelectedRows);
+        return idsSelectedRows;
     }
 
     public static <T extends TableViewSelection> void setColumnConfigurationShortcut(TableView<T> tableView) {
@@ -207,5 +209,30 @@ public class NodeUtils {
                 newValue.addEventFilter(KeyEvent.KEY_PRESSED, eventHandler);
             }
         });
+    }
+
+    public static <T extends TableViewSelection> void setTableViewRowFactory(TableView<T> tableView) {
+        tableView.setRowFactory(factory -> {
+            TableRow<T> row = new TableRow<>();
+            row.setOnMouseClicked(mouseEvent -> {
+                if (mouseEvent.getButton() == MouseButton.PRIMARY && (!row.isEmpty())) {
+                    tableView.getSelectionModel().getSelectedItem().setSelection();
+                }
+            });
+            return row;
+        });
+    }
+
+    private static void checkSelectedTableRows(ActionType actionType, List<Long> idsSelectedRows) {
+        if (idsSelectedRows.isEmpty()) {
+            throw new TableViewException(TABLE_VIEW_ROW_NOT_SELECTED_MESSAGE_KEY.value());
+        }
+        switch (actionType) {
+            case EDIT_ACTION, SHOW_ACTION -> {
+                if (idsSelectedRows.size() > 1) {
+                    throw new TableViewException(TABLE_VIEW_TOO_MANY_ROWS_MESSAGE_KEY.value());
+                }
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.ResponseErrorHandler;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,7 +21,7 @@ class RestClientErrorLogger implements ResponseErrorHandler {
     @Override
     public void handleError(ClientHttpResponse response) throws IOException {
         if (response.getStatusCode().is4xxClientError()){
-            LOGGER.log(Level.SEVERE, "Something went wrong...");
+            LOGGER.log(Level.SEVERE, "Something went wrong... server returned " + response.getStatusCode().value() + " status code");
         }
         if (response.getStatusCode().is5xxServerError()){
             LOGGER.log(Level.SEVERE, "Server not responding !");

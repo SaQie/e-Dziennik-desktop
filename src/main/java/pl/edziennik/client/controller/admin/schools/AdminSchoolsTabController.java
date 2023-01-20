@@ -13,6 +13,7 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import pl.edziennik.client.common.ActionType;
 import pl.edziennik.client.common.ProgressFactory;
 import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.common.controller.columns.TableViewControllerMaker;
@@ -55,13 +56,27 @@ public class AdminSchoolsTabController implements Initializable {
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeTableColumns();
+        NodeUtils.setTableViewRowFactory(tableView);
         NodeUtils.setTableViewPlaceHolder(tableView);
-        NodeUtils.setSelectionAfterClick(tableView);
         NodeUtils.setColumnConfigurationShortcut(tableView);
         initializeSelectAllMenuItemAction();
         initializeAddButtonAction();
         initializeDeleteButtonAction();
+        initializeShowButtonAction();
+        initializeEditButtonAction();
         initializeRefreshButtonAction();
+    }
+
+    private void initializeShowButtonAction() {
+        showButton.setOnAction(button -> {
+            NodeUtils.getSelectedTableItems(tableView, ActionType.SHOW_ACTION);
+        });
+    }
+
+    private void initializeEditButtonAction() {
+        editButton.setOnAction(button -> {
+            NodeUtils.getSelectedTableItems(tableView, ActionType.EDIT_ACTION);
+        });
     }
 
     private void initializeRefreshButtonAction() {
@@ -72,7 +87,7 @@ public class AdminSchoolsTabController implements Initializable {
 
     private void initializeDeleteButtonAction() {
         deleteButton.setOnAction(button -> {
-            List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(tableView);
+            List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(tableView, ActionType.DELETE_ACTION);
             progressFactory.createLittleProgressBar(new DeleteSchoolTask(selectedTableItems), (action) -> {
                 refreshButton.fire();
             });

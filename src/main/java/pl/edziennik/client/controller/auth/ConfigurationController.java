@@ -5,20 +5,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.configuration.PropertiesLoader;
+import pl.edziennik.client.core.AbstractController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ConfigurationController implements Initializable {
-
-    private DialogFactory dialogFactory;
-
-    public ConfigurationController() {
-        this.dialogFactory = DialogFactory.getInstance();
-    }
+public class ConfigurationController extends AbstractController {
 
     @FXML
     private TextField serverAddressInput;
@@ -31,10 +27,24 @@ public class ConfigurationController implements Initializable {
 
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        initializeServerAddressTextFieldValue();
+    protected void fetchStageData() {
         initializeComboBoxItems();
+    }
+
+    @Override
+    protected void createActions() {
         initializeConfigurationButtonAction();
+        initializeServerAddressTextFieldValue();
+    }
+
+    @Override
+    protected void setSceneSettings() {
+
+    }
+
+    @Override
+    protected Stage getActualStage() {
+        return (Stage) serverAddressInput.getScene().getWindow();
     }
 
     private void initializeServerAddressTextFieldValue() {
@@ -43,7 +53,7 @@ public class ConfigurationController implements Initializable {
 
     private void initializeConfigurationButtonAction() {
         configurationButton.setOnAction(input -> {
-            if(isValuesChanged()) {
+            if (isValuesChanged()) {
                 PropertiesLoader.writeConfigurationDataToFile(languageComboBox.getSelectionModel().getSelectedItem(), serverAddressInput.getText());
                 dialogFactory.createSuccessInformationDialog(ResourceConst.SUCCESS_DIALOG_SAVE_CONFIGURATION_MESSAGE.value());
             }

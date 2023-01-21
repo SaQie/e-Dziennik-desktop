@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import pl.edziennik.client.common.AccountType;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.common.ProgressFactory;
+import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.rest.AuthorizationRestClient;
 import pl.edziennik.client.rest.pojo.LoginCredentialsPojo;
 import pl.edziennik.client.utils.AuthorizationUtils;
@@ -20,23 +21,14 @@ import pl.edziennik.client.utils.NodeUtils;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginController implements Initializable {
+public class LoginController extends AbstractController {
 
-     /*
-        CLASSES
-     */
 
-    private final DialogFactory dialogFactory;
     private final AuthorizationRestClient authorizationRestClient;
 
     public LoginController() {
-        this.dialogFactory = DialogFactory.getInstance();
         this.authorizationRestClient = new AuthorizationRestClient();
     }
-
-     /*
-        FXML
-     */
 
     @FXML
     private ComboBox<String> accountTypeCheckBox;
@@ -50,17 +42,22 @@ public class LoginController implements Initializable {
     @FXML
     private TextField usernameInput;
 
-    /*
-        CODE
-     */
-
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    protected void createActions() {
         NodeUtils.createExitButtonAction(exitButton);
         initializeLoginButton();
         initializeCheckBox();
-        bindLoginButtonToFields();
+    }
+
+    @Override
+    protected void setSceneSettings() {
+        NodeUtils.enableButtonIfFieldsAreNotEmpty(loginButton, usernameInput,passwordInput);
+    }
+
+    @Override
+    protected Stage getActualStage() {
+        return (Stage) usernameInput.getScene().getWindow();
     }
 
     private void initializeLoginButton() {
@@ -69,7 +66,7 @@ public class LoginController implements Initializable {
             credentialsPojo.setUsername(usernameInput.getText());
             credentialsPojo.setPassword(passwordInput.getText());
             authorizationRestClient.login(credentialsPojo);
-            AuthorizationUtils.showCorrectSceneAfterLogin(getStage());
+            AuthorizationUtils.showCorrectSceneAfterLogin(getActualStage());
         });
     }
 
@@ -79,17 +76,6 @@ public class LoginController implements Initializable {
         accountTypeCheckBox.getSelectionModel().selectFirst();
     }
 
-    private void bindLoginButtonToFields() {
-        loginButton.disableProperty().bind(
-                Bindings.isEmpty(usernameInput.textProperty())
-                        .or(Bindings.isEmpty(passwordInput.textProperty()))
-        );
-    }
-
-
-    private Stage getStage() {
-        return (Stage) usernameInput.getScene().getWindow();
-    }
 
 
 }

@@ -2,10 +2,11 @@ package pl.edziennik.client.controller.admin.schools;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.common.ProgressFactory;
 import pl.edziennik.client.controller.model.admin.SchoolLevelComboBoxItem;
@@ -20,15 +21,7 @@ import pl.edziennik.client.validator.school.AddSchoolValidator;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdminSchoolsTabAddSchoolController implements Initializable {
-
-    private final ProgressFactory progressFactory;
-    private final DialogFactory dialogFactory;
-
-    public AdminSchoolsTabAddSchoolController() {
-        this.progressFactory = ProgressFactory.getInstance();
-        this.dialogFactory = DialogFactory.getInstance();
-    }
+public class AdminSchoolsTabAddSchoolController extends AbstractController {
 
     @FXML
     private TextField nameTextField, addressTextField, postalCodeTextField, cityTextField, nipTextField,
@@ -42,15 +35,32 @@ public class AdminSchoolsTabAddSchoolController implements Initializable {
 
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    protected void fetchStageData() {
+        fetchComboBoxItems();
+    }
+
+    @Override
+    protected void setSceneValidators() {
+        initializeValidators();
+    }
+
+    @Override
+    protected void createActions() {
         NodeUtils.createCancelButtonAction(cancelButton);
+        initializeSaveButtonAction();
+    }
+
+    @Override
+    protected void setSceneSettings() {
         NodeUtils.setTextFieldAsNumbersOnly(phoneNumberTextField, nipTextField, regonTextField);
         NodeUtils.enableButtonIfFieldsHasNoErrors(saveButton, nameTextField, addressTextField,
                 postalCodeTextField, cityTextField, nipTextField,
                 regonTextField, phoneNumberTextField);
-        fetchComboBoxItems();
-        initializeSaveButtonAction();
-        initializeValidators();
+    }
+
+    @Override
+    protected Stage getActualStage() {
+        return (Stage) saveButton.getScene().getWindow();
     }
 
     private void initializeValidators() {

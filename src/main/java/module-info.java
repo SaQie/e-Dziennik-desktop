@@ -10,7 +10,6 @@ module pl.edziennik.client {
     requires com.fasterxml.jackson.databind;
 
 
-    opens pl.edziennik.client to javafx.fxml;
     exports pl.edziennik.client;
     exports pl.edziennik.client.controller.auth;
     exports pl.edziennik.client.rest;
@@ -26,12 +25,14 @@ module pl.edziennik.client {
     exports pl.edziennik.client.controller.model.admin;
     exports pl.edziennik.client.controller.configuration;
     exports pl.edziennik.client.common;
+    exports pl.edziennik.client.core;
+    exports pl.edziennik.client.controller.admin.schools;
+    opens pl.edziennik.client to javafx.fxml;
     opens pl.edziennik.client.controller.auth to javafx.fxml;
     opens pl.edziennik.client.controller.admin to javafx.fxml;
     opens pl.edziennik.client.controller to javafx.fxml;
     opens pl.edziennik.client.task to javafx.fxml;
     opens pl.edziennik.client.controller.configuration to javafx.fxml;
-    exports pl.edziennik.client.controller.admin.schools;
     opens pl.edziennik.client.controller.admin.schools to javafx.fxml;
 
 }

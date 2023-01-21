@@ -89,6 +89,9 @@ public enum ResourceConst {
     TABLE_VIEW_ROW_NOT_SELECTED_MESSAGE_KEY("rows.not.selected"),
     ERROR_DIALOG_TITLE_MESSAGE_KEY("dialog.error.title"),
     TABLE_VIEW_TOO_MANY_ROWS_MESSAGE_KEY("too.many.rows.selected"),
+    ARE_YOU_SURE_TO_PERFORM_THIS_OPERATION_MESSAGE_KEY("are.you.sure.to.perform.this.operation"),
+    DIALOG_QUESTION_MESSAGE_KEY("dialog.perform.operation.question"),
+    ARE_YOU_SURE_TO_PERFORM_DELETE_OPERATION_MESSAGE_KEY("are.you.sure.to.perform.delete.action"),
 
     // LOCALES
 

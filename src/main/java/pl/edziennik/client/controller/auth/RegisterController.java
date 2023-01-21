@@ -22,10 +22,6 @@ import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
 
-    /*
-        CLASSES
-     */
-
     private final DialogFactory dialogFactory;
     private final AuthValidator authValidator;
     private final ProgressFactory progressFactory;
@@ -36,10 +32,6 @@ public class RegisterController implements Initializable {
         this.authValidator = new AuthValidator();
         this.progressFactory = ProgressFactory.getInstance();
     }
-
-    /*
-        FXML
-     */
 
     @FXML
     private TextField emailInput;

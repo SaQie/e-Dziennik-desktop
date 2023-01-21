@@ -29,9 +29,9 @@ public class TableColumnViewConfigController implements Initializable {
 
     }
 
-    public<T> void manageTableColumnVisible(ObservableList<TableColumn<T, ?>> columns){
+    public <T> void manageTableColumnVisible(ObservableList<TableColumn<T, ?>> columns) {
         for (TableColumn<T, ?> column : columns) {
-            if (column.getText() == null || column.getText().isEmpty() || column.getText().isBlank()){
+            if (column.getText() == null || column.getText().isEmpty() || column.getText().isBlank()) {
                 continue;
             }
             fillTableColumnViewConfigData(column);

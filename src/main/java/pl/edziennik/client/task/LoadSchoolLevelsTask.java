@@ -1,7 +1,6 @@
 package pl.edziennik.client.task;
 
 import javafx.concurrent.Task;
-import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.controller.model.admin.SchoolLevelComboBoxItem;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;

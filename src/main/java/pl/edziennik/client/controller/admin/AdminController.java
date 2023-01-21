@@ -6,8 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.stage.Stage;
 import pl.edziennik.client.common.ProgressFactory;
 import pl.edziennik.client.controller.admin.schools.AdminSchoolsTabController;
+import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.task.LoadSchoolsTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ThreadUtils;
@@ -15,13 +17,7 @@ import pl.edziennik.client.utils.ThreadUtils;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdminController implements Initializable {
-
-    private ProgressFactory progressFactory;
-
-    public AdminController() {
-        this.progressFactory = ProgressFactory.getInstance();
-    }
+public class AdminController extends AbstractController {
 
     @FXML
     private AdminSchoolsTabController schoolsTabController;
@@ -39,10 +35,23 @@ public class AdminController implements Initializable {
     private Tab schoolsTab, statisticsTab, chartsTab, accountsTab;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    protected void createActions() {
         NodeUtils.createExitButtonAction(exitButton);
-        NodeUtils.createTimer(timerLabel);
         NodeUtils.createLogoutButton(logoutButton);
+    }
+
+    @Override
+    protected void setSceneSettings() {
+        NodeUtils.createTimer(timerLabel);
+        fetchTableItemsIfNeeded();
+    }
+
+    @Override
+    protected Stage getActualStage() {
+        return (Stage) mainViewPane.getScene().getWindow();
+    }
+
+    private void fetchTableItemsIfNeeded() {
         mainViewPane.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals(schoolsTab)) {
                 if (schoolsTabController.isTableDataEmpty()) {
@@ -52,7 +61,6 @@ public class AdminController implements Initializable {
                 }
             }
         });
-
     }
 
 

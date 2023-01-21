@@ -22,48 +22,48 @@ public class TableViewControllerMaker {
 
         private List<TableColumn<SchoolListModel, ?>> columns = FXCollections.observableArrayList();
 
-        public SchoolTableViewBuilder withSchoolNameColumn() {
-            columns.add(SchoolTableViewColumns.getSchoolNameColumn());
+        public SchoolTableViewBuilder withSchoolNameColumn(final boolean isDefaultVisible) {
+            columns.add(SchoolTableViewColumns.getSchoolNameColumn(isDefaultVisible));
             return this;
         }
 
-        public SchoolTableViewBuilder withSchoolCityColumn() {
-            columns.add(SchoolTableViewColumns.getSchoolCityColumn());
+        public SchoolTableViewBuilder withSchoolCityColumn(final boolean isDefaultVisible) {
+            columns.add(SchoolTableViewColumns.getSchoolCityColumn(isDefaultVisible));
             return this;
         }
 
-        public SchoolTableViewBuilder withSchoolPostalCodeColumn() {
-            columns.add(SchoolTableViewColumns.getSchoolPostalCodeColumn());
+        public SchoolTableViewBuilder withSchoolPostalCodeColumn(final boolean isDefaultVisible) {
+            columns.add(SchoolTableViewColumns.getSchoolPostalCodeColumn(isDefaultVisible));
             return this;
         }
 
-        public SchoolTableViewBuilder withSchoolNipColumn() {
-            columns.add(SchoolTableViewColumns.getSchoolNipColumn());
+        public SchoolTableViewBuilder withSchoolNipColumn(final boolean isDefaultVisible) {
+            columns.add(SchoolTableViewColumns.getSchoolNipColumn(isDefaultVisible));
             return this;
         }
 
-        public SchoolTableViewBuilder withSchoolRegonColumn() {
-            columns.add(SchoolTableViewColumns.getSchoolRegonColumn());
+        public SchoolTableViewBuilder withSchoolRegonColumn(final boolean isDefaultVisible) {
+            columns.add(SchoolTableViewColumns.getSchoolRegonColumn(isDefaultVisible));
             return this;
         }
 
-        public SchoolTableViewBuilder withSchoolPhoneNumberColumn() {
-            columns.add(SchoolTableViewColumns.getSchoolPhoneNumberColumn());
+        public SchoolTableViewBuilder withSchoolPhoneNumberColumn(final boolean isDefaultVisible) {
+            columns.add(SchoolTableViewColumns.getSchoolPhoneNumberColumn(isDefaultVisible));
             return this;
         }
 
-        public SchoolTableViewBuilder withSchoolAddressColumn() {
-            columns.add(SchoolTableViewColumns.getSchoolAddressColumn());
+        public SchoolTableViewBuilder withSchoolAddressColumn(final boolean isDefaultVisible) {
+            columns.add(SchoolTableViewColumns.getSchoolAddressColumn(isDefaultVisible));
             return this;
         }
 
-        public SchoolTableViewBuilder withHidedSchoolLevelColumn(){
-            columns.add(SchoolTableViewColumns.getSchoolLevelColumn());
+        public SchoolTableViewBuilder withHidedSchoolLevelColumn(final boolean isDefaultVisible){
+            columns.add(SchoolTableViewColumns.getSchoolLevelColumn(isDefaultVisible));
             return this;
         }
 
-        public SchoolTableViewBuilder withSelectColumn(){
-            columns.add(SchoolTableViewColumns.getSelectColumn());
+        public SchoolTableViewBuilder withSelectColumn(final boolean isDefaultVisible){
+            columns.add(SchoolTableViewColumns.getSelectColumn(isDefaultVisible));
             return this;
         }
 

@@ -5,10 +5,7 @@ import javafx.stage.Stage;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.controller.auth.AuthorizationController;
-import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.exception.TableViewException;
-
-import static pl.edziennik.client.common.ResourceConst.*;
 
 import java.io.IOException;
 

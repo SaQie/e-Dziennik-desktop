@@ -9,7 +9,6 @@ import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import pl.edziennik.client.common.DialogFactory;
-import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.configuration.converter.PropertiesBackendLangugageConverter;
 import pl.edziennik.client.exception.RestClientException;
@@ -60,7 +59,6 @@ public class RestClient {
     public <T, E> T post(String url, E request, Class<T> response) {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
         HttpEntity<E> entityToSend = new HttpEntity<>(request, authorizationHeader);
-        String token = PropertiesLoader.readProperty("token");
         try {
             ResponseEntity<ApiResponse<T>> result = restTemplate.exchange(url, HttpMethod.POST, entityToSend, new ParameterizedTypeReference<>() {
             });

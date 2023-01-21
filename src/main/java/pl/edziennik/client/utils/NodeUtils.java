@@ -2,12 +2,12 @@ package pl.edziennik.client.utils;
 
 import javafx.animation.AnimationTimer;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.BooleanProperty;
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -19,7 +19,6 @@ import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.configuration.converter.PropertiesLanguageConverter;
 import pl.edziennik.client.controller.configuration.TableColumnViewConfigController;
-import pl.edziennik.client.controller.model.admin.SchoolListModel;
 import pl.edziennik.client.controller.model.admin.TableViewSelection;
 import pl.edziennik.client.exception.TableViewException;
 
@@ -28,12 +27,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
 import static pl.edziennik.client.common.ResourceConst.*;
-
 import static pl.edziennik.client.common.builder.CommonStageBuilder.StageBuilder.ShowMode.OPEN_ABOVE;
 import static pl.edziennik.client.common.builder.CommonStageBuilder.StageBuilder.ShowMode.OPEN_ABOVE_AND_RETURN_CONTROLLER;
 
@@ -157,6 +154,18 @@ public class NodeUtils {
                 button.setDisable(!hasErrors);
             });
         }
+    }
+
+    public static void enableButtonIfFieldsAreNotEmpty(Button button, TextField... textFields) {
+        BooleanBinding firstFieldBooleanBinding = null;
+        for (TextField textField : textFields) {
+            if (firstFieldBooleanBinding != null) {
+                firstFieldBooleanBinding.or(Bindings.isEmpty(textField.textProperty()));
+            }
+            firstFieldBooleanBinding = Bindings.isEmpty(textField.textProperty());
+        }
+        button.disableProperty().bind(
+                firstFieldBooleanBinding);
     }
 
     public static <T> void setTableViewPlaceHolder(TableView<T> tableView) {

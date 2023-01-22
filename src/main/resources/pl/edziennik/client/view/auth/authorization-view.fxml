@@ -20,7 +20,7 @@
                     <children>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/User.png" />
+                                <Image url="@../../icons/User.png" />
                             </image>
                         </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="51.0" prefWidth="188.0" text="%header.authorization" textAlignment="RIGHT" textFill="WHITE">
@@ -33,8 +33,8 @@
                         </Label>
                     </children>
                     <stylesheets>
-                        <URL value="@css/authorization-style.css" />
-                        <URL value="@css/global-colors.css" />
+                        <URL value="@../../css/authorization-style.css" />
+                        <URL value="@../../css/global-colors.css" />
                     </stylesheets>
                 </HBox>
             </top>
@@ -51,8 +51,8 @@
                                 <fx:include fx:id="configuration" source="configuration-tab.fxml" />
                             </tabs>
                             <stylesheets>
-                                <URL value="@css/authorization-style.css" />
-                                <URL value="@css/global-colors.css" />
+                                <URL value="@../../css/authorization-style.css" />
+                                <URL value="@../../css/global-colors.css" />
                             </stylesheets>
                         </TabPane>
                     </children>

@@ -13,8 +13,9 @@ import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.common.controller.columns.TableViewControllerMaker;
 import pl.edziennik.client.controller.model.admin.SchoolListModel;
 import pl.edziennik.client.rest.pojo.SchoolPojo;
-import pl.edziennik.client.task.DeleteSchoolTask;
-import pl.edziennik.client.task.LoadSchoolsTask;
+import pl.edziennik.client.task.school.DeleteSchoolTask;
+import pl.edziennik.client.task.school.LoadSchoolTask;
+import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.utils.NodeUtils;
 
 import java.util.List;
@@ -33,7 +34,10 @@ public class AdminSchoolsTabController extends AbstractController {
     private TableView<SchoolListModel> tableView;
 
     @FXML
-    private Button addButton, editButton, showButton, deleteButton, refreshButton;
+    private Button addButton, editButton, showButton, deleteButton;
+
+    @FXML
+    public Button refreshButton;
 
     @FXML
     private MenuItem selectAllMenuItem, unselectAllMenuItem;
@@ -71,7 +75,6 @@ public class AdminSchoolsTabController extends AbstractController {
         ObservableList<SchoolListModel> items = FXCollections.observableList(schoolListModels);
         tableView.setItems(items);
         tableView.refresh();
-
     }
 
     public void addItem(final SchoolListModel school) {
@@ -107,13 +110,29 @@ public class AdminSchoolsTabController extends AbstractController {
 
     private void initializeShowButtonAction() {
         showButton.setOnAction(button -> {
-            NodeUtils.getSelectedTableItems(tableView, ActionType.SHOW_ACTION);
+            List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(tableView, ActionType.SHOW_ACTION);
+            progressFactory.createLittleProgressBar(new LoadSchoolTask(selectedTableItems.get(0)), (schoolPojo) -> {
+                AdminSchoolsTabShowSchoolController controller = NodeUtils.openNewStageAboveWithController(
+                        ResourceConst.DASHBOARD_ADMIN_SCHOOL_SHOW_VIEW_ADDRESS.value(),
+                        ResourceConst.SHOW_SCHOOL_VIEW_TITLE_KEY.value(),
+                        500, 600,
+                        getActualStage());
+                controller.loadStageFields(schoolPojo);
+            });
         });
     }
 
     private void initializeEditButtonAction() {
         editButton.setOnAction(button -> {
-            NodeUtils.getSelectedTableItems(tableView, ActionType.EDIT_ACTION);
+            List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(tableView, ActionType.EDIT_ACTION);
+            progressFactory.createLittleProgressBar(new LoadSchoolTask(selectedTableItems.get(0)), (schoolPojo) -> {
+                AdminSchoolsTabEditSchoolController controller = NodeUtils.openNewStageAboveWithController(
+                        ResourceConst.DASHBOARD_ADMIN_SCHOOL_EDIT_VIEW_ADDRESS.value(),
+                        ResourceConst.EDIT_SCHOOL_VIEW_TITLE_KEY.value(),
+                        500, 600,
+                        getActualStage());
+                controller.loadStageFields(schoolPojo);
+            });
         });
     }
 

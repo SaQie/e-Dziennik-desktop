@@ -13,8 +13,8 @@ import java.util.Arrays;
 
 class RestClientObjectMapper {
 
-    private ObjectMapper objectMapper;
-    private DialogFactory dialogFactory;
+    private final ObjectMapper objectMapper;
+    private final DialogFactory dialogFactory;
 
     public RestClientObjectMapper() {
         this.objectMapper = new ObjectMapper();

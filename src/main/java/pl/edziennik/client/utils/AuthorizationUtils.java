@@ -75,6 +75,7 @@ public class AuthorizationUtils {
                     .withWidth(1200)
                     .withHeight(800)
                     .withStyle(StageStyle.UTILITY)
+                    .withResizable(true)
                     .withMinWidth(1100)
                     .withFocusRequest(true)
                     .withOwner(currentStage)

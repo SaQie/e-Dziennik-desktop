@@ -40,61 +40,47 @@ public class RestClient {
         this.dialogFactory = DialogFactory.getInstance();
         configureRestClient();
     }
-
-    public <T> T get(String url, Class<T> response) {
+    public <T> T send(HttpMethod method, String url, Class<T> response){
         HttpHeaders authorizationHeader = createAuthorizationHeader();
         HttpEntity<Void> entityToSend = new HttpEntity<>(null, authorizationHeader);
         try {
-            ResponseEntity<ApiResponse<T>> result = restTemplate.exchange(url, HttpMethod.GET, entityToSend, new ParameterizedTypeReference<>() {
+            ResponseEntity<ApiResponse<T>> result = restTemplate.exchange(url, method, entityToSend, new ParameterizedTypeReference<>() {
             });
             statusCodesHandler.checkStatusCodes(result);
             return mapper.mapToObject(result.getBody(), response);
         } catch (ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
-            throw new RestClientException("Server not responding");
+            throw new RestClientException(e);
         }
-
     }
 
-    public <T, E> T post(String url, E request, Class<T> response) {
+    public <T, E> T send(HttpMethod method, String url, E request, Class<T> response) {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
         HttpEntity<E> entityToSend = new HttpEntity<>(request, authorizationHeader);
         try {
-            ResponseEntity<ApiResponse<T>> result = restTemplate.exchange(url, HttpMethod.POST, entityToSend, new ParameterizedTypeReference<>() {
+            ResponseEntity<ApiResponse<T>> result = restTemplate.exchange(url, method, entityToSend, new ParameterizedTypeReference<>() {
             });
             statusCodesHandler.checkStatusCodes(result);
             return mapper.mapToObject(result.getBody(), response);
         } catch (ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
-            throw new RestClientException("Server not responding");
+            throw new RestClientException(e);
         }
     }
 
-    public <E> void post(String url, E request) {
-        HttpHeaders authorizationHeader = createAuthorizationHeader();
-        HttpEntity<E> entityToSend = new HttpEntity<>(request, authorizationHeader);
-        try {
-            ResponseEntity<ApiResponse<Void>> result = restTemplate.exchange(url, HttpMethod.POST, entityToSend, new ParameterizedTypeReference<>() {
-            });
-            statusCodesHandler.checkStatusCodes(result);
-        } catch (ResourceAccessException e) {
-            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(),SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
-            throw new RestClientException("Server not responding");
-        }
-    }
-
-    public void delete(String url, Long id){
+    public void send(HttpMethod method, String url, Long id){
         HttpHeaders authorizationHeader = createAuthorizationHeader();
         HttpEntity<Long> entityToSend = new HttpEntity<>(null, authorizationHeader);
         try {
-            ResponseEntity<ApiResponse<Void>> result = restTemplate.exchange(url + id, HttpMethod.DELETE, entityToSend, new ParameterizedTypeReference<>() {
+            ResponseEntity<ApiResponse<Void>> result = restTemplate.exchange(url + id, method, entityToSend, new ParameterizedTypeReference<>() {
             });
             statusCodesHandler.checkStatusCodes(result);
         } catch (ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(),SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
-            throw new RestClientException("Server not responding");
+            throw new RestClientException(e);
         }
     }
+
 
     public <E> void login(String url, E request) {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
@@ -107,7 +93,7 @@ public class RestClient {
             AuthorizationUtils.readAuthorizationDataAndSaveLocally(headers);
         } catch (HttpServerErrorException | ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(),SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
-            throw new RestClientException("Server not responding");
+            throw new RestClientException(e);
         }
     }
 

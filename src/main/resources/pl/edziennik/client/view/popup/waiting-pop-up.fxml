@@ -17,7 +17,7 @@
                </font>
             </Label>
             <ProgressBar fx:id="progressBar" layoutX="50.0" layoutY="100.0" prefWidth="200.0" progress="0.0" style="-fx-accent: #1885db;" />
-            <ProgressIndicator layoutX="126.0" layoutY="26.0" stylesheets="@css/loading-styles.css" />
+            <ProgressIndicator layoutX="126.0" layoutY="26.0" stylesheets="@../../css/loading-styles.css" />
          </children>
       </Pane>
    </children>

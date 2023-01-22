@@ -8,7 +8,7 @@ import pl.edziennik.client.common.ProgressFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public abstract class AbstractController implements Initializable {
+public abstract class AbstractController implements Initializable{
 
     protected final DialogFactory dialogFactory;
     protected final ProgressFactory progressFactory;
@@ -24,12 +24,12 @@ public abstract class AbstractController implements Initializable {
         setSceneSettings();
         setTableColumns();
         setSceneValidators();
-        fetchStageData();
     }
 
     protected void fetchStageData(){
 
     }
+
 
     protected void setTableColumns() {
     }

@@ -6,17 +6,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.controller.model.admin.SchoolLevelComboBoxItem;
-import pl.edziennik.client.controller.model.admin.SchoolListModel;
+import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.rest.pojo.SchoolPojo;
-import pl.edziennik.client.task.school.AddNewSchoolTask;
+import pl.edziennik.client.task.school.EditSchoolTask;
 import pl.edziennik.client.task.school.LoadSchoolLevelsTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ThreadUtils;
 import pl.edziennik.client.validator.school.AddSchoolValidator;
 
-public class AdminSchoolsTabAddSchoolController extends AbstractController {
+public class AdminSchoolsTabEditSchoolController extends AbstractController {
 
     @FXML
     private TextField nameTextField, addressTextField, postalCodeTextField, cityTextField, nipTextField,
@@ -28,6 +27,7 @@ public class AdminSchoolsTabAddSchoolController extends AbstractController {
     @FXML
     private Button cancelButton, saveButton;
 
+    private Long objectId;
 
     @Override
     protected void fetchStageData() {
@@ -58,6 +58,18 @@ public class AdminSchoolsTabAddSchoolController extends AbstractController {
         return (Stage) saveButton.getScene().getWindow();
     }
 
+    public void loadStageFields(SchoolPojo schoolPojo) {
+        nameTextField.setText(schoolPojo.getName());
+        nipTextField.setText(schoolPojo.getNip());
+        regonTextField.setText(schoolPojo.getRegon());
+        addressTextField.setText(schoolPojo.getAddress());
+        postalCodeTextField.setText(schoolPojo.getPostalCode());
+        phoneNumberTextField.setText(schoolPojo.getPhoneNumber());
+        cityTextField.setText(schoolPojo.getCity());
+        schoolLevelComboBox.getSelectionModel().select(getCorrectComboBoxItem(schoolPojo.getIdSchoolLevel()));
+        this.objectId = schoolPojo.getId();
+    }
+
     private void initializeValidators() {
         AddSchoolValidator.builder()
                 .withNameValidator(nameTextField)
@@ -73,9 +85,9 @@ public class AdminSchoolsTabAddSchoolController extends AbstractController {
     private void initializeSaveButtonAction() {
         saveButton.setOnAction(button -> {
             SchoolPojo schoolPojo = mapToSchoolPojo();
-            ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new AddNewSchoolTask(schoolPojo), (response) -> {
+            ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new EditSchoolTask(objectId, schoolPojo), (response) -> {
                 AdminSchoolsTabController controller = AdminSchoolsTabController.getInstance();
-                controller.addItem(SchoolListModel.mapPojoToModel(response));
+                controller.refreshButton.fire();
                 dialogFactory.createSuccessInformationDialog(null);
             }));
         });
@@ -89,6 +101,14 @@ public class AdminSchoolsTabAddSchoolController extends AbstractController {
             });
         }
 
+    }
+
+    private SchoolLevelComboBoxItem getCorrectComboBoxItem(Long id) {
+        return schoolLevelComboBox.getItems()
+                .stream()
+                .filter(item -> item.getId().getValue().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     private SchoolPojo mapToSchoolPojo() {

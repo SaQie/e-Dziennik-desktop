@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="350.0" styleClass="background-color-dark" stylesheets="@css/global-colors.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.configuration.TableColumnViewConfigController">
+<AnchorPane prefHeight="500.0" prefWidth="350.0" styleClass="background-color-dark" stylesheets="@../../css/global-colors.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.configuration.TableColumnViewConfigController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -24,7 +24,7 @@
                      <children>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/Services.png" />
+                              <Image url="@../../icons/Services.png" />
                            </image>
                         </ImageView>
                         <Label text="%column.visibility.label" textFill="WHITE">

@@ -18,23 +18,23 @@
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
             <children>
-                <VBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="627.0" spacing="5.0" stylesheets="@css/global-field-styles.css">
+                <VBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="627.0" spacing="5.0" stylesheets="@../../css/global-field-styles.css">
                     <children>
                         <HBox alignment="CENTER" prefHeight="55.0" prefWidth="625.0" spacing="50.0">
                             <children>
-                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@css/authorization-style.css" text="%account.type" />
+                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@../../css/authorization-style.css" text="%account.type" />
                                 <ComboBox fx:id="accountTypeCheckBox" prefWidth="161.0" styleClass="test" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="55.0" prefWidth="625.0" spacing="50.0">
                             <children>
-                                <Label contentDisplay="CENTER" prefWidth="200.0" styleClass="authorization-label" stylesheets="@css/authorization-style.css" text="%label.username" />
+                                <Label contentDisplay="CENTER" prefWidth="200.0" styleClass="authorization-label" stylesheets="@../../css/authorization-style.css" text="%label.username" />
                                 <TextField fx:id="usernameInput" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="55.0" prefWidth="200.0" spacing="50.0">
                             <children>
-                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@css/authorization-style.css" text="%label.password" />
+                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@../../css/authorization-style.css" text="%label.password" />
                                 <PasswordField fx:id="passwordInput" />
                             </children>
                         </HBox>
@@ -42,11 +42,11 @@
                             <children>
                                 <AnchorPane prefHeight="121.0" prefWidth="327.0">
                                     <children>
-                                        <Button fx:id="exitButton" layoutX="56.0" layoutY="61.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="authorization-button" stylesheets="@css/authorization-style.css" text="%exit.button" textFill="WHITE">
+                                        <Button fx:id="exitButton" layoutX="56.0" layoutY="61.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="authorization-button" stylesheets="@../../css/authorization-style.css" text="%exit.button" textFill="WHITE">
                                             <graphic>
                                                 <ImageView fitHeight="27.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons/Close.png" />
+                                                        <Image url="@../../icons/Close.png" />
                                                     </image>
                                                 </ImageView>
                                             </graphic>
@@ -58,11 +58,11 @@
                                 </AnchorPane>
                                 <AnchorPane prefHeight="121.0" prefWidth="299.0">
                                     <children>
-                                        <Button fx:id="loginButton" defaultButton="true" layoutX="100.0" layoutY="61.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="authorization-button" stylesheets="@css/authorization-style.css" text="%login.button" textFill="WHITE">
+                                        <Button fx:id="loginButton" defaultButton="true" layoutX="100.0" layoutY="61.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="authorization-button" stylesheets="@../../css/authorization-style.css" text="%login.button" textFill="WHITE">
                                             <graphic>
                                                 <ImageView fitHeight="28.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icons/Done.png" />
+                                                        <Image url="@../../icons/Done.png" />
                                                     </image>
                                                 </ImageView>
                                             </graphic>

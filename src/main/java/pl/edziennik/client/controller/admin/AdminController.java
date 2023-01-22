@@ -1,21 +1,16 @@
 package pl.edziennik.client.controller.admin;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.ProgressFactory;
 import pl.edziennik.client.controller.admin.schools.AdminSchoolsTabController;
 import pl.edziennik.client.core.AbstractController;
-import pl.edziennik.client.task.LoadSchoolsTask;
+import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ThreadUtils;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class AdminController extends AbstractController {
 

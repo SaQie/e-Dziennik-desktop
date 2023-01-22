@@ -16,27 +16,27 @@
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
             <children>
-                <VBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="627.0" spacing="0.0" stylesheets="@css/global-field-styles.css">
+                <VBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="627.0" spacing="0.0" stylesheets="@../../css/global-field-styles.css">
                     <children>
                         <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" spacing="50.0">
                             <children>
-                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@css/authorization-style.css" text="%server.address.label.text" />
+                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@../../css/authorization-style.css" text="%server.address.label.text" />
                                 <TextField fx:id="serverAddressInput" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" spacing="50.0">
                             <children>
-                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@css/authorization-style.css" text="%language.label.text" />
+                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@../../css/authorization-style.css" text="%language.label.text" />
                                 <ComboBox fx:id="languageComboBox" prefWidth="161.0" />
                             </children>
                         </HBox>
                         <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="625.0">
                             <children>
-                                <Button fx:id="configurationButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="authorization-button" stylesheets="@css/authorization-style.css" text="%save.configuration.button" textFill="WHITE">
+                                <Button fx:id="configurationButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" styleClass="authorization-button" stylesheets="@../../css/authorization-style.css" text="%save.configuration.button" textFill="WHITE">
                                     <graphic>
                                         <ImageView fitHeight="28.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@icons/Done.png" />
+                                                <Image url="@../../icons/Done.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>

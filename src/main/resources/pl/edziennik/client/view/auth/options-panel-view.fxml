@@ -20,7 +20,7 @@
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <Pane prefHeight="400.0" prefWidth="235.0" styleClass="background-gradient" stylesheets="@css/global-colors.css" BorderPane.alignment="CENTER">
+            <Pane prefHeight="400.0" prefWidth="235.0" styleClass="background-gradient" stylesheets="@../../css/global-colors.css" BorderPane.alignment="CENTER">
                <children>
                   <Label layoutX="72.0" layoutY="146.0" text="e-Dziennik" textFill="WHITE">
                      <font>
@@ -35,16 +35,16 @@
                   <Label layoutX="39.0" layoutY="419.0" text="Wtorek 12:25:55 20.12.2022" textFill="WHITE" />
                   <VBox alignment="CENTER_LEFT" layoutX="9.0" layoutY="212.0" spacing="15.0">
                      <children>
-                        <Label styleClass="options-panel-label" stylesheets="@css/options-panel-style.css" text="Użytkownik:" />
-                        <Label styleClass="options-panel-label" stylesheets="@css/options-panel-style.css" text="Typ konta:" />
-                        <Label styleClass="options-panel-label" stylesheets="@css/options-panel-style.css" text="Adres IP:" />
+                        <Label styleClass="options-panel-label" stylesheets="@../../css/options-panel-style.css" text="Użytkownik:" />
+                        <Label styleClass="options-panel-label" stylesheets="@../../css/options-panel-style.css" text="Typ konta:" />
+                        <Label styleClass="options-panel-label" stylesheets="@../../css/options-panel-style.css" text="Adres IP:" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="124.0" layoutY="212.0" spacing="15.0">
                      <children>
-                        <Label styleClass="options-panel-label" stylesheets="@css/options-panel-style.css" text="Kamcio" />
-                        <Label styleClass="options-panel-label" stylesheets="@css/options-panel-style.css" text="Nauczyciel" />
-                        <Label styleClass="options-panel-label" stylesheets="@css/options-panel-style.css" text="192.168.1.92" />
+                        <Label styleClass="options-panel-label" stylesheets="@../../css/options-panel-style.css" text="Kamcio" />
+                        <Label styleClass="options-panel-label" stylesheets="@../../css/options-panel-style.css" text="Nauczyciel" />
+                        <Label styleClass="options-panel-label" stylesheets="@../../css/options-panel-style.css" text="192.168.1.92" />
                      </children>
                   </VBox>
                </children></Pane>
@@ -54,7 +54,7 @@
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="65.0" layoutY="28.0" prefHeight="43.0" prefWidth="111.0" styleClass="options-panel-header-label" stylesheets="@css/options-panel-style.css" text="Opcje">
+                        <Label layoutX="65.0" layoutY="28.0" prefHeight="43.0" prefWidth="111.0" styleClass="options-panel-header-label" stylesheets="@../../css/options-panel-style.css" text="Opcje">
                            <font>
                               <Font name="System Bold" size="36.0" />
                            </font>
@@ -72,13 +72,13 @@
                            <children>
                               <Button contentDisplay="TOP" graphicTextGap="1.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="186.0" styleClass="options-panel-button" text="Lista studentów" textFill="WHITE">
                                  <stylesheets>
-                                    <URL value="@css/options-panel-style.css" />
-                                    <URL value="@css/global-colors.css" />
+                                    <URL value="@../../css/options-panel-style.css" />
+                                    <URL value="@../../css/global-colors.css" />
                                  </stylesheets>
                                  <graphic>
                                     <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@icons/Classroom.png" />
+                                          <Image url="@../../icons/Classroom.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -88,8 +88,8 @@
                               </Button>
                               <Button contentDisplay="TOP" graphicTextGap="1.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="186.0" styleClass="options-panel-button" text="Informacje o studencie" textFill="WHITE" GridPane.columnIndex="1">
                                  <stylesheets>
-                                    <URL value="@css/global-colors.css" />
-                                    <URL value="@css/options-panel-style.css" />
+                                    <URL value="@../../css/global-colors.css" />
+                                    <URL value="@../../css/options-panel-style.css" />
                                  </stylesheets>
                                  <graphic>
                                     <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
@@ -102,13 +102,13 @@
                                  </font></Button>
                               <Button contentDisplay="TOP" graphicTextGap="1.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="186.0" styleClass="options-panel-button" text="Zarządzaj ocenami" textFill="WHITE" GridPane.rowIndex="1">
                                  <stylesheets>
-                                    <URL value="@css/global-colors.css" />
-                                    <URL value="@css/options-panel-style.css" />
+                                    <URL value="@../../css/global-colors.css" />
+                                    <URL value="@../../css/options-panel-style.css" />
                                  </stylesheets>
                                  <graphic>
                                     <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@icons/Scorecard.png" />
+                                          <Image url="@../../icons/Scorecard.png" />
                                        </image></ImageView>
                                  </graphic>
                                  <font>
@@ -116,13 +116,13 @@
                                  </font></Button>
                               <Button contentDisplay="TOP" graphicTextGap="1.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="186.0" styleClass="options-panel-button" text="Konfiguracja" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <stylesheets>
-                                    <URL value="@css/global-colors.css" />
-                                    <URL value="@css/options-panel-style.css" />
+                                    <URL value="@../../css/global-colors.css" />
+                                    <URL value="@../../css/options-panel-style.css" />
                                  </stylesheets>
                                  <graphic>
                                     <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@icons/Services.png" />
+                                          <Image url="@../../icons/Services.png" />
                                        </image></ImageView>
                                  </graphic>
                                  <font>
@@ -131,13 +131,13 @@
                               </Button>
                               <Button contentDisplay="TOP" graphicTextGap="1.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="186.0" styleClass="options-panel-button" text="Wyjście" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <stylesheets>
-                                    <URL value="@css/global-colors.css" />
-                                    <URL value="@css/options-panel-style.css" />
+                                    <URL value="@../../css/global-colors.css" />
+                                    <URL value="@../../css/options-panel-style.css" />
                                  </stylesheets>
                                  <graphic>
                                     <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@icons/Close.png" />
+                                          <Image url="@../../icons/Close.png" />
                                        </image></ImageView>
                                  </graphic>
                                  <font>
@@ -145,13 +145,13 @@
                                  </font></Button>
                               <Button contentDisplay="TOP" graphicTextGap="1.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="186.0" styleClass="options-panel-button" text="Wyloguj" textFill="WHITE" GridPane.rowIndex="2">
                                  <stylesheets>
-                                    <URL value="@css/global-colors.css" />
-                                    <URL value="@css/options-panel-style.css" />
+                                    <URL value="@../../css/global-colors.css" />
+                                    <URL value="@../../css/options-panel-style.css" />
                                  </stylesheets>
                                  <graphic>
                                     <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@icons/Logout.png" />
+                                          <Image url="@../../icons/Logout.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>

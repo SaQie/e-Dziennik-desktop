@@ -14,12 +14,14 @@ public enum ResourceConst {
 
     // VIEWS
 
-    DASHBOARD_ADMIN_VIEW_ADDRESS("/pl/edziennik/client/admin-dashboard-view.fxml"),
-    DASHBOARD_ADMIN_SCHOOL_ADD_VIEW_ADDRESS("/pl/edziennik/client/admin-dashboard-schools-tab-add.fxml"),
-    PROGRESS_BAR_LITTLE_VIEW_ADDRESS("/pl/edziennik/client/waiting-pop-up-little.fxml"),
-    PROGRESS_BAR_LARGE_VIEW_ADDRESS("/pl/edziennik/client/waiting-pop-up.fxml"),
-    TABLE_COLUMN_VIEW_CONFIG_VIEW_ADDRESS("/pl/edziennik/client/table-columns-view-configuration.fxml"),
-    AUTHORIZATION_VIEW_ADDRESS("authorization-view.fxml"),
+    DASHBOARD_ADMIN_VIEW_ADDRESS("/pl/edziennik/client/view/admin/admin-dashboard-view.fxml"),
+    DASHBOARD_ADMIN_SCHOOL_ADD_VIEW_ADDRESS("/pl/edziennik/client/view/admin/admin-dashboard-schools-tab-add.fxml"),
+    DASHBOARD_ADMIN_SCHOOL_EDIT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/admin-dashboard-schools-tab-edit.fxml"),
+    DASHBOARD_ADMIN_SCHOOL_SHOW_VIEW_ADDRESS("/pl/edziennik/client/view/admin/admin-dashboard-schools-tab-show.fxml"),
+    PROGRESS_BAR_LITTLE_VIEW_ADDRESS("/pl/edziennik/client/view/popup/waiting-pop-up-little.fxml"),
+    PROGRESS_BAR_LARGE_VIEW_ADDRESS("/pl/edziennik/client/view/popup/waiting-pop-up.fxml"),
+    TABLE_COLUMN_VIEW_CONFIG_VIEW_ADDRESS("/pl/edziennik/client/view/config/table-columns-view-configuration.fxml"),
+    AUTHORIZATION_VIEW_ADDRESS("/pl/edziennik/client/view/auth/authorization-view.fxml"),
 
     // MESSAGES
 
@@ -54,6 +56,8 @@ public enum ResourceConst {
     TABLE_VIEW_PLACEHOLDER_MESSAGE_KEY("label.table.empty"),
     SAVING_NEW_SCHOOL_MESSAGE_KEY("save.new.school.progress.message"),
     ADD_SCHOOL_VIEW_TITLE_KEY("add.school.view.title.label"),
+    EDIT_SCHOOL_VIEW_TITLE_KEY("edit.school.view.title.label"),
+    SHOW_SCHOOL_VIEW_TITLE_KEY("show.school.view.title.label"),
     WAITING_DELETE_SCHOOL_MESSAGE_KEY("waiting.delete.school.message"),
     AUTHORIZATION_VIEW_TITLE_MESSAGE_KEY("authorization.title.message"),
 

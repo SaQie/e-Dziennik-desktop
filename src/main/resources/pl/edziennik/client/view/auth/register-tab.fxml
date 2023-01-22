@@ -17,39 +17,39 @@
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
             <children>
-                <VBox alignment="TOP_CENTER" layoutX="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="625.0" spacing="5.0" stylesheets="@css/global-field-styles.css">
+                <VBox alignment="TOP_CENTER" layoutX="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="625.0" spacing="5.0" stylesheets="@../../css/global-field-styles.css">
                     <children>
                         <HBox alignment="CENTER" prefHeight="55.0" prefWidth="625.0" spacing="50.0">
                             <children>
-                                <Label contentDisplay="CENTER" prefWidth="200.0" styleClass="authorization-label" stylesheets="@css/authorization-style.css" text="%label.username" />
+                                <Label contentDisplay="CENTER" prefWidth="200.0" styleClass="authorization-label" stylesheets="@../../css/authorization-style.css" text="%label.username" />
                                 <TextField fx:id="usernameInput" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="55.0" prefWidth="200.0" spacing="50.0">
                             <children>
-                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@css/authorization-style.css" text="%label.email" />
+                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@../../css/authorization-style.css" text="%label.email" />
                                 <TextField fx:id="emailInput" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="55.0" prefWidth="200.0" spacing="50.0">
                             <children>
-                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@css/authorization-style.css" text="%label.password" />
+                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@../../css/authorization-style.css" text="%label.password" />
                         <PasswordField fx:id="passwordInput" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="55.0" prefWidth="200.0" spacing="50.0">
                             <children>
-                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@css/authorization-style.css" text="%label.repeat.password" />
+                                <Label prefWidth="200.0" styleClass="authorization-label" stylesheets="@../../css/authorization-style.css" text="%label.repeat.password" />
                         <PasswordField fx:id="repeatPasswordInput" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="85.0" prefWidth="625.0" spacing="210.0">
                             <children>
-                                <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="authorization-button" stylesheets="@css/authorization-style.css" text="%exit.button" textFill="WHITE">
+                                <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="authorization-button" stylesheets="@../../css/authorization-style.css" text="%exit.button" textFill="WHITE">
                                     <graphic>
                                         <ImageView fitHeight="27.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@icons/Close.png" />
+                                                <Image url="@../../icons/Close.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
@@ -57,11 +57,11 @@
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="registerButton" defaultButton="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="authorization-button" stylesheets="@css/authorization-style.css" text="%register.button" textFill="WHITE">
+                                <Button fx:id="registerButton" defaultButton="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="authorization-button" stylesheets="@../../css/authorization-style.css" text="%register.button" textFill="WHITE">
                                     <graphic>
                                         <ImageView fitHeight="28.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@icons/Done.png" />
+                                                <Image url="@../../icons/Done.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>

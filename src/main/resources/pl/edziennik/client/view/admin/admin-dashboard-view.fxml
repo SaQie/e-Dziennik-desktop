@@ -23,13 +23,13 @@
          <left>
             <AnchorPane prefHeight="838.0" prefWidth="153.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox alignment="TOP_CENTER" layoutX="-3.0" layoutY="-1.0" prefHeight="736.0" prefWidth="163.0" styleClass="background-color-light" stylesheets="@css/left-side-bar-global-styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
+                  <VBox alignment="TOP_CENTER" layoutX="-3.0" layoutY="-1.0" prefHeight="736.0" prefWidth="163.0" styleClass="background-color-light" stylesheets="@../../css/left-side-bar-global-styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
                      <children>
                         <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="55.0" prefWidth="160.0" styleClass="left-side-button" text="%button.your.data" wrapText="true">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@icons/User.png" />
+                                    <Image url="@../../icons/User.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -38,7 +38,7 @@
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@icons/Password%20Reset.png" />
+                                    <Image url="@../../icons/Password%20Reset.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -47,7 +47,7 @@
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@icons/Services.png" />
+                                    <Image url="@../../icons/Services.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -56,7 +56,7 @@
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@icons/Logout.png" />
+                                    <Image url="@../../icons/Logout.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -65,7 +65,7 @@
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@icons/Close.png" />
+                                    <Image url="@../../icons/Close.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -96,7 +96,7 @@
                         </Label>
                         <ImageView fitHeight="57.0" fitWidth="81.0" layoutX="49.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/Command%20Line.png" />
+                              <Image url="@../../icons/Command%20Line.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -106,7 +106,7 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <TabPane fx:id="mainViewPane" layoutX="3.0" layoutY="10.0" prefHeight="290.0" prefWidth="297.0" stylesheets="@css/global-tab-pane-styles.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TabPane fx:id="mainViewPane" layoutX="3.0" layoutY="10.0" prefHeight="290.0" prefWidth="297.0" stylesheets="@../../css/global-tab-pane-styles.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <tabs>
                       <Tab fx:id="statisticsTab" text="%tab.statistics">
                         <content>
@@ -114,7 +114,7 @@
                                  <children>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <top>
-                                          <HBox alignment="CENTER" prefHeight="120.0" prefWidth="1036.0" spacing="50.0" stylesheets="@css/dashboard-view-style.css" BorderPane.alignment="CENTER">
+                                          <HBox alignment="CENTER" prefHeight="120.0" prefWidth="1036.0" spacing="50.0" stylesheets="@../../css/dashboard-view-style.css" BorderPane.alignment="CENTER">
                                              <children>
                                                 <AnchorPane prefHeight="106.0" prefWidth="187.0">
                                                    <children>
@@ -169,7 +169,7 @@
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@icons/Bar%20Chart.png" />
+                                    <Image url="@../../icons/Bar%20Chart.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -181,7 +181,7 @@
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@icons/Pie%20Chart.png" />
+                                    <Image url="@../../icons/Pie%20Chart.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -198,7 +198,7 @@
                                                    <graphic>
                                                       <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@icons/add.png" />
+                                                            <Image url="@../../icons/add.png" />
                                                          </image>
                                                       </ImageView>
                                                    </graphic>
@@ -207,7 +207,7 @@
                                                    <graphic>
                                                       <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@icons/show.png" />
+                                                            <Image url="@../../icons/show.png" />
                                                          </image>
                                                       </ImageView>
                                                    </graphic>
@@ -216,7 +216,7 @@
                                                    <graphic>
                                                       <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@icons/edit.png" />
+                                                            <Image url="@../../icons/edit.png" />
                                                          </image>
                                                       </ImageView>
                                                    </graphic>
@@ -225,7 +225,7 @@
                                                    <graphic>
                                                       <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@icons/minus.png" />
+                                                            <Image url="@../../icons/minus.png" />
                                                          </image>
                                                       </ImageView>
                                                    </graphic>
@@ -243,7 +243,7 @@
                                                 <content>
                                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                          <children>
-                                                            <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@css/student-list-style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@../../css/student-list-style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                               <columns>
                                                                 <TableColumn prefWidth="75.0" text="Cos1" />
                                                                 <TableColumn prefWidth="75.0" text="Cos2" />
@@ -257,7 +257,7 @@
                                                 <content>
                                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                          <children>
-                                                            <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@css/student-list-style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@../../css/student-list-style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                               <columns>
                                                                 <TableColumn prefWidth="75.0" text="Nazwa" />
                                                                 <TableColumn prefWidth="75.0" text="Cos" />
@@ -274,7 +274,7 @@
                                                   <content>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                          <children>
-                                                            <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@css/student-list-style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@../../css/student-list-style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                               <columns>
                                                                 <TableColumn prefWidth="75.0" text="C1" />
                                                                 <TableColumn prefWidth="75.0" text="C2" />
@@ -294,7 +294,7 @@
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@icons/List.png" />
+                                    <Image url="@../../icons/List.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -308,7 +308,7 @@
       </BorderPane>
    </children>
    <stylesheets>
-      <URL value="@css/global-colors.css" />
-      <URL value="@css/dashboard-view-style.css" />
+      <URL value="@../../css/global-colors.css" />
+      <URL value="@../../css/dashboard-view-style.css" />
    </stylesheets>
 </AnchorPane>

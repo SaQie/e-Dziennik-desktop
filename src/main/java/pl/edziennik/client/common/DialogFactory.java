@@ -127,7 +127,7 @@ public class DialogFactory {
 
 
     public void createLogoutConfirmationDialog(Stage stage) {
-        if (isShowing) {
+        if (!isShowing) {
             Alert alert = CommonStageBuilder.dialogBuilder()
                     .withOwner(stage)
                     .withTitle(LOGOUT_DIALOG_TITLE_MESSAGE_KEY.value())
@@ -164,7 +164,7 @@ public class DialogFactory {
     }
 
     public boolean createQuestionInformationDialog(String message){
-        if (isShowing) {
+        if (!isShowing) {
             Alert informationDialog = CommonStageBuilder.dialogBuilder()
                     .withSearchActualStage()
                     .withTitle(DIALOG_QUESTION_MESSAGE_KEY.value())

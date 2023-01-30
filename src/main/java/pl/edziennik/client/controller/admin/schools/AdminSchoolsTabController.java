@@ -22,7 +22,7 @@ import java.util.List;
 
 import static pl.edziennik.client.common.ResourceConst.*;
 
-public class AdminSchoolsTabController extends AbstractController {
+public class AdminSchoolsTabController extends AbstractController{
 
     private static AdminSchoolsTabController instance;
 

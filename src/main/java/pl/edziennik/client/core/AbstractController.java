@@ -24,6 +24,7 @@ public abstract class AbstractController implements Initializable{
         setSceneSettings();
         setTableColumns();
         setSceneValidators();
+        fetchStageData();
     }
 
     protected void fetchStageData(){

@@ -38,7 +38,7 @@ class RestClientStatusCodesHandler {
         if (result.getStatusCode().is4xxClientError()) {
             ApiResponse<T> responseBody = result.getBody();
             ThreadUtils.runInFxThread(() ->
-                    dialogFactory.createErrorConfirmationDialog(responseBody.getStackTrace(), responseBody.getErrors()));
+                    dialogFactory.createErrorConfirmationDialog(responseBody.getErrors()));
             throw new RestClientException("400 - Bad request");
         }
 

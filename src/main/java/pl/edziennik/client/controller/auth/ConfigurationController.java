@@ -1,18 +1,16 @@
 package pl.edziennik.client.controller.auth;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.core.AbstractController;
+import pl.edziennik.client.rest.pojo.ConfigurationPojo;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.List;
 
 public class ConfigurationController extends AbstractController {
 

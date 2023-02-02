@@ -48,14 +48,13 @@ public class DialogFactory {
         }
     }
 
-    public void createErrorConfirmationDialog(String stackTrace, ApiErrors[] cause) {
+    public void createErrorConfirmationDialog(ApiErrors[] cause) {
         if (!isShowing) {
             Alert alert = CommonStageBuilder.dialogBuilder()
                     .withSearchActualStage()
                     .withTitle(EXIT_CONFIRMATION_HEADER_KEY.value())
                     .withAlertType(Alert.AlertType.ERROR)
                     .withErrors(cause)
-                    .withStackTrace(stackTrace)
                     .withCssStyles(ALERT_STYLES_PATCH)
                     .withStageStyle(StageStyle.UTILITY)
                     .withModality(Modality.APPLICATION_MODAL)

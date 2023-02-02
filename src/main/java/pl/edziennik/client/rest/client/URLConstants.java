@@ -12,4 +12,5 @@ public class URLConstants {
     public static final String SCHOOL_URL =  RestClient.BASE_URL + "/api/schools/";
     public static final String SCHOOL_DELETE_URL =  RestClient.BASE_URL + "/api/schools/";
     public static final String SCHOOL_LEVELS_URL = RestClient.BASE_URL + "/api/schoollevels/";
+    public static final String CONFIGURATION_URL = RestClient.BASE_URL + "/api/settings/";
 }

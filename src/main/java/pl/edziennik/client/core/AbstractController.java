@@ -4,8 +4,10 @@ import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.common.ProgressFactory;
+import pl.edziennik.client.rest.pojo.ConfigurationPojo;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public abstract class AbstractController implements Initializable{

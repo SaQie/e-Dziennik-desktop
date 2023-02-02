@@ -5,7 +5,9 @@ import pl.edziennik.client.controller.model.admin.SchoolLevelComboBoxItem;
 import pl.edziennik.client.rest.client.RestClient;
 import pl.edziennik.client.rest.client.URLConstants;
 import pl.edziennik.client.rest.pojo.AdminPojo;
+import pl.edziennik.client.rest.pojo.ConfigurationPojo;
 import pl.edziennik.client.rest.pojo.SchoolPojo;
+import pl.edziennik.client.rest.pojo.SettingsValue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -46,5 +48,14 @@ public class AdminRestClient {
 
     public void deleteSchool(Long idSchool) {
         restClient.send(HttpMethod.DELETE, URLConstants.SCHOOL_DELETE_URL, idSchool);
+    }
+
+    public List<ConfigurationPojo> getConfigurationList() {
+        ConfigurationPojo[] configurationPojos = restClient.send(HttpMethod.GET, URLConstants.CONFIGURATION_URL, ConfigurationPojo[].class);
+        return List.of(configurationPojos);
+    }
+
+    public void saveConfiguration(SettingsValue value) {
+        restClient.send(HttpMethod.PUT, URLConstants.CONFIGURATION_URL + value.getId(), value);
     }
 }

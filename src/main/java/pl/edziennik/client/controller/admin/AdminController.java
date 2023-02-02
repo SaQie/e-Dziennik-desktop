@@ -6,11 +6,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
+import pl.edziennik.client.controller.admin.configuration.AdminConfigurationOptionController;
 import pl.edziennik.client.controller.admin.schools.AdminSchoolsTabController;
 import pl.edziennik.client.core.AbstractController;
+import pl.edziennik.client.task.config.LoadConfigurationsTask;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ThreadUtils;
+
+import static pl.edziennik.client.common.ResourceConst.*;
 
 public class AdminController extends AbstractController {
 
@@ -21,7 +25,7 @@ public class AdminController extends AbstractController {
     private Label timerLabel;
 
     @FXML
-    private Button exitButton, logoutButton;
+    private Button exitButton, logoutButton, configurationButton;
 
     @FXML
     private TabPane mainViewPane;
@@ -33,6 +37,7 @@ public class AdminController extends AbstractController {
     protected void createActions() {
         NodeUtils.createExitButtonAction(exitButton);
         NodeUtils.createLogoutButton(logoutButton);
+        createConfigurationButtonAction();
     }
 
     @Override
@@ -44,6 +49,20 @@ public class AdminController extends AbstractController {
     @Override
     protected Stage getActualStage() {
         return (Stage) mainViewPane.getScene().getWindow();
+    }
+
+    private void createConfigurationButtonAction() {
+        configurationButton.setOnAction(button -> {
+            progressFactory.createLittleProgressBar(new LoadConfigurationsTask(), (configurationList) -> {
+                AdminConfigurationOptionController controller = NodeUtils.openNewStageAboveWithController(
+                        DASHBOARD_ADMIN_CONFIGURATION_VIEW_ADDRESS.value(),
+                        CONFIGURATION_LIST_ADMIN_VIEW_TITLE_MESSAGE_KEY.value(),
+                        450,
+                        300,
+                        getActualStage());
+                controller.fetchData(configurationList);
+            });
+        });
     }
 
     private void fetchTableItemsIfNeeded() {

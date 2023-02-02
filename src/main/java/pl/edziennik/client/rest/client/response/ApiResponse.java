@@ -10,6 +10,5 @@ public class ApiResponse<T> {
     private String status;
     private String url;
     private ApiErrors[] errors;
-    private String stackTrace;
     private T result;
 }

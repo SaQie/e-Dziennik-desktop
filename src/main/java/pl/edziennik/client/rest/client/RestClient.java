@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static  pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.ResourceConst.*;
 
 public class RestClient {
 
@@ -40,7 +40,8 @@ public class RestClient {
         this.dialogFactory = DialogFactory.getInstance();
         configureRestClient();
     }
-    public <T> T send(HttpMethod method, String url, Class<T> response){
+
+    public <T> T send(HttpMethod method, String url, Class<T> response) {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
         HttpEntity<Void> entityToSend = new HttpEntity<>(null, authorizationHeader);
         try {
@@ -68,7 +69,20 @@ public class RestClient {
         }
     }
 
-    public void send(HttpMethod method, String url, Long id){
+    public <E> void send(HttpMethod method, String url, E request) {
+        HttpHeaders authorizationHeader = createAuthorizationHeader();
+        HttpEntity<E> entityToSend = new HttpEntity<>(request, authorizationHeader);
+        try {
+            ResponseEntity<ApiResponse<Void>> result = restTemplate.exchange(url, method, entityToSend, new ParameterizedTypeReference<>() {
+            });
+            statusCodesHandler.checkStatusCodes(result);
+        } catch (ResourceAccessException e) {
+            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
+            throw new RestClientException(e);
+        }
+    }
+
+    public void send(HttpMethod method, String url, Long id) {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
         HttpEntity<Long> entityToSend = new HttpEntity<>(null, authorizationHeader);
         try {
@@ -76,7 +90,7 @@ public class RestClient {
             });
             statusCodesHandler.checkStatusCodes(result);
         } catch (ResourceAccessException e) {
-            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(),SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
+            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
             throw new RestClientException(e);
         }
     }
@@ -92,7 +106,7 @@ public class RestClient {
             HttpHeaders headers = result.getHeaders();
             AuthorizationUtils.readAuthorizationDataAndSaveLocally(headers);
         } catch (HttpServerErrorException | ResourceAccessException e) {
-            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(),SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
+            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
             throw new RestClientException(e);
         }
     }

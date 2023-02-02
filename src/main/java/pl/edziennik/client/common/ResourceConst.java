@@ -22,6 +22,7 @@ public enum ResourceConst {
     PROGRESS_BAR_LARGE_VIEW_ADDRESS("/pl/edziennik/client/view/popup/waiting-pop-up.fxml"),
     TABLE_COLUMN_VIEW_CONFIG_VIEW_ADDRESS("/pl/edziennik/client/view/config/table-columns-view-configuration.fxml"),
     AUTHORIZATION_VIEW_ADDRESS("/pl/edziennik/client/view/auth/authorization-view.fxml"),
+    DASHBOARD_ADMIN_CONFIGURATION_VIEW_ADDRESS("/pl/edziennik/client/view/admin/admin-dashboard-configuration-option-view.fxml"),
 
     // MESSAGES
 
@@ -60,6 +61,8 @@ public enum ResourceConst {
     SHOW_SCHOOL_VIEW_TITLE_KEY("show.school.view.title.label"),
     WAITING_DELETE_SCHOOL_MESSAGE_KEY("waiting.delete.school.message"),
     AUTHORIZATION_VIEW_TITLE_MESSAGE_KEY("authorization.title.message"),
+    WAITING_FETCHING_CONFIGURATION_LIST_MESSAGE_KEY("waiting.fetching.configuration.list.message"),
+    CONFIGURATION_LIST_ADMIN_VIEW_TITLE_MESSAGE_KEY("show.admin.configuration.title.label"),
 
     // ERROR CODES
 

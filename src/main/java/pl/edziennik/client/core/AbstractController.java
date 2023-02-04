@@ -1,16 +1,22 @@
 package pl.edziennik.client.core;
 
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.common.ProgressFactory;
-import pl.edziennik.client.rest.pojo.ConfigurationPojo;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public abstract class AbstractController implements Initializable{
+
+    @FXML
+    protected Button addButton, editButton, showButton, deleteButton;
+
+    @FXML
+    public Button refreshButton;
 
     protected final DialogFactory dialogFactory;
     protected final ProgressFactory progressFactory;

@@ -6,6 +6,7 @@ import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.controller.auth.AuthorizationController;
 import pl.edziennik.client.exception.TableViewException;
+import pl.edziennik.client.exception.ViewException;
 
 import java.io.IOException;
 
@@ -34,6 +35,9 @@ public class eDziennikApplication extends Application {
         Thread.setDefaultUncaughtExceptionHandler((thread, exception) -> {
             if (exception instanceof TableViewException){
                 dialogFactory.createErrorConfirmationDialog(null, exception.getMessage());
+            }
+            if (exception instanceof ViewException){
+                dialogFactory.createErrorConfirmationDialogFromRawStackTrace(exception.getStackTrace(), exception.getMessage());
             }
         });
     }

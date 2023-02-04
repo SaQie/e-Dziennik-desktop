@@ -15,43 +15,40 @@ import java.util.stream.Collectors;
 @Getter
 public class SchoolListModel implements TableViewSelection {
 
-    private SimpleLongProperty id;
-    private SimpleStringProperty name;
-    private SimpleStringProperty postalCode;
-    private SimpleStringProperty city;
-    private SimpleStringProperty nip;
-    private SimpleStringProperty regon;
-    private SimpleStringProperty address;
-    private SimpleStringProperty phoneNumber;
-    private SimpleLongProperty idSchoolLevel;
-    private CheckBox select;
+    private final SimpleLongProperty id;
+    private final SimpleStringProperty name;
+    private final SimpleStringProperty postalCode;
+    private final SimpleStringProperty city;
+    private final SimpleStringProperty nip;
+    private final SimpleStringProperty regon;
+    private final SimpleStringProperty address;
+    private final SimpleStringProperty phoneNumber;
+    private final SimpleLongProperty idSchoolLevel;
+    private final CheckBox select;
 
 
-    public SchoolListModel(Long id, String name, String postalCode, String city, String nip, String regon, String address, String phoneNumber, Long idSchoolLevel) {
-        this.name = new SimpleStringProperty(name);
-        this.postalCode = new SimpleStringProperty(postalCode);
-        this.city = new SimpleStringProperty(city);
-        this.nip = new SimpleStringProperty(nip);
-        this.regon = new SimpleStringProperty(regon);
-        this.address = new SimpleStringProperty(address);
-        this.phoneNumber = new SimpleStringProperty(phoneNumber);
-        this.idSchoolLevel = new SimpleLongProperty(idSchoolLevel);
-        this.id = new SimpleLongProperty(id);
+    public SchoolListModel(SchoolPojo pojo) {
+        this.name = new SimpleStringProperty(pojo.getName());
+        this.postalCode = new SimpleStringProperty(pojo.getPostalCode());
+        this.city = new SimpleStringProperty(pojo.getCity());
+        this.nip = new SimpleStringProperty(pojo.getNip());
+        this.regon = new SimpleStringProperty(pojo.getRegon());
+        this.address = new SimpleStringProperty(pojo.getAddress());
+        this.phoneNumber = new SimpleStringProperty(pojo.getPhoneNumber());
+        this.idSchoolLevel = new SimpleLongProperty(pojo.getIdSchoolLevel());
+        this.id = new SimpleLongProperty(pojo.getId());
         this.select = Styles.tableViewSelectionCheckBox();
     }
 
+
     public static List<SchoolListModel> mapPojoToModel(List<SchoolPojo> pojos) {
         return pojos.stream()
-                .map(pojo ->
-                        new SchoolListModel(pojo.getId(), pojo.getName(), pojo.getPostalCode(), pojo.getCity(), pojo.getNip(),
-                                pojo.getRegon(), pojo.getAddress(), pojo.getPhoneNumber(), pojo.getIdSchoolLevel()))
-                .collect(Collectors.toList());
+                .map(SchoolListModel::new)
+                .toList();
     }
 
     public static SchoolListModel mapPojoToModel(SchoolPojo pojo) {
-        return new SchoolListModel(pojo.getId(), pojo.getName(), pojo.getPostalCode(),
-                pojo.getCity(), pojo.getNip(), pojo.getRegon(), pojo.getAddress(),
-                pojo.getPhoneNumber(), pojo.getIdSchoolLevel());
+        return new SchoolListModel(pojo);
     }
 
     @Override

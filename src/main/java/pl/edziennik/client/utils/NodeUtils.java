@@ -203,10 +203,12 @@ public class NodeUtils {
 
     public static <T extends TableViewSelection> void setColumnConfigurationShortcut(TableView<T> tableView) {
         EventHandler<KeyEvent> eventHandler = event -> {
-            if (TableColumnViewConfigController.KEY_COMBINATION_SHORTCUT.match(event)) {
-                TableColumnViewConfigController controller = openNewStageAboveWithController(TABLE_COLUMN_VIEW_CONFIG_VIEW_ADDRESS.value(),
-                        COLUMN_VIEW_CONFIGURATION_TITLE_MESSAGE_KEY.value(), 350, 400, null);
-                controller.manageTableColumnVisible(tableView.getColumns());
+            if (tableView.isHover()) {
+                if (TableColumnViewConfigController.KEY_COMBINATION_SHORTCUT.match(event)) {
+                    TableColumnViewConfigController controller = openNewStageAboveWithController(TABLE_COLUMN_VIEW_CONFIG_VIEW_ADDRESS.value(),
+                            COLUMN_VIEW_CONFIGURATION_TITLE_MESSAGE_KEY.value(), 350, 450, null);
+                    controller.manageTableColumnVisible(tableView.getColumns());
+                }
             }
         };
 

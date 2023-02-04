@@ -3,14 +3,13 @@ package pl.edziennik.client.controller.admin.schools;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.common.ActionType;
 import pl.edziennik.client.common.ResourceConst;
-import pl.edziennik.client.common.controller.columns.TableViewControllerMaker;
+import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
 import pl.edziennik.client.controller.model.admin.SchoolListModel;
 import pl.edziennik.client.rest.pojo.SchoolPojo;
 import pl.edziennik.client.task.school.DeleteSchoolTask;
@@ -18,11 +17,12 @@ import pl.edziennik.client.task.school.LoadSchoolTask;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.utils.NodeUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static pl.edziennik.client.common.ResourceConst.*;
 
-public class AdminSchoolsTabController extends AbstractController{
+public class AdminSchoolsTabController extends AbstractController {
 
     private static AdminSchoolsTabController instance;
 
@@ -32,12 +32,6 @@ public class AdminSchoolsTabController extends AbstractController{
 
     @FXML
     private TableView<SchoolListModel> tableView;
-
-    @FXML
-    private Button addButton, editButton, showButton, deleteButton;
-
-    @FXML
-    public Button refreshButton;
 
     @FXML
     private MenuItem selectAllMenuItem, unselectAllMenuItem;
@@ -78,9 +72,9 @@ public class AdminSchoolsTabController extends AbstractController{
     }
 
     public void addItem(final SchoolListModel school) {
-        ObservableList<SchoolListModel> items = tableView.getItems();
-        items.add(school);
-        tableView.setItems(items);
+        ArrayList<SchoolListModel> actualItems = new ArrayList<>(tableView.getItems());
+        actualItems.add(school);
+        tableView.setItems(FXCollections.observableList(actualItems));
         tableView.refresh();
     }
 
@@ -93,7 +87,7 @@ public class AdminSchoolsTabController extends AbstractController{
     }
 
     private void initializeTableColumns() {
-        TableViewControllerMaker.SchoolTableViewBuilder builder = TableViewControllerMaker.builder()
+        AdminTableViewControllerMaker.SchoolTableViewBuilder builder = AdminTableViewControllerMaker.schoolTableViewBuilder()
                 .withSelectColumn(true)
                 .withSchoolCityColumn(true)
                 .withSchoolNameColumn(true)

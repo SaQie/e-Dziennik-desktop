@@ -26,6 +26,7 @@ module pl.edziennik.client {
     exports pl.edziennik.client.common;
     exports pl.edziennik.client.core;
     exports pl.edziennik.client.controller.admin.schools;
+    exports pl.edziennik.client.controller.admin.accounts;
     exports pl.edziennik.client.controller.admin.configuration;
     exports pl.edziennik.client.task.register;
     exports pl.edziennik.client.task.school;
@@ -38,4 +39,6 @@ module pl.edziennik.client {
     opens pl.edziennik.client.task.school to javafx.fxml;
     opens pl.edziennik.client.task.register to javafx.fxml;
     opens pl.edziennik.client.controller.admin.configuration to javafx.fxml;
+    opens pl.edziennik.client.controller.admin.accounts to javafx.fxml;
+    opens pl.edziennik.client.core to javafx.fxml;
 }

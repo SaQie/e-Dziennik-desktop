@@ -2,7 +2,10 @@ package pl.edziennik.client.common.builder;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -11,16 +14,18 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
-import lombok.SneakyThrows;
 import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.eDziennikApplication;
+import pl.edziennik.client.exception.ViewException;
 import pl.edziennik.client.rest.client.response.ApiErrors;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ResourceUtil;
 
+import java.io.IOException;
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.stream.Collectors;
+
+import static pl.edziennik.client.common.ResourceConst.*;
 
 public class CommonStageBuilder {
 
@@ -348,10 +353,14 @@ public class CommonStageBuilder {
             return this;
         }
 
-        @SneakyThrows
         public <T> T build() {
             FXMLLoader fxmlLoader = NodeUtils.getLoaderWithResources(eDziennikApplication.class.getResource(viewAddress));
-            Scene scene = new Scene(fxmlLoader.load(), width, height);
+            Scene scene;
+            try {
+                scene = new Scene(fxmlLoader.load(), width, height);
+            }catch (IOException e){
+                throw new ViewException(VIEW_EXCEPTION_MESSAGE_KEY.value());
+            }
             T controller = fxmlLoader.getController();
             Stage stage = new Stage();
 

@@ -1,16 +1,10 @@
 package pl.edziennik.client.controller.admin.schools;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import pl.edziennik.client.controller.model.admin.SchoolLevelComboBoxItem;
-import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.rest.pojo.SchoolPojo;
 import pl.edziennik.client.task.school.EditSchoolTask;
-import pl.edziennik.client.task.school.LoadSchoolLevelsTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ThreadUtils;
 import pl.edziennik.client.validator.school.AddSchoolValidator;

@@ -3,7 +3,7 @@ package pl.edziennik.client.rest.pojo;
 import lombok.Data;
 
 @Data
-public class TeacherPojo {
+public class StudentPojo {
 
     private Long id;
     private String username;
@@ -13,8 +13,11 @@ public class TeacherPojo {
     private String postalCode;
     private String city;
     private String pesel;
-    private String phoneNumber;
-    private String role;
+    private String parentPhoneNumber;
+    private String parentFirstName;
+    private String parentLastName;
     private Long idSchool;
+    private Long idSchoolClass;
+    private String role;
 
 }

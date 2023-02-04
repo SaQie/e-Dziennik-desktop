@@ -4,10 +4,7 @@ import org.springframework.http.HttpMethod;
 import pl.edziennik.client.controller.model.admin.SchoolLevelComboBoxItem;
 import pl.edziennik.client.rest.client.RestClient;
 import pl.edziennik.client.rest.client.URLConstants;
-import pl.edziennik.client.rest.pojo.AdminPojo;
-import pl.edziennik.client.rest.pojo.ConfigurationPojo;
-import pl.edziennik.client.rest.pojo.SchoolPojo;
-import pl.edziennik.client.rest.pojo.SettingsValue;
+import pl.edziennik.client.rest.pojo.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,6 +24,22 @@ public class AdminRestClient {
     public List<SchoolPojo> getSchoolList() {
         SchoolPojo[] schoolPojos = restClient.send(HttpMethod.GET, URLConstants.SCHOOL_URL, SchoolPojo[].class);
         return Arrays.asList(schoolPojos);
+    }
+
+
+    public List<TeacherPojo> getTeacherList() {
+        TeacherPojo[] teacherPojos = restClient.send(HttpMethod.GET, URLConstants.TEACHER_URL, TeacherPojo[].class);
+        return Arrays.asList(teacherPojos);
+    }
+
+    public List<StudentPojo> getStudentList() {
+        StudentPojo[] studentPojos = restClient.send(HttpMethod.GET, URLConstants.STUDENT_URL, StudentPojo[].class);
+        return Arrays.asList(studentPojos);
+    }
+
+    public List<AdminPojo> getAdminList() {
+        AdminPojo[] adminPojos = restClient.send(HttpMethod.GET, URLConstants.ADMIN_URL, AdminPojo[].class);
+        return Arrays.asList(adminPojos);
     }
 
     public SchoolPojo getSchoolPojo(Long id) {
@@ -55,7 +68,10 @@ public class AdminRestClient {
         return List.of(configurationPojos);
     }
 
+
     public void saveConfiguration(SettingsValue value) {
         restClient.send(HttpMethod.PUT, URLConstants.CONFIGURATION_URL + value.getId(), value);
     }
+
+
 }

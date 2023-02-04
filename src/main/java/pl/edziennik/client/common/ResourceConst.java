@@ -46,6 +46,17 @@ public enum ResourceConst {
     PHONE_COLUMN_KEY("phone.number.column.text"),
     REGON_COLUMN_KEY("regon.column.text"),
     NIP_COLUMN_KEY("nip.column.text"),
+    USERNAME_COLUMN_KEY("username.column.text"),
+    EMAIL_COLUMN_KEY("email.column.text"),
+    ROLE_COLUMN_KEY("role.column.text"),
+    FIRST_NAME_COLUMN_KEY("first.name.column.text"),
+    LAST_NAME_COLUMN_KEY("last.name.column.text"),
+    SCHOOL_COLUMN_KEY("school.column.text"),
+    SCHOOL_CLASS_COLUMN_KEY("school.class.column.text"),
+    PARENT_PHONE_NUMBER_COLUMN_KEY("parent.phone.number.column.text"),
+    PESEL_COLUMN_KEY("pesel.column.text"),
+    PARENT_FIRST_NAME_COLUMN_KEY("parent.first.name.column.text"),
+    PARENT_LAST_NAME_COLUMN_KEY("parent.last.name.column.text"),
     CITY_COLUMN_KEY("city.column.text"),
     POSTAL_CODE_COLUMN_KEY("postal.code.column.text"),
     SCHOOL_LEVEL_NAME_COLUMN_KEY("school.level.column.text"),
@@ -63,6 +74,9 @@ public enum ResourceConst {
     AUTHORIZATION_VIEW_TITLE_MESSAGE_KEY("authorization.title.message"),
     WAITING_FETCHING_CONFIGURATION_LIST_MESSAGE_KEY("waiting.fetching.configuration.list.message"),
     CONFIGURATION_LIST_ADMIN_VIEW_TITLE_MESSAGE_KEY("show.admin.configuration.title.label"),
+    WAITING_FETCHING_TEACHERS_LIST_MESSAGE_KEY("waiting.fetching.teachers.list.message"),
+    WAITING_FETCHING_STUDENTS_LIST_MESSAGE_KEY("waiting.fetching.students.list.message"),
+    WAITING_FETCHING_ADMINS_LIST_MESSAGE_KEY("waiting.fetching.admins.list.message"),
 
     // ERROR CODES
 
@@ -99,6 +113,7 @@ public enum ResourceConst {
     ARE_YOU_SURE_TO_PERFORM_THIS_OPERATION_MESSAGE_KEY("are.you.sure.to.perform.this.operation"),
     DIALOG_QUESTION_MESSAGE_KEY("dialog.perform.operation.question"),
     ARE_YOU_SURE_TO_PERFORM_DELETE_OPERATION_MESSAGE_KEY("are.you.sure.to.perform.delete.action"),
+    VIEW_EXCEPTION_MESSAGE_KEY("view.exception.message.key"),
 
     // LOCALES
 

@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
@@ -34,11 +35,11 @@ public class TableColumnViewConfigController implements Initializable {
             if (column.getText() == null || column.getText().isEmpty() || column.getText().isBlank()) {
                 continue;
             }
-            fillTableColumnViewConfigData(column);
+            fillTableColumnsViewConfigData(column);
         }
     }
 
-    private <T> void fillTableColumnViewConfigData(TableColumn<T, ?> column) {
+    private <T> void fillTableColumnsViewConfigData(TableColumn<T, ?> column) {
         HBox hBox = new HBox();
         hBox.setSpacing(50);
         hBox.setAlignment(Pos.CENTER);

@@ -62,8 +62,6 @@ public class AuthorizationUtils {
                 .withShowMode(CLOSE_PREVIOUS)
                 .build();
     }
-
-    @SneakyThrows
     public static void showCorrectSceneAfterLogin(Stage currentStage){
         String role = PropertiesLoader.readProperty(ResourceConst.PROPERTIES_LOADER_ROLE_KEY.value());
         if (role.equals(Role.ROLE_STUDENT.name())){

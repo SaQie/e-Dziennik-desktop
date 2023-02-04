@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
+import pl.edziennik.client.controller.admin.accounts.AdminAccountsTabController;
 import pl.edziennik.client.controller.admin.configuration.AdminConfigurationOptionController;
 import pl.edziennik.client.controller.admin.schools.AdminSchoolsTabController;
 import pl.edziennik.client.core.AbstractController;
@@ -20,6 +21,9 @@ public class AdminController extends AbstractController {
 
     @FXML
     private AdminSchoolsTabController schoolsTabController;
+
+    @FXML
+    private AdminAccountsTabController accountsTabController;
 
     @FXML
     private Label timerLabel;
@@ -67,14 +71,19 @@ public class AdminController extends AbstractController {
 
     private void fetchTableItemsIfNeeded() {
         mainViewPane.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.equals(schoolsTab)) {
-                if (schoolsTabController.isTableDataEmpty()) {
-                    ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new LoadSchoolsTask(), (response) -> {
-                        schoolsTabController.fetchTabData(response);
-                    }));
-                }
+            if (newValue.equals(schoolsTab) && schoolsTabController.isTableDataEmpty()) {
+                fetchSchoolsTabTableItems();
+            }
+            if (newValue.equals(accountsTab)) {
+                accountsTabController.fetchStudentsTabTableItems();
             }
         });
+    }
+
+    private void fetchSchoolsTabTableItems() {
+        ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new LoadSchoolsTask(), (response) -> {
+            schoolsTabController.fetchTabData(response);
+        }));
     }
 
 

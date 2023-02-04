@@ -9,7 +9,7 @@ import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.rest.pojo.SchoolPojo;
 import pl.edziennik.client.task.school.LoadSchoolLevelsTask;
 
-public abstract class AdminSchoolsTabActionAbstractController extends AbstractController {
+abstract class AdminSchoolsTabActionAbstractController extends AbstractController {
 
     @FXML
     protected TextField nameTextField, addressTextField, postalCodeTextField, cityTextField, nipTextField,

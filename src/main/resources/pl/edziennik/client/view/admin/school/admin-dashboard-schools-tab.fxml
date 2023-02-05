@@ -14,7 +14,7 @@
 
 <Tab fx:id="schoolsTab" text="%tab.schools" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.admin.schools.AdminSchoolsTabController">
     <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@../../css/global-colors.css">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@../../../css/global-colors.css">
             <children>
                 <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <top>
@@ -24,7 +24,7 @@
                                     <graphic>
                                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../../icons/add.png" />
+                                                <Image url="@../../../icons/add.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
@@ -33,7 +33,7 @@
                                     <graphic>
                                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../../icons/show.png" />
+                                                <Image url="@../../../icons/show.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
@@ -42,7 +42,7 @@
                                     <graphic>
                                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../../icons/edit.png" />
+                                                <Image url="@../../../icons/edit.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
@@ -51,7 +51,7 @@
                                     <graphic>
                                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../../icons/minus.png" />
+                                                <Image url="@../../../icons/minus.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
@@ -60,7 +60,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../icons/Rotate%20Right.png" />
+                                    <Image url="@../../../icons/Rotate%20Right.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -71,7 +71,7 @@
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../icons/Choose.png" />
+                                          <Image url="@../../../icons/Choose.png" />
                                        </image>
                                     </ImageView>
                                  </graphic></MenuItem>
@@ -79,7 +79,7 @@
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../icons/Choose.png" />
+                                          <Image url="@../../../icons/Choose.png" />
                                        </image>
                                     </ImageView>
                                  </graphic></MenuItem>
@@ -87,7 +87,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../icons/Drag%20List%20Down.png" />
+                                    <Image url="@../../../icons/Drag%20List%20Down.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -99,7 +99,7 @@
                         </HBox>
                     </top>
                <center>
-                  <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../css/global-table-styles.css" BorderPane.alignment="CENTER">
+                  <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../css/global-table-styles.css" BorderPane.alignment="CENTER">
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy></TableView>
@@ -111,7 +111,7 @@
    <graphic>
       <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../icons/Graduation%20Cap.png" />
+            <Image url="@../../../icons/Graduation%20Cap.png" />
          </image>
       </ImageView>
    </graphic>

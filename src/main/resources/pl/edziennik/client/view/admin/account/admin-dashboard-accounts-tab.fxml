@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<Tab fx:id="accountsTab" text="%tab.accounts" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.admin.accounts.AdminAccountsTabController">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <children>
+                <BorderPane prefHeight="679.0" prefWidth="1027.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <center>
+                        <TabPane fx:id="accountsMainTabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                            <tabs>
+                                <fx:include fx:id="studentsTab" source="student/admin-dashboard-accounts-students-tab.fxml" />
+                                <fx:include fx:id="teachersTab" source="teacher/admin-dashboard-accounts-teachers-tab.fxml" />
+                                <fx:include fx:id="administrationsTab" source="administration/admin-dashboard-accounts-administration-tab.fxml" />
+                            </tabs>
+                        </TabPane>
+                    </center>
+                </BorderPane>
+            </children>
+        </AnchorPane>
+    </content>
+    <graphic>
+        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../icons/List.png" />
+            </image>
+        </ImageView>
+    </graphic>
+</Tab>

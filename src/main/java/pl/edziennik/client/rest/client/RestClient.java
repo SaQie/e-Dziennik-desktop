@@ -2,6 +2,7 @@ package pl.edziennik.client.rest.client;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -20,6 +21,8 @@ import pl.edziennik.client.utils.ThreadUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static pl.edziennik.client.common.ResourceConst.*;
 
@@ -27,18 +30,29 @@ public class RestClient {
 
     public static final String BASE_URL = PropertiesLoader.readProperty(PROPERTIES_LOADER_SERVER_ADDRESS_KEY.value());
 
+    private static final Logger LOGGER = Logger.getLogger( RestClient.class.getName() );
+
     private final RestClientStatusCodesHandler statusCodesHandler;
     private final DialogFactory dialogFactory;
     private final RestTemplate restTemplate;
     private final RestClientObjectMapper mapper;
 
-    public RestClient() {
+    private static RestClient instance;
+
+    private RestClient() {
         this.mapper = new RestClientObjectMapper();
         this.statusCodesHandler = new RestClientStatusCodesHandler();
         this.restTemplate = new RestTemplate();
         this.restTemplate.setErrorHandler(new RestClientErrorLogger());
         this.dialogFactory = DialogFactory.getInstance();
         configureRestClient();
+    }
+
+    public static RestClient getInstance() {
+        if (instance == null) {
+            instance = new RestClient();
+        }
+        return instance;
     }
 
     public <T> T send(HttpMethod method, String url, Class<T> response) {
@@ -48,6 +62,7 @@ public class RestClient {
             ResponseEntity<ApiResponse<T>> result = restTemplate.exchange(url, method, entityToSend, new ParameterizedTypeReference<>() {
             });
             statusCodesHandler.checkStatusCodes(result);
+            LOGGER.log(Level.INFO, "Request send " + method.name() + " URL: " + url);
             return mapper.mapToObject(result.getBody(), response);
         } catch (ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
@@ -62,6 +77,7 @@ public class RestClient {
             ResponseEntity<ApiResponse<T>> result = restTemplate.exchange(url, method, entityToSend, new ParameterizedTypeReference<>() {
             });
             statusCodesHandler.checkStatusCodes(result);
+            LOGGER.log(Level.INFO, "Request send " + method.name() + " URL: " + url);
             return mapper.mapToObject(result.getBody(), response);
         } catch (ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
@@ -76,6 +92,7 @@ public class RestClient {
             ResponseEntity<ApiResponse<Void>> result = restTemplate.exchange(url, method, entityToSend, new ParameterizedTypeReference<>() {
             });
             statusCodesHandler.checkStatusCodes(result);
+            LOGGER.log(Level.INFO, "Request send " + method.name() + " URL: " + url);
         } catch (ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
             throw new RestClientException(e);
@@ -89,12 +106,12 @@ public class RestClient {
             ResponseEntity<ApiResponse<Void>> result = restTemplate.exchange(url + id, method, entityToSend, new ParameterizedTypeReference<>() {
             });
             statusCodesHandler.checkStatusCodes(result);
+            LOGGER.log(Level.INFO, "Request send " + method.name() + " URL: " + url);
         } catch (ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
             throw new RestClientException(e);
         }
     }
-
 
     public <E> void login(String url, E request) {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
@@ -103,6 +120,7 @@ public class RestClient {
             ResponseEntity<ApiResponse<ApiAuthResponse>> result = restTemplate.exchange(url, HttpMethod.POST, entityToSend, new ParameterizedTypeReference<>() {
             });
             statusCodesHandler.checkStatusCodes(result);
+            LOGGER.log(Level.INFO, "Request send " + HttpMethod.POST.name() + " URL: " + url);
             HttpHeaders headers = result.getHeaders();
             AuthorizationUtils.readAuthorizationDataAndSaveLocally(headers);
         } catch (HttpServerErrorException | ResourceAccessException e) {
@@ -124,14 +142,12 @@ public class RestClient {
 
 
     private void configureRestClient() {
-        SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
-        requestFactory.setOutputStreaming(false);
         List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
         messageConverters.add(converter);
         restTemplate.setMessageConverters(messageConverters);
-        restTemplate.setRequestFactory(requestFactory);
+        restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
     }
 
 }

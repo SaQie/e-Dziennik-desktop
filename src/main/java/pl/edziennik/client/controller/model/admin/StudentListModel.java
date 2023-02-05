@@ -23,6 +23,7 @@ public class StudentListModel implements TableViewSelection {
     private final SimpleStringProperty parentPhoneNumber;
     private final SimpleStringProperty parentFirstName;
     private final SimpleStringProperty parentLastName;
+    private final SimpleStringProperty email;
     private final SimpleLongProperty idSchoolClass;
     private final SimpleLongProperty idSchool;
     private final SimpleStringProperty role;
@@ -43,6 +44,7 @@ public class StudentListModel implements TableViewSelection {
         this.idSchoolClass = new SimpleLongProperty(pojo.getIdSchoolClass());
         this.idSchool = new SimpleLongProperty(pojo.getIdSchool());
         this.role = new SimpleStringProperty(pojo.getRole());
+        this.email = new SimpleStringProperty(pojo.getEmail());
         this.select = Styles.tableViewSelectionCheckBox();
 
     }

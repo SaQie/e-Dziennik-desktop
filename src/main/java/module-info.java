@@ -6,8 +6,10 @@ module pl.edziennik.client {
     requires java.logging;
     requires spring.core;
     requires spring.web;
+    requires spring.webmvc;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
+    requires org.apache.httpcomponents.client5.httpclient5;
 
 
     exports pl.edziennik.client;
@@ -41,4 +43,6 @@ module pl.edziennik.client {
     opens pl.edziennik.client.controller.admin.configuration to javafx.fxml;
     opens pl.edziennik.client.controller.admin.accounts to javafx.fxml;
     opens pl.edziennik.client.core to javafx.fxml;
+    exports pl.edziennik.client.controller.admin.accounts.student;
+    opens pl.edziennik.client.controller.admin.accounts.student to javafx.fxml;
 }

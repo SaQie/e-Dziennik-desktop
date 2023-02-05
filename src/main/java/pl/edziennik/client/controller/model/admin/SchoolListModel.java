@@ -1,7 +1,5 @@
 package pl.edziennik.client.controller.model.admin;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.CheckBox;
@@ -10,7 +8,6 @@ import pl.edziennik.client.common.Styles;
 import pl.edziennik.client.rest.pojo.SchoolPojo;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 public class SchoolListModel implements TableViewSelection {

@@ -75,7 +75,7 @@ public class AdminController extends AbstractController {
                 fetchSchoolsTabTableItems();
             }
             if (newValue.equals(accountsTab)) {
-                accountsTabController.fetchStudentsTabTableItems();
+                accountsTabController.fetchSelectedTabTableItems();
             }
         });
     }

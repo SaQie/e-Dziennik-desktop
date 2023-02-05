@@ -13,6 +13,7 @@ public class StudentPojo {
     private String postalCode;
     private String city;
     private String pesel;
+    private String email;
     private String parentPhoneNumber;
     private String parentFirstName;
     private String parentLastName;

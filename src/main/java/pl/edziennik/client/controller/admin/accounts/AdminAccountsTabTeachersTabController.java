@@ -15,10 +15,10 @@ import java.util.List;
 
 public class AdminAccountsTabTeachersTabController extends AbstractController {
 
+    private static AdminAccountsTabTeachersTabController instance;
+
     @FXML
     private TableView<TeacherListModel> teachersTableView;
-
-    private static AdminAccountsTabTeachersTabController instance;
 
     public AdminAccountsTabTeachersTabController() {
         instance = this;
@@ -54,11 +54,13 @@ public class AdminAccountsTabTeachersTabController extends AbstractController {
     protected void setSceneSettings() {
         NodeUtils.setTableViewRowFactory(teachersTableView);
         NodeUtils.setColumnConfigurationShortcut(teachersTableView);
+        NodeUtils.setTableViewPlaceHolder(teachersTableView);
+        initializeSelectUnselectAllMenuItemAction(teachersTableView);
     }
 
     @Override
     protected Stage getActualStage() {
-        return null;
+        return (Stage) teachersTableView.getScene().getWindow();
     }
 
     private void initializeTableColumns() {

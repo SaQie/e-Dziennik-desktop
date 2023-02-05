@@ -3,20 +3,26 @@ package pl.edziennik.client.core;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.common.ProgressFactory;
+import pl.edziennik.client.controller.model.admin.TableViewSelection;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public abstract class AbstractController implements Initializable{
+public abstract class AbstractController implements Initializable {
 
     @FXML
-    protected Button addButton, editButton, showButton, deleteButton;
+    protected Button addButton, editButton, showButton, deleteButton, cancelButton, saveButton;
 
     @FXML
     public Button refreshButton;
+
+    @FXML
+    protected MenuItem selectAllMenuItem, unselectAllMenuItem;
 
     protected final DialogFactory dialogFactory;
     protected final ProgressFactory progressFactory;
@@ -35,7 +41,7 @@ public abstract class AbstractController implements Initializable{
         fetchStageData();
     }
 
-    protected void fetchStageData(){
+    protected void fetchStageData() {
 
     }
 
@@ -43,7 +49,7 @@ public abstract class AbstractController implements Initializable{
     protected void setTableColumns() {
     }
 
-    protected void setSceneValidators(){
+    protected void setSceneValidators() {
 
     }
 
@@ -52,5 +58,18 @@ public abstract class AbstractController implements Initializable{
     protected abstract void setSceneSettings();
 
     protected abstract Stage getActualStage();
+
+    protected <T extends TableViewSelection> void initializeSelectUnselectAllMenuItemAction(TableView<T> tableView) {
+        selectAllMenuItem.setOnAction(item -> {
+            tableView.getItems().forEach(tableItem -> {
+                tableItem.getSelect().setSelected(true);
+                tableView.getSelectionModel().selectLast();
+            });
+        });
+        unselectAllMenuItem.setOnAction(item -> {
+            tableView.getItems().forEach(tableItem -> tableItem.getSelect().setSelected(false));
+            tableView.getSelectionModel().clearSelection();
+        });
+    }
 
 }

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
+import pl.edziennik.client.controller.admin.accounts.student.AdminAccountsTabStudentsTabController;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.task.admin.LoadAdminsTask;
 import pl.edziennik.client.task.student.LoadStudentsTask;
@@ -30,6 +31,7 @@ public class AdminAccountsTabController extends AbstractController {
 
     @Override
     protected void setSceneSettings() {
+
     }
 
     @Override
@@ -40,7 +42,7 @@ public class AdminAccountsTabController extends AbstractController {
 
     @Override
     protected Stage getActualStage() {
-        return null;
+        return (Stage) accountsMainTabPane.getScene().getWindow();
     }
 
 
@@ -59,6 +61,18 @@ public class AdminAccountsTabController extends AbstractController {
         });
     }
 
+    public void fetchSelectedTabTableItems() {
+        if (accountsMainTabPane.getSelectionModel().getSelectedItem().equals(studentsTab)) {
+            fetchStudentsTabTableItems();
+        }
+        if (accountsMainTabPane.getSelectionModel().getSelectedItem().equals(teachersTab)) {
+            fetchTeachersTabTableItems();
+        }
+        if (accountsMainTabPane.getSelectionModel().getSelectedItem().equals(administrationsTab)) {
+            fetchAdministrationTabTableItems();
+        }
+    }
+
     private void fetchTeachersTabTableItems() {
         if (teachersTabController.isTableDataEmpty()) {
             ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new LoadTeachersTask(), (response) -> {
@@ -67,7 +81,7 @@ public class AdminAccountsTabController extends AbstractController {
         }
     }
 
-    public void fetchStudentsTabTableItems() {
+    private void fetchStudentsTabTableItems() {
         if (studentsTabController.isTableDataEmpty()) {
             ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new LoadStudentsTask(), (response) -> {
                 studentsTabController.fetchTabData(response);

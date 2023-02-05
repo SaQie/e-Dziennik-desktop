@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.admin.accounts;
+package pl.edziennik.client.controller.admin.accounts.student;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,12 +13,15 @@ import pl.edziennik.client.utils.NodeUtils;
 
 import java.util.List;
 
+import static pl.edziennik.client.common.ResourceConst.*;
+
 public class AdminAccountsTabStudentsTabController extends AbstractController {
+
+    private static AdminAccountsTabStudentsTabController instance;
 
     @FXML
     private TableView<StudentListModel> studentsTableView;
 
-    private static AdminAccountsTabStudentsTabController instance;
 
     public AdminAccountsTabStudentsTabController() {
         instance = this;
@@ -47,18 +50,21 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
 
     @Override
     protected void createActions() {
-
+        initializeAddButtonAction();
     }
+
 
     @Override
     protected void setSceneSettings() {
         NodeUtils.setTableViewRowFactory(studentsTableView);
         NodeUtils.setColumnConfigurationShortcut(studentsTableView);
+        NodeUtils.setTableViewPlaceHolder(studentsTableView);
+        initializeSelectUnselectAllMenuItemAction(studentsTableView);
     }
 
     @Override
     protected Stage getActualStage() {
-        return null;
+        return (Stage) studentsTableView.getScene().getWindow();
     }
 
 
@@ -77,8 +83,18 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
                 .withParentLastNameColumn(true)
                 .withPostalCodeColumn(true)
                 .withSchoolColumn(true)
-                .withSchoolClassColumn(true);
+                .withSchoolClassColumn(true)
+                .withEmailColumn(true);
 
         studentsTableView.getColumns().addAll(builder.build());
+    }
+
+    private void initializeAddButtonAction() {
+        addButton.setOnAction(button-> {
+            NodeUtils.openNewStageAbove(
+                    DASHBOARD_ADMIN_ACCOUNTS_ADD_STUDENT_VIEW_ADDRESS.value(),
+                    ADMIN_ACCOUNTS_ADD_STUDENT_TITLE_MESSAGE_KEY.value(),
+                    1000,550, getActualStage());
+        });
     }
 }

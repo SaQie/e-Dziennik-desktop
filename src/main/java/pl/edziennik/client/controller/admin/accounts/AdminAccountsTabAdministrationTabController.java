@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
-import pl.edziennik.client.controller.admin.schools.AdminSchoolsTabController;
 import pl.edziennik.client.controller.model.admin.AdminListModel;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.rest.pojo.AdminPojo;
@@ -16,10 +15,10 @@ import java.util.List;
 
 public class AdminAccountsTabAdministrationTabController extends AbstractController {
 
+    private static AdminAccountsTabAdministrationTabController instance;
+
     @FXML
     private TableView<AdminListModel> administrationTableView;
-
-    private static AdminAccountsTabAdministrationTabController instance;
 
     public AdminAccountsTabAdministrationTabController() {
         instance = this;
@@ -50,11 +49,13 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
     protected void setSceneSettings() {
         NodeUtils.setTableViewRowFactory(administrationTableView);
         NodeUtils.setColumnConfigurationShortcut(administrationTableView);
+        NodeUtils.setTableViewPlaceHolder(administrationTableView);
+        initializeSelectUnselectAllMenuItemAction(administrationTableView);
     }
 
     @Override
     protected Stage getActualStage() {
-        return null;
+        return (Stage) administrationTableView.getScene().getWindow();
     }
 
     @Override

@@ -15,15 +15,15 @@ public enum ResourceConst {
     // VIEWS
 
     DASHBOARD_ADMIN_VIEW_ADDRESS("/pl/edziennik/client/view/admin/admin-dashboard-view.fxml"),
-    DASHBOARD_ADMIN_SCHOOL_ADD_VIEW_ADDRESS("/pl/edziennik/client/view/admin/admin-dashboard-schools-tab-add.fxml"),
-    DASHBOARD_ADMIN_SCHOOL_EDIT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/admin-dashboard-schools-tab-edit.fxml"),
-    DASHBOARD_ADMIN_SCHOOL_SHOW_VIEW_ADDRESS("/pl/edziennik/client/view/admin/admin-dashboard-schools-tab-show.fxml"),
+    DASHBOARD_ADMIN_SCHOOL_ADD_VIEW_ADDRESS("/pl/edziennik/client/view/admin/school/admin-dashboard-schools-tab-add.fxml"),
+    DASHBOARD_ADMIN_SCHOOL_EDIT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/school/admin-dashboard-schools-tab-edit.fxml"),
+    DASHBOARD_ADMIN_SCHOOL_SHOW_VIEW_ADDRESS("/pl/edziennik/client/view/admin/school/admin-dashboard-schools-tab-show.fxml"),
     PROGRESS_BAR_LITTLE_VIEW_ADDRESS("/pl/edziennik/client/view/popup/waiting-pop-up-little.fxml"),
     PROGRESS_BAR_LARGE_VIEW_ADDRESS("/pl/edziennik/client/view/popup/waiting-pop-up.fxml"),
     TABLE_COLUMN_VIEW_CONFIG_VIEW_ADDRESS("/pl/edziennik/client/view/config/table-columns-view-configuration.fxml"),
     AUTHORIZATION_VIEW_ADDRESS("/pl/edziennik/client/view/auth/authorization-view.fxml"),
-    DASHBOARD_ADMIN_CONFIGURATION_VIEW_ADDRESS("/pl/edziennik/client/view/admin/admin-dashboard-configuration-option-view.fxml"),
-
+    DASHBOARD_ADMIN_CONFIGURATION_VIEW_ADDRESS("/pl/edziennik/client/view/admin/configuration/admin-dashboard-configuration-option-view.fxml"),
+    DASHBOARD_ADMIN_ACCOUNTS_ADD_STUDENT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/student/admin-dashboard-accounts-students-add.fxml"),
     // MESSAGES
 
     EXIT_CONFIRMATION_MESSAGE_KEY("exit.confirmation.message"),
@@ -77,6 +77,7 @@ public enum ResourceConst {
     WAITING_FETCHING_TEACHERS_LIST_MESSAGE_KEY("waiting.fetching.teachers.list.message"),
     WAITING_FETCHING_STUDENTS_LIST_MESSAGE_KEY("waiting.fetching.students.list.message"),
     WAITING_FETCHING_ADMINS_LIST_MESSAGE_KEY("waiting.fetching.admins.list.message"),
+    ADMIN_ACCOUNTS_ADD_STUDENT_TITLE_MESSAGE_KEY("admin.accounts.student.add.title"),
 
     // ERROR CODES
 

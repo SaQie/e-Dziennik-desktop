@@ -14,7 +14,7 @@ public class AdminRestClient {
     private final RestClient restClient;
 
     public AdminRestClient() {
-        this.restClient = new RestClient();
+        this.restClient = RestClient.getInstance();
     }
 
     public AdminPojo register(AdminPojo adminPojo) {

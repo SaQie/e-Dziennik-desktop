@@ -33,12 +33,10 @@ public class AdminSchoolsTabController extends AbstractController {
     @FXML
     private TableView<SchoolListModel> tableView;
 
-    @FXML
-    private MenuItem selectAllMenuItem, unselectAllMenuItem;
 
     @Override
     protected void createActions() {
-        initializeSelectUnselectAllMenuItemAction();
+        initializeSelectUnselectAllMenuItemAction(tableView);
         initializeAddButtonAction();
         initializeDeleteButtonAction();
         initializeShowButtonAction();
@@ -144,19 +142,6 @@ public class AdminSchoolsTabController extends AbstractController {
                     refreshButton.fire();
                 });
             }
-        });
-    }
-
-    private void initializeSelectUnselectAllMenuItemAction() {
-        selectAllMenuItem.setOnAction(item -> {
-            tableView.getItems().forEach(tableItem -> {
-                tableItem.getSelect().setSelected(true);
-                tableView.getSelectionModel().selectLast();
-            });
-        });
-        unselectAllMenuItem.setOnAction(item -> {
-            tableView.getItems().forEach(tableItem -> tableItem.getSelect().setSelected(false));
-            tableView.getSelectionModel().clearSelection();
         });
     }
 

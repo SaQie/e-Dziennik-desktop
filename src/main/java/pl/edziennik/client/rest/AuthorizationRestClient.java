@@ -9,10 +9,10 @@ public class AuthorizationRestClient {
     private final RestClient restClient;
 
     public AuthorizationRestClient() {
-        this.restClient = new RestClient();
+        this.restClient = RestClient.getInstance();
     }
 
-    public void login(LoginCredentialsPojo credentialsPojo){
+    public void login(LoginCredentialsPojo credentialsPojo) {
         restClient.login(URLConstants.LOGIN_URL, credentialsPojo);
     }
 }

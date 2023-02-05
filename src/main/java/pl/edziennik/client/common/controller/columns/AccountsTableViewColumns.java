@@ -132,6 +132,12 @@ class AccountsTableViewColumns extends BasicTableViewColumns{
             return schoolClassColumn;
         }
 
+        public static TableColumn<StudentListModel, String> getEmailColumn(boolean isDefaultVisible) {
+            TableColumn<StudentListModel, String> emailColumn = new TableColumn<>(ResourceUtil.getMessage(SCHOOL_CLASS_COLUMN_KEY.value()));
+            emailColumn.setCellValueFactory(cellData -> cellData.getValue().getEmail());
+            emailColumn.setVisible(isDefaultVisible);
+            return emailColumn;
+        }
     }
 
     protected static class TeacherTableViewColumns {

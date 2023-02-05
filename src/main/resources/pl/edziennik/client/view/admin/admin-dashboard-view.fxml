@@ -186,8 +186,8 @@
                               </ImageView>
                            </graphic>
                       </Tab>
-                        <fx:include fx:id="accountsTab" source="admin-dashboard-accounts-tab.fxml"/>
-                        <fx:include fx:id="schoolsTab" source="admin-dashboard-schools-tab.fxml" />
+                        <fx:include fx:id="accountsTab" source="account/admin-dashboard-accounts-tab.fxml"/>
+                        <fx:include fx:id="schoolsTab" source="school/admin-dashboard-schools-tab.fxml" />
                     </tabs>
                   </TabPane>
                </children>

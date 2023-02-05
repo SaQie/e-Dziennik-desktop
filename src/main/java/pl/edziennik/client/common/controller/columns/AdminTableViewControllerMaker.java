@@ -209,6 +209,11 @@ public class AdminTableViewControllerMaker {
             return this;
         }
 
+        public StudentTableViewBuilder withEmailColumn(final boolean isDefaultVisible){
+            columns.add(AccountsTableViewColumns.StudentTableViewColumns.getEmailColumn(isDefaultVisible));
+            return this;
+        }
+
         public List<TableColumn<StudentListModel, ?>> build() {
             return columns;
         }

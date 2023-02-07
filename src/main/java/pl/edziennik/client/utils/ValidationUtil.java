@@ -97,6 +97,14 @@ public class ValidationUtil {
         return field.getText().length() != max;
     }
 
+    public static boolean isFieldHasLengthMinLimit(TextField field, int min){
+        return field.getText().length() > min;
+    }
+
+    public static boolean isFieldHasNotLengthEqualTo(TextField field, int prefLength){
+        return field.getText().length() != prefLength;
+    }
+
     public static boolean isFieldNotValidToRegex(String regex, TextField field){
         return !field.getText().matches(regex);
     }

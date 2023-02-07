@@ -127,7 +127,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="roleTextField" stylesheets="@../../../../css/global-field-styles.css" />
+                              <TextField fx:id="roleTextField" editable="false" stylesheets="@../../../../css/global-field-styles.css" />
                            </children>
                         </HBox>
                      </children>

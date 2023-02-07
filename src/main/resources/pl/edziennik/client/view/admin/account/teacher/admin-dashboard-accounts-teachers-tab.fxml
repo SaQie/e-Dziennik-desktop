@@ -103,7 +103,7 @@
                         </MenuButton>
                      </children>
                      <BorderPane.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0" top="5.0" />
                      </BorderPane.margin>
                   </HBox>
                </top>

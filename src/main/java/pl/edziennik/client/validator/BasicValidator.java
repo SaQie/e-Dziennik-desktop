@@ -8,6 +8,9 @@ public abstract class BasicValidator {
 
     private final String phoneNumberRegex = "^\\d{9}$";
     private final String postalCodeNumberRegex = "^[0-9]{2}-[0-9]{3}$";
+    private final String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+
+    protected static final int PESEL_LENGTH = 11;
 
 
     protected void createNameValidatorListener(TextField nameField){
@@ -84,6 +87,46 @@ public abstract class BasicValidator {
                 ValidationUtil.addErrorTooltipToField(ResourceConst.PHONE_NUMBER_FIELD_IS_EMPTY_KEY.value(), phoneNubmerField);
             }else{
                 ValidationUtil.unmarkTextFieldAsError(phoneNubmerField);
+            }
+        });
+    }
+
+    protected void createEmailValidatorListener(TextField emailField){
+        emailField.textProperty().addListener(input -> {
+            if(ValidationUtil.isFieldNotValidToRegex(emailRegex, emailField)){
+                ValidationUtil.addErrorTooltipToField(ResourceConst.EMAIL_NOT_VALID_KEY.value(), emailField);
+            }else{
+                ValidationUtil.unmarkTextFieldAsError(emailField);
+            }
+        });
+    }
+
+    protected void createFirstNameValidatorListener(TextField firstNameField){
+        firstNameField.textProperty().addListener(input -> {
+            if (ValidationUtil.isEmpty(firstNameField)){
+                ValidationUtil.addErrorTooltipToField(ResourceConst.FIRST_NAME_FIELD_IS_EMPTY_KEY.value(), firstNameField);
+            }else{
+                ValidationUtil.unmarkTextFieldAsError(firstNameField);
+            }
+        });
+    }
+
+    protected void createLastNameValidatorListener(TextField lastNameField){
+        lastNameField.textProperty().addListener(input -> {
+            if (ValidationUtil.isEmpty(lastNameField)){
+                ValidationUtil.addErrorTooltipToField(ResourceConst.LAST_NAME_FIELD_IS_EMPTY_KEY.value(), lastNameField);
+            }else{
+                ValidationUtil.unmarkTextFieldAsError(lastNameField);
+            }
+        });
+    }
+
+    protected void createPeselValidatorListener(TextField peselField){
+        peselField.textProperty().addListener(input -> {
+            if (ValidationUtil.isFieldHasNotLengthEqualTo(peselField,PESEL_LENGTH)){
+                ValidationUtil.addErrorTooltipToField(ResourceConst.PESEL_FIELD_IS_NOT_CORRECT.value(), peselField);
+            }else{
+                ValidationUtil.unmarkTextFieldAsError(peselField);
             }
         });
     }

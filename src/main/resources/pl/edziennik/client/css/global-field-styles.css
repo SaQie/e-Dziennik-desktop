@@ -24,7 +24,16 @@
     -fx-font-family: Arial;
 }
 
-.combo-box:focused{
+.combo-box:editable .arrow-button{
+    -fx-focus-color: transparent;
+    -fx-background-color: transparent;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: white;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-font-family: Arial;
+}
+
+.combo-box:editable:focused .arrow-button{
     -fx-border-width: 0px 0px 2px 0px;
     -fx-border-color: #ffb800;;
 }

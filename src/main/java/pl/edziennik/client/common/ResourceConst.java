@@ -18,6 +18,7 @@ public enum ResourceConst {
     DASHBOARD_ADMIN_SCHOOL_ADD_VIEW_ADDRESS("/pl/edziennik/client/view/admin/school/admin-dashboard-schools-tab-add.fxml"),
     DASHBOARD_ADMIN_SCHOOL_EDIT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/school/admin-dashboard-schools-tab-edit.fxml"),
     DASHBOARD_ADMIN_SCHOOL_SHOW_VIEW_ADDRESS("/pl/edziennik/client/view/admin/school/admin-dashboard-schools-tab-show.fxml"),
+    DASHBOARD_ADMIN_SCHOOL_VIEW_ADDRESS("/pl/edziennik/client/view/admin/school/admin-dashboard-schools-tab.fxml"),
     PROGRESS_BAR_LITTLE_VIEW_ADDRESS("/pl/edziennik/client/view/popup/waiting-pop-up-little.fxml"),
     PROGRESS_BAR_LARGE_VIEW_ADDRESS("/pl/edziennik/client/view/popup/waiting-pop-up.fxml"),
     TABLE_COLUMN_VIEW_CONFIG_VIEW_ADDRESS("/pl/edziennik/client/view/config/table-columns-view-configuration.fxml"),
@@ -78,6 +79,7 @@ public enum ResourceConst {
     WAITING_FETCHING_STUDENTS_LIST_MESSAGE_KEY("waiting.fetching.students.list.message"),
     WAITING_FETCHING_ADMINS_LIST_MESSAGE_KEY("waiting.fetching.admins.list.message"),
     ADMIN_ACCOUNTS_ADD_STUDENT_TITLE_MESSAGE_KEY("admin.accounts.student.add.title"),
+    WAITING_FETCHING_SCHOOL_CLASSES_LIST_MESSAGE_KEY("waiting.fetching.school.classes.list.message"),
 
     // ERROR CODES
 
@@ -115,6 +117,9 @@ public enum ResourceConst {
     DIALOG_QUESTION_MESSAGE_KEY("dialog.perform.operation.question"),
     ARE_YOU_SURE_TO_PERFORM_DELETE_OPERATION_MESSAGE_KEY("are.you.sure.to.perform.delete.action"),
     VIEW_EXCEPTION_MESSAGE_KEY("view.exception.message.key"),
+    FIRST_NAME_FIELD_IS_EMPTY_KEY("first.name.field.is.empty"),
+    LAST_NAME_FIELD_IS_EMPTY_KEY("last.name.field.is.empty"),
+    PESEL_FIELD_IS_NOT_CORRECT("pesel.field.is.not.correct"),
 
     // LOCALES
 

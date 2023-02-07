@@ -26,6 +26,10 @@ public class AdminRestClient {
         return Arrays.asList(schoolPojos);
     }
 
+    public List<SchoolClassPojo> getSchoolClassesBySchoolId(Long schoolId) {
+        SchoolClassPojo[] schoolClassPojos = restClient.send(HttpMethod.GET, URLConstants.schoolClassBySchoolUrl(schoolId), SchoolClassPojo[].class);
+        return Arrays.asList(schoolClassPojos);
+    }
 
     public List<TeacherPojo> getTeacherList() {
         TeacherPojo[] teacherPojos = restClient.send(HttpMethod.GET, URLConstants.TEACHER_URL, TeacherPojo[].class);

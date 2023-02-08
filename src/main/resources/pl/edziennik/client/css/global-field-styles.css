@@ -71,3 +71,19 @@
     -fx-border-style: hidden hidden solid hidden;
     -fx-font-family: Arial;
 }
+
+.combo-box:error{
+    -fx-border-insets: 0;
+    -fx-border-width: 1px;
+    -fx-border-color: red;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-font-family: Arial;
+}
+
+.combo-box:valid{
+    -fx-border-insets: 0;
+    -fx-border-width: 1px;
+    -fx-border-color: lawngreen;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-font-family: Arial;
+}

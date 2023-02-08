@@ -1,71 +1,26 @@
 package pl.edziennik.client.controller.admin.accounts.student;
 
-import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.Role;
-import pl.edziennik.client.controller.model.admin.SchoolClassComboBoxItem;
-import pl.edziennik.client.controller.model.admin.SchoolComboBoxItem;
-import pl.edziennik.client.core.AbstractController;
-import pl.edziennik.client.rest.pojo.SchoolPojo;
-import pl.edziennik.client.task.school.LoadSchoolsTask;
-import pl.edziennik.client.task.schoolclass.LoadSchoolClassesTask;
+import pl.edziennik.client.controller.model.admin.StudentListModel;
+import pl.edziennik.client.rest.pojo.StudentPojo;
+import pl.edziennik.client.task.student.AddStudentTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.validator.student.AddStudentValidator;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static pl.edziennik.client.common.ResourceConst.*;
-
-public class AdminAccountsTabStudentsAddController extends AbstractController {
-
-
-    @FXML
-    private ComboBox<SchoolComboBoxItem> schoolComboBox;
-
-    @FXML
-    private ComboBox<SchoolClassComboBoxItem> schoolClassComboBox;
-
-    @FXML
-    private TextField usernameTextField, firstNameTextField, lastNameTextField, addressTextField, postalCodeTextField, cityTextField,
-            peselTextField, parentFirstNameTextField, parentLastNameTextField, parentPhoneNumberTextField, emailTextField, roleTextField;
+public class AdminAccountsTabStudentsAddController extends AdminAccountsTabStudentActionAbstractController {
 
     @Override
     protected void createActions() {
-        NodeUtils.createCancelButtonAction(cancelButton);
+        super.createActions();
+        initializeSaveButtonAction(saveButton);
     }
 
     @Override
     protected void fetchStageData() {
+        super.fetchStageData();
         roleTextField.setText(Role.ROLE_STUDENT.name());
-        fetchSchoolComboBoxItemsIfNeeded();
-    }
-
-    private void fetchSchoolComboBoxItemsIfNeeded() {
-        schoolClassComboBox.disableProperty().bind(schoolComboBox.valueProperty().isNull());
-        schoolComboBox.valueProperty().addListener((value) -> {
-            if (schoolComboBox.getValue() != null) {
-                Long idSchool = schoolComboBox.getValue().getId().getValue();
-                progressFactory.createLittleProgressBar(new LoadSchoolClassesTask(idSchool), (response) -> {
-                    List<SchoolClassComboBoxItem> comboBoxItems = response.stream().map(SchoolClassComboBoxItem::new).toList();
-                    schoolClassComboBox.setItems(FXCollections.observableList(comboBoxItems));
-                });
-            }
-            if (schoolClassComboBox.getValue() != null) {
-                schoolClassComboBox.getSelectionModel().select(null);
-            }
-        });
-        if (schoolComboBox.getItems().isEmpty()) {
-            progressFactory.createLittleProgressBar(new LoadSchoolsTask(), (response) -> {
-                List<SchoolComboBoxItem> comboBoxItems = response.stream().map(SchoolComboBoxItem::new).toList();
-                schoolComboBox.setItems(FXCollections.observableList(comboBoxItems));
-            });
-        }
     }
 
     @Override
@@ -82,6 +37,17 @@ public class AdminAccountsTabStudentsAddController extends AbstractController {
         return (Stage) cancelButton.getScene().getWindow();
     }
 
+    private void initializeSaveButtonAction(Button saveButton) {
+        saveButton.setOnAction(button -> {
+            StudentPojo studentPojo = mapToStudentPojo();
+            progressFactory.createLittleProgressBar(new AddStudentTask(studentPojo), (response) -> {
+                AdminAccountsTabStudentsTabController studentController = AdminAccountsTabStudentsTabController.getInstance();
+                studentController.addItem(StudentListModel.mapPojoToModel(response));
+                dialogFactory.createSuccessInformationDialog(null);
+            });
+        });
+    }
+
     private void initializeValidators() {
         AddStudentValidator.builder()
                 .withCityValidator(cityTextField)
@@ -95,6 +61,9 @@ public class AdminAccountsTabStudentsAddController extends AbstractController {
                 .withAddressValidator(addressTextField)
                 .withPostalCodeValidator(postalCodeTextField)
                 .withPhoneNumberValidator(parentPhoneNumberTextField)
+                .withCorrectPeselField(roleTextField)
+                .withNotEmptySchoolClassComboBox(schoolClassComboBox)
+                .withNotEmptySchoolComboBox(schoolComboBox)
                 .build();
 
     }

@@ -6,11 +6,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
+import pl.edziennik.client.controller.model.admin.SchoolListModel;
 import pl.edziennik.client.controller.model.admin.StudentListModel;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.rest.pojo.StudentPojo;
 import pl.edziennik.client.utils.NodeUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static pl.edziennik.client.common.ResourceConst.*;
@@ -33,6 +35,14 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
         studentsTableView.setItems(items);
         studentsTableView.refresh();
 
+    }
+
+
+    public void addItem(StudentListModel studentModel) {
+        ArrayList<StudentListModel> actualItems = new ArrayList<>(studentsTableView.getItems());
+        actualItems.add(studentModel);
+        studentsTableView.setItems(FXCollections.observableList(actualItems));
+        studentsTableView.refresh();
     }
 
     public boolean isTableDataEmpty() {
@@ -97,4 +107,5 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
                     1000,550, getActualStage());
         });
     }
+
 }

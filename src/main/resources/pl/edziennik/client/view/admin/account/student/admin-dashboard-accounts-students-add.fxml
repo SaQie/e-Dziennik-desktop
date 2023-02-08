@@ -117,7 +117,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="schoolClassComboBox" prefHeight="25.0" prefWidth="161.0" />
+                              <ComboBox fx:id="schoolClassComboBox" disable="true" prefHeight="25.0" prefWidth="161.0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="50.0">

@@ -1,5 +1,6 @@
 package pl.edziennik.client.validator.student;
 
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import pl.edziennik.client.validator.BasicValidator;
 
@@ -56,6 +57,21 @@ public class AddStudentValidator {
 
         public StudentValidatorBuilder withPhoneNumberValidator(TextField field){
             createPhoneNumberValidatorListener(field);
+            return this;
+        }
+
+        public StudentValidatorBuilder withCorrectPeselField(TextField field){
+            withAlwaysCorrectField(field);
+            return this;
+        }
+
+        public StudentValidatorBuilder withNotEmptySchoolComboBox(ComboBox<?> comboBox){
+            createSchoolValidatorListener(comboBox);
+            return this;
+        }
+
+        public StudentValidatorBuilder withNotEmptySchoolClassComboBox(ComboBox<?> comboBox){
+            createSchoolClassValidatorListener(comboBox);
             return this;
         }
 

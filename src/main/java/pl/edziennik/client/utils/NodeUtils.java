@@ -156,6 +156,7 @@ public class NodeUtils {
         }
     }
 
+
     public static void enableButtonIfFieldsAreNotEmpty(Button button, TextField... textFields) {
         BooleanBinding firstFieldBooleanBinding = null;
         for (TextField textField : textFields) {

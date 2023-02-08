@@ -50,6 +50,10 @@ public class AdminRestClient {
         return restClient.send(HttpMethod.GET, URLConstants.SCHOOL_URL + id, SchoolPojo.class);
     }
 
+    public StudentPojo saveNewStudent(StudentPojo studentPojo) {
+        return restClient.send(HttpMethod.POST, URLConstants.STUDENT_URL, studentPojo, StudentPojo.class);
+    }
+
     public SchoolPojo saveNewSchool(SchoolPojo schoolPojo) {
         return restClient.send(HttpMethod.POST, URLConstants.SCHOOL_URL, schoolPojo, SchoolPojo.class);
     }
@@ -76,6 +80,7 @@ public class AdminRestClient {
     public void saveConfiguration(SettingsValue value) {
         restClient.send(HttpMethod.PUT, URLConstants.CONFIGURATION_URL + value.getId(), value);
     }
+
 
 
 }

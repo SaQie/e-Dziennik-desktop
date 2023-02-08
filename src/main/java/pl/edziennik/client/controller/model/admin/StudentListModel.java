@@ -55,6 +55,10 @@ public class StudentListModel implements TableViewSelection {
                 .toList();
     }
 
+    public static StudentListModel mapPojoToModel(StudentPojo pojo){
+        return new StudentListModel(pojo);
+    }
+
     @Override
     public void setSelection() {
         this.select.setSelected(!select.isSelected());

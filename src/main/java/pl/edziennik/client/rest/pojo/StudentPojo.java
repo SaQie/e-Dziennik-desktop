@@ -17,6 +17,7 @@ public class StudentPojo {
     private String parentPhoneNumber;
     private String parentFirstName;
     private String parentLastName;
+    private String password;
     private Long idSchool;
     private Long idSchoolClass;
     private String role;

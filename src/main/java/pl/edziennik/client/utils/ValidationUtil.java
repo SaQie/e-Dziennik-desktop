@@ -1,6 +1,7 @@
 package pl.edziennik.client.utils;
 
 import javafx.css.PseudoClass;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -11,6 +12,7 @@ import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.common.Styles;
 
 import java.text.MessageFormat;
+import java.util.regex.Pattern;
 
 public class ValidationUtil {
 
@@ -31,11 +33,23 @@ public class ValidationUtil {
         textField.pseudoClassStateChanged(PseudoClass.getPseudoClass("error"), true);
     }
 
+    public static void markComboBoxAsError(ComboBox<?> comboBox){
+        comboBox.pseudoClassStateChanged(PseudoClass.getPseudoClass("valid"), false);
+        comboBox.pseudoClassStateChanged(PseudoClass.getPseudoClass("error"), true);
+    }
+
     public static void unmarkTextFieldAsError(TextField textField){
         textField.pseudoClassStateChanged(PseudoClass.getPseudoClass("error"), false);
         textField.pseudoClassStateChanged(PseudoClass.getPseudoClass("valid"), true);
         textField.setTooltip(new Tooltip());
         textField.setTooltip(null);
+    }
+
+    public static void unmarkComboBoxAsError(ComboBox<?> comboBox){
+        comboBox.pseudoClassStateChanged(PseudoClass.getPseudoClass("error"), false);
+        comboBox.pseudoClassStateChanged(PseudoClass.getPseudoClass("valid"), true);
+        comboBox.setTooltip(new Tooltip());
+        comboBox.setTooltip(null);
     }
 
     public static void clearMark(TextField textField){
@@ -79,6 +93,12 @@ public class ValidationUtil {
         ValidationUtil.markTextFieldAsError(field);
     }
 
+    public static void addErrorTooltipToComboBox(String errorMessage, ComboBox<?> comboBox){
+        Tooltip errorToolTip = prepareValidationTooltip(errorMessage);
+        comboBox.setTooltip(errorToolTip);
+        ValidationUtil.markComboBoxAsError(comboBox);
+    }
+
 
 
     public static void clearFields(TextField... textFields){
@@ -105,8 +125,12 @@ public class ValidationUtil {
         return field.getText().length() != prefLength;
     }
 
-    public static boolean isFieldNotValidToRegex(String regex, TextField field){
-        return !field.getText().matches(regex);
+    public static boolean isFieldNotValidToRegex(Pattern pattern, TextField field){
+        return !pattern.matcher(field.getText()).matches();
+    }
+
+    public static boolean isComboBoxEmpty(ComboBox<?> comboBox){
+        return comboBox.getValue() == null;
     }
 
 }

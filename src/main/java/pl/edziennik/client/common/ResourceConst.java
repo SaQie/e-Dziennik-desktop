@@ -80,6 +80,7 @@ public enum ResourceConst {
     WAITING_FETCHING_ADMINS_LIST_MESSAGE_KEY("waiting.fetching.admins.list.message"),
     ADMIN_ACCOUNTS_ADD_STUDENT_TITLE_MESSAGE_KEY("admin.accounts.student.add.title"),
     WAITING_FETCHING_SCHOOL_CLASSES_LIST_MESSAGE_KEY("waiting.fetching.school.classes.list.message"),
+    WAITING_ADD_NEW_STUDENT_MESSAGE_KEY("waiting.add.new.student.message"),
 
     // ERROR CODES
 
@@ -120,6 +121,8 @@ public enum ResourceConst {
     FIRST_NAME_FIELD_IS_EMPTY_KEY("first.name.field.is.empty"),
     LAST_NAME_FIELD_IS_EMPTY_KEY("last.name.field.is.empty"),
     PESEL_FIELD_IS_NOT_CORRECT("pesel.field.is.not.correct"),
+    SCHOOL_CANNOT_BE_EMPTY("school.cannot.be.empty"),
+    SCHOOL_CLASS_CANNOT_BE_EMPTY("school.class.cannot.be.empty"),
 
     // LOCALES
 

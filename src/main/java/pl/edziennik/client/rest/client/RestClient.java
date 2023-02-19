@@ -3,7 +3,6 @@ package pl.edziennik.client.rest.client;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.HttpServerErrorException;
@@ -30,7 +29,7 @@ public class RestClient {
 
     public static final String BASE_URL = PropertiesLoader.readProperty(PROPERTIES_LOADER_SERVER_ADDRESS_KEY.value());
 
-    private static final Logger LOGGER = Logger.getLogger( RestClient.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger(RestClient.class.getName());
 
     private final RestClientStatusCodesHandler statusCodesHandler;
     private final DialogFactory dialogFactory;

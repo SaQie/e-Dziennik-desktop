@@ -18,8 +18,8 @@ public class StudentPojo {
     private String parentFirstName;
     private String parentLastName;
     private String password;
-    private Long idSchool;
-    private Long idSchoolClass;
+    private SimpleSchoolPojo school;
+    private SimpleSchoolClassPojo schoolClass;
     private String role;
 
 }

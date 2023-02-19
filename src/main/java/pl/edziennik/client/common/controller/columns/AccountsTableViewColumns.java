@@ -118,16 +118,16 @@ class AccountsTableViewColumns extends BasicTableViewColumns{
             return parentPhoneNumberColumn;
         }
 
-        protected static TableColumn<StudentListModel, Number> getSchoolColumn(final boolean isDefaultVisible) {
-            TableColumn<StudentListModel, Number> schoolColumn = new TableColumn<>(ResourceUtil.getMessage(SCHOOL_COLUMN_KEY.value()));
-            schoolColumn.setCellValueFactory(cellData -> cellData.getValue().getIdSchool());
+        protected static TableColumn<StudentListModel, String> getSchoolColumn(final boolean isDefaultVisible) {
+            TableColumn<StudentListModel, String> schoolColumn = new TableColumn<>(ResourceUtil.getMessage(SCHOOL_COLUMN_KEY.value()));
+            schoolColumn.setCellValueFactory(cellData -> cellData.getValue().getSchool());
             schoolColumn.setVisible(isDefaultVisible);
             return schoolColumn;
         }
 
-        protected static TableColumn<StudentListModel, Number> getSchoolClassColumn(final boolean isDefaultVisible) {
-            TableColumn<StudentListModel, Number> schoolClassColumn = new TableColumn<>(ResourceUtil.getMessage(SCHOOL_CLASS_COLUMN_KEY.value()));
-            schoolClassColumn.setCellValueFactory(cellData -> cellData.getValue().getIdSchoolClass());
+        protected static TableColumn<StudentListModel, String> getSchoolClassColumn(final boolean isDefaultVisible) {
+            TableColumn<StudentListModel, String> schoolClassColumn = new TableColumn<>(ResourceUtil.getMessage(SCHOOL_CLASS_COLUMN_KEY.value()));
+            schoolClassColumn.setCellValueFactory(cellData -> cellData.getValue().getSchoolClass());
             schoolClassColumn.setVisible(isDefaultVisible);
             return schoolClassColumn;
         }
@@ -205,9 +205,9 @@ class AccountsTableViewColumns extends BasicTableViewColumns{
             return peselColumn;
         }
 
-        protected static TableColumn<TeacherListModel, Number> getSchoolColumn(final boolean isDefaultVisible) {
-            TableColumn<TeacherListModel, Number> schoolColumn = new TableColumn<>(ResourceUtil.getMessage(ResourceConst.SCHOOL_COLUMN_KEY.value()));
-            schoolColumn.setCellValueFactory(cellData -> cellData.getValue().getIdSchool());
+        protected static TableColumn<TeacherListModel, String> getSchoolColumn(final boolean isDefaultVisible) {
+            TableColumn<TeacherListModel, String> schoolColumn = new TableColumn<>(ResourceUtil.getMessage(ResourceConst.SCHOOL_COLUMN_KEY.value()));
+            schoolColumn.setCellValueFactory(cellData -> cellData.getValue().getSchool());
             schoolColumn.setVisible(isDefaultVisible);
             return schoolColumn;
         }

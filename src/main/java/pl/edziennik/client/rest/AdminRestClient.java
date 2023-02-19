@@ -22,8 +22,8 @@ public class AdminRestClient {
     }
 
     public List<SchoolPojo> getSchoolList() {
-        SchoolPojo[] schoolPojos = restClient.send(HttpMethod.GET, URLConstants.SCHOOL_URL, SchoolPojo[].class);
-        return Arrays.asList(schoolPojos);
+        SchoolPojo[] send = restClient.send(HttpMethod.GET, URLConstants.SCHOOL_URL, SchoolPojo[].class);
+        return Arrays.asList(send);
     }
 
     public List<SchoolClassPojo> getSchoolClassesBySchoolId(Long schoolId) {
@@ -78,7 +78,7 @@ public class AdminRestClient {
 
 
     public void saveConfiguration(SettingsValue value) {
-        restClient.send(HttpMethod.PUT, URLConstants.CONFIGURATION_URL + value.getId(), value);
+        restClient.send(HttpMethod.PATCH, URLConstants.CONFIGURATION_URL + value.getId(), value);
     }
 
 

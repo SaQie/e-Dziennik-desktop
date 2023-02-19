@@ -60,9 +60,9 @@ class SchoolTableViewColumns extends BasicTableViewColumns{
         return postalCodeColumn;
     }
 
-    protected static TableColumn<SchoolListModel, Number> getSchoolLevelColumn(final boolean isDefaultVisible){
-        TableColumn<SchoolListModel, Number> schoolLevelNameColumn = new TableColumn<>(ResourceUtil.getMessage(ResourceConst.SCHOOL_LEVEL_NAME_COLUMN_KEY.value()));
-        schoolLevelNameColumn.setCellValueFactory(cellData -> cellData.getValue().getIdSchoolLevel());
+    protected static TableColumn<SchoolListModel, String> getSchoolLevelColumn(final boolean isDefaultVisible){
+        TableColumn<SchoolListModel, String> schoolLevelNameColumn = new TableColumn<>(ResourceUtil.getMessage(ResourceConst.SCHOOL_LEVEL_NAME_COLUMN_KEY.value()));
+        schoolLevelNameColumn.setCellValueFactory(cellData -> cellData.getValue().getSchoolLevel());
         schoolLevelNameColumn.setVisible(isDefaultVisible);
         return schoolLevelNameColumn;
     }

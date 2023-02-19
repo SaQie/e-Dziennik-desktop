@@ -14,5 +14,6 @@ public class SchoolPojo {
     private String address;
     private String phoneNumber;
     private Long idSchoolLevel;
+    private SimpleSchoolLevelPojo schoolLevel;
 
 }

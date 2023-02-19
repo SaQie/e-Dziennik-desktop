@@ -22,7 +22,7 @@ public class TeacherListModel implements TableViewSelection {
     private final SimpleStringProperty pesel;
     private final SimpleStringProperty phoneNumber;
     private final SimpleStringProperty role;
-    private final SimpleLongProperty idSchool;
+    private final SimpleStringProperty school;
     private final CheckBox select;
 
     public TeacherListModel(TeacherPojo pojo) {
@@ -36,7 +36,7 @@ public class TeacherListModel implements TableViewSelection {
         this.pesel = new SimpleStringProperty(pojo.getPesel());
         this.phoneNumber = new SimpleStringProperty(pojo.getPhoneNumber());
         this.role = new SimpleStringProperty(pojo.getRole());
-        this.idSchool = new SimpleLongProperty(pojo.getIdSchool());
+        this.school = new SimpleStringProperty(pojo.getSchool().getName());
         this.select = Styles.tableViewSelectionCheckBox();
     }
 

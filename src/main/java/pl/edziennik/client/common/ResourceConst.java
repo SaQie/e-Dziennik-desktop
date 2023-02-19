@@ -148,4 +148,9 @@ public enum ResourceConst {
     public String value() {
         return resource;
     }
+
+    @Override
+    public String toString() {
+        return resource;
+    }
 }

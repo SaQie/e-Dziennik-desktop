@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import pl.edziennik.client.controller.model.admin.SchoolLevelComboBoxItem;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.rest.pojo.SchoolPojo;
+import pl.edziennik.client.rest.pojo.SimpleSchoolLevelPojo;
 import pl.edziennik.client.task.school.LoadSchoolLevelsTask;
 
 abstract class AdminSchoolsTabActionAbstractController extends AbstractController {
@@ -31,7 +32,7 @@ abstract class AdminSchoolsTabActionAbstractController extends AbstractControlle
         postalCodeTextField.setText(schoolPojo.getPostalCode());
         phoneNumberTextField.setText(schoolPojo.getPhoneNumber());
         cityTextField.setText(schoolPojo.getCity());
-        schoolLevelComboBox.getSelectionModel().select(getCorrectComboBoxItem(schoolPojo.getIdSchoolLevel()));
+        schoolLevelComboBox.getSelectionModel().select(getCorrectComboBoxItem(schoolPojo.getSchoolLevel().getId()));
         schoolLevelComboBox.setOnShown(show -> schoolLevelComboBox.hide());
     }
 
@@ -39,6 +40,8 @@ abstract class AdminSchoolsTabActionAbstractController extends AbstractControlle
         SchoolPojo schoolPojo = new SchoolPojo();
         schoolPojo.setName(nameTextField.getText());
         schoolPojo.setCity(cityTextField.getText());
+        schoolPojo.setSchoolLevel(new SimpleSchoolLevelPojo(schoolLevelComboBox.getSelectionModel().getSelectedItem().getId().getValue(),
+                schoolLevelComboBox.getSelectionModel().getSelectedItem().getName().getValue()));
         schoolPojo.setIdSchoolLevel(schoolLevelComboBox.getSelectionModel().getSelectedItem().getId().getValue());
         schoolPojo.setNip(nipTextField.getText());
         schoolPojo.setRegon(regonTextField.getText());

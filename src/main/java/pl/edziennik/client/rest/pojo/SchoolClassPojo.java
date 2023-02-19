@@ -7,7 +7,7 @@ public class SchoolClassPojo {
 
     private Long id;
     private String className;
-    private Long idSupervisingTeacher;
-    private Long idSchool;
+    private SimpleTeacherPojo supervisingTeacher;
+    private SimpleSchoolPojo school;
 
 }

@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import pl.edziennik.client.controller.model.admin.SchoolClassComboBoxItem;
 import pl.edziennik.client.controller.model.admin.SchoolComboBoxItem;
 import pl.edziennik.client.core.AbstractController;
+import pl.edziennik.client.rest.pojo.SimpleSchoolClassPojo;
+import pl.edziennik.client.rest.pojo.SimpleSchoolPojo;
 import pl.edziennik.client.rest.pojo.StudentPojo;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.task.schoolclass.LoadSchoolClassesTask;
@@ -81,7 +83,7 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
         }
     }
 
-    protected StudentPojo mapToStudentPojo(){
+    protected StudentPojo mapToStudentPojo() {
         StudentPojo studentPojo = new StudentPojo();
         studentPojo.setCity(cityTextField.getText());
         studentPojo.setAddress(addressTextField.getText());
@@ -90,8 +92,8 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
         studentPojo.setFirstName(firstNameTextField.getText());
         studentPojo.setLastName(lastNameTextField.getText());
         studentPojo.setUsername(usernameTextField.getText());
-        studentPojo.setIdSchool(schoolComboBox.getValue().getId().getValue());
-        studentPojo.setIdSchoolClass(schoolClassComboBox.getValue().getId().getValue());
+        studentPojo.setSchool(new SimpleSchoolPojo(schoolComboBox.getValue().getId().getValue(), schoolComboBox.getValue().getName().getValue()));
+        studentPojo.setSchoolClass(new SimpleSchoolClassPojo(schoolClassComboBox.getValue().getId().getValue(), schoolClassComboBox.getValue().getClassName().getValue()));
         studentPojo.setParentFirstName(parentFirstNameTextField.getText());
         studentPojo.setParentLastName(parentLastNameTextField.getText());
         studentPojo.setParentPhoneNumber(parentPhoneNumberTextField.getText());

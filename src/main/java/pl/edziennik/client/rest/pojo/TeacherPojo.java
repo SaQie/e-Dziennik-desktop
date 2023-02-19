@@ -15,6 +15,6 @@ public class TeacherPojo {
     private String pesel;
     private String phoneNumber;
     private String role;
-    private Long idSchool;
+    private SimpleSchoolPojo school;
 
 }

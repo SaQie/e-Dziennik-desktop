@@ -20,7 +20,7 @@ public class SchoolListModel implements TableViewSelection {
     private final SimpleStringProperty regon;
     private final SimpleStringProperty address;
     private final SimpleStringProperty phoneNumber;
-    private final SimpleLongProperty idSchoolLevel;
+    private final SimpleStringProperty schoolLevel;
     private final CheckBox select;
 
 
@@ -32,7 +32,7 @@ public class SchoolListModel implements TableViewSelection {
         this.regon = new SimpleStringProperty(pojo.getRegon());
         this.address = new SimpleStringProperty(pojo.getAddress());
         this.phoneNumber = new SimpleStringProperty(pojo.getPhoneNumber());
-        this.idSchoolLevel = new SimpleLongProperty(pojo.getIdSchoolLevel());
+        this.schoolLevel = new SimpleStringProperty(pojo.getSchoolLevel().getName());
         this.id = new SimpleLongProperty(pojo.getId());
         this.select = Styles.tableViewSelectionCheckBox();
     }

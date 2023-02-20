@@ -5,11 +5,19 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import pl.edziennik.client.common.ActionType;
+import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
+import pl.edziennik.client.controller.admin.schools.AdminSchoolsTabEditSchoolController;
 import pl.edziennik.client.controller.model.admin.SchoolListModel;
 import pl.edziennik.client.controller.model.admin.StudentListModel;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.rest.pojo.StudentPojo;
+import pl.edziennik.client.task.school.DeleteSchoolTask;
+import pl.edziennik.client.task.school.LoadSchoolTask;
+import pl.edziennik.client.task.student.DeleteStudentTask;
+import pl.edziennik.client.task.student.LoadStudentTask;
+import pl.edziennik.client.task.student.LoadStudentsTask;
 import pl.edziennik.client.utils.NodeUtils;
 
 import java.util.ArrayList;
@@ -61,6 +69,9 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
     @Override
     protected void createActions() {
         initializeAddButtonAction();
+        initializeDeleteButtonAction();
+        initializeRefreshButtonAction();
+        initializeShowButtonAction();
     }
 
 
@@ -100,11 +111,42 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
     }
 
     private void initializeAddButtonAction() {
-        addButton.setOnAction(button-> {
+        addButton.setOnAction(button -> {
             NodeUtils.openNewStageAbove(
                     DASHBOARD_ADMIN_ACCOUNTS_ADD_STUDENT_VIEW_ADDRESS.value(),
                     ADMIN_ACCOUNTS_ADD_STUDENT_TITLE_MESSAGE_KEY.value(),
-                    1000,550, getActualStage());
+                    1000, 550, getActualStage());
+        });
+    }
+
+    private void initializeRefreshButtonAction() {
+        refreshButton.setOnAction(button -> {
+            progressFactory.createLittleProgressBar(new LoadStudentsTask(), this::fetchTabData);
+        });
+    }
+
+    private void initializeShowButtonAction() {
+        showButton.setOnAction(button -> {
+            List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(studentsTableView, ActionType.EDIT_ACTION);
+            progressFactory.createLittleProgressBar(new LoadStudentTask(selectedTableItems.get(0)), (schoolPojo) -> {
+                AdminAccountsTabStudentsShowController controller = NodeUtils.openNewStageAboveWithController(
+                        ResourceConst.DASHBOARD_ADMIN_ACCOUNTS_SHOW_STUDENT_VIEW_ADDRESS.value(),
+                        ResourceConst.SHOW_STUDENT_VIEW_TITLE_KEY.value(),
+                        1000, 550,
+                        getActualStage());
+                controller.loadStageFields(schoolPojo);
+            });
+        });
+    }
+
+    private void initializeDeleteButtonAction() {
+        deleteButton.setOnAction(button -> {
+            List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(studentsTableView, ActionType.DELETE_ACTION);
+            if (dialogFactory.createQuestionInformationDialog(ARE_YOU_SURE_TO_PERFORM_DELETE_OPERATION_MESSAGE_KEY.value())) {
+                progressFactory.createLittleProgressBar(new DeleteStudentTask(selectedTableItems), (action) -> {
+                    refreshButton.fire();
+                });
+            }
         });
     }
 

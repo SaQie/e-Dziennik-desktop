@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import lombok.Getter;
 import pl.edziennik.client.rest.pojo.SchoolPojo;
+import pl.edziennik.client.rest.pojo.SimpleSchoolPojo;
 
 @Getter
 public class SchoolComboBoxItem {
@@ -12,6 +13,11 @@ public class SchoolComboBoxItem {
     private final SimpleStringProperty name;
 
     public SchoolComboBoxItem(SchoolPojo pojo) {
+        this.id = new SimpleLongProperty(pojo.getId());
+        this.name = new SimpleStringProperty(pojo.getName());
+    }
+
+    public SchoolComboBoxItem(SimpleSchoolPojo pojo){
         this.id = new SimpleLongProperty(pojo.getId());
         this.name = new SimpleStringProperty(pojo.getName());
     }

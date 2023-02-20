@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import pl.edziennik.client.common.Role;
 import pl.edziennik.client.controller.model.admin.StudentListModel;
 import pl.edziennik.client.rest.pojo.StudentPojo;
+import pl.edziennik.client.rest.pojo.StudentRequestPojo;
 import pl.edziennik.client.task.student.AddStudentTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.validator.student.AddStudentValidator;
@@ -29,7 +30,7 @@ public class AdminAccountsTabStudentsAddController extends AdminAccountsTabStude
         NodeUtils.enableButtonIfFieldsHasNoErrors(saveButton, usernameTextField, firstNameTextField, lastNameTextField,
                 addressTextField, postalCodeTextField, cityTextField,
                 peselTextField, parentFirstNameTextField, parentLastNameTextField,
-                parentPhoneNumberTextField, emailTextField);
+                parentPhoneNumberTextField, emailTextField,schoolClassComboBox, schoolComboBox);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class AdminAccountsTabStudentsAddController extends AdminAccountsTabStude
 
     private void initializeSaveButtonAction(Button saveButton) {
         saveButton.setOnAction(button -> {
-            StudentPojo studentPojo = mapToStudentPojo();
+            StudentRequestPojo studentPojo = mapToStudentRequestPojo();
             progressFactory.createLittleProgressBar(new AddStudentTask(studentPojo), (response) -> {
                 AdminAccountsTabStudentsTabController studentController = AdminAccountsTabStudentsTabController.getInstance();
                 studentController.addItem(StudentListModel.mapPojoToModel(response));

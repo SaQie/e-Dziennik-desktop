@@ -4,6 +4,7 @@ import javafx.concurrent.Task;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.pojo.StudentPojo;
+import pl.edziennik.client.rest.pojo.StudentRequestPojo;
 import pl.edziennik.client.utils.ResourceUtil;
 
 import static pl.edziennik.client.common.ResourceConst.WAITING_ADD_NEW_STUDENT_MESSAGE_KEY;
@@ -11,9 +12,9 @@ import static pl.edziennik.client.common.ResourceConst.WAITING_ADD_NEW_STUDENT_M
 public class AddStudentTask extends Task<StudentPojo> {
 
     private final AdminRestClient adminRestClient;
-    private final StudentPojo studentPojo;
+    private final StudentRequestPojo studentPojo;
 
-    public AddStudentTask(StudentPojo studentPojo) {
+    public AddStudentTask(StudentRequestPojo studentPojo) {
         this.adminRestClient = new AdminRestClient();
         this.studentPojo = studentPojo;
     }

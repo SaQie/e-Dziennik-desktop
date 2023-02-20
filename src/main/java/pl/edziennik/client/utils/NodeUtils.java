@@ -1,8 +1,13 @@
 package pl.edziennik.client.utils;
 
 import javafx.animation.AnimationTimer;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
+import javafx.collections.ObservableSet;
+import javafx.collections.SetChangeListener;
+import javafx.css.PseudoClass;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -25,6 +30,7 @@ import pl.edziennik.client.exception.TableViewException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -151,6 +157,17 @@ public class NodeUtils {
             input.tooltipProperty().addListener(field -> {
                 boolean hasErrors = Arrays.stream(textFields)
                         .allMatch(e -> (!e.getText().isEmpty() || !e.getText().isBlank()) && e.getTooltip() == null);
+                button.setDisable(!hasErrors);
+            });
+        }
+    }
+
+    public static void enableButtonIfFieldsHasNoErrors(Button button, Control... controls) {
+        button.setDisable(true);
+        for (Control control : controls) {
+            control.tooltipProperty().addListener(field -> {
+                boolean hasErrors = Arrays.stream(controls)
+                        .allMatch(e -> e.getPseudoClassStates().contains(PseudoClass.getPseudoClass("valid")) && e.getTooltip() == null);
                 button.setDisable(!hasErrors);
             });
         }

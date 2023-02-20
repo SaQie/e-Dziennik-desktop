@@ -50,7 +50,7 @@ public class AdminRestClient {
         return restClient.send(HttpMethod.GET, URLConstants.SCHOOL_URL + id, SchoolPojo.class);
     }
 
-    public StudentPojo saveNewStudent(StudentPojo studentPojo) {
+    public StudentPojo saveNewStudent(StudentRequestPojo studentPojo) {
         return restClient.send(HttpMethod.POST, URLConstants.STUDENT_URL, studentPojo, StudentPojo.class);
     }
 
@@ -68,7 +68,7 @@ public class AdminRestClient {
     }
 
     public void deleteSchool(Long idSchool) {
-        restClient.send(HttpMethod.DELETE, URLConstants.SCHOOL_DELETE_URL, idSchool);
+        restClient.send(HttpMethod.DELETE, URLConstants.SCHOOL_URL, idSchool);
     }
 
     public List<ConfigurationPojo> getConfigurationList() {
@@ -82,5 +82,11 @@ public class AdminRestClient {
     }
 
 
+    public void deleteStudent(Long idStudent) {
+        restClient.send(HttpMethod.DELETE, URLConstants.STUDENT_URL, idStudent);
+    }
 
+    public StudentPojo getStudent(Long idStudent) {
+        return restClient.send(HttpMethod.GET, URLConstants.STUDENT_URL + idStudent, StudentPojo.class);
+    }
 }

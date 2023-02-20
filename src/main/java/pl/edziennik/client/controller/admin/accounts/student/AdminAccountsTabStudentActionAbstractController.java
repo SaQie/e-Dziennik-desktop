@@ -8,9 +8,8 @@ import javafx.stage.Stage;
 import pl.edziennik.client.controller.model.admin.SchoolClassComboBoxItem;
 import pl.edziennik.client.controller.model.admin.SchoolComboBoxItem;
 import pl.edziennik.client.core.AbstractController;
-import pl.edziennik.client.rest.pojo.SimpleSchoolClassPojo;
-import pl.edziennik.client.rest.pojo.SimpleSchoolPojo;
 import pl.edziennik.client.rest.pojo.StudentPojo;
+import pl.edziennik.client.rest.pojo.StudentRequestPojo;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.task.schoolclass.LoadSchoolClassesTask;
 import pl.edziennik.client.utils.NodeUtils;
@@ -50,7 +49,26 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
 
     @Override
     protected Stage getActualStage() {
-        return null;
+        return (Stage) cancelButton.getScene().getWindow();
+    }
+
+    protected void loadStageFields(StudentPojo studentPojo) {
+        usernameTextField.setText(studentPojo.getUsername());
+        firstNameTextField.setText(studentPojo.getFirstName());
+        lastNameTextField.setText(studentPojo.getLastName());
+        parentFirstNameTextField.setText(studentPojo.getParentFirstName());
+        parentLastNameTextField.setText(studentPojo.getParentLastName());
+        parentPhoneNumberTextField.setText(studentPojo.getParentPhoneNumber());
+        roleTextField.setText(studentPojo.getRole());
+        addressTextField.setText(studentPojo.getAddress());
+        cityTextField.setText(studentPojo.getCity());
+        postalCodeTextField.setText(studentPojo.getPostalCode());
+        peselTextField.setText(studentPojo.getPesel());
+        emailTextField.setText(studentPojo.getEmail());
+        schoolComboBox.getSelectionModel().select(new SchoolComboBoxItem(studentPojo.getSchool()));
+        schoolClassComboBox.getSelectionModel().select(new SchoolClassComboBoxItem(studentPojo.getSchoolClass()));
+        schoolComboBox.setOnShown(show -> schoolComboBox.hide());
+        schoolClassComboBox.setOnShown(show -> schoolClassComboBox.hide());
     }
 
     private void fetchSchoolClassComboBoxItems() {
@@ -83,8 +101,8 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
         }
     }
 
-    protected StudentPojo mapToStudentPojo() {
-        StudentPojo studentPojo = new StudentPojo();
+    protected StudentRequestPojo mapToStudentRequestPojo() {
+        StudentRequestPojo studentPojo = new StudentRequestPojo();
         studentPojo.setCity(cityTextField.getText());
         studentPojo.setAddress(addressTextField.getText());
         studentPojo.setEmail(emailTextField.getText());
@@ -92,14 +110,14 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
         studentPojo.setFirstName(firstNameTextField.getText());
         studentPojo.setLastName(lastNameTextField.getText());
         studentPojo.setUsername(usernameTextField.getText());
-        studentPojo.setSchool(new SimpleSchoolPojo(schoolComboBox.getValue().getId().getValue(), schoolComboBox.getValue().getName().getValue()));
-        studentPojo.setSchoolClass(new SimpleSchoolClassPojo(schoolClassComboBox.getValue().getId().getValue(), schoolClassComboBox.getValue().getClassName().getValue()));
+        studentPojo.setIdSchool(schoolComboBox.getValue().getId().getValue());
+        studentPojo.setIdSchoolClass(schoolClassComboBox.getValue().getId().getValue());
         studentPojo.setParentFirstName(parentFirstNameTextField.getText());
         studentPojo.setParentLastName(parentLastNameTextField.getText());
         studentPojo.setParentPhoneNumber(parentPhoneNumberTextField.getText());
         studentPojo.setPesel(peselTextField.getText());
         String password = UUID.randomUUID().toString();
-        System.out.println("random uuid: " + password);
+        System.out.println("Random uuid: " + password);
         studentPojo.setPassword(password);
         return studentPojo;
     }

@@ -25,6 +25,8 @@ public enum ResourceConst {
     AUTHORIZATION_VIEW_ADDRESS("/pl/edziennik/client/view/auth/authorization-view.fxml"),
     DASHBOARD_ADMIN_CONFIGURATION_VIEW_ADDRESS("/pl/edziennik/client/view/admin/configuration/admin-dashboard-configuration-option-view.fxml"),
     DASHBOARD_ADMIN_ACCOUNTS_ADD_STUDENT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/student/admin-dashboard-accounts-students-add.fxml"),
+    DASHBOARD_ADMIN_ACCOUNTS_EDIT_STUDENT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/student/admin-dashboard-accounts-students-edit.fxml"),
+    DASHBOARD_ADMIN_ACCOUNTS_SHOW_STUDENT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/student/admin-dashboard-accounts-students-show.fxml"),
     // MESSAGES
 
     EXIT_CONFIRMATION_MESSAGE_KEY("exit.confirmation.message"),
@@ -66,6 +68,7 @@ public enum ResourceConst {
     HIGH_SCHOOL_NAME_KEY("label.high.school"),
     UNIVERSITY_SCHOOL_NAME_KEY("label.university.school"),
     PRIMARY_SCHOOL_NAME_KEY("label.primary.school"),
+    SHOW_STUDENT_VIEW_TITLE_KEY("show.student.title.message"),
     TABLE_VIEW_PLACEHOLDER_MESSAGE_KEY("label.table.empty"),
     SAVING_NEW_SCHOOL_MESSAGE_KEY("save.new.school.progress.message"),
     ADD_SCHOOL_VIEW_TITLE_KEY("add.school.view.title.label"),
@@ -81,6 +84,8 @@ public enum ResourceConst {
     ADMIN_ACCOUNTS_ADD_STUDENT_TITLE_MESSAGE_KEY("admin.accounts.student.add.title"),
     WAITING_FETCHING_SCHOOL_CLASSES_LIST_MESSAGE_KEY("waiting.fetching.school.classes.list.message"),
     WAITING_ADD_NEW_STUDENT_MESSAGE_KEY("waiting.add.new.student.message"),
+    WAITING_DELETE_STUDENT_MESSAGE_KEY("waiting.delete.student.message.key"),
+    WAITING_FETCHING_STUDENT_MESSAGE_KEY("waiting.fetching.student.message.key"),
 
     // ERROR CODES
 

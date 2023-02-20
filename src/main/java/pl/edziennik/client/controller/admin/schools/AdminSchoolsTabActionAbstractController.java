@@ -32,7 +32,7 @@ abstract class AdminSchoolsTabActionAbstractController extends AbstractControlle
         postalCodeTextField.setText(schoolPojo.getPostalCode());
         phoneNumberTextField.setText(schoolPojo.getPhoneNumber());
         cityTextField.setText(schoolPojo.getCity());
-        schoolLevelComboBox.getSelectionModel().select(getCorrectComboBoxItem(schoolPojo.getSchoolLevel().getId()));
+        schoolLevelComboBox.getSelectionModel().select(new SchoolLevelComboBoxItem(schoolPojo.getSchoolLevel()));
         schoolLevelComboBox.setOnShown(show -> schoolLevelComboBox.hide());
     }
 
@@ -49,14 +49,6 @@ abstract class AdminSchoolsTabActionAbstractController extends AbstractControlle
         schoolPojo.setAddress(addressTextField.getText());
         schoolPojo.setPostalCode(postalCodeTextField.getText());
         return schoolPojo;
-    }
-
-    private SchoolLevelComboBoxItem getCorrectComboBoxItem(Long id) {
-        return schoolLevelComboBox.getItems()
-                .stream()
-                .filter(item -> item.getId().getValue().equals(id))
-                .findFirst()
-                .orElse(null);
     }
 
     private void fetchComboBoxItems() {

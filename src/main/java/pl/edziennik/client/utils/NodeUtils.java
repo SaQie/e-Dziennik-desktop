@@ -264,4 +264,8 @@ public class NodeUtils {
             }
         }
     }
+
+    public static void closeCurrentStage(Stage actualStage) {
+        actualStage.close();
+    }
 }

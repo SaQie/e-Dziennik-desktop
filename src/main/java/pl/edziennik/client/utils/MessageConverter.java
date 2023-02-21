@@ -7,6 +7,8 @@ public class MessageConverter {
     private MessageConverter() {
     }
 
+    public static String convertStudentRole()
+
     public static String converSchoolLevelMessages(String name){
         switch (name){
             case "PRIMARY SCHOOL" -> {

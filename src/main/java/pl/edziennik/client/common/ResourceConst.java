@@ -38,6 +38,7 @@ public enum ResourceConst {
     SUCCESS_DIALOG_TITLE_MESSAGE_KEY("success.dialog.title"),
     COLUMN_VIEW_CONFIGURATION_TITLE_MESSAGE_KEY("configuration.window.title"),
     LOGOUT_DIALOG_TITLE_MESSAGE_KEY("logout.dialog.title"),
+    EDIT_STUDENT_VIEW_TITLE_KEY("edit.student.view.title"),
     LOGOUT_DIALOG_HEADER_MESSAGE_KEY("logout.dialog.header"),
     BUTTON_YES_KEY("button.yes"),
     BUTTON_NO_KEY("button.no"),

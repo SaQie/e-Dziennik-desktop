@@ -59,7 +59,7 @@ public class AdminRestClient {
     }
 
     public SchoolPojo editSchool(Long id, SchoolPojo schoolPojo) {
-        return restClient.send(HttpMethod.POST, URLConstants.SCHOOL_URL + id, schoolPojo, SchoolPojo.class);
+        return restClient.send(HttpMethod.PUT, URLConstants.SCHOOL_URL + id, schoolPojo, SchoolPojo.class);
     }
 
     public List<SchoolLevelComboBoxItem> loadComboBoxItems() {
@@ -88,5 +88,9 @@ public class AdminRestClient {
 
     public StudentPojo getStudent(Long idStudent) {
         return restClient.send(HttpMethod.GET, URLConstants.STUDENT_URL + idStudent, StudentPojo.class);
+    }
+
+    public StudentPojo editStudent(Long idStudent, StudentRequestPojo pojo){
+        return restClient.send(HttpMethod.PUT, URLConstants.STUDENT_URL + idStudent, pojo, StudentPojo.class);
     }
 }

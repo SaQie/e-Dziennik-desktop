@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import pl.edziennik.client.common.ActionType;
+import pl.edziennik.client.common.Role;
 import pl.edziennik.client.controller.model.admin.SchoolClassComboBoxItem;
 import pl.edziennik.client.controller.model.admin.SchoolComboBoxItem;
 import pl.edziennik.client.core.AbstractController;
@@ -40,6 +42,7 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
     protected void fetchStageData() {
         fetchSchoolComboBoxItems();
         fetchSchoolClassComboBoxItems();
+        roleTextField.setText(Role.ROLE_STUDENT.name());
     }
 
     @Override
@@ -52,7 +55,7 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
         return (Stage) cancelButton.getScene().getWindow();
     }
 
-    protected void loadStageFields(StudentPojo studentPojo) {
+    protected void loadStageFields(StudentPojo studentPojo, ActionType actionType) {
         usernameTextField.setText(studentPojo.getUsername());
         firstNameTextField.setText(studentPojo.getFirstName());
         lastNameTextField.setText(studentPojo.getLastName());
@@ -67,8 +70,10 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
         emailTextField.setText(studentPojo.getEmail());
         schoolComboBox.getSelectionModel().select(new SchoolComboBoxItem(studentPojo.getSchool()));
         schoolClassComboBox.getSelectionModel().select(new SchoolClassComboBoxItem(studentPojo.getSchoolClass()));
-        schoolComboBox.setOnShown(show -> schoolComboBox.hide());
-        schoolClassComboBox.setOnShown(show -> schoolClassComboBox.hide());
+        if (ActionType.SHOW_ACTION.equals(actionType)) {
+            schoolComboBox.setOnShown(show -> schoolComboBox.hide());
+            schoolClassComboBox.setOnShown(show -> schoolClassComboBox.hide());
+        }
     }
 
     private void fetchSchoolClassComboBoxItems() {
@@ -93,12 +98,10 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
     }
 
     private void fetchSchoolComboBoxItems() {
-        if (schoolComboBox.getItems().isEmpty()) {
-            progressFactory.createLittleProgressBar(new LoadSchoolsTask(), (response) -> {
-                List<SchoolComboBoxItem> comboBoxItems = response.stream().map(SchoolComboBoxItem::new).toList();
-                schoolComboBox.setItems(FXCollections.observableList(comboBoxItems));
-            });
-        }
+        progressFactory.createLittleProgressBar(new LoadSchoolsTask(), (response) -> {
+            List<SchoolComboBoxItem> comboBoxItems = response.stream().map(SchoolComboBoxItem::new).toList();
+            schoolComboBox.setItems(FXCollections.observableList(comboBoxItems));
+        });
     }
 
     protected StudentRequestPojo mapToStudentRequestPojo() {

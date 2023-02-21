@@ -72,6 +72,7 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
         initializeDeleteButtonAction();
         initializeRefreshButtonAction();
         initializeShowButtonAction();
+        initializeEditButtonAction();
     }
 
 
@@ -127,14 +128,28 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
 
     private void initializeShowButtonAction() {
         showButton.setOnAction(button -> {
-            List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(studentsTableView, ActionType.EDIT_ACTION);
+            List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(studentsTableView, ActionType.SHOW_ACTION);
             progressFactory.createLittleProgressBar(new LoadStudentTask(selectedTableItems.get(0)), (schoolPojo) -> {
                 AdminAccountsTabStudentsShowController controller = NodeUtils.openNewStageAboveWithController(
                         ResourceConst.DASHBOARD_ADMIN_ACCOUNTS_SHOW_STUDENT_VIEW_ADDRESS.value(),
                         ResourceConst.SHOW_STUDENT_VIEW_TITLE_KEY.value(),
                         1000, 550,
                         getActualStage());
-                controller.loadStageFields(schoolPojo);
+                controller.loadStageFields(schoolPojo, ActionType.SHOW_ACTION);
+            });
+        });
+    }
+
+    private void initializeEditButtonAction(){
+        editButton.setOnAction(button -> {
+            List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(studentsTableView, ActionType.EDIT_ACTION);
+            progressFactory.createLittleProgressBar(new LoadStudentTask(selectedTableItems.get(0)), (schoolPojo) -> {
+                AdminAccountsTabStudentsEditController controller = NodeUtils.openNewStageAboveWithController(
+                        ResourceConst.DASHBOARD_ADMIN_ACCOUNTS_EDIT_STUDENT_VIEW_ADDRESS.value(),
+                        ResourceConst.EDIT_STUDENT_VIEW_TITLE_KEY.value(),
+                        1000, 550,
+                        getActualStage());
+                controller.loadStageFields(schoolPojo, ActionType.EDIT_ACTION);
             });
         });
     }

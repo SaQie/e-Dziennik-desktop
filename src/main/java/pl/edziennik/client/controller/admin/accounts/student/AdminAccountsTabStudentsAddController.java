@@ -19,18 +19,13 @@ public class AdminAccountsTabStudentsAddController extends AdminAccountsTabStude
     }
 
     @Override
-    protected void fetchStageData() {
-        super.fetchStageData();
-        roleTextField.setText(Role.ROLE_STUDENT.name());
-    }
-
-    @Override
     protected void setSceneSettings() {
         initializeValidators();
         NodeUtils.enableButtonIfFieldsHasNoErrors(saveButton, usernameTextField, firstNameTextField, lastNameTextField,
                 addressTextField, postalCodeTextField, cityTextField,
                 peselTextField, parentFirstNameTextField, parentLastNameTextField,
                 parentPhoneNumberTextField, emailTextField,schoolClassComboBox, schoolComboBox);
+        NodeUtils.setTextFieldAsNumbersOnly(peselTextField, parentPhoneNumberTextField);
     }
 
     @Override

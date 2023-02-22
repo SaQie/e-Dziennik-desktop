@@ -3,9 +3,9 @@ package pl.edziennik.client.validator.school;
 import javafx.scene.control.TextField;
 import pl.edziennik.client.validator.BasicValidator;
 
-public class AddSchoolValidator{
+public class SchoolValidator {
 
-    private AddSchoolValidator() {
+    private SchoolValidator() {
     }
 
     public static SchoolValidatorBuilder builder(){

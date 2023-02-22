@@ -2,13 +2,11 @@ package pl.edziennik.client.controller.admin.accounts.student;
 
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.Role;
 import pl.edziennik.client.controller.model.admin.StudentListModel;
-import pl.edziennik.client.rest.pojo.StudentPojo;
 import pl.edziennik.client.rest.pojo.StudentRequestPojo;
 import pl.edziennik.client.task.student.AddStudentTask;
 import pl.edziennik.client.utils.NodeUtils;
-import pl.edziennik.client.validator.student.AddStudentValidator;
+import pl.edziennik.client.validator.student.StudentValidator;
 
 public class AdminAccountsTabStudentsAddController extends AdminAccountsTabStudentActionAbstractController {
 
@@ -19,8 +17,12 @@ public class AdminAccountsTabStudentsAddController extends AdminAccountsTabStude
     }
 
     @Override
-    protected void setSceneSettings() {
+    protected void setSceneValidators() {
         initializeValidators();
+    }
+
+    @Override
+    protected void setSceneSettings() {
         NodeUtils.enableButtonIfFieldsHasNoErrors(saveButton, usernameTextField, firstNameTextField, lastNameTextField,
                 addressTextField, postalCodeTextField, cityTextField,
                 peselTextField, parentFirstNameTextField, parentLastNameTextField,
@@ -39,13 +41,14 @@ public class AdminAccountsTabStudentsAddController extends AdminAccountsTabStude
             progressFactory.createLittleProgressBar(new AddStudentTask(studentPojo), (response) -> {
                 AdminAccountsTabStudentsTabController studentController = AdminAccountsTabStudentsTabController.getInstance();
                 studentController.addItem(StudentListModel.mapPojoToModel(response));
+                NodeUtils.closeCurrentStage(getActualStage());
                 dialogFactory.createSuccessInformationDialog(null);
             });
         });
     }
 
     private void initializeValidators() {
-        AddStudentValidator.builder()
+        StudentValidator.builder()
                 .withCityValidator(cityTextField)
                 .withEmailValidator(emailTextField)
                 .withFirstNameValidator(firstNameTextField)
@@ -57,7 +60,7 @@ public class AdminAccountsTabStudentsAddController extends AdminAccountsTabStude
                 .withAddressValidator(addressTextField)
                 .withPostalCodeValidator(postalCodeTextField)
                 .withPhoneNumberValidator(parentPhoneNumberTextField)
-                .withCorrectPeselField(roleTextField)
+                .withCorrectRoleField(roleTextField)
                 .withNotEmptySchoolClassComboBox(schoolClassComboBox)
                 .withNotEmptySchoolComboBox(schoolComboBox)
                 .build();

@@ -4,7 +4,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.utils.ValidationUtil;
-import pl.edziennik.client.validator.student.AddStudentValidator;
 
 import java.util.regex.Pattern;
 

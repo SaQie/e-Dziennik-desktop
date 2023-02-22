@@ -45,4 +45,6 @@ module pl.edziennik.client {
     opens pl.edziennik.client.core to javafx.fxml;
     exports pl.edziennik.client.controller.admin.accounts.student;
     opens pl.edziennik.client.controller.admin.accounts.student to javafx.fxml;
+    exports pl.edziennik.client.controller.admin.accounts.teacher;
+    opens pl.edziennik.client.controller.admin.accounts.teacher to javafx.fxml;
 }

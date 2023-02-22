@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.admin.accounts;
+package pl.edziennik.client.controller.admin.accounts.teacher;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,12 +6,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
+import pl.edziennik.client.controller.model.admin.StudentListModel;
 import pl.edziennik.client.controller.model.admin.TeacherListModel;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.rest.pojo.TeacherPojo;
+import pl.edziennik.client.task.student.LoadStudentsTask;
+import pl.edziennik.client.task.teacher.LoadTeachersTask;
 import pl.edziennik.client.utils.NodeUtils;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static pl.edziennik.client.common.ResourceConst.*;
 
 public class AdminAccountsTabTeachersTabController extends AbstractController {
 
@@ -31,6 +37,13 @@ public class AdminAccountsTabTeachersTabController extends AbstractController {
         teachersTableView.refresh();
     }
 
+    public void addItem(TeacherListModel teacherModel) {
+        ArrayList<TeacherListModel> actualItems = new ArrayList<>(teachersTableView.getItems());
+        actualItems.add(teacherModel);
+        teachersTableView.setItems(FXCollections.observableList(actualItems));
+        teachersTableView.refresh();
+    }
+
     public boolean isTableDataEmpty() {
         return teachersTableView.getItems().isEmpty();
     }
@@ -44,11 +57,12 @@ public class AdminAccountsTabTeachersTabController extends AbstractController {
         initializeTableColumns();
     }
 
-
     @Override
     protected void createActions() {
-
+        initializeAddButtonAction();
+        initializeRefreshButtonAction();
     }
+
 
     @Override
     protected void setSceneSettings() {
@@ -74,8 +88,25 @@ public class AdminAccountsTabTeachersTabController extends AbstractController {
                 .withRoleColumn(true)
                 .withPeselColumn(true)
                 .withPostalCodeColumn(true)
-                .withSchoolColumn(true);
+                .withSchoolColumn(true)
+                .withEmailColumn(true);
+
 
         teachersTableView.getColumns().addAll(builder.build());
+    }
+
+    private void initializeRefreshButtonAction() {
+        refreshButton.setOnAction(button -> {
+            progressFactory.createLittleProgressBar(new LoadTeachersTask(), this::fetchTabData);
+        });
+    }
+
+    private void initializeAddButtonAction() {
+        addButton.setOnAction(button -> {
+            NodeUtils.openNewStageAbove(
+                    DASHBOARD_ADMIN_ACCOUNTS_ADD_TEACHER_VIEW_ADDRESS.value(),
+                    ADMIN_ACCOUNTS_ADD_TEACHER_TITLE_MESSAGE_KEY.value(),
+                    1000, 500, getActualStage());
+        });
     }
 }

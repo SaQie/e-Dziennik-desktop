@@ -126,6 +126,12 @@ public class AdminTableViewControllerMaker {
             return this;
         }
 
+        public TeacherTableViewBuilder withEmailColumn(final boolean isDefaultVisible) {
+            columns.add(AccountsTableViewColumns.TeacherTableViewColumns.getEmailColumn(isDefaultVisible));
+            return this;
+        }
+
+
         public List<TableColumn<TeacherListModel, ?>> build() {
             return columns;
         }

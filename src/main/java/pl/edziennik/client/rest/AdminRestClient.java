@@ -93,4 +93,8 @@ public class AdminRestClient {
     public StudentPojo editStudent(Long idStudent, StudentRequestPojo pojo){
         return restClient.send(HttpMethod.PUT, URLConstants.STUDENT_URL + idStudent, pojo, StudentPojo.class);
     }
+
+    public TeacherPojo saveNewTeacher(TeacherRequestPojo pojo) {
+        return restClient.send(HttpMethod.POST, URLConstants.TEACHER_URL, pojo, TeacherPojo.class);
+    }
 }

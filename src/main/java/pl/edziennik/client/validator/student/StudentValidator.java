@@ -4,9 +4,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import pl.edziennik.client.validator.BasicValidator;
 
-public class AddStudentValidator {
+public class StudentValidator {
 
-    private AddStudentValidator() {
+    private StudentValidator() {
     }
 
     public static StudentValidatorBuilder builder(){
@@ -60,7 +60,7 @@ public class AddStudentValidator {
             return this;
         }
 
-        public StudentValidatorBuilder withCorrectPeselField(TextField field){
+        public StudentValidatorBuilder withCorrectRoleField(TextField field){
             withAlwaysCorrectField(field);
             return this;
         }

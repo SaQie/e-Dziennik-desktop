@@ -9,7 +9,7 @@ import pl.edziennik.client.utils.ResourceUtil;
 
 import static pl.edziennik.client.common.ResourceConst.*;
 
-class AccountsTableViewColumns extends BasicTableViewColumns{
+class AccountsTableViewColumns extends BasicTableViewColumns {
 
     private AccountsTableViewColumns() {
     }
@@ -210,6 +210,13 @@ class AccountsTableViewColumns extends BasicTableViewColumns{
             schoolColumn.setCellValueFactory(cellData -> cellData.getValue().getSchool());
             schoolColumn.setVisible(isDefaultVisible);
             return schoolColumn;
+        }
+
+        protected static TableColumn<TeacherListModel, String> getEmailColumn(boolean isDefaultVisible) {
+            TableColumn<TeacherListModel, String> emailColumn = new TableColumn<>(ResourceUtil.getMessage(EMAIL_COLUMN_KEY.value()));
+            emailColumn.setCellValueFactory(cellData -> cellData.getValue().getEmail());
+            emailColumn.setVisible(isDefaultVisible);
+            return emailColumn;
         }
 
     }

@@ -5,6 +5,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 import pl.edziennik.client.controller.admin.accounts.student.AdminAccountsTabStudentsTabController;
+import pl.edziennik.client.controller.admin.accounts.teacher.AdminAccountsTabTeachersTabController;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.task.admin.LoadAdminsTask;
 import pl.edziennik.client.task.student.LoadStudentsTask;

@@ -120,6 +120,7 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
         studentPojo.setParentPhoneNumber(parentPhoneNumberTextField.getText());
         studentPojo.setPesel(peselTextField.getText());
         String password = UUID.randomUUID().toString();
+        // TODO, ten print bedzie do zmiany, haslo bedzie wysylane mailem
         System.out.println("Random uuid: " + password);
         studentPojo.setPassword(password);
         return studentPojo;

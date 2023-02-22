@@ -1,15 +1,12 @@
 package pl.edziennik.client.controller.admin.accounts.student;
 
 import pl.edziennik.client.common.ActionType;
-import pl.edziennik.client.controller.admin.schools.AdminSchoolsTabController;
-import pl.edziennik.client.rest.pojo.SchoolPojo;
 import pl.edziennik.client.rest.pojo.StudentPojo;
 import pl.edziennik.client.rest.pojo.StudentRequestPojo;
-import pl.edziennik.client.task.school.EditSchoolTask;
 import pl.edziennik.client.task.student.EditStudentTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ThreadUtils;
-import pl.edziennik.client.validator.student.AddStudentValidator;
+import pl.edziennik.client.validator.student.StudentValidator;
 
 public class AdminAccountsTabStudentsEditController extends AdminAccountsTabStudentActionAbstractController {
 
@@ -17,12 +14,16 @@ public class AdminAccountsTabStudentsEditController extends AdminAccountsTabStud
 
     @Override
     protected void setSceneSettings() {
-        initializeValidators();
         NodeUtils.enableButtonIfFieldsHasNoErrors(saveButton, usernameTextField, firstNameTextField, lastNameTextField,
                 addressTextField, postalCodeTextField, cityTextField,
                 peselTextField, parentFirstNameTextField, parentLastNameTextField,
                 parentPhoneNumberTextField, emailTextField, schoolClassComboBox, schoolComboBox);
         NodeUtils.setTextFieldAsNumbersOnly(peselTextField, parentPhoneNumberTextField);
+    }
+
+    @Override
+    protected void setSceneValidators() {
+        initializeValidators();
     }
 
     @Override
@@ -32,7 +33,7 @@ public class AdminAccountsTabStudentsEditController extends AdminAccountsTabStud
     }
 
     private void initializeValidators() {
-        AddStudentValidator.builder()
+        StudentValidator.builder()
                 .withCityValidator(cityTextField)
                 .withEmailValidator(emailTextField)
                 .withFirstNameValidator(firstNameTextField)
@@ -44,7 +45,7 @@ public class AdminAccountsTabStudentsEditController extends AdminAccountsTabStud
                 .withAddressValidator(addressTextField)
                 .withPostalCodeValidator(postalCodeTextField)
                 .withPhoneNumberValidator(parentPhoneNumberTextField)
-                .withCorrectPeselField(roleTextField)
+                .withCorrectRoleField(roleTextField)
                 .withNotEmptySchoolClassComboBox(schoolClassComboBox)
                 .withNotEmptySchoolComboBox(schoolComboBox)
                 .build();

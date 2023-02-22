@@ -7,7 +7,7 @@ import pl.edziennik.client.rest.pojo.SchoolPojo;
 import pl.edziennik.client.task.school.EditSchoolTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ThreadUtils;
-import pl.edziennik.client.validator.school.AddSchoolValidator;
+import pl.edziennik.client.validator.school.SchoolValidator;
 
 public class AdminSchoolsTabEditSchoolController extends AdminSchoolsTabActionAbstractController {
 
@@ -48,7 +48,7 @@ public class AdminSchoolsTabEditSchoolController extends AdminSchoolsTabActionAb
     }
 
     private void initializeValidators() {
-        AddSchoolValidator.builder()
+        SchoolValidator.builder()
                 .withNameValidator(nameTextField)
                 .withPhoneNumberValidator(phoneNumberTextField)
                 .withAddressValidator(addressTextField)

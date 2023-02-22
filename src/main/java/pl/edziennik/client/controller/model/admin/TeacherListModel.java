@@ -23,6 +23,7 @@ public class TeacherListModel implements TableViewSelection {
     private final SimpleStringProperty phoneNumber;
     private final SimpleStringProperty role;
     private final SimpleStringProperty school;
+    private final SimpleStringProperty email;
     private final CheckBox select;
 
     public TeacherListModel(TeacherPojo pojo) {
@@ -37,6 +38,7 @@ public class TeacherListModel implements TableViewSelection {
         this.phoneNumber = new SimpleStringProperty(pojo.getPhoneNumber());
         this.role = new SimpleStringProperty(pojo.getRole());
         this.school = new SimpleStringProperty(pojo.getSchool().getName());
+        this.email = new SimpleStringProperty(pojo.getEmail());
         this.select = Styles.tableViewSelectionCheckBox();
     }
 
@@ -44,6 +46,10 @@ public class TeacherListModel implements TableViewSelection {
         return pojos.stream()
                 .map(TeacherListModel::new)
                 .toList();
+    }
+
+    public static TeacherListModel mapPojoToModel(TeacherPojo pojo) {
+        return new TeacherListModel(pojo);
     }
 
     @Override

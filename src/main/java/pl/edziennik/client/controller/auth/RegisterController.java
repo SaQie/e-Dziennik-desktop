@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.common.ProgressFactory;
-import pl.edziennik.client.rest.pojo.AdminPojo;
+import pl.edziennik.client.rest.dto.admin.AdminDto;
 import pl.edziennik.client.task.register.RegisterAdminTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ValidationUtil;
@@ -76,11 +76,11 @@ public class RegisterController implements Initializable {
 
     private void setRegisterButtonAction() {
         registerButton.setOnAction(e -> {
-            AdminPojo adminPojo = new AdminPojo();
-            adminPojo.setPassword(passwordInput.getText());
-            adminPojo.setEmail(emailInput.getText());
-            adminPojo.setUsername(usernameInput.getText());
-            progressFactory.createLittleProgressBar(new RegisterAdminTask(adminPojo), (response) -> {
+            AdminDto adminDto = new AdminDto();
+            adminDto.setPassword(passwordInput.getText());
+            adminDto.setEmail(emailInput.getText());
+            adminDto.setUsername(usernameInput.getText());
+            progressFactory.createLittleProgressBar(new RegisterAdminTask(adminDto), (response) -> {
                 dialogFactory.createSuccessInformationDialog(null);
                 ValidationUtil.clearFields(usernameInput,passwordInput,emailInput,repeatPasswordInput);
             });

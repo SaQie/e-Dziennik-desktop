@@ -1,25 +1,17 @@
 package pl.edziennik.client.controller.auth;
 
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.AccessibleRole;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.AccountType;
-import pl.edziennik.client.common.DialogFactory;
-import pl.edziennik.client.common.ProgressFactory;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.rest.AuthorizationRestClient;
-import pl.edziennik.client.rest.pojo.LoginCredentialsPojo;
+import pl.edziennik.client.rest.dto.auth.LoginCredentialsDto;
 import pl.edziennik.client.utils.AuthorizationUtils;
 import pl.edziennik.client.utils.NodeUtils;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class LoginController extends AbstractController {
 
@@ -62,7 +54,7 @@ public class LoginController extends AbstractController {
 
     private void initializeLoginButton() {
         loginButton.setOnAction(button -> {
-            LoginCredentialsPojo credentialsPojo = new LoginCredentialsPojo();
+            LoginCredentialsDto credentialsPojo = new LoginCredentialsDto();
             credentialsPojo.setUsername(usernameInput.getText());
             credentialsPojo.setPassword(passwordInput.getText());
             authorizationRestClient.login(credentialsPojo);

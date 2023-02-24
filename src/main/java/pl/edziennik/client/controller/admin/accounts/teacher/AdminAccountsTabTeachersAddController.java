@@ -1,12 +1,8 @@
 package pl.edziennik.client.controller.admin.accounts.teacher;
 
 import pl.edziennik.client.common.Role;
-import pl.edziennik.client.controller.admin.accounts.student.AdminAccountsTabStudentsTabController;
-import pl.edziennik.client.controller.model.admin.StudentListModel;
 import pl.edziennik.client.controller.model.admin.TeacherListModel;
-import pl.edziennik.client.rest.pojo.StudentRequestPojo;
-import pl.edziennik.client.rest.pojo.TeacherRequestPojo;
-import pl.edziennik.client.task.student.AddStudentTask;
+import pl.edziennik.client.rest.dto.teacher.TeacherRequestDto;
 import pl.edziennik.client.task.teacher.AddTeacherTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.validator.teacher.TeacherValidator;
@@ -16,6 +12,7 @@ public class AdminAccountsTabTeachersAddController extends AdminAccountsTabTeach
 
     @Override
     protected void setSceneSettings() {
+        super.setSceneSettings();
         NodeUtils.enableButtonIfFieldsHasNoErrors(saveButton, usernameTextField, firstNameTextField, lastNameTextField,
                 addressTextField, postalCodeTextField, cityTextField,
                 peselTextField, phoneNumberTextField, emailTextField, schoolComboBox);
@@ -40,7 +37,7 @@ public class AdminAccountsTabTeachersAddController extends AdminAccountsTabTeach
 
     private void initializeSaveButtonAction() {
         saveButton.setOnAction(button -> {
-            TeacherRequestPojo pojo = mapToTeacherRequestPojo();
+            TeacherRequestDto pojo = mapToTeacherRequestPojo();
             progressFactory.createLittleProgressBar(new AddTeacherTask(pojo), (response) -> {
                 AdminAccountsTabTeachersTabController teachersController = AdminAccountsTabTeachersTabController.getInstance();
                 teachersController.addItem(TeacherListModel.mapPojoToModel(response));

@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.CheckBox;
 import lombok.Getter;
 import pl.edziennik.client.common.Styles;
-import pl.edziennik.client.rest.pojo.SchoolPojo;
+import pl.edziennik.client.rest.dto.school.SchoolDto;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class SchoolListModel implements TableViewSelection {
     private final CheckBox select;
 
 
-    public SchoolListModel(SchoolPojo pojo) {
+    public SchoolListModel(SchoolDto pojo) {
         this.name = new SimpleStringProperty(pojo.getName());
         this.postalCode = new SimpleStringProperty(pojo.getPostalCode());
         this.city = new SimpleStringProperty(pojo.getCity());
@@ -38,13 +38,13 @@ public class SchoolListModel implements TableViewSelection {
     }
 
 
-    public static List<SchoolListModel> mapPojoToModel(List<SchoolPojo> pojos) {
+    public static List<SchoolListModel> mapPojoToModel(List<SchoolDto> pojos) {
         return pojos.stream()
                 .map(SchoolListModel::new)
                 .toList();
     }
 
-    public static SchoolListModel mapPojoToModel(SchoolPojo pojo) {
+    public static SchoolListModel mapPojoToModel(SchoolDto pojo) {
         return new SchoolListModel(pojo);
     }
 

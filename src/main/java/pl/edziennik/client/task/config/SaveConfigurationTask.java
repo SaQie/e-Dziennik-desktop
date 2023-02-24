@@ -3,25 +3,24 @@ package pl.edziennik.client.task.config;
 import javafx.concurrent.Task;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;
-import pl.edziennik.client.rest.pojo.ConfigurationPojo;
-import pl.edziennik.client.rest.pojo.SettingsValue;
+import pl.edziennik.client.rest.dto.config.SettingsValueDto;
 
 import java.util.List;
 
 public class SaveConfigurationTask extends Task<Void> {
 
     private final AdminRestClient adminRestClient;
-    private final List<SettingsValue> settingsValues;
+    private final List<SettingsValueDto> settingsValueDtos;
 
-    public SaveConfigurationTask(List<SettingsValue> settingsValues) {
+    public SaveConfigurationTask(List<SettingsValueDto> settingsValueDtos) {
         this.adminRestClient = new AdminRestClient();
-        this.settingsValues = settingsValues;
+        this.settingsValueDtos = settingsValueDtos;
     }
 
     @Override
     protected Void call() throws Exception {
         try {
-            for (SettingsValue values : settingsValues) {
+            for (SettingsValueDto values : settingsValueDtos) {
                 adminRestClient.saveConfiguration(values);
             }
         } catch (RestClientException e) {

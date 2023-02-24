@@ -1,9 +1,13 @@
-package pl.edziennik.client.rest.pojo;
+package pl.edziennik.client.rest.dto.student;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import pl.edziennik.client.rest.dto.schoolclass.SimpleSchoolClassDto;
+import pl.edziennik.client.rest.dto.school.SimpleSchoolDto;
 
-@Data
-public class StudentPojo {
+@Getter
+@Setter
+public class StudentDto {
 
     private Long id;
     private String username;
@@ -18,8 +22,8 @@ public class StudentPojo {
     private String parentFirstName;
     private String parentLastName;
     private String password;
-    private SimpleSchoolPojo school;
-    private SimpleSchoolClassPojo schoolClass;
+    private SimpleSchoolDto school;
+    private SimpleSchoolClassDto schoolClass;
     private String role;
 
 }

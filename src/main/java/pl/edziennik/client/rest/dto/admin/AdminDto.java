@@ -1,9 +1,11 @@
-package pl.edziennik.client.rest.pojo;
+package pl.edziennik.client.rest.dto.admin;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-public class AdminPojo {
+@Getter
+@Setter
+public class AdminDto {
 
     private Long id;
     private String username;

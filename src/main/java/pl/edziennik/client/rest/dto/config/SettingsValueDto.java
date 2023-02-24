@@ -1,13 +1,15 @@
-package pl.edziennik.client.rest.pojo;
+package pl.edziennik.client.rest.dto.config;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SettingsValue {
+public class SettingsValueDto {
 
     private Long id;
     private boolean enabled;

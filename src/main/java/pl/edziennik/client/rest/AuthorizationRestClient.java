@@ -2,7 +2,7 @@ package pl.edziennik.client.rest;
 
 import pl.edziennik.client.rest.client.RestClient;
 import pl.edziennik.client.rest.client.URLConstants;
-import pl.edziennik.client.rest.pojo.LoginCredentialsPojo;
+import pl.edziennik.client.rest.dto.auth.LoginCredentialsDto;
 
 public class AuthorizationRestClient {
 
@@ -12,7 +12,7 @@ public class AuthorizationRestClient {
         this.restClient = RestClient.getInstance();
     }
 
-    public void login(LoginCredentialsPojo credentialsPojo) {
+    public void login(LoginCredentialsDto credentialsPojo) {
         restClient.login(URLConstants.LOGIN_URL, credentialsPojo);
     }
 }

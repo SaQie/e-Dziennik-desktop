@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import pl.edziennik.client.controller.model.admin.SchoolListModel;
-import pl.edziennik.client.rest.pojo.SchoolPojo;
+import pl.edziennik.client.rest.dto.school.SchoolDto;
 import pl.edziennik.client.task.school.AddNewSchoolTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ThreadUtils;
@@ -55,8 +55,8 @@ public class AdminSchoolsTabAddSchoolController extends AdminSchoolsTabActionAbs
 
     private void initializeSaveButtonAction() {
         saveButton.setOnAction(button -> {
-            SchoolPojo schoolPojo = mapToSchoolPojo();
-            ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new AddNewSchoolTask(schoolPojo), (response) -> {
+            SchoolDto schoolDto = mapToSchoolPojo();
+            ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new AddNewSchoolTask(schoolDto), (response) -> {
                 AdminSchoolsTabController controller = AdminSchoolsTabController.getInstance();
                 controller.addItem(SchoolListModel.mapPojoToModel(response));
                 dialogFactory.createSuccessInformationDialog(null);

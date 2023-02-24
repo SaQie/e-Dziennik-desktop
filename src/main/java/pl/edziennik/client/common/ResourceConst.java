@@ -28,7 +28,9 @@ public enum ResourceConst {
     DASHBOARD_ADMIN_ACCOUNTS_EDIT_STUDENT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/student/admin-dashboard-accounts-students-edit.fxml"),
     DASHBOARD_ADMIN_ACCOUNTS_SHOW_STUDENT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/student/admin-dashboard-accounts-students-show.fxml"),
     DASHBOARD_ADMIN_ACCOUNTS_ADD_TEACHER_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/teacher/admin-dashboard-accounts-teachers-add.fxml"),
-    // MESSAGES
+    DASHBOARD_ADMIN_ACCOUNTS_EDIT_TEACHER_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/teacher/admin-dashboard-accounts-teachers-edit.fxml"),
+    DASHBOARD_ADMIN_ACCOUNTS_SHOW_TEACHER_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/teacher/admin-dashboard-accounts-teachers-show.fxml"),
+    // MESSAGES,
 
     EXIT_CONFIRMATION_MESSAGE_KEY("exit.confirmation.message"),
     EXIT_CONFIRMATION_HEADER_KEY("exit.confirmation.header"),
@@ -40,9 +42,11 @@ public enum ResourceConst {
     COLUMN_VIEW_CONFIGURATION_TITLE_MESSAGE_KEY("configuration.window.title"),
     LOGOUT_DIALOG_TITLE_MESSAGE_KEY("logout.dialog.title"),
     EDIT_STUDENT_VIEW_TITLE_KEY("edit.student.view.title"),
+    EDIT_TEACHER_VIEW_TITLE_KEY("edit.teacher.view.title"),
     LOGOUT_DIALOG_HEADER_MESSAGE_KEY("logout.dialog.header"),
     BUTTON_YES_KEY("button.yes"),
     BUTTON_NO_KEY("button.no"),
+    SHOW_TEACHER_VIEW_TITLE("label.show.teacher"),
     BUTTON_OK_KEY("button.ok"),
     ADMIN_ACCOUNTS_ADD_TEACHER_TITLE_MESSAGE_KEY("add.teacher.title"),
     WAITING_REGISTER_MESSAGE_KEY("waiting.register.message"),
@@ -90,6 +94,8 @@ public enum ResourceConst {
     WAITING_DELETE_STUDENT_MESSAGE_KEY("waiting.delete.student.message.key"),
     WAITING_FETCHING_STUDENT_MESSAGE_KEY("waiting.fetching.student.message.key"),
     WAITING_ADD_NEW_TEACHER_MESSAGE_KEY("waiting.add.new.teacher.message"),
+    WAITING_DELETE_TEACHER_MESSAGE_KEY("waiting.delete.teacher.message.key"),
+    WAITING_EDIT_TEACHER_MESSAGE_KEY("waiting.edit.teacher.message.key"),
 
     // ERROR CODES
 

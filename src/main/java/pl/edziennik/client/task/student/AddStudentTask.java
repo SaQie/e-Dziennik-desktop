@@ -3,24 +3,24 @@ package pl.edziennik.client.task.student;
 import javafx.concurrent.Task;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;
-import pl.edziennik.client.rest.pojo.StudentPojo;
-import pl.edziennik.client.rest.pojo.StudentRequestPojo;
+import pl.edziennik.client.rest.dto.student.StudentDto;
+import pl.edziennik.client.rest.dto.student.StudentRequestDto;
 import pl.edziennik.client.utils.ResourceUtil;
 
 import static pl.edziennik.client.common.ResourceConst.WAITING_ADD_NEW_STUDENT_MESSAGE_KEY;
 
-public class AddStudentTask extends Task<StudentPojo> {
+public class AddStudentTask extends Task<StudentDto> {
 
     private final AdminRestClient adminRestClient;
-    private final StudentRequestPojo studentPojo;
+    private final StudentRequestDto studentPojo;
 
-    public AddStudentTask(StudentRequestPojo studentPojo) {
+    public AddStudentTask(StudentRequestDto studentPojo) {
         this.adminRestClient = new AdminRestClient();
         this.studentPojo = studentPojo;
     }
 
     @Override
-    protected StudentPojo call() throws Exception {
+    protected StudentDto call() throws Exception {
         try{
             updateMessage(ResourceUtil.getMessage(WAITING_ADD_NEW_STUDENT_MESSAGE_KEY.value()));
             return adminRestClient.saveNewStudent(studentPojo);

@@ -3,7 +3,7 @@ package pl.edziennik.client.controller.model.admin;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import lombok.Getter;
-import pl.edziennik.client.rest.pojo.SimpleSchoolLevelPojo;
+import pl.edziennik.client.rest.dto.schoollevel.SimpleSchoolLevelDto;
 import pl.edziennik.client.utils.MessageConverter;
 
 @Getter
@@ -12,7 +12,7 @@ public class SchoolLevelComboBoxItem {
     private SimpleLongProperty id;
     private SimpleStringProperty name;
 
-    public SchoolLevelComboBoxItem(SimpleSchoolLevelPojo schoolLevel) {
+    public SchoolLevelComboBoxItem(SimpleSchoolLevelDto schoolLevel) {
         this.name = new SimpleStringProperty(MessageConverter.converSchoolLevelMessages(schoolLevel.getName()));
     }
 

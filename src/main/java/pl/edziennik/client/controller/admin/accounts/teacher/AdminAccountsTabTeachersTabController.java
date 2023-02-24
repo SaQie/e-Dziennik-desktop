@@ -5,12 +5,18 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import pl.edziennik.client.common.ActionType;
+import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
-import pl.edziennik.client.controller.model.admin.StudentListModel;
+import pl.edziennik.client.controller.admin.accounts.student.AdminAccountsTabStudentsEditController;
+import pl.edziennik.client.controller.admin.accounts.student.AdminAccountsTabStudentsShowController;
 import pl.edziennik.client.controller.model.admin.TeacherListModel;
 import pl.edziennik.client.core.AbstractController;
-import pl.edziennik.client.rest.pojo.TeacherPojo;
-import pl.edziennik.client.task.student.LoadStudentsTask;
+import pl.edziennik.client.rest.dto.teacher.TeacherDto;
+import pl.edziennik.client.task.student.DeleteStudentTask;
+import pl.edziennik.client.task.student.LoadStudentTask;
+import pl.edziennik.client.task.teacher.DeleteTeacherTask;
+import pl.edziennik.client.task.teacher.LoadTeacherTask;
 import pl.edziennik.client.task.teacher.LoadTeachersTask;
 import pl.edziennik.client.utils.NodeUtils;
 
@@ -30,7 +36,7 @@ public class AdminAccountsTabTeachersTabController extends AbstractController {
         instance = this;
     }
 
-    public void fetchTabData(final List<TeacherPojo> teachersList) {
+    public void fetchTabData(final List<TeacherDto> teachersList) {
         List<TeacherListModel> teacherListModels = TeacherListModel.mapPojoToModel(teachersList);
         ObservableList<TeacherListModel> items = FXCollections.observableList(teacherListModels);
         teachersTableView.setItems(items);
@@ -61,6 +67,9 @@ public class AdminAccountsTabTeachersTabController extends AbstractController {
     protected void createActions() {
         initializeAddButtonAction();
         initializeRefreshButtonAction();
+        initializeDeleteButtonAction();
+        initializeEditButtonAction();
+        initializeShowButtonAction();
     }
 
 
@@ -107,6 +116,45 @@ public class AdminAccountsTabTeachersTabController extends AbstractController {
                     DASHBOARD_ADMIN_ACCOUNTS_ADD_TEACHER_VIEW_ADDRESS.value(),
                     ADMIN_ACCOUNTS_ADD_TEACHER_TITLE_MESSAGE_KEY.value(),
                     1000, 500, getActualStage());
+        });
+    }
+
+    private void initializeDeleteButtonAction() {
+        deleteButton.setOnAction(button -> {
+            List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(teachersTableView, ActionType.DELETE_ACTION);
+            if (dialogFactory.createQuestionInformationDialog(ARE_YOU_SURE_TO_PERFORM_DELETE_OPERATION_MESSAGE_KEY.value())) {
+                progressFactory.createLittleProgressBar(new DeleteTeacherTask(selectedTableItems), (action) -> {
+                    refreshButton.fire();
+                });
+            }
+        });
+    }
+
+    private void initializeEditButtonAction() {
+        editButton.setOnAction(button -> {
+            List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(teachersTableView, ActionType.EDIT_ACTION);
+            progressFactory.createLittleProgressBar(new LoadTeacherTask(selectedTableItems.get(0)), (teacherPojo) -> {
+                AdminAccountsTabTeachersEditController controller = NodeUtils.openNewStageAboveWithController(
+                        DASHBOARD_ADMIN_ACCOUNTS_EDIT_TEACHER_VIEW_ADDRESS.value(),
+                        EDIT_TEACHER_VIEW_TITLE_KEY.value(),
+                        1000, 550,
+                        getActualStage());
+                controller.loadStageFields(teacherPojo, ActionType.EDIT_ACTION);
+            });
+        });
+    }
+
+    private void initializeShowButtonAction() {
+        showButton.setOnAction(button -> {
+            List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(teachersTableView, ActionType.SHOW_ACTION);
+            progressFactory.createLittleProgressBar(new LoadTeacherTask(selectedTableItems.get(0)), (teacherPojo) -> {
+                AdminAccountsTabTeachersShowController controller = NodeUtils.openNewStageAboveWithController(
+                        DASHBOARD_ADMIN_ACCOUNTS_SHOW_TEACHER_VIEW_ADDRESS.value(),
+                        ResourceConst.SHOW_TEACHER_VIEW_TITLE.value(),
+                        1000, 550,
+                        getActualStage());
+                controller.loadStageFields(teacherPojo, ActionType.SHOW_ACTION);
+            });
         });
     }
 }

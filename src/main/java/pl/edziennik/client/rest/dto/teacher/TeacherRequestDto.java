@@ -1,16 +1,13 @@
-package pl.edziennik.client.rest.pojo;
+package pl.edziennik.client.rest.dto.teacher;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
-public class StudentRequestPojo {
+public class TeacherRequestDto {
 
+    private Long id;
     private String username;
     private String firstName;
     private String lastName;
@@ -18,12 +15,10 @@ public class StudentRequestPojo {
     private String postalCode;
     private String city;
     private String pesel;
+    private String phoneNumber;
+    private String role;
     private String email;
-    private String parentFirstName;
-    private String parentLastName;
-    private String parentPhoneNumber;
     private Long idSchool;
-    private Long idSchoolClass;
     private String password;
 
 }

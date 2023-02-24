@@ -3,7 +3,7 @@ package pl.edziennik.client.controller.admin.schools;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import pl.edziennik.client.rest.pojo.SchoolPojo;
+import pl.edziennik.client.rest.dto.school.SchoolDto;
 import pl.edziennik.client.task.school.EditSchoolTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ThreadUtils;
@@ -37,9 +37,9 @@ public class AdminSchoolsTabEditSchoolController extends AdminSchoolsTabActionAb
     }
 
     @Override
-    protected void loadStageFields(SchoolPojo schoolPojo) {
-        super.loadStageFields(schoolPojo);
-        this.objectId = schoolPojo.getId();
+    protected void loadStageFields(SchoolDto schoolDto) {
+        super.loadStageFields(schoolDto);
+        this.objectId = schoolDto.getId();
     }
 
     @Override
@@ -61,8 +61,8 @@ public class AdminSchoolsTabEditSchoolController extends AdminSchoolsTabActionAb
 
     private void initializeSaveButtonAction() {
         saveButton.setOnAction(button -> {
-            SchoolPojo schoolPojo = mapToSchoolPojo();
-            ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new EditSchoolTask(objectId, schoolPojo), (response) -> {
+            SchoolDto schoolDto = mapToSchoolPojo();
+            ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new EditSchoolTask(objectId, schoolDto), (response) -> {
                 AdminSchoolsTabController controller = AdminSchoolsTabController.getInstance();
                 controller.refreshButton.fire();
                 dialogFactory.createSuccessInformationDialog(null);

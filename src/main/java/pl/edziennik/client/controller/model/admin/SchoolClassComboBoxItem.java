@@ -3,8 +3,8 @@ package pl.edziennik.client.controller.model.admin;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import lombok.Getter;
-import pl.edziennik.client.rest.pojo.SchoolClassPojo;
-import pl.edziennik.client.rest.pojo.SimpleSchoolClassPojo;
+import pl.edziennik.client.rest.dto.schoolclass.SchoolClassDto;
+import pl.edziennik.client.rest.dto.schoolclass.SimpleSchoolClassDto;
 
 @Getter
 public class SchoolClassComboBoxItem {
@@ -12,12 +12,12 @@ public class SchoolClassComboBoxItem {
     private final SimpleLongProperty id;
     private final SimpleStringProperty className;
 
-    public SchoolClassComboBoxItem(SchoolClassPojo pojo) {
+    public SchoolClassComboBoxItem(SchoolClassDto pojo) {
         this.id = new SimpleLongProperty(pojo.getId());
         this.className = new SimpleStringProperty(pojo.getClassName());
     }
 
-    public SchoolClassComboBoxItem(SimpleSchoolClassPojo pojo) {
+    public SchoolClassComboBoxItem(SimpleSchoolClassDto pojo) {
         this.id = new SimpleLongProperty(pojo.getId());
         this.className = new SimpleStringProperty(pojo.getClassName());
     }

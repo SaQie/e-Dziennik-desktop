@@ -10,8 +10,8 @@ import pl.edziennik.client.common.Role;
 import pl.edziennik.client.controller.model.admin.SchoolClassComboBoxItem;
 import pl.edziennik.client.controller.model.admin.SchoolComboBoxItem;
 import pl.edziennik.client.core.AbstractController;
-import pl.edziennik.client.rest.pojo.StudentPojo;
-import pl.edziennik.client.rest.pojo.StudentRequestPojo;
+import pl.edziennik.client.rest.dto.student.StudentDto;
+import pl.edziennik.client.rest.dto.student.StudentRequestDto;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.task.schoolclass.LoadSchoolClassesTask;
 import pl.edziennik.client.utils.NodeUtils;
@@ -55,21 +55,21 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
         return (Stage) cancelButton.getScene().getWindow();
     }
 
-    protected void loadStageFields(StudentPojo studentPojo, ActionType actionType) {
-        usernameTextField.setText(studentPojo.getUsername());
-        firstNameTextField.setText(studentPojo.getFirstName());
-        lastNameTextField.setText(studentPojo.getLastName());
-        parentFirstNameTextField.setText(studentPojo.getParentFirstName());
-        parentLastNameTextField.setText(studentPojo.getParentLastName());
-        parentPhoneNumberTextField.setText(studentPojo.getParentPhoneNumber());
-        roleTextField.setText(studentPojo.getRole());
-        addressTextField.setText(studentPojo.getAddress());
-        cityTextField.setText(studentPojo.getCity());
-        postalCodeTextField.setText(studentPojo.getPostalCode());
-        peselTextField.setText(studentPojo.getPesel());
-        emailTextField.setText(studentPojo.getEmail());
-        schoolComboBox.getSelectionModel().select(new SchoolComboBoxItem(studentPojo.getSchool()));
-        schoolClassComboBox.getSelectionModel().select(new SchoolClassComboBoxItem(studentPojo.getSchoolClass()));
+    protected void loadStageFields(StudentDto studentDto, ActionType actionType) {
+        usernameTextField.setText(studentDto.getUsername());
+        firstNameTextField.setText(studentDto.getFirstName());
+        lastNameTextField.setText(studentDto.getLastName());
+        parentFirstNameTextField.setText(studentDto.getParentFirstName());
+        parentLastNameTextField.setText(studentDto.getParentLastName());
+        parentPhoneNumberTextField.setText(studentDto.getParentPhoneNumber());
+        roleTextField.setText(studentDto.getRole());
+        addressTextField.setText(studentDto.getAddress());
+        cityTextField.setText(studentDto.getCity());
+        postalCodeTextField.setText(studentDto.getPostalCode());
+        peselTextField.setText(studentDto.getPesel());
+        emailTextField.setText(studentDto.getEmail());
+        schoolComboBox.getSelectionModel().select(new SchoolComboBoxItem(studentDto.getSchool()));
+        schoolClassComboBox.getSelectionModel().select(new SchoolClassComboBoxItem(studentDto.getSchoolClass()));
         if (ActionType.SHOW_ACTION.equals(actionType)) {
             schoolComboBox.setOnShown(show -> schoolComboBox.hide());
             schoolClassComboBox.setOnShown(show -> schoolClassComboBox.hide());
@@ -104,8 +104,8 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
         });
     }
 
-    protected StudentRequestPojo mapToStudentRequestPojo() {
-        StudentRequestPojo studentPojo = new StudentRequestPojo();
+    protected StudentRequestDto mapToStudentRequestPojo() {
+        StudentRequestDto studentPojo = new StudentRequestDto();
         studentPojo.setCity(cityTextField.getText());
         studentPojo.setAddress(addressTextField.getText());
         studentPojo.setEmail(emailTextField.getText());

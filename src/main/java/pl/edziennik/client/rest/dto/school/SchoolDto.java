@@ -1,9 +1,12 @@
-package pl.edziennik.client.rest.pojo;
+package pl.edziennik.client.rest.dto.school;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import pl.edziennik.client.rest.dto.schoollevel.SimpleSchoolLevelDto;
 
-@Data
-public class SchoolPojo {
+@Getter
+@Setter
+public class SchoolDto {
 
     private Long id;
     private String name;
@@ -14,6 +17,6 @@ public class SchoolPojo {
     private String address;
     private String phoneNumber;
     private Long idSchoolLevel;
-    private SimpleSchoolLevelPojo schoolLevel;
+    private SimpleSchoolLevelDto schoolLevel;
 
 }

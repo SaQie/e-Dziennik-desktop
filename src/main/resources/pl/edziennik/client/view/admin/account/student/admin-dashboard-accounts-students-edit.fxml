@@ -39,10 +39,10 @@
                      <children>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../icons/add.png" />
+                              <Image url="@../../../../icons/edit.png" />
                            </image>
                         </ImageView>
-                        <Label text="%label.add.student" textFill="WHITE">
+                        <Label text="%label.edit.student" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="14.0" />
                            </font>

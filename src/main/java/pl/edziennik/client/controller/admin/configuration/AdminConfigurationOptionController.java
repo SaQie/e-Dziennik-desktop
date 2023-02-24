@@ -6,8 +6,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import pl.edziennik.client.core.AbstractController;
-import pl.edziennik.client.rest.pojo.ConfigurationPojo;
-import pl.edziennik.client.rest.pojo.SettingsValue;
+import pl.edziennik.client.rest.dto.config.ConfigurationDto;
+import pl.edziennik.client.rest.dto.config.SettingsValueDto;
 import pl.edziennik.client.task.config.SaveConfigurationTask;
 import pl.edziennik.client.utils.NodeUtils;
 
@@ -41,9 +41,9 @@ public class AdminConfigurationOptionController extends AbstractController {
 
     private void initializeSaveButtonAction() {
         saveButton.setOnAction(button -> {
-            List<SettingsValue> configurationPojos = new ArrayList<>();
-            configurationPojos.add(new SettingsValue(firstParameterId, firstParameterValue.isSelected()));
-            configurationPojos.add(new SettingsValue(secondParameterId, secondParameterValue.isSelected()));
+            List<SettingsValueDto> configurationPojos = new ArrayList<>();
+            configurationPojos.add(new SettingsValueDto(firstParameterId, firstParameterValue.isSelected()));
+            configurationPojos.add(new SettingsValueDto(secondParameterId, secondParameterValue.isSelected()));
             progressFactory.createLittleProgressBar(new SaveConfigurationTask(configurationPojos), (response) -> {
                 getActualStage().close();
             });
@@ -55,7 +55,7 @@ public class AdminConfigurationOptionController extends AbstractController {
         return (Stage) cancelButton.getScene().getWindow();
     }
 
-    public void fetchData(List<ConfigurationPojo> configurationList) {
+    public void fetchData(List<ConfigurationDto> configurationList) {
         firstParameterLabel.setText(configurationList.get(0).getName());
         firstParameterValue.setSelected(configurationList.get(0).isEnabled());
         firstParameterId = configurationList.get(0).getId();

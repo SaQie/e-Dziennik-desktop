@@ -4,14 +4,14 @@ import javafx.concurrent.Task;
 import static pl.edziennik.client.common.ResourceConst.*;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;
-import pl.edziennik.client.rest.pojo.SchoolPojo;
+import pl.edziennik.client.rest.dto.school.SchoolDto;
 import pl.edziennik.client.utils.ResourceUtil;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class LoadSchoolsTask extends Task<List<SchoolPojo>> {
+public class LoadSchoolsTask extends Task<List<SchoolDto>> {
 
     private final AdminRestClient adminRestClient;
 
@@ -20,7 +20,7 @@ public class LoadSchoolsTask extends Task<List<SchoolPojo>> {
     }
 
     @Override
-    protected List<SchoolPojo> call() throws Exception {
+    protected List<SchoolDto> call() throws Exception {
         try {
             updateMessage(ResourceUtil.getMessage(FETCHING_SCHOOL_LIST_DATA_MESSAGE_KEY.value()));
             return adminRestClient.getSchoolList();

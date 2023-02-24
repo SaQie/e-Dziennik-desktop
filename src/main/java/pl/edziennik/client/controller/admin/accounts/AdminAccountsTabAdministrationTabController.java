@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
 import pl.edziennik.client.controller.model.admin.AdminListModel;
 import pl.edziennik.client.core.AbstractController;
-import pl.edziennik.client.rest.pojo.AdminPojo;
+import pl.edziennik.client.rest.dto.admin.AdminDto;
 import pl.edziennik.client.utils.NodeUtils;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
         instance = this;
     }
 
-    public void fetchTabData(final List<AdminPojo> adminsList) {
+    public void fetchTabData(final List<AdminDto> adminsList) {
         List<AdminListModel> adminListModels = AdminListModel.mapPojoToModel(adminsList);
         ObservableList<AdminListModel> items = FXCollections.observableList(adminListModels);
         administrationTableView.setItems(items);

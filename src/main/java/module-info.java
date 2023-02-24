@@ -18,7 +18,6 @@ module pl.edziennik.client {
     exports pl.edziennik.client.controller;
     exports pl.edziennik.client.controller.admin;
     exports pl.edziennik.client.rest.client;
-    exports pl.edziennik.client.rest.pojo;
     exports pl.edziennik.client.rest.client.response;
     exports pl.edziennik.client.exception;
     exports pl.edziennik.client.utils;
@@ -47,4 +46,12 @@ module pl.edziennik.client {
     opens pl.edziennik.client.controller.admin.accounts.student to javafx.fxml;
     exports pl.edziennik.client.controller.admin.accounts.teacher;
     opens pl.edziennik.client.controller.admin.accounts.teacher to javafx.fxml;
+    exports pl.edziennik.client.rest.dto.student;
+    exports pl.edziennik.client.rest.dto.teacher;
+    exports pl.edziennik.client.rest.dto.admin;
+    exports pl.edziennik.client.rest.dto.school;
+    exports pl.edziennik.client.rest.dto.auth;
+    exports pl.edziennik.client.rest.dto.schoolclass;
+    exports pl.edziennik.client.rest.dto.schoollevel;
+    exports pl.edziennik.client.rest.dto.config;
 }

@@ -3,7 +3,6 @@ package pl.edziennik.client.controller.admin.schools;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import pl.edziennik.client.core.AbstractController;
@@ -11,7 +10,7 @@ import pl.edziennik.client.common.ActionType;
 import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
 import pl.edziennik.client.controller.model.admin.SchoolListModel;
-import pl.edziennik.client.rest.pojo.SchoolPojo;
+import pl.edziennik.client.rest.dto.school.SchoolDto;
 import pl.edziennik.client.task.school.DeleteSchoolTask;
 import pl.edziennik.client.task.school.LoadSchoolTask;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
@@ -62,7 +61,7 @@ public class AdminSchoolsTabController extends AbstractController {
     }
 
 
-    public void fetchTabData(final List<SchoolPojo> schoolList) {
+    public void fetchTabData(final List<SchoolDto> schoolList) {
         List<SchoolListModel> schoolListModels = SchoolListModel.mapPojoToModel(schoolList);
         ObservableList<SchoolListModel> items = FXCollections.observableList(schoolListModels);
         tableView.setItems(items);

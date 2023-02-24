@@ -8,9 +8,6 @@ import javafx.stage.Stage;
 import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.core.AbstractController;
-import pl.edziennik.client.rest.pojo.ConfigurationPojo;
-
-import java.util.List;
 
 public class ConfigurationController extends AbstractController {
 

@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.CheckBox;
 import lombok.Getter;
 import pl.edziennik.client.common.Styles;
-import pl.edziennik.client.rest.pojo.StudentPojo;
+import pl.edziennik.client.rest.dto.student.StudentDto;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class StudentListModel implements TableViewSelection {
     private final SimpleStringProperty role;
     private final CheckBox select;
 
-    public StudentListModel(StudentPojo pojo) {
+    public StudentListModel(StudentDto pojo) {
         this.id = new SimpleLongProperty(pojo.getId());
         this.username = new SimpleStringProperty(pojo.getUsername());
         this.firstName = new SimpleStringProperty(pojo.getFirstName());
@@ -49,13 +49,13 @@ public class StudentListModel implements TableViewSelection {
 
     }
 
-    public static List<StudentListModel> mapPojoToModel(List<StudentPojo> pojos) {
+    public static List<StudentListModel> mapPojoToModel(List<StudentDto> pojos) {
         return pojos.stream()
                 .map(StudentListModel::new)
                 .toList();
     }
 
-    public static StudentListModel mapPojoToModel(StudentPojo pojo){
+    public static StudentListModel mapPojoToModel(StudentDto pojo){
         return new StudentListModel(pojo);
     }
 

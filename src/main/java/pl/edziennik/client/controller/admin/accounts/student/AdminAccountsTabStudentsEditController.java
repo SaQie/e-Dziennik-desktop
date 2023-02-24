@@ -1,8 +1,8 @@
 package pl.edziennik.client.controller.admin.accounts.student;
 
 import pl.edziennik.client.common.ActionType;
-import pl.edziennik.client.rest.pojo.StudentPojo;
-import pl.edziennik.client.rest.pojo.StudentRequestPojo;
+import pl.edziennik.client.rest.dto.student.StudentDto;
+import pl.edziennik.client.rest.dto.student.StudentRequestDto;
 import pl.edziennik.client.task.student.EditStudentTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ThreadUtils;
@@ -53,14 +53,14 @@ public class AdminAccountsTabStudentsEditController extends AdminAccountsTabStud
     }
 
     @Override
-    protected void loadStageFields(StudentPojo studentPojo, ActionType actionType) {
-        super.loadStageFields(studentPojo, actionType);
-        this.objectId = studentPojo.getId();
+    protected void loadStageFields(StudentDto studentDto, ActionType actionType) {
+        super.loadStageFields(studentDto, actionType);
+        this.objectId = studentDto.getId();
     }
 
     private void initializeSaveButtonAction() {
         saveButton.setOnAction(button -> {
-            StudentRequestPojo schoolPojo = mapToStudentRequestPojo();
+            StudentRequestDto schoolPojo = mapToStudentRequestPojo();
             ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new EditStudentTask(schoolPojo, objectId), (response) -> {
                 AdminAccountsTabStudentsTabController controller = AdminAccountsTabStudentsTabController.getInstance();
                 controller.refreshButton.fire();

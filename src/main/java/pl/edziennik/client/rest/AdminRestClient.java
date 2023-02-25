@@ -117,4 +117,20 @@ public class AdminRestClient {
     public TeacherDto getTeacher(Long idTeacher) {
         return restClient.send(HttpMethod.GET, URLConstants.TEACHER_URL + idTeacher, TeacherDto.class);
     }
+
+    public AdminDto saveNewAdmin(AdminDto dto) {
+        return restClient.send(HttpMethod.POST, URLConstants.ADMIN_URL, dto, AdminDto.class);
+    }
+
+    public AdminDto editAdmin(Long idAdmin, AdminDto dto) {
+        return restClient.send(HttpMethod.PUT, URLConstants.ADMIN_URL + idAdmin, dto, AdminDto.class);
+    }
+
+    public AdminDto getAdmin(Long idAdmin) {
+        return restClient.send(HttpMethod.GET, URLConstants.ADMIN_URL + idAdmin, AdminDto.class);
+    }
+
+    public void deleteAdmin(Long idAdmin) {
+        restClient.send(HttpMethod.DELETE, URLConstants.ADMIN_URL, idAdmin);
+    }
 }

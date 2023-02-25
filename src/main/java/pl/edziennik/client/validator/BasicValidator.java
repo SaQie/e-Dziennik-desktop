@@ -108,6 +108,16 @@ public abstract class BasicValidator {
         });
     }
 
+    protected void createPasswordValidatorListener(TextField passwordField) {
+        passwordField.textProperty().addListener(input -> {
+            if (ValidationUtil.isEmpty(passwordField)) {
+                ValidationUtil.addErrorTooltipToField(ResourceConst.PASSWORD_FIELD_IS_EMPTY_KEY.value(), passwordField);
+            } else {
+                ValidationUtil.unmarkTextFieldAsError(passwordField);
+            }
+        });
+    }
+
     protected void createFirstNameValidatorListener(TextField firstNameField) {
         firstNameField.textProperty().addListener(input -> {
             if (ValidationUtil.isEmpty(firstNameField)) {
@@ -138,27 +148,27 @@ public abstract class BasicValidator {
         });
     }
 
-    protected void createSchoolValidatorListener(ComboBox<?> comboBox){
+    protected void createSchoolValidatorListener(ComboBox<?> comboBox) {
         comboBox.valueProperty().addListener(input -> {
-            if (ValidationUtil.isComboBoxEmpty(comboBox)){
+            if (ValidationUtil.isComboBoxEmpty(comboBox)) {
                 ValidationUtil.addErrorTooltipToComboBox(ResourceConst.SCHOOL_CANNOT_BE_EMPTY.value(), comboBox);
-            }else{
+            } else {
                 ValidationUtil.unmarkComboBoxAsError(comboBox);
             }
         });
     }
 
-    protected void createSchoolClassValidatorListener(ComboBox<?> comboBox){
+    protected void createSchoolClassValidatorListener(ComboBox<?> comboBox) {
         comboBox.valueProperty().addListener(input -> {
-            if (ValidationUtil.isComboBoxEmpty(comboBox)){
+            if (ValidationUtil.isComboBoxEmpty(comboBox)) {
                 ValidationUtil.addErrorTooltipToComboBox(ResourceConst.SCHOOL_CLASS_CANNOT_BE_EMPTY.value(), comboBox);
-            }else{
+            } else {
                 ValidationUtil.unmarkComboBoxAsError(comboBox);
             }
         });
     }
 
-    protected void withAlwaysCorrectField(TextField field){
+    protected void withAlwaysCorrectField(TextField field) {
         ValidationUtil.unmarkTextFieldAsError(field);
     }
 

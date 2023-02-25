@@ -10,7 +10,7 @@ import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ThreadUtils;
 import pl.edziennik.client.validator.school.SchoolValidator;
 
-public class AdminSchoolsTabAddSchoolController extends AdminSchoolsTabActionAbstractController {
+class AdminSchoolsTabAddSchoolController extends AdminSchoolsTabActionAbstractController {
 
 
     @FXML

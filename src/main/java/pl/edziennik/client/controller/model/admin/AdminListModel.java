@@ -32,6 +32,10 @@ public class AdminListModel implements TableViewSelection {
                 .toList();
     }
 
+    public static AdminListModel mapPojoToModel(AdminDto dto){
+        return new AdminListModel(dto);
+    }
+
     @Override
     public void setSelection() {
         this.select.setSelected(!select.isSelected());

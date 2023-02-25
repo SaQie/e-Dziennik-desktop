@@ -9,7 +9,7 @@ import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ThreadUtils;
 import pl.edziennik.client.validator.school.SchoolValidator;
 
-public class AdminSchoolsTabEditSchoolController extends AdminSchoolsTabActionAbstractController {
+class AdminSchoolsTabEditSchoolController extends AdminSchoolsTabActionAbstractController {
 
     @FXML
     private Button cancelButton, saveButton;

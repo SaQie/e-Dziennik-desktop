@@ -30,6 +30,10 @@ public enum ResourceConst {
     DASHBOARD_ADMIN_ACCOUNTS_ADD_TEACHER_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/teacher/admin-dashboard-accounts-teachers-add.fxml"),
     DASHBOARD_ADMIN_ACCOUNTS_EDIT_TEACHER_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/teacher/admin-dashboard-accounts-teachers-edit.fxml"),
     DASHBOARD_ADMIN_ACCOUNTS_SHOW_TEACHER_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/teacher/admin-dashboard-accounts-teachers-show.fxml"),
+    DASHBOARD_ADMIN_ACCOUNTS_ADD_ADMIN_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/administration/admin-dashboard-accounts-administration-add.fxml"),
+    DASHBOARD_ADMIN_ACCOUNTS_EDIT_ADMIN_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/administration/admin-dashboard-accounts-administration-edit.fxml"),
+    DASHBOARD_ADMIN_ACCOUNTS_SHOW_ADMIN_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/administration/admin-dashboard-accounts-administration-show.fxml"),
+
     // MESSAGES,
 
     EXIT_CONFIRMATION_MESSAGE_KEY("exit.confirmation.message"),
@@ -49,6 +53,9 @@ public enum ResourceConst {
     SHOW_TEACHER_VIEW_TITLE("label.show.teacher"),
     BUTTON_OK_KEY("button.ok"),
     ADMIN_ACCOUNTS_ADD_TEACHER_TITLE_MESSAGE_KEY("add.teacher.title"),
+    ADMIN_ACCOUNTS_ADD_ADMIN_TITLE_MESSAGE_KEY("add.admin.title"),
+    ADMIN_ACCOUNTS_EDIT_ADMIN_TITLE_MESSAGE_KEY("edit.admin.title"),
+    ADMIN_ACCOUNTS_SHOW_ADMIN_TITLE_MESSAGE_KEY("show.admin.title"),
     WAITING_REGISTER_MESSAGE_KEY("waiting.register.message"),
     FETCHING_SCHOOL_LIST_DATA_MESSAGE_KEY("fetch.school.list.data.message"),
     NAME_COLUMN_KEY("name.column.text"),
@@ -96,6 +103,9 @@ public enum ResourceConst {
     WAITING_ADD_NEW_TEACHER_MESSAGE_KEY("waiting.add.new.teacher.message"),
     WAITING_DELETE_TEACHER_MESSAGE_KEY("waiting.delete.teacher.message.key"),
     WAITING_EDIT_TEACHER_MESSAGE_KEY("waiting.edit.teacher.message.key"),
+    WAITING_ADD_ADMIN_MESSAGE_KEY("waiting.add.new.admin.message"),
+    WAITING_EDIT_ADMIN_MESSAGE_KEY("waiting.edit.new.admin.message"),
+    WAITING_DELETE_ADMIN_MESSAGE_KEY("waiting.delete.new.admin.message"),
 
     // ERROR CODES
 
@@ -138,6 +148,7 @@ public enum ResourceConst {
     PESEL_FIELD_IS_NOT_CORRECT("pesel.field.is.not.correct"),
     SCHOOL_CANNOT_BE_EMPTY("school.cannot.be.empty"),
     SCHOOL_CLASS_CANNOT_BE_EMPTY("school.class.cannot.be.empty"),
+    CANNOT_DELETE_YOUR_OWN_ACCOUNT_MESSAGE_KEY("cannot.delete.own.account"),
 
     // LOCALES
 

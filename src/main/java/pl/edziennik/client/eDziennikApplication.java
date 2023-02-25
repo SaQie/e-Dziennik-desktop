@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.controller.auth.AuthorizationController;
+import pl.edziennik.client.exception.BusinessException;
 import pl.edziennik.client.exception.TableViewException;
 import pl.edziennik.client.exception.ViewException;
 
@@ -37,6 +38,9 @@ public class eDziennikApplication extends Application {
                 dialogFactory.createErrorConfirmationDialog(null, exception.getMessage());
             }
             if (exception instanceof ViewException){
+                dialogFactory.createErrorConfirmationDialogFromRawStackTrace(exception.getStackTrace(), exception.getMessage());
+            }
+            if (exception instanceof BusinessException){
                 dialogFactory.createErrorConfirmationDialogFromRawStackTrace(exception.getStackTrace(), exception.getMessage());
             }
         });

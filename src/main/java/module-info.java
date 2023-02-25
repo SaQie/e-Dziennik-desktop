@@ -54,4 +54,6 @@ module pl.edziennik.client {
     exports pl.edziennik.client.rest.dto.schoolclass;
     exports pl.edziennik.client.rest.dto.schoollevel;
     exports pl.edziennik.client.rest.dto.config;
+    exports pl.edziennik.client.controller.admin.accounts.admin;
+    opens pl.edziennik.client.controller.admin.accounts.admin to javafx.fxml;
 }

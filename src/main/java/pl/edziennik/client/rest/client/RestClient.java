@@ -65,6 +65,7 @@ public class RestClient {
             return mapper.mapToObject(result.getBody(), response);
         } catch (ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
+            LOGGER.severe(e.getMessage());
             throw new RestClientException(e);
         }
     }
@@ -80,6 +81,7 @@ public class RestClient {
             return mapper.mapToObject(result.getBody(), response);
         } catch (ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
+            LOGGER.severe(e.getMessage());
             throw new RestClientException(e);
         }
     }
@@ -94,6 +96,7 @@ public class RestClient {
             LOGGER.log(Level.INFO, "Request send " + method.name() + " URL: " + url);
         } catch (ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
+            LOGGER.severe(e.getMessage());
             throw new RestClientException(e);
         }
     }
@@ -108,6 +111,7 @@ public class RestClient {
             LOGGER.log(Level.INFO, "Request send " + method.name() + " URL: " + url);
         } catch (ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
+            LOGGER.severe(e.getMessage());
             throw new RestClientException(e);
         }
     }
@@ -124,6 +128,7 @@ public class RestClient {
             AuthorizationUtils.readAuthorizationDataAndSaveLocally(headers);
         } catch (HttpServerErrorException | ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
+            LOGGER.severe(e.getMessage());
             throw new RestClientException(e);
         }
     }

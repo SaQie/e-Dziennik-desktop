@@ -9,12 +9,15 @@ import pl.edziennik.client.rest.client.response.ApiResponse;
 import pl.edziennik.client.utils.ThreadUtils;
 
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 
 class RestClientObjectMapper {
 
     private final ObjectMapper objectMapper;
     private final DialogFactory dialogFactory;
+
+    private static final Logger LOGGER = Logger.getLogger(RestClientObjectMapper.class.getName());
 
     public RestClientObjectMapper() {
         this.objectMapper = new ObjectMapper();
@@ -29,6 +32,7 @@ class RestClientObjectMapper {
             } catch (JsonProcessingException e) {
                 ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialog(Arrays.toString(e.getStackTrace()),
                         ResourceConst.PARSE_ERROR.value()));
+                LOGGER.severe(e.getMessage());
                 throw new RestClientException("Error while parsing response");
             }
         }

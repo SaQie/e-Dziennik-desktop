@@ -15,6 +15,7 @@ import pl.edziennik.client.utils.ThreadUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -90,7 +91,6 @@ public class ProgressController implements Initializable {
 
         ThreadUtils.runInBackgroundThread(task);
     }
-
 
 
     private Stage getStageLittle() {

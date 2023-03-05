@@ -70,7 +70,7 @@ public enum ResourceConst {
     LAST_NAME_COLUMN_KEY("last.name.column.text"),
     SCHOOL_COLUMN_KEY("school.column.text"),
     SCHOOL_CLASS_COLUMN_KEY("school.class.column.text"),
-    PARENT_PHONE_NUMBER_COLUMN_KEY("parent.phone.number.column.text"),
+    PARENT_FULL_NAME_COLUMN_KEY("parent.fullname.column.text"),
     PESEL_COLUMN_KEY("pesel.column.text"),
     PARENT_FIRST_NAME_COLUMN_KEY("parent.first.name.column.text"),
     PARENT_LAST_NAME_COLUMN_KEY("parent.last.name.column.text"),

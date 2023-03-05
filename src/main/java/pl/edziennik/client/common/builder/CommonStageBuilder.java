@@ -17,12 +17,14 @@ import javafx.stage.Window;
 import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.eDziennikApplication;
 import pl.edziennik.client.exception.ViewException;
+import pl.edziennik.client.rest.client.RestClient;
 import pl.edziennik.client.rest.client.response.ApiErrors;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ResourceUtil;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import static pl.edziennik.client.common.ResourceConst.*;
@@ -32,6 +34,8 @@ public class CommonStageBuilder {
     public static final ButtonType YES_BUTTON = new ButtonType(ResourceUtil.getMessage(ResourceConst.BUTTON_YES_KEY.value()));
     public static final ButtonType NO_BUTTON = new ButtonType(ResourceUtil.getMessage(ResourceConst.BUTTON_NO_KEY.value()));
     public static final ButtonType OK_BUTTON = new ButtonType(ResourceUtil.getMessage(ResourceConst.BUTTON_OK_KEY.value()));
+
+    private static final Logger LOGGER = Logger.getLogger(CommonStageBuilder.class.getName());
 
     public static final String ALERT_STYLES_PATCH = eDziennikApplication.class.getResource(ResourceConst.ALERT_STYLES_ADDRESS.value()).toExternalForm();
 
@@ -359,6 +363,7 @@ public class CommonStageBuilder {
             try {
                 scene = new Scene(fxmlLoader.load(), width, height);
             }catch (IOException e){
+                LOGGER.severe(e.getMessage());
                 throw new ViewException(VIEW_EXCEPTION_MESSAGE_KEY.value());
             }
             T controller = fxmlLoader.getController();

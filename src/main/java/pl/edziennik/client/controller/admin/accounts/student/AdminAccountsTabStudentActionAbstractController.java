@@ -29,7 +29,7 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
 
     @FXML
     protected TextField usernameTextField, firstNameTextField, lastNameTextField, addressTextField, postalCodeTextField, cityTextField,
-            peselTextField, parentFirstNameTextField, parentLastNameTextField, parentPhoneNumberTextField, emailTextField, roleTextField;
+            peselTextField, phoneNumberTextField, emailTextField, roleTextField;
 
 
     @Override
@@ -59,15 +59,13 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
         usernameTextField.setText(studentDto.getUsername());
         firstNameTextField.setText(studentDto.getFirstName());
         lastNameTextField.setText(studentDto.getLastName());
-        parentFirstNameTextField.setText(studentDto.getParentFirstName());
-        parentLastNameTextField.setText(studentDto.getParentLastName());
-        parentPhoneNumberTextField.setText(studentDto.getParentPhoneNumber());
         roleTextField.setText(studentDto.getRole());
         addressTextField.setText(studentDto.getAddress());
         cityTextField.setText(studentDto.getCity());
         postalCodeTextField.setText(studentDto.getPostalCode());
         peselTextField.setText(studentDto.getPesel());
         emailTextField.setText(studentDto.getEmail());
+        phoneNumberTextField.setText(studentDto.getPhoneNumber());
         schoolComboBox.getSelectionModel().select(new SchoolComboBoxItem(studentDto.getSchool()));
         schoolClassComboBox.getSelectionModel().select(new SchoolClassComboBoxItem(studentDto.getSchoolClass()));
         if (ActionType.SHOW_ACTION.equals(actionType)) {
@@ -113,11 +111,9 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
         studentPojo.setFirstName(firstNameTextField.getText());
         studentPojo.setLastName(lastNameTextField.getText());
         studentPojo.setUsername(usernameTextField.getText());
+        studentPojo.setPhoneNumber(phoneNumberTextField.getText());
         studentPojo.setIdSchool(schoolComboBox.getValue().getId().getValue());
         studentPojo.setIdSchoolClass(schoolClassComboBox.getValue().getId().getValue());
-        studentPojo.setParentFirstName(parentFirstNameTextField.getText());
-        studentPojo.setParentLastName(parentLastNameTextField.getText());
-        studentPojo.setParentPhoneNumber(parentPhoneNumberTextField.getText());
         studentPojo.setPesel(peselTextField.getText());
         String password = UUID.randomUUID().toString();
         // TODO, ten print bedzie do zmiany, haslo bedzie wysylane mailem

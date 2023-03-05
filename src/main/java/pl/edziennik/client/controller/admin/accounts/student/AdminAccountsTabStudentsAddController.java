@@ -25,9 +25,8 @@ public class AdminAccountsTabStudentsAddController extends AdminAccountsTabStude
     protected void setSceneSettings() {
         NodeUtils.enableButtonIfFieldsHasNoErrors(saveButton, usernameTextField, firstNameTextField, lastNameTextField,
                 addressTextField, postalCodeTextField, cityTextField,
-                peselTextField, parentFirstNameTextField, parentLastNameTextField,
-                parentPhoneNumberTextField, emailTextField,schoolClassComboBox, schoolComboBox);
-        NodeUtils.setTextFieldAsNumbersOnly(peselTextField, parentPhoneNumberTextField);
+                peselTextField, emailTextField, phoneNumberTextField, schoolClassComboBox, schoolComboBox);
+        NodeUtils.setTextFieldAsNumbersOnly(peselTextField, phoneNumberTextField);
     }
 
     @Override
@@ -52,14 +51,12 @@ public class AdminAccountsTabStudentsAddController extends AdminAccountsTabStude
                 .withCityValidator(cityTextField)
                 .withEmailValidator(emailTextField)
                 .withFirstNameValidator(firstNameTextField)
-                .withFirstNameValidator(parentFirstNameTextField)
                 .withLastNameValidator(lastNameTextField)
-                .withLastNameValidator(parentLastNameTextField)
                 .withPeselValidator(peselTextField)
+                .withPhoneNumberValidator(phoneNumberTextField)
                 .withUsernameValidator(usernameTextField)
                 .withAddressValidator(addressTextField)
                 .withPostalCodeValidator(postalCodeTextField)
-                .withPhoneNumberValidator(parentPhoneNumberTextField)
                 .withCorrectRoleField(roleTextField)
                 .withNotEmptySchoolClassComboBox(schoolClassComboBox)
                 .withNotEmptySchoolComboBox(schoolComboBox)

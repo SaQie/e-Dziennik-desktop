@@ -10,12 +10,15 @@ import pl.edziennik.client.controller.ProgressController;
 
 import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
+import java.util.logging.Logger;
 
 import static  pl.edziennik.client.common.builder.CommonStageBuilder.StageBuilder.ShowMode.*;
 
 public class ProgressFactory {
 
     private static ProgressFactory factory;
+
+    private static final Logger LOGGER = Logger.getLogger(ProgressFactory.class.getName());
 
     private ProgressFactory() {
     }
@@ -44,6 +47,7 @@ public class ProgressFactory {
             try {
                 consumer.accept(task.get());
             } catch (InterruptedException | ExecutionException e) {
+                LOGGER.severe(e.getMessage());
                 throw new RuntimeException(e);
             }
         }

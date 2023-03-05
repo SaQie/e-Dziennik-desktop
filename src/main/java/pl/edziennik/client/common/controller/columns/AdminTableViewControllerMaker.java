@@ -160,23 +160,18 @@ public class AdminTableViewControllerMaker {
             return this;
         }
 
+        public StudentTableViewBuilder withPhoneNumberColumn(final boolean isDefaultVisible) {
+            columns.add(AccountsTableViewColumns.StudentTableViewColumns.getPhoneNumberColumn(isDefaultVisible));
+            return this;
+        }
+
         public StudentTableViewBuilder withPeselColumn(final boolean isDefaultVisible) {
             columns.add(AccountsTableViewColumns.StudentTableViewColumns.getPeselColumn(isDefaultVisible));
             return this;
         }
 
-        public StudentTableViewBuilder withParentFirstNameColumn(final boolean isDefaultVisible) {
-            columns.add(AccountsTableViewColumns.StudentTableViewColumns.getParentFirstNameColumn(isDefaultVisible));
-            return this;
-        }
-
-        public StudentTableViewBuilder withParentLastNameColumn(final boolean isDefaultVisible) {
-            columns.add(AccountsTableViewColumns.StudentTableViewColumns.getParentLastNameColumn(isDefaultVisible));
-            return this;
-        }
-
-        public StudentTableViewBuilder withParentPhoneNumberColumn(final boolean isDefaultVisible) {
-            columns.add(AccountsTableViewColumns.StudentTableViewColumns.getParentPhoneNumberColumn(isDefaultVisible));
+        public StudentTableViewBuilder withParentFullNameColumn(final boolean isDefaultVisible) {
+            columns.add(AccountsTableViewColumns.StudentTableViewColumns.getParentFullNameColumn(isDefaultVisible));
             return this;
         }
 
@@ -215,7 +210,7 @@ public class AdminTableViewControllerMaker {
             return this;
         }
 
-        public StudentTableViewBuilder withEmailColumn(final boolean isDefaultVisible){
+        public StudentTableViewBuilder withEmailColumn(final boolean isDefaultVisible) {
             columns.add(AccountsTableViewColumns.StudentTableViewColumns.getEmailColumn(isDefaultVisible));
             return this;
         }

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="800.0" styleClass="background-color-dark" stylesheets="@../../../../css/global-colors.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.admin.accounts.student.AdminAccountsTabStudentsAddController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="background-color-dark" stylesheets="@../../../../css/global-colors.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.admin.accounts.student.AdminAccountsTabStudentsAddController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -60,34 +60,24 @@
                <center>
                   <VBox prefHeight="474.0" prefWidth="500.0" stylesheets="@../../../../css/global-field-styles.css">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="50.0">
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="50.0">
                            <children>
-                              <Label prefWidth="180.0" text="%label.parent.first.name" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="parentFirstNameTextField" stylesheets="@../../../../css/global-field-styles.css" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="50.0">
-                           <children>
-                              <Label prefWidth="180.0" text="%label.parent.last.name" textFill="WHITE">
+                              <Label prefWidth="180.0" text="%label.phone.number" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="parentLastNameTextField" stylesheets="@../../../../css/global-field-styles.css" />
+                              <TextField fx:id="phoneNumberTextField" stylesheets="@../../../../css/global-field-styles.css" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="50.0">
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="50.0">
                            <children>
-                              <Label prefHeight="18.0" prefWidth="180.0" text="%label.parent.phone.number" textFill="WHITE">
+                              <Label prefWidth="180.0" text="%label.pesel" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="parentPhoneNumberTextField" stylesheets="@../../../../css/global-field-styles.css" />
+                              <TextField fx:id="peselTextField" stylesheets="@../../../../css/global-field-styles.css" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="50.0">
@@ -198,16 +188,6 @@
                                  </font>
                               </Label>
                               <TextField fx:id="cityTextField" stylesheets="@../../../../css/global-field-styles.css" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="50.0">
-                           <children>
-                              <Label prefWidth="180.0" text="%label.pesel" textFill="WHITE">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="peselTextField" stylesheets="@../../../../css/global-field-styles.css" />
                            </children>
                         </HBox>
                      </children>

@@ -6,6 +6,7 @@ import javafx.scene.control.CheckBox;
 import lombok.Getter;
 import pl.edziennik.client.common.Styles;
 import pl.edziennik.client.rest.dto.student.StudentDto;
+import pl.edziennik.client.utils.ModelUtils;
 
 import java.util.List;
 
@@ -20,9 +21,8 @@ public class StudentListModel implements TableViewSelection {
     private final SimpleStringProperty postalCode;
     private final SimpleStringProperty city;
     private final SimpleStringProperty pesel;
-    private final SimpleStringProperty parentPhoneNumber;
-    private final SimpleStringProperty parentFirstName;
-    private final SimpleStringProperty parentLastName;
+    private final SimpleStringProperty phoneNumber;
+    private final SimpleStringProperty parentFullName;
     private final SimpleStringProperty email;
     private final SimpleStringProperty schoolClass;
     private final SimpleStringProperty school;
@@ -38,14 +38,13 @@ public class StudentListModel implements TableViewSelection {
         this.postalCode = new SimpleStringProperty(pojo.getPostalCode());
         this.city = new SimpleStringProperty(pojo.getCity());
         this.pesel = new SimpleStringProperty(pojo.getPesel());
-        this.parentPhoneNumber = new SimpleStringProperty(pojo.getParentPhoneNumber());
-        this.parentFirstName = new SimpleStringProperty(pojo.getParentFirstName());
-        this.parentLastName = new SimpleStringProperty(pojo.getParentLastName());
         this.schoolClass = new SimpleStringProperty(pojo.getSchoolClass().getClassName());
         this.school = new SimpleStringProperty(pojo.getSchool().getName());
         this.role = new SimpleStringProperty(pojo.getRole());
         this.email = new SimpleStringProperty(pojo.getEmail());
         this.select = Styles.tableViewSelectionCheckBox();
+        this.phoneNumber = new SimpleStringProperty(pojo.getPhoneNumber());
+        this.parentFullName = new SimpleStringProperty(ModelUtils.getValueOrEmpty(pojo.getParent()));
 
     }
 
@@ -55,7 +54,7 @@ public class StudentListModel implements TableViewSelection {
                 .toList();
     }
 
-    public static StudentListModel mapPojoToModel(StudentDto pojo){
+    public static StudentListModel mapPojoToModel(StudentDto pojo) {
         return new StudentListModel(pojo);
     }
 

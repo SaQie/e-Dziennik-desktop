@@ -15,9 +15,7 @@ public class StudentRequestDto {
     private String city;
     private String pesel;
     private String email;
-    private String parentFirstName;
-    private String parentLastName;
-    private String parentPhoneNumber;
+    private String phoneNumber;
     private Long idSchool;
     private Long idSchoolClass;
     private String password;

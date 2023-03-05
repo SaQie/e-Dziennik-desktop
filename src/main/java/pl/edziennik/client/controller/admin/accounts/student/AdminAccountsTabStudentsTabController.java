@@ -94,11 +94,10 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
                 .withCityColumn(true)
                 .withFirstNameColumn(true)
                 .withLastNameColumn(true)
+                .withPhoneNumberColumn(true)
                 .withRoleColumn(true)
                 .withPeselColumn(true)
-                .withParentFirstNameColumn(true)
-                .withParentPhoneNumberColumn(true)
-                .withParentLastNameColumn(true)
+                .withParentFullNameColumn(true)
                 .withPostalCodeColumn(true)
                 .withSchoolColumn(true)
                 .withSchoolClassColumn(true)
@@ -112,7 +111,7 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
             NodeUtils.openNewStageAbove(
                     DASHBOARD_ADMIN_ACCOUNTS_ADD_STUDENT_VIEW_ADDRESS.value(),
                     ADMIN_ACCOUNTS_ADD_STUDENT_TITLE_MESSAGE_KEY.value(),
-                    1000, 550, getActualStage());
+                    1000, 500, getActualStage());
         });
     }
 
@@ -129,21 +128,21 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
                 AdminAccountsTabStudentsShowController controller = NodeUtils.openNewStageAboveWithController(
                         ResourceConst.DASHBOARD_ADMIN_ACCOUNTS_SHOW_STUDENT_VIEW_ADDRESS.value(),
                         ResourceConst.SHOW_STUDENT_VIEW_TITLE_KEY.value(),
-                        1000, 550,
+                        1000, 500,
                         getActualStage());
                 controller.loadStageFields(schoolPojo, ActionType.SHOW_ACTION);
             });
         });
     }
 
-    private void initializeEditButtonAction(){
+    private void initializeEditButtonAction() {
         editButton.setOnAction(button -> {
             List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(studentsTableView, ActionType.EDIT_ACTION);
             progressFactory.createLittleProgressBar(new LoadStudentTask(selectedTableItems.get(0)), (schoolPojo) -> {
                 AdminAccountsTabStudentsEditController controller = NodeUtils.openNewStageAboveWithController(
                         ResourceConst.DASHBOARD_ADMIN_ACCOUNTS_EDIT_STUDENT_VIEW_ADDRESS.value(),
                         ResourceConst.EDIT_STUDENT_VIEW_TITLE_KEY.value(),
-                        1000, 550,
+                        1000, 500,
                         getActualStage());
                 controller.loadStageFields(schoolPojo, ActionType.EDIT_ACTION);
             });

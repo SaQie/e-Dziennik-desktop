@@ -6,6 +6,7 @@ import pl.edziennik.client.common.DialogFactory;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.controller.auth.AuthorizationController;
 import pl.edziennik.client.exception.BusinessException;
+import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.exception.TableViewException;
 import pl.edziennik.client.exception.ViewException;
 
@@ -32,15 +33,13 @@ public class eDziennikApplication extends Application {
         launch();
     }
 
-    private void setExceptionHandler(){
+    private void setExceptionHandler() {
         Thread.setDefaultUncaughtExceptionHandler((thread, exception) -> {
-            if (exception instanceof TableViewException){
+            if (exception instanceof TableViewException) {
                 dialogFactory.createErrorConfirmationDialog(null, exception.getMessage());
+                return;
             }
-            if (exception instanceof ViewException){
-                dialogFactory.createErrorConfirmationDialogFromRawStackTrace(exception.getStackTrace(), exception.getMessage());
-            }
-            if (exception instanceof BusinessException){
+            if (!(exception instanceof RestClientException)) {
                 dialogFactory.createErrorConfirmationDialogFromRawStackTrace(exception.getStackTrace(), exception.getMessage());
             }
         });

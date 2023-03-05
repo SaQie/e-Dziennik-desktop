@@ -69,6 +69,14 @@ class AccountsTableViewColumns extends BasicTableViewColumns {
             return lastNameColumn;
         }
 
+        protected static TableColumn<StudentListModel, String> getPhoneNumberColumn(final boolean isDefaultVisible) {
+            TableColumn<StudentListModel, String> lastNameColumn = new TableColumn<>(ResourceUtil.getMessage(PHONE_COLUMN_KEY.value()));
+            lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().getPhoneNumber());
+            lastNameColumn.setVisible(isDefaultVisible);
+            return lastNameColumn;
+        }
+
+
         protected static TableColumn<StudentListModel, String> getAddressColumn(final boolean isDefaultVisible) {
             TableColumn<StudentListModel, String> addressColumn = new TableColumn<>(ResourceUtil.getMessage(ADDRESS_COLUMN_KEY.value()));
             addressColumn.setCellValueFactory(cellData -> cellData.getValue().getAddress());
@@ -97,25 +105,11 @@ class AccountsTableViewColumns extends BasicTableViewColumns {
             return peselColumn;
         }
 
-        protected static TableColumn<StudentListModel, String> getParentFirstNameColumn(final boolean isDefaultVisible) {
-            TableColumn<StudentListModel, String> parentFirstNameColumn = new TableColumn<>(ResourceUtil.getMessage(PARENT_FIRST_NAME_COLUMN_KEY.value()));
-            parentFirstNameColumn.setCellValueFactory(cellData -> cellData.getValue().getParentFirstName());
-            parentFirstNameColumn.setVisible(isDefaultVisible);
-            return parentFirstNameColumn;
-        }
-
-        protected static TableColumn<StudentListModel, String> getParentLastNameColumn(final boolean isDefaultVisible) {
-            TableColumn<StudentListModel, String> parentLastNameColumn = new TableColumn<>(ResourceUtil.getMessage(PARENT_LAST_NAME_COLUMN_KEY.value()));
-            parentLastNameColumn.setCellValueFactory(cellData -> cellData.getValue().getParentLastName());
-            parentLastNameColumn.setVisible(isDefaultVisible);
-            return parentLastNameColumn;
-        }
-
-        protected static TableColumn<StudentListModel, String> getParentPhoneNumberColumn(final boolean isDefaultVisible) {
-            TableColumn<StudentListModel, String> parentPhoneNumberColumn = new TableColumn<>(ResourceUtil.getMessage(PARENT_PHONE_NUMBER_COLUMN_KEY.value()));
-            parentPhoneNumberColumn.setCellValueFactory(cellData -> cellData.getValue().getParentPhoneNumber());
-            parentPhoneNumberColumn.setVisible(isDefaultVisible);
-            return parentPhoneNumberColumn;
+        protected static TableColumn<StudentListModel, String> getParentFullNameColumn(final boolean isDefaultVisible) {
+            TableColumn<StudentListModel, String> parentFullName = new TableColumn<>(ResourceUtil.getMessage(PARENT_FULL_NAME_COLUMN_KEY.value()));
+            parentFullName.setCellValueFactory(cellData -> cellData.getValue().getParentFullName());
+            parentFullName.setVisible(isDefaultVisible);
+            return parentFullName;
         }
 
         protected static TableColumn<StudentListModel, String> getSchoolColumn(final boolean isDefaultVisible) {

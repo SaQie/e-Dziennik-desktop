@@ -87,7 +87,7 @@ class AdminAccountsTabTeacherActionAbstractController extends AbstractController
 
     private void fetchSchoolComboBoxItems() {
         progressFactory.createLittleProgressBar(new LoadSchoolsTask(), (response) -> {
-            List<SchoolComboBoxItem> comboBoxItems = response.stream().map(SchoolComboBoxItem::new).toList();
+            List<SchoolComboBoxItem> comboBoxItems = response.getEntities().stream().map(SchoolComboBoxItem::new).toList();
             schoolComboBox.setItems(FXCollections.observableList(comboBoxItems));
         });
     }

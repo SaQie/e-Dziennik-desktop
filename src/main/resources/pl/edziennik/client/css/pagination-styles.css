@@ -1,0 +1,55 @@
+.pagination{
+    -fx-page-information-visible:false;
+}
+
+.page-information{
+    -fx-text-fill: white;
+}
+
+.number-button{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: white;
+    -fx-focus-color: transparent;
+}
+
+.number-button:hover{
+    -fx-text-fill: #1094fa;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: #1094fa;
+}
+
+.pagination > .pagination-control > .control-box > .right-arrow-button{
+    -fx-background-color: transparent;
+}
+
+.pagination > .pagination-control > .control-box > .right-arrow-button:hover{
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: orange;
+}
+
+.pagination > .pagination-control > .control-box > .left-arrow-button{
+    -fx-background-color: transparent;
+}
+
+.pagination > .pagination-control > .control-box > .left-arrow-button:hover{
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: orange;
+}
+
+.pagination > .pagination-control > .control-box > .right-arrow-button > .right-arrow {
+    -fx-background-color: orange;
+}
+
+.pagination > .pagination-control > .control-box > .left-arrow-button > .left-arrow {
+    -fx-background-color: orange;
+}
+
+.number-button:selected{
+    -fx-text-fill: orange;
+    -fx-background-color: transparent;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: orange;
+}

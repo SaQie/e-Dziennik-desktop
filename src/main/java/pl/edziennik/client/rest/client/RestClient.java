@@ -14,6 +14,7 @@ import pl.edziennik.client.configuration.converter.PropertiesBackendLangugageCon
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.client.response.ApiAuthResponse;
 import pl.edziennik.client.rest.client.response.ApiResponse;
+import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.utils.AuthorizationUtils;
 import pl.edziennik.client.utils.ThreadUtils;
 
@@ -63,6 +64,23 @@ public class RestClient {
             statusCodesHandler.checkStatusCodes(result);
             LOGGER.log(Level.INFO, "Request send " + method.name() + " URL: " + url);
             return mapper.mapToObject(result.getBody(), response);
+        } catch (ResourceAccessException e) {
+            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
+            LOGGER.severe(e.getMessage());
+            throw new RestClientException(e);
+        }
+    }
+
+    public <T> Page<T> sendPageable(String url, int page, Class<T> response) {
+        HttpHeaders authorizationHeader = createAuthorizationHeader();
+        HttpEntity<Void> entityToSend = new HttpEntity<>(null, authorizationHeader);
+        url = url + "?page=" + page;
+        try {
+            ResponseEntity<ApiResponse<T>> result = restTemplate.exchange(url, HttpMethod.GET, entityToSend, new ParameterizedTypeReference<>() {
+            });
+            statusCodesHandler.checkStatusCodes(result);
+            LOGGER.log(Level.INFO, "Request send " + HttpMethod.GET.name() + " URL: " + url);
+            return mapper.mapToPage(result.getBody(), response);
         } catch (ResourceAccessException e) {
             ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
             LOGGER.severe(e.getMessage());

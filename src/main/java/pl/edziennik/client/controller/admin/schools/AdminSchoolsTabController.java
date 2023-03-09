@@ -3,6 +3,7 @@ package pl.edziennik.client.controller.admin.schools;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import pl.edziennik.client.core.AbstractController;
@@ -10,6 +11,7 @@ import pl.edziennik.client.common.ActionType;
 import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
 import pl.edziennik.client.controller.model.admin.SchoolListModel;
+import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.school.SchoolDto;
 import pl.edziennik.client.task.school.DeleteSchoolTask;
 import pl.edziennik.client.task.school.LoadSchoolTask;
@@ -17,7 +19,9 @@ import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.utils.NodeUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static pl.edziennik.client.common.ResourceConst.*;
 
@@ -32,6 +36,10 @@ public class AdminSchoolsTabController extends AbstractController {
     @FXML
     private TableView<SchoolListModel> tableView;
 
+    @FXML
+    private Pagination pagination;
+
+    private final Map<Integer, List<SchoolDto>> paginationCacheMap = new HashMap<>();
 
     @Override
     protected void createActions() {
@@ -41,6 +49,21 @@ public class AdminSchoolsTabController extends AbstractController {
         initializeShowButtonAction();
         initializeEditButtonAction();
         initializeRefreshButtonAction();
+        initializePaginationChangeAction();
+    }
+
+    private void initializePaginationChangeAction() {
+        pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            System.out.println("cos");
+            System.out.println(newIndex.intValue());
+            boolean isCacheContainsData = paginationCacheMap.containsKey(newIndex.intValue());
+            if (isCacheContainsData) {
+                List<SchoolDto> schoolDtos = paginationCacheMap.get(newIndex.intValue());
+                loadTableItems(schoolDtos);
+                return;
+            }
+            progressFactory.createLittleProgressBar(new LoadSchoolsTask(newIndex.intValue()), this::fetchTabData);
+        });
     }
 
     @Override
@@ -61,8 +84,14 @@ public class AdminSchoolsTabController extends AbstractController {
     }
 
 
-    public void fetchTabData(final List<SchoolDto> schoolList) {
-        List<SchoolListModel> schoolListModels = SchoolListModel.mapPojoToModel(schoolList);
+    public void fetchTabData(final Page<List<SchoolDto>> page) {
+        pagination.setPageCount(page.getPagesCount() + 1);
+        paginationCacheMap.put(page.getActualPage(), page.getEntities());
+        loadTableItems(page.getEntities());
+    }
+
+    private void loadTableItems(List<SchoolDto> data) {
+        List<SchoolListModel> schoolListModels = SchoolListModel.mapPojoToModel(data);
         ObservableList<SchoolListModel> items = FXCollections.observableList(schoolListModels);
         tableView.setItems(items);
         tableView.refresh();
@@ -129,7 +158,10 @@ public class AdminSchoolsTabController extends AbstractController {
 
     private void initializeRefreshButtonAction() {
         refreshButton.setOnAction(button -> {
-            progressFactory.createLittleProgressBar(new LoadSchoolsTask(), this::fetchTabData);
+            progressFactory.createLittleProgressBar(new LoadSchoolsTask(), (response) -> {
+                paginationCacheMap.clear();
+                fetchTabData(response);
+            });
         });
     }
 

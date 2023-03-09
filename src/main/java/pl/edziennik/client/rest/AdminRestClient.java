@@ -4,6 +4,7 @@ import org.springframework.http.HttpMethod;
 import pl.edziennik.client.controller.model.admin.SchoolLevelComboBoxItem;
 import pl.edziennik.client.rest.client.RestClient;
 import pl.edziennik.client.rest.client.URLConstants;
+import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.admin.AdminDto;
 import pl.edziennik.client.rest.dto.config.ConfigurationDto;
 import pl.edziennik.client.rest.dto.config.SettingsValueDto;
@@ -13,6 +14,7 @@ import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.rest.dto.student.StudentRequestDto;
 import pl.edziennik.client.rest.dto.teacher.TeacherDto;
 import pl.edziennik.client.rest.dto.teacher.TeacherRequestDto;
+import pl.edziennik.client.utils.ModelUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,9 +31,9 @@ public class AdminRestClient {
         return restClient.send(HttpMethod.POST, URLConstants.ADMIN_URL, adminDto, AdminDto.class);
     }
 
-    public List<SchoolDto> getSchoolList() {
-        SchoolDto[] send = restClient.send(HttpMethod.GET, URLConstants.SCHOOL_URL, SchoolDto[].class);
-        return Arrays.asList(send);
+    public Page<List<SchoolDto>> getSchoolList(int actualPage) {
+        Page<SchoolDto[]> page = restClient.sendPageable(URLConstants.SCHOOL_URL, actualPage, SchoolDto[].class);
+        return ModelUtils.convertToListPage(page);
     }
 
     public List<SchoolClassDto> getSchoolClassesBySchoolId(Long schoolId) {

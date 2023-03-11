@@ -364,6 +364,7 @@ public class CommonStageBuilder {
                 scene = new Scene(fxmlLoader.load(), width, height);
             }catch (IOException e){
                 LOGGER.severe(e.getMessage());
+                LOGGER.severe(e.getCause().getMessage());
                 throw new ViewException(VIEW_EXCEPTION_MESSAGE_KEY.value());
             }
             T controller = fxmlLoader.getController();

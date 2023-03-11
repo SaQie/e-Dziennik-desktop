@@ -41,19 +41,19 @@ public class AdminRestClient {
         return Arrays.asList(schoolClassResponses);
     }
 
-    public List<TeacherDto> getTeacherList() {
-        TeacherDto[] teacherDtos = restClient.send(HttpMethod.GET, URLConstants.TEACHER_URL, TeacherDto[].class);
-        return Arrays.asList(teacherDtos);
+    public Page<List<TeacherDto>> getTeacherList(int actualPage) {
+        Page<TeacherDto[]> teacherDtos = restClient.sendPageable(URLConstants.TEACHER_URL, actualPage, TeacherDto[].class);
+        return ModelUtils.convertToListPage(teacherDtos);
     }
 
-    public List<StudentDto> getStudentList() {
-        StudentDto[] studentDtos = restClient.send(HttpMethod.GET, URLConstants.STUDENT_URL, StudentDto[].class);
-        return Arrays.asList(studentDtos);
+    public Page<List<StudentDto>> getStudentList(int actualPage) {
+        Page<StudentDto[]> studentDtos = restClient.sendPageable(URLConstants.STUDENT_URL, actualPage, StudentDto[].class);
+        return ModelUtils.convertToListPage(studentDtos);
     }
 
-    public List<AdminDto> getAdminList() {
-        AdminDto[] adminRespons = restClient.send(HttpMethod.GET, URLConstants.ADMIN_URL, AdminDto[].class);
-        return Arrays.asList(adminRespons);
+    public Page<List<AdminDto>> getAdminList(int actualPage) {
+        Page<AdminDto[]> adminRespons = restClient.sendPageable(URLConstants.ADMIN_URL, actualPage, AdminDto[].class);
+        return ModelUtils.convertToListPage(adminRespons);
     }
 
     public SchoolDto getSchoolPojo(Long id) {

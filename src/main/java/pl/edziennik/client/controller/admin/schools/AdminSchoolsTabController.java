@@ -54,8 +54,6 @@ public class AdminSchoolsTabController extends AbstractController {
 
     private void initializePaginationChangeAction() {
         pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
-            System.out.println("cos");
-            System.out.println(newIndex.intValue());
             boolean isCacheContainsData = paginationCacheMap.containsKey(newIndex.intValue());
             if (isCacheContainsData) {
                 List<SchoolDto> schoolDtos = paginationCacheMap.get(newIndex.intValue());
@@ -85,7 +83,7 @@ public class AdminSchoolsTabController extends AbstractController {
 
 
     public void fetchTabData(final Page<List<SchoolDto>> page) {
-        pagination.setPageCount(page.getPagesCount() + 1);
+        pagination.setPageCount(page.getPagesCount());
         paginationCacheMap.put(page.getActualPage(), page.getEntities());
         loadTableItems(page.getEntities());
     }

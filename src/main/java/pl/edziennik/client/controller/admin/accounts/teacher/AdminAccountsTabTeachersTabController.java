@@ -3,6 +3,7 @@ package pl.edziennik.client.controller.admin.accounts.teacher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.ActionType;
@@ -10,6 +11,8 @@ import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
 import pl.edziennik.client.controller.model.admin.TeacherListModel;
 import pl.edziennik.client.core.AbstractController;
+import pl.edziennik.client.rest.dto.Page;
+import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.rest.dto.teacher.TeacherDto;
 import pl.edziennik.client.task.teacher.DeleteTeacherTask;
 import pl.edziennik.client.task.teacher.LoadTeacherTask;
@@ -17,7 +20,9 @@ import pl.edziennik.client.task.teacher.LoadTeachersTask;
 import pl.edziennik.client.utils.NodeUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static pl.edziennik.client.common.ResourceConst.*;
 
@@ -28,12 +33,23 @@ public class AdminAccountsTabTeachersTabController extends AbstractController {
     @FXML
     private TableView<TeacherListModel> teachersTableView;
 
+    @FXML
+    private Pagination pagination;
+
+    private final Map<Integer, List<TeacherDto>> paginationCacheMap = new HashMap<>();
+
     public AdminAccountsTabTeachersTabController() {
         instance = this;
     }
 
-    public void fetchTabData(final List<TeacherDto> teachersList) {
-        List<TeacherListModel> teacherListModels = TeacherListModel.mapPojoToModel(teachersList);
+    public void fetchTabData(final Page<List<TeacherDto>> page) {
+        pagination.setPageCount(page.getPagesCount());
+        paginationCacheMap.put(page.getActualPage(), page.getEntities());
+        loadTableItems(page);
+    }
+
+    private void loadTableItems(Page<List<TeacherDto>> page) {
+        List<TeacherListModel> teacherListModels = TeacherListModel.mapPojoToModel(page.getEntities());
         ObservableList<TeacherListModel> items = FXCollections.observableList(teacherListModels);
         teachersTableView.setItems(items);
         teachersTableView.refresh();

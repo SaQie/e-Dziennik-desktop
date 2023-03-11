@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import pl.edziennik.client.utils.NodeUtils;
 
-class AdminSchoolsTabShowSchoolController extends AdminSchoolsTabActionAbstractController {
+public class AdminSchoolsTabShowSchoolController extends AdminSchoolsTabActionAbstractController {
 
     @FXML
     private Button cancelButton;

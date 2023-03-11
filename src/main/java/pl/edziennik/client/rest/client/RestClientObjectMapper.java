@@ -30,7 +30,6 @@ class RestClientObjectMapper {
     public <T> T mapToObject(ApiResponse<T> body, Class<T> responseObject) {
         if (body != null) {
             try {
-                mapToPage(body, responseObject);
                 String readedObjectAsString = objectMapper.writeValueAsString(body.getResult());
                 return objectMapper.readValue(readedObjectAsString, responseObject);
             } catch (JsonProcessingException e) {

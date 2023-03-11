@@ -3,6 +3,7 @@ package pl.edziennik.client.controller.admin.accounts.admin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.ActionType;
@@ -15,7 +16,9 @@ import pl.edziennik.client.controller.model.admin.AdminListModel;
 import pl.edziennik.client.controller.model.admin.StudentListModel;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.exception.BusinessException;
+import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.admin.AdminDto;
+import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.task.admin.DeleteAdminTask;
 import pl.edziennik.client.task.admin.LoadAdminTask;
 import pl.edziennik.client.task.admin.LoadAdminsTask;
@@ -24,7 +27,9 @@ import pl.edziennik.client.task.student.LoadStudentTask;
 import pl.edziennik.client.utils.NodeUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static pl.edziennik.client.common.ResourceConst.*;
 
@@ -35,16 +40,27 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
     @FXML
     private TableView<AdminListModel> administrationTableView;
 
+    @FXML
+    private Pagination pagination;
+
+    private final Map<Integer, List<AdminDto>> paginationCacheMap = new HashMap<>();
+
     public AdminAccountsTabAdministrationTabController() {
         instance = this;
     }
 
-    public void fetchTabData(final List<AdminDto> adminsList) {
-        List<AdminListModel> adminListModels = AdminListModel.mapPojoToModel(adminsList);
+    public void fetchTabData(final Page<List<AdminDto>> page) {
+        pagination.setPageCount(page.getPagesCount());
+        paginationCacheMap.put(page.getActualPage(), page.getEntities());
+        loadTableItems(page);
+
+    }
+
+    private void loadTableItems(Page<List<AdminDto>> page) {
+        List<AdminListModel> adminListModels = AdminListModel.mapPojoToModel(page.getEntities());
         ObservableList<AdminListModel> items = FXCollections.observableList(adminListModels);
         administrationTableView.setItems(items);
         administrationTableView.refresh();
-
     }
 
     public boolean isTableDataEmpty() {
@@ -126,7 +142,7 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
         deleteButton.setOnAction(button -> {
             List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(administrationTableView, ActionType.DELETE_ACTION);
             Long userId = PropertiesLoader.readProperty(PROPERTIES_LOADER_ID_KEY.value(), new PropertiesStringToLongConverter());
-            if (selectedTableItems.contains(userId)){
+            if (selectedTableItems.contains(userId)) {
                 throw new BusinessException(CANNOT_DELETE_YOUR_OWN_ACCOUNT_MESSAGE_KEY.value());
             }
             if (dialogFactory.createQuestionInformationDialog(ARE_YOU_SURE_TO_PERFORM_DELETE_OPERATION_MESSAGE_KEY.value())) {

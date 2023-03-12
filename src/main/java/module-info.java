@@ -46,6 +46,7 @@ module pl.edziennik.client {
     opens pl.edziennik.client.controller.admin.accounts.student to javafx.fxml;
     exports pl.edziennik.client.controller.admin.accounts.teacher;
     opens pl.edziennik.client.controller.admin.accounts.teacher to javafx.fxml;
+    opens pl.edziennik.client.controller.admin.accounts.parent to javafx.fxml;
     exports pl.edziennik.client.rest.dto.student;
     exports pl.edziennik.client.rest.dto.teacher;
     exports pl.edziennik.client.rest.dto.admin;
@@ -56,6 +57,7 @@ module pl.edziennik.client {
     exports pl.edziennik.client.rest.dto.config;
     exports pl.edziennik.client.rest.dto.parent;
     exports pl.edziennik.client.rest.dto;
+    exports pl.edziennik.client.controller.admin.accounts.parent;
     exports pl.edziennik.client.controller.admin.accounts.admin;
     opens pl.edziennik.client.controller.admin.accounts.admin to javafx.fxml;
 }

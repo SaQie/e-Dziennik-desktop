@@ -16,6 +16,7 @@
                         <TabPane fx:id="accountsMainTabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
                             <tabs>
                                 <fx:include fx:id="studentsTab" source="student/admin-dashboard-accounts-students-tab.fxml" />
+                                <fx:include fx:id="parentsTab" source="parent/admin-dashboard-accounts-parents-tab.fxml" />
                                 <fx:include fx:id="teachersTab" source="teacher/admin-dashboard-accounts-teachers-tab.fxml" />
                                 <fx:include fx:id="administrationsTab" source="administration/admin-dashboard-accounts-administration-tab.fxml" />
                             </tabs>

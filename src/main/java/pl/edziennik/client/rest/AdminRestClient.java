@@ -8,6 +8,8 @@ import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.admin.AdminDto;
 import pl.edziennik.client.rest.dto.config.ConfigurationDto;
 import pl.edziennik.client.rest.dto.config.SettingsValueDto;
+import pl.edziennik.client.rest.dto.parent.ParentDto;
+import pl.edziennik.client.rest.dto.parent.ParentRequestDto;
 import pl.edziennik.client.rest.dto.school.SchoolDto;
 import pl.edziennik.client.rest.dto.schoolclass.SchoolClassDto;
 import pl.edziennik.client.rest.dto.student.StudentDto;
@@ -56,6 +58,27 @@ public class AdminRestClient {
         return ModelUtils.convertToListPage(adminRespons);
     }
 
+    public Page<List<ParentDto>> getParentsList(int actualPage) {
+        Page<ParentDto[]> adminRespons = restClient.sendPageable(URLConstants.PARENT_URL, actualPage, ParentDto[].class);
+        return ModelUtils.convertToListPage(adminRespons);
+    }
+
+    public void deleteParent(Long id) {
+        restClient.send(HttpMethod.DELETE, URLConstants.PARENT_URL, id);
+    }
+
+    public ParentDto getParent(Long id) {
+        return restClient.send(HttpMethod.GET, URLConstants.PARENT_URL + id, ParentDto.class);
+    }
+
+    public ParentDto saveNewParent(ParentRequestDto parentDto) {
+        return restClient.send(HttpMethod.POST, URLConstants.PARENT_URL, parentDto, ParentDto.class);
+    }
+
+    public ParentDto editParent(Long id, ParentDto parentDto) {
+        return restClient.send(HttpMethod.PUT, URLConstants.PARENT_URL + id, parentDto, ParentDto.class);
+    }
+
     public SchoolDto getSchoolPojo(Long id) {
         return restClient.send(HttpMethod.GET, URLConstants.SCHOOL_URL + id, SchoolDto.class);
     }
@@ -76,6 +99,7 @@ public class AdminRestClient {
         SchoolLevelComboBoxItem[] schoolLevelComboBoxItems = restClient.send(HttpMethod.GET, URLConstants.SCHOOL_LEVELS_URL, SchoolLevelComboBoxItem[].class);
         return Arrays.asList(schoolLevelComboBoxItems);
     }
+
 
     public void deleteSchool(Long idSchool) {
         restClient.send(HttpMethod.DELETE, URLConstants.SCHOOL_URL, idSchool);
@@ -135,4 +159,6 @@ public class AdminRestClient {
     public void deleteAdmin(Long idAdmin) {
         restClient.send(HttpMethod.DELETE, URLConstants.ADMIN_URL, idAdmin);
     }
+
+
 }

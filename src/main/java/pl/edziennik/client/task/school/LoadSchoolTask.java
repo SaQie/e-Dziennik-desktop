@@ -8,7 +8,7 @@ import pl.edziennik.client.utils.ResourceUtil;
 
 import java.util.Arrays;
 
-import static pl.edziennik.client.common.ResourceConst.FETCHING_SCHOOL_LIST_DATA_MESSAGE_KEY;
+import static pl.edziennik.client.common.ResourceConst.*;
 
 public class LoadSchoolTask extends Task<SchoolDto> {
 
@@ -23,7 +23,7 @@ public class LoadSchoolTask extends Task<SchoolDto> {
     @Override
     protected SchoolDto call() throws Exception {
         try {
-            updateMessage(ResourceUtil.getMessage(FETCHING_SCHOOL_LIST_DATA_MESSAGE_KEY.value()));
+            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
             return adminRestClient.getSchoolPojo(id);
         }catch (RestClientException e){
             updateMessage(Arrays.toString(e.getStackTrace()));

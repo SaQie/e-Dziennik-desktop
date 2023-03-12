@@ -22,7 +22,7 @@ public class DeleteAdminTask extends Task<Void> {
     @Override
     protected Void call() throws Exception {
         try {
-            updateMessage(ResourceUtil.getMessage(WAITING_DELETE_ADMIN_MESSAGE_KEY.value()));
+            updateMessage(ResourceUtil.getMessage(WAITING_DELETE_DATA.value()));
             for (Long id : idsToDelete) {
                 restClient.deleteAdmin(id);
             }

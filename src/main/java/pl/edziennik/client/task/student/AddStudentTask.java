@@ -7,8 +7,7 @@ import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.rest.dto.student.StudentRequestDto;
 import pl.edziennik.client.utils.ResourceUtil;
 
-import static pl.edziennik.client.common.ResourceConst.WAITING_ADD_NEW_STUDENT_MESSAGE_KEY;
-
+import static pl.edziennik.client.common.ResourceConst.*;
 public class AddStudentTask extends Task<StudentDto> {
 
     private final AdminRestClient adminRestClient;
@@ -22,7 +21,7 @@ public class AddStudentTask extends Task<StudentDto> {
     @Override
     protected StudentDto call() throws Exception {
         try{
-            updateMessage(ResourceUtil.getMessage(WAITING_ADD_NEW_STUDENT_MESSAGE_KEY.value()));
+            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
             return adminRestClient.saveNewStudent(studentPojo);
         }catch (RestClientException e){
             cancel(true);

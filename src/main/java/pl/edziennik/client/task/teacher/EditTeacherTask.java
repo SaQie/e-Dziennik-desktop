@@ -23,7 +23,7 @@ public class EditTeacherTask extends Task<TeacherDto> {
     @Override
     protected TeacherDto call() throws Exception {
         try{
-            updateMessage(ResourceUtil.getMessage(WAITING_EDIT_TEACHER_MESSAGE_KEY.value()));
+            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
             return restClient.editTeacher(dto, id);
         }catch (RestClientException e){
             cancel(true);

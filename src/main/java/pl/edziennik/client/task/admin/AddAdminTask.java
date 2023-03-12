@@ -21,7 +21,7 @@ public class AddAdminTask extends Task<AdminDto> {
     @Override
     protected AdminDto call() throws Exception {
         try{
-            updateMessage(ResourceUtil.getMessage(WAITING_ADD_ADMIN_MESSAGE_KEY.value()));
+            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
             return restClient.saveNewAdmin(dto);
         }catch (RestClientException e){
             cancel(true);

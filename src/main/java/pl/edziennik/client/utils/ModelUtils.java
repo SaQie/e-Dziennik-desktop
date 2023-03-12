@@ -1,6 +1,7 @@
 package pl.edziennik.client.utils;
 
 import pl.edziennik.client.rest.dto.Page;
+import pl.edziennik.client.rest.dto.parent.ParentDto;
 import pl.edziennik.client.rest.dto.parent.SimpleParentDto;
 
 import java.lang.reflect.Array;
@@ -16,6 +17,9 @@ public class ModelUtils {
     public static String getValueOrEmpty(Object obj) {
         if (obj instanceof SimpleParentDto) {
             return ((SimpleParentDto) obj).getFullName();
+        }
+        if (obj instanceof ParentDto) {
+            return ((ParentDto) obj).getPhoneNumber();
         }
         return " ";
     }

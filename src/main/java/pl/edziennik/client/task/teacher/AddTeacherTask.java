@@ -22,7 +22,7 @@ public class AddTeacherTask extends Task<TeacherDto> {
     @Override
     protected TeacherDto call() throws Exception {
         try{
-            updateMessage(ResourceUtil.getMessage(WAITING_ADD_NEW_TEACHER_MESSAGE_KEY.value()));
+            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
             return restClient.saveNewTeacher(pojo);
         }catch (RestClientException e){
             cancel(true);

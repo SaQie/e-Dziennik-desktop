@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.control.Pagination?>
+<Tab fx:id="parentsTab" text="%tab.parents" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+     fx:controller="pl.edziennik.client.controller.admin.accounts.parent.AdminAccountsTabParentsTabController">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <children>
+                <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
+                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <center>
+                        <TableView fx:id="parentsTableView" prefHeight="200.0" prefWidth="200.0"
+                                   stylesheets="@../../../../css/global-table-styles.css" BorderPane.alignment="CENTER">
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                            </columnResizePolicy>
+                        </TableView>
+                    </center>
+                    <top>
+                        <HBox prefHeight="40.0" prefWidth="1040.0" spacing="15.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Button fx:id="addButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0"
+                                        styleClass="dashboard-crud-button" text="%button.add">
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../../icons/add.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="showButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0"
+                                        styleClass="dashboard-crud-button" text="%button.show">
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../../icons/show.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="editButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0"
+                                        styleClass="dashboard-crud-button" text="%button.edit">
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../../icons/edit.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0"
+                                        styleClass="dashboard-crud-button" text="%button.delete">
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../../icons/minus.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="refreshButton" mnemonicParsing="false" prefHeight="45.0"
+                                        prefWidth="120.0" styleClass="dashboard-crud-button" text="%button.refresh">
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../../icons/Rotate%20Right.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="45.0"
+                                            prefWidth="130.0" styleClass="dashboard-crud-button" text="%button.menu">
+                                    <items>
+                                        <MenuItem fx:id="selectAllMenuItem" mnemonicParsing="false"
+                                                  text="%label.select.all">
+                                            <graphic>
+                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true"
+                                                           preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../../../../icons/Choose.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </MenuItem>
+                                        <MenuItem fx:id="unselectAllMenuItem" mnemonicParsing="false"
+                                                  text="%label.unselect.all">
+                                            <graphic>
+                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true"
+                                                           preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../../../../icons/Choose.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </MenuItem>
+                                    </items>
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../../icons/Drag%20List%20Down.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </MenuButton>
+                            </children>
+                            <BorderPane.margin>
+                                <Insets left="5.0" top="5.0"/>
+                            </BorderPane.margin>
+                        </HBox>
+                    </top>
+                    <bottom>
+                        <HBox alignment="TOP_CENTER" prefHeight="20.0" prefWidth="200.0"
+                              styleClass="background-color-dark" BorderPane.alignment="CENTER">
+                            <children>
+                                <Pagination fx:id="pagination" prefHeight="200.0" prefWidth="300.0"
+                                            stylesheets="@../../../../css/pagination-styles.css">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0"/>
+                                    </HBox.margin>
+                                </Pagination>
+                            </children>
+                        </HBox>
+                    </bottom>
+                </BorderPane>
+            </children>
+        </AnchorPane>
+    </content>
+    <graphic>
+        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../icons/Family.png"/>
+            </image>
+        </ImageView>
+    </graphic>
+</Tab>

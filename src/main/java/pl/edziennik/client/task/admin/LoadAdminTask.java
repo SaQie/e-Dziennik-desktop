@@ -22,7 +22,7 @@ public class LoadAdminTask extends Task<AdminDto> {
     @Override
     protected AdminDto call() throws Exception {
         try {
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCHING_ADMINS_LIST_MESSAGE_KEY.value()));
+            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
             return restClient.getAdmin(idAdmin);
         } catch (RestClientException e) {
             cancel(true);

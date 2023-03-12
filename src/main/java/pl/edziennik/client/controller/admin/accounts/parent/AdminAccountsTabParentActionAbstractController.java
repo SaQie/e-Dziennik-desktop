@@ -1,0 +1,101 @@
+package pl.edziennik.client.controller.admin.accounts.parent;
+
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import pl.edziennik.client.common.ActionType;
+import pl.edziennik.client.common.Role;
+import pl.edziennik.client.controller.model.admin.StudentComboBoxItem;
+import pl.edziennik.client.core.AbstractController;
+import pl.edziennik.client.rest.dto.parent.ParentDto;
+import pl.edziennik.client.rest.dto.parent.ParentRequestDto;
+import pl.edziennik.client.rest.dto.student.SimpleStudentDto;
+import pl.edziennik.client.task.student.LoadStudentsTask;
+import pl.edziennik.client.utils.ModelUtils;
+import pl.edziennik.client.utils.NodeUtils;
+
+import java.util.List;
+import java.util.UUID;
+
+class AdminAccountsTabParentActionAbstractController extends AbstractController {
+
+
+    @FXML
+    protected ComboBox<StudentComboBoxItem> studentComboBox;
+
+    @FXML
+    protected TextField usernameTextField, firstNameTextField, lastNameTextField, addressTextField, postalCodeTextField, cityTextField,
+            peselTextField, phoneNumberTextField, emailTextField, roleTextField;
+
+
+    @Override
+    protected void createActions() {
+        NodeUtils.createCancelButtonAction(cancelButton);
+    }
+
+    @Override
+    protected void fetchStageData() {
+        fetchStudentComboBoxItems();
+        roleTextField.setText(Role.ROLE_PARENT.name());
+    }
+
+    private void fetchStudentComboBoxItems() {
+        progressFactory.createLittleProgressBar(new LoadStudentsTask(), (response) -> {
+            List<StudentComboBoxItem> studentComboBoxItems = response.getEntities()
+                    .stream()
+                    .map(dto -> new SimpleStudentDto(dto.getId(), dto.getFullName()))
+                    .map(StudentComboBoxItem::new)
+                    .toList();
+            studentComboBox.setItems(FXCollections.observableList(studentComboBoxItems));
+        });
+    }
+
+    @Override
+    protected void setSceneSettings() {
+
+    }
+
+    @Override
+    protected Stage getActualStage() {
+        return (Stage) cancelButton.getScene().getWindow();
+    }
+
+    protected ParentRequestDto mapToDto() {
+        ParentRequestDto dto = new ParentRequestDto();
+        dto.setAddress(addressTextField.getText());
+        dto.setCity(cityTextField.getText());
+        dto.setEmail(emailTextField.getText());
+        dto.setRole(roleTextField.getText());
+        dto.setPesel(peselTextField.getText());
+        dto.setFirstName(firstNameTextField.getText());
+        dto.setLastName(lastNameTextField.getText());
+        dto.setPhoneNumber(phoneNumberTextField.getText());
+        dto.setPostalCode(postalCodeTextField.getText());
+        dto.setUsername(usernameTextField.getText());
+        dto.setIdStudent(studentComboBox.getValue().getId().getValue());
+        String password = UUID.randomUUID().toString();
+        // TODO, ten print bedzie do zmiany, haslo bedzie wysylane mailem
+        System.out.println("Random uuid: " + password);
+        dto.setPassword(password);
+        return dto;
+    }
+
+    protected void loadStageFields(ParentDto dto, ActionType type) {
+        usernameTextField.setText(dto.getUsername());
+        firstNameTextField.setText(dto.getFirstName());
+        lastNameTextField.setText(dto.getLastName());
+        roleTextField.setText(dto.getRole());
+        addressTextField.setText(dto.getAddress());
+        cityTextField.setText(dto.getCity());
+        postalCodeTextField.setText(dto.getPostalCode());
+        peselTextField.setText(dto.getPesel());
+        emailTextField.setText(dto.getEmail());
+        phoneNumberTextField.setText(ModelUtils.getValueOrEmpty(dto.getPhoneNumber()));
+        studentComboBox.getSelectionModel().select(new StudentComboBoxItem(dto.getStudent()));
+        if (ActionType.SHOW_ACTION.equals(type)) {
+            studentComboBox.setOnShown(show -> studentComboBox.hide());
+        }
+    }
+}

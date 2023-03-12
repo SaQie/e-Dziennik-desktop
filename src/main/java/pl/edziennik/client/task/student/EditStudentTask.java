@@ -24,7 +24,7 @@ public class EditStudentTask extends Task<StudentDto> {
     @Override
     protected StudentDto call() throws Exception {
         try{
-            updateMessage(ResourceUtil.getMessage(WAITING_ADD_NEW_STUDENT_MESSAGE_KEY.value()));
+            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
             return restClient.editStudent(id, pojo);
         }catch (RestClientException e){
             cancel(true);

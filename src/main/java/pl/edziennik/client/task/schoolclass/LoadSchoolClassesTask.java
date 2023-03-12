@@ -24,7 +24,7 @@ public class LoadSchoolClassesTask extends Task<List<SchoolClassDto>> {
     @Override
     protected List<SchoolClassDto> call() throws Exception {
         try{
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCHING_SCHOOL_CLASSES_LIST_MESSAGE_KEY.value()));
+            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
             return adminRestClient.getSchoolClassesBySchoolId(idSchool);
         }catch (RestClientException e){
             cancel(true);

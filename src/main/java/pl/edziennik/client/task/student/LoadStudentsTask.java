@@ -30,7 +30,7 @@ public class LoadStudentsTask extends Task<Page<List<StudentDto>>> {
     @Override
     protected Page<List<StudentDto>> call() throws Exception {
         try {
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCHING_STUDENTS_LIST_MESSAGE_KEY.value()));
+            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
             return adminRestClient.getStudentList(actualPage);
         } catch (RestClientException e) {
             cancel(true);

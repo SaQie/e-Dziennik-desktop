@@ -21,7 +21,7 @@ public class LoadStudentTask extends Task<StudentDto> {
     @Override
     protected StudentDto call() throws Exception {
         try{
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCHING_STUDENT_MESSAGE_KEY.value()));
+            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
             return restClient.getStudent(idStudent);
         }catch (RestClientException e){
             cancel(true);

@@ -84,7 +84,7 @@ public class AdminSchoolsTabController extends AbstractController {
 
     public void fetchTabData(final Page<List<SchoolDto>> page) {
         pagination.setPageCount(page.getPagesCount());
-        paginationCacheMap.put(page.getActualPage(), page.getEntities());
+        paginationCacheMap.put(page.getActualPage() - 1, page.getEntities());
         loadTableItems(page.getEntities());
     }
 

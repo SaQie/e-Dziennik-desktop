@@ -5,10 +5,12 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 import pl.edziennik.client.controller.admin.accounts.admin.AdminAccountsTabAdministrationTabController;
+import pl.edziennik.client.controller.admin.accounts.parent.AdminAccountsTabParentsTabController;
 import pl.edziennik.client.controller.admin.accounts.student.AdminAccountsTabStudentsTabController;
 import pl.edziennik.client.controller.admin.accounts.teacher.AdminAccountsTabTeachersTabController;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.task.admin.LoadAdminsTask;
+import pl.edziennik.client.task.parent.LoadParentsTask;
 import pl.edziennik.client.task.student.LoadStudentsTask;
 import pl.edziennik.client.task.teacher.LoadTeachersTask;
 import pl.edziennik.client.utils.ThreadUtils;
@@ -22,13 +24,16 @@ public class AdminAccountsTabController extends AbstractController {
     private AdminAccountsTabStudentsTabController studentsTabController;
 
     @FXML
+    private AdminAccountsTabParentsTabController parentsTabController;
+
+    @FXML
     private AdminAccountsTabAdministrationTabController administrationsTabController;
 
     @FXML
     private TabPane accountsMainTabPane;
 
     @FXML
-    private Tab studentsTab, teachersTab, administrationsTab;
+    private Tab studentsTab, teachersTab, administrationsTab, parentsTab;
 
 
     @Override
@@ -60,7 +65,18 @@ public class AdminAccountsTabController extends AbstractController {
             if (newValue.equals(administrationsTab)) {
                 fetchAdministrationTabTableItems();
             }
+            if (newValue.equals(parentsTab)){
+                fetchParentsTabTableItems();
+            }
         });
+    }
+
+    private void fetchParentsTabTableItems() {
+        if (parentsTabController.isTableDataEmpty()) {
+            ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new LoadParentsTask(), (response) -> {
+                parentsTabController.fetchTabData(response);
+            }));
+        }
     }
 
     public void fetchSelectedTabTableItems() {

@@ -22,11 +22,11 @@ public class LoadConfigurationsTask extends Task<List<ConfigurationDto>> {
     @Override
     protected List<ConfigurationDto> call() throws Exception {
         try {
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCHING_CONFIGURATION_LIST_MESSAGE_KEY.value()));
+            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
             return restClient.getConfigurationList();
         } catch (RestClientException e) {
             cancel(true);
-            return Collections.EMPTY_LIST;
+            return Collections.emptyList();
         }
     }
 }

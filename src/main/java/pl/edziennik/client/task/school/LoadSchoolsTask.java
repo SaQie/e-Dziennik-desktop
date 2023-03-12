@@ -29,7 +29,7 @@ public class LoadSchoolsTask extends Task<Page<List<SchoolDto>>> {
     @Override
     protected Page<List<SchoolDto>> call() throws Exception {
         try {
-            updateMessage(ResourceUtil.getMessage(FETCHING_SCHOOL_LIST_DATA_MESSAGE_KEY.value()));
+            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
             return adminRestClient.getSchoolList(page);
         }catch (RestClientException e){
             updateMessage(Arrays.toString(e.getStackTrace()));

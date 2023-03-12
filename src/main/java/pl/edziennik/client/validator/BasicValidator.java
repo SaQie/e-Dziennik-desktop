@@ -158,6 +158,17 @@ public abstract class BasicValidator {
         });
     }
 
+    protected void createStudentValidatorListener(ComboBox<?> comboBox){
+        ValidationUtil.addErrorTooltipToComboBox(ResourceConst.STUDENT_CANNOT_BE_EMPTY.value(), comboBox);
+        comboBox.valueProperty().addListener(input -> {
+            if (ValidationUtil.isComboBoxEmpty(comboBox)) {
+                ValidationUtil.addErrorTooltipToComboBox(ResourceConst.STUDENT_CANNOT_BE_EMPTY.value(), comboBox);
+            } else {
+                ValidationUtil.unmarkComboBoxAsError(comboBox);
+            }
+        });
+    }
+
     protected void createSchoolClassValidatorListener(ComboBox<?> comboBox) {
         comboBox.valueProperty().addListener(input -> {
             if (ValidationUtil.isComboBoxEmpty(comboBox)) {

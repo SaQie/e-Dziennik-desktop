@@ -82,8 +82,8 @@ public class AuthorizationUtils {
             return;
 
         }
-        if (role.equals(Role.ROLE_MODERATOR.name())){
-            // moderator
+        if (role.equals(Role.ROLE_PARENT.name())){
+            // parent
             return;
         }
         if (role.equals(Role.ROLE_TEACHER.name())){

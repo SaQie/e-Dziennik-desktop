@@ -23,7 +23,7 @@ public class EditAdminTask extends Task<AdminDto> {
     @Override
     protected AdminDto call() throws Exception {
         try {
-            updateMessage(ResourceUtil.getMessage(WAITING_EDIT_ADMIN_MESSAGE_KEY.value()));
+            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
             return restClient.editAdmin(idAdmin, dto);
         } catch (RestClientException e) {
             cancel(true);

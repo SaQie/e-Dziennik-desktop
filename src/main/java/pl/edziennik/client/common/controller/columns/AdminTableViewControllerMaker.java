@@ -2,10 +2,7 @@ package pl.edziennik.client.common.controller.columns;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableColumn;
-import pl.edziennik.client.controller.model.admin.AdminListModel;
-import pl.edziennik.client.controller.model.admin.SchoolListModel;
-import pl.edziennik.client.controller.model.admin.StudentListModel;
-import pl.edziennik.client.controller.model.admin.TeacherListModel;
+import pl.edziennik.client.controller.model.admin.*;
 
 import java.util.List;
 
@@ -30,6 +27,84 @@ public class AdminTableViewControllerMaker {
 
     public static TeacherTableViewBuilder teacherTableViewBuilder() {
         return new TeacherTableViewBuilder();
+    }
+
+    public static ParentsTableViewBuilder parentsTableViewBuilder() {
+        return new ParentsTableViewBuilder();
+    }
+
+    /**
+     * Table view builder for parents tab
+     */
+    public static class ParentsTableViewBuilder {
+
+        private final List<TableColumn<ParentListModel, ?>> columns = FXCollections.observableArrayList();
+
+
+        public ParentsTableViewBuilder withCityColumn(final boolean isDefaultVisible) {
+            columns.add(AccountsTableViewColumns.ParentsTableViewColumns.getCityColumn(isDefaultVisible));
+            return this;
+        }
+
+        public ParentsTableViewBuilder withFirstNameColumn(final boolean isDefaultVisible) {
+            columns.add(AccountsTableViewColumns.ParentsTableViewColumns.getFirstNameColumn(isDefaultVisible));
+            return this;
+        }
+
+        public ParentsTableViewBuilder withLastNameColumn(final boolean isDefaultVisible) {
+            columns.add(AccountsTableViewColumns.ParentsTableViewColumns.getLastNameColumn(isDefaultVisible));
+            return this;
+        }
+
+        public ParentsTableViewBuilder withPhoneNumberColumn(final boolean isDefaultVisible) {
+            columns.add(AccountsTableViewColumns.ParentsTableViewColumns.getPhoneNumberColumn(isDefaultVisible));
+            return this;
+        }
+
+        public ParentsTableViewBuilder withPeselColumn(final boolean isDefaultVisible) {
+            columns.add(AccountsTableViewColumns.ParentsTableViewColumns.getPeselColumn(isDefaultVisible));
+            return this;
+        }
+
+        public ParentsTableViewBuilder withAddressColumn(final boolean isDefaultVisible) {
+            columns.add(AccountsTableViewColumns.ParentsTableViewColumns.getAddressColumn(isDefaultVisible));
+            return this;
+        }
+
+        public ParentsTableViewBuilder withPostalCodeColumn(final boolean isDefaultVisible) {
+            columns.add(AccountsTableViewColumns.ParentsTableViewColumns.getPostalCodeColumn(isDefaultVisible));
+            return this;
+        }
+
+        public ParentsTableViewBuilder withUsernameColumn(final boolean isDefaultVisible) {
+            columns.add(AccountsTableViewColumns.ParentsTableViewColumns.getUsernameColumn(isDefaultVisible));
+            return this;
+        }
+
+        public ParentsTableViewBuilder withEmailColumn(final boolean isDefaultVisible) {
+            columns.add(AccountsTableViewColumns.ParentsTableViewColumns.getEmailColumn(isDefaultVisible));
+            return this;
+        }
+
+        public ParentsTableViewBuilder withRoleColumn(final boolean isDefaultVisible) {
+            columns.add(AccountsTableViewColumns.ParentsTableViewColumns.getRoleColumn(isDefaultVisible));
+            return this;
+        }
+
+        public ParentsTableViewBuilder withStudentColumn(final boolean isDefaultVisible) {
+            columns.add(AccountsTableViewColumns.ParentsTableViewColumns.getStudentFullNameColumn(isDefaultVisible));
+            return this;
+        }
+
+        public ParentsTableViewBuilder withSelectionColumn(final boolean isDefaultVisible) {
+            columns.add(AccountsTableViewColumns.getSelectColumn(isDefaultVisible));
+            return this;
+        }
+
+        public List<TableColumn<ParentListModel, ?>> build() {
+            return columns;
+        }
+
     }
 
     /**

@@ -6,6 +6,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import pl.edziennik.client.core.AbstractController;
+import pl.edziennik.client.core.StageManager;
 import pl.edziennik.client.rest.dto.config.ConfigurationDto;
 import pl.edziennik.client.rest.dto.config.SettingsValueDto;
 import pl.edziennik.client.task.config.SaveConfigurationTask;
@@ -45,7 +46,8 @@ public class AdminConfigurationOptionController extends AbstractController {
             configurationPojos.add(new SettingsValueDto(firstParameterId, firstParameterValue.isSelected()));
             configurationPojos.add(new SettingsValueDto(secondParameterId, secondParameterValue.isSelected()));
             progressFactory.createLittleProgressBar(new SaveConfigurationTask(configurationPojos), (response) -> {
-                getActualStage().close();
+                dialogFactory.createSuccessInformationDialog(null);
+                NodeUtils.closeCurrentStage(getActualStage());
             });
         });
     }

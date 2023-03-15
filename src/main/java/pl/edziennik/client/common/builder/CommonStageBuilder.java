@@ -2,10 +2,7 @@ package pl.edziennik.client.common.builder;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -15,9 +12,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.core.StageManager;
 import pl.edziennik.client.eDziennikApplication;
 import pl.edziennik.client.exception.ViewException;
-import pl.edziennik.client.rest.client.RestClient;
 import pl.edziennik.client.rest.client.response.ApiErrors;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ResourceUtil;
@@ -97,7 +94,7 @@ public class CommonStageBuilder {
             return this;
         }
 
-        public DialogBuilder withPlainContentText(String plainContentText){
+        public DialogBuilder withPlainContentText(String plainContentText) {
             this.plainContentText = plainContentText;
             return this;
         }
@@ -183,9 +180,9 @@ public class CommonStageBuilder {
             }
 
             if (contentText != null) {
-                if (cause != null){
+                if (cause != null) {
                     alert.setContentText(ResourceUtil.getMessage(contentText) + "\n" + ResourceUtil.getMessage(cause));
-                }else {
+                } else {
                     alert.setContentText(ResourceUtil.getMessage(contentText));
                 }
 
@@ -193,7 +190,7 @@ public class CommonStageBuilder {
                 alert.setContentText(ResourceUtil.getMessage(ResourceConst.SUCCESS_DIALOG_CONTENT_MESSAGE_KEY.value()));
             }
 
-            if (plainContentText != null){
+            if (plainContentText != null) {
                 alert.setContentText(plainContentText);
             }
 
@@ -260,6 +257,8 @@ public class CommonStageBuilder {
         private ShowMode showMode;
         private Color color;
 
+        private Button button;
+
         private boolean isFocusRequest;
         private boolean isAlwaysOnTop;
         private boolean isResizable;
@@ -322,6 +321,11 @@ public class CommonStageBuilder {
             return this;
         }
 
+        public StageBuilder withButton(Button buttonToDisable) {
+            this.button = buttonToDisable;
+            return this;
+        }
+
         public StageBuilder withResizable(boolean isResizable) {
             this.isResizable = isResizable;
             return this;
@@ -362,7 +366,7 @@ public class CommonStageBuilder {
             Scene scene;
             try {
                 scene = new Scene(fxmlLoader.load(), width, height);
-            }catch (IOException e){
+            } catch (IOException e) {
                 LOGGER.severe(e.getMessage());
                 LOGGER.severe(e.getCause().getMessage());
                 throw new ViewException(VIEW_EXCEPTION_MESSAGE_KEY.value());
@@ -414,6 +418,11 @@ public class CommonStageBuilder {
 
             stage.setScene(scene);
 
+            if (button != null) {
+                stage.setUserData(button);
+                StageManager.setIsShowing(stage);
+            }
+
             switch (showMode) {
                 case OPEN_ABOVE -> {
                     stage.show();
@@ -436,6 +445,7 @@ public class CommonStageBuilder {
                     return null;
                 }
             }
+
         }
 
         private void searchActualStageAndSetPosition(Scene scene, Stage stage) {

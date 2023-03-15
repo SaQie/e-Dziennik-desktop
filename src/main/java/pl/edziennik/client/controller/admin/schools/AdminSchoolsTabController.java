@@ -134,7 +134,7 @@ public class AdminSchoolsTabController extends AbstractController {
                         ResourceConst.DASHBOARD_ADMIN_SCHOOL_SHOW_VIEW_ADDRESS.value(),
                         ResourceConst.SHOW_SCHOOL_VIEW_TITLE_KEY.value(),
                         500, 600,
-                        getActualStage());
+                        showButton);
                 controller.loadStageFields(schoolPojo);
             });
         });
@@ -148,7 +148,7 @@ public class AdminSchoolsTabController extends AbstractController {
                         ResourceConst.DASHBOARD_ADMIN_SCHOOL_EDIT_VIEW_ADDRESS.value(),
                         ResourceConst.EDIT_SCHOOL_VIEW_TITLE_KEY.value(),
                         500, 600,
-                        getActualStage());
+                        editButton);
                 controller.loadStageFields(schoolPojo);
             });
         });
@@ -181,7 +181,7 @@ public class AdminSchoolsTabController extends AbstractController {
                     ResourceConst.DASHBOARD_ADMIN_SCHOOL_ADD_VIEW_ADDRESS.value(),
                     ResourceConst.ADD_SCHOOL_VIEW_TITLE_KEY.value(),
                     500, 600,
-                    getActualStage());
+                    getActualStage(), addButton);
         });
     }
 

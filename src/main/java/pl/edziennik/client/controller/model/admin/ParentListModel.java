@@ -61,6 +61,7 @@ public class ParentListModel implements TableViewSelection {
         return this.id.getValue();
     }
 
+
     @Override
     public boolean isSelected() {
         return this.select.isSelected();

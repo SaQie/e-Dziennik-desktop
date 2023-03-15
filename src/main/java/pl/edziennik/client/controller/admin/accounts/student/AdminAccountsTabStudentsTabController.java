@@ -127,7 +127,7 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
             NodeUtils.openNewStageAbove(
                     DASHBOARD_ADMIN_ACCOUNTS_ADD_STUDENT_VIEW_ADDRESS.value(),
                     ADMIN_ACCOUNTS_ADD_STUDENT_TITLE_MESSAGE_KEY.value(),
-                    1000, 500, getActualStage());
+                    1000, 500, getActualStage(), addButton);
         });
     }
 
@@ -145,7 +145,7 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
                         ResourceConst.DASHBOARD_ADMIN_ACCOUNTS_SHOW_STUDENT_VIEW_ADDRESS.value(),
                         ResourceConst.SHOW_STUDENT_VIEW_TITLE_KEY.value(),
                         1000, 500,
-                        getActualStage());
+                        showButton);
                 controller.loadStageFields(schoolPojo, ActionType.SHOW_ACTION);
             });
         });
@@ -159,7 +159,7 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
                         ResourceConst.DASHBOARD_ADMIN_ACCOUNTS_EDIT_STUDENT_VIEW_ADDRESS.value(),
                         ResourceConst.EDIT_STUDENT_VIEW_TITLE_KEY.value(),
                         1000, 500,
-                        getActualStage());
+                        editButton);
                 controller.loadStageFields(schoolPojo, ActionType.EDIT_ACTION);
             });
         });

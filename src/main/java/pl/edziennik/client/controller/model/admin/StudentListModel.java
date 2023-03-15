@@ -14,6 +14,8 @@ import java.util.List;
 public class StudentListModel implements TableViewSelection {
 
     private final SimpleLongProperty id;
+    private final SimpleLongProperty userId;
+
     private final SimpleStringProperty username;
     private final SimpleStringProperty firstName;
     private final SimpleStringProperty lastName;
@@ -44,6 +46,7 @@ public class StudentListModel implements TableViewSelection {
         this.email = new SimpleStringProperty(pojo.getEmail());
         this.select = Styles.tableViewSelectionCheckBox();
         this.phoneNumber = new SimpleStringProperty(pojo.getPhoneNumber());
+        this.userId = new SimpleLongProperty(pojo.getUserId());
         this.parentFullName = new SimpleStringProperty(ModelUtils.getValueOrEmpty(pojo.getParent()));
 
     }
@@ -66,6 +69,11 @@ public class StudentListModel implements TableViewSelection {
     @Override
     public Long getId() {
         return this.id.getValue();
+    }
+
+    @Override
+    public Long getUserId() {
+        return this.userId.getValue();
     }
 
     @Override

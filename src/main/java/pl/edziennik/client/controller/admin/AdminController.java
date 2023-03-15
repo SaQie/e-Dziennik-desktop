@@ -63,7 +63,7 @@ public class AdminController extends AbstractController {
                         CONFIGURATION_LIST_ADMIN_VIEW_TITLE_MESSAGE_KEY.value(),
                         450,
                         300,
-                        getActualStage());
+                        configurationButton);
                 controller.fetchData(configurationList);
             });
         });

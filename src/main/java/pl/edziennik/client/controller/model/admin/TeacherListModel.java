@@ -13,6 +13,8 @@ import java.util.List;
 public class TeacherListModel implements TableViewSelection {
 
     private final SimpleLongProperty id;
+    private final SimpleLongProperty userId;
+
     private final SimpleStringProperty username;
     private final SimpleStringProperty firstName;
     private final SimpleStringProperty lastname;
@@ -39,6 +41,7 @@ public class TeacherListModel implements TableViewSelection {
         this.role = new SimpleStringProperty(pojo.getRole());
         this.school = new SimpleStringProperty(pojo.getSchool().getName());
         this.email = new SimpleStringProperty(pojo.getEmail());
+        this.userId = new SimpleLongProperty(pojo.getUserId());
         this.select = Styles.tableViewSelectionCheckBox();
     }
 
@@ -60,6 +63,11 @@ public class TeacherListModel implements TableViewSelection {
     @Override
     public Long getId() {
         return id.getValue();
+    }
+
+    @Override
+    public Long getUserId() {
+        return this.userId.getValue();
     }
 
     @Override

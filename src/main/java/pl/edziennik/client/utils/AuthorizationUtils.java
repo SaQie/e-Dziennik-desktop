@@ -77,6 +77,7 @@ public class AuthorizationUtils {
                     .withMinWidth(1100)
                     .withFocusRequest(true)
                     .withOwner(currentStage)
+                    .withTitle(ResourceConst.DASHBOARD_ADMIN_VIEW_TITLE.value())
                     .withShowMode(CLOSE_PREVIOUS)
                     .build();
             return;

@@ -90,7 +90,7 @@ public class AdminAccountsTabParentsTabController extends AbstractController {
             List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(parentsTableView, ActionType.SHOW_ACTION);
             progressFactory.createLittleProgressBar(new LoadParentTask(selectedTableItems.get(0)), (response) -> {
                 AdminAccountsTabParentsShowController controller = NodeUtils.openNewStageAboveWithController(DASHBOARD_ADMIN_ACCOUNTS_SHOW_PARENT_VIEW_ADDRESS.value(), SHOW_PARENT_TITLE_MESSAGE_KEY.value(),
-                        1000, 500, getActualStage());
+                        1000, 500, showButton);
                 controller.loadStageFields(response, ActionType.SHOW_ACTION);
             });
         });
@@ -101,7 +101,7 @@ public class AdminAccountsTabParentsTabController extends AbstractController {
             List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(parentsTableView, ActionType.EDIT_ACTION);
             progressFactory.createLittleProgressBar(new LoadParentTask(selectedTableItems.get(0)), (response) -> {
                 AdminAccountsTabParentsEditController controller = NodeUtils.openNewStageAboveWithController(DASHBOARD_ADMIN_ACCOUNTS_EDIT_PARENT_VIEW_ADDRESS.value(), EDIT_PARENT_TITLE_MESSAGE_KEY.value(),
-                        1000, 500, getActualStage());
+                        1000, 500, editButton);
                 controller.loadStageFields(response, ActionType.EDIT_ACTION);
             });
         });
@@ -110,7 +110,7 @@ public class AdminAccountsTabParentsTabController extends AbstractController {
     private void initializeAddButtonAction() {
         addButton.setOnAction(button -> {
             NodeUtils.openNewStageAbove(DASHBOARD_ADMIN_ACCOUNTS_ADD_PARENT_VIEW_ADDRESS.value(), ADD_PARENT_TITLE_MESSAGE_KEY.value(),
-                    1000, 500, getActualStage());
+                    1000, 500, getActualStage(), addButton);
         });
     }
 

@@ -51,7 +51,7 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
 
     public void fetchTabData(final Page<List<AdminDto>> page) {
         pagination.setPageCount(page.getPagesCount());
-        paginationCacheMap.put(page.getActualPage() -1, page.getEntities());
+        paginationCacheMap.put(page.getActualPage() - 1, page.getEntities());
         loadTableItems(page);
 
     }
@@ -120,7 +120,7 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
             NodeUtils.openNewStageAbove(
                     DASHBOARD_ADMIN_ACCOUNTS_ADD_ADMIN_VIEW_ADDRESS.value(),
                     ADMIN_ACCOUNTS_ADD_ADMIN_TITLE_MESSAGE_KEY.value(),
-                    500, 350, getActualStage());
+                    500, 350, getActualStage(), addButton);
         });
     }
 
@@ -132,7 +132,7 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
                         DASHBOARD_ADMIN_ACCOUNTS_EDIT_ADMIN_VIEW_ADDRESS.value(),
                         ADMIN_ACCOUNTS_EDIT_ADMIN_TITLE_MESSAGE_KEY.value(),
                         500, 350,
-                        getActualStage());
+                        editButton);
                 controller.loadStageFields(adminDto, ActionType.EDIT_ACTION);
             });
         });
@@ -140,7 +140,7 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
 
     private void initializeDeleteButtonAction() {
         deleteButton.setOnAction(button -> {
-            List<Long> selectedTableItems = NodeUtils.getSelectedTableItems(administrationTableView, ActionType.DELETE_ACTION);
+            List<Long> selectedTableItems = NodeUtils.getSelectedUserIdTableItems(administrationTableView, ActionType.DELETE_ACTION);
             Long userId = PropertiesLoader.readProperty(PROPERTIES_LOADER_ID_KEY.value(), new PropertiesStringToLongConverter());
             if (selectedTableItems.contains(userId)) {
                 throw new BusinessException(CANNOT_DELETE_YOUR_OWN_ACCOUNT_MESSAGE_KEY.value());
@@ -161,7 +161,7 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
                         DASHBOARD_ADMIN_ACCOUNTS_SHOW_ADMIN_VIEW_ADDRESS.value(),
                         ADMIN_ACCOUNTS_SHOW_ADMIN_TITLE_MESSAGE_KEY.value(),
                         500, 350,
-                        getActualStage());
+                        showButton);
                 controller.loadStageFields(adminDto, ActionType.SHOW_ACTION);
             });
         });

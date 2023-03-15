@@ -11,6 +11,8 @@ import pl.edziennik.client.rest.dto.school.SimpleSchoolDto;
 public class StudentDto {
 
     private Long id;
+    private Long userId;
+
     private String username;
     private String firstName;
     private String lastName;

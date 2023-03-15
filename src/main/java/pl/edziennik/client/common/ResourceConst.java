@@ -39,6 +39,7 @@ public enum ResourceConst {
     // MESSAGES,
 
     EXIT_CONFIRMATION_MESSAGE_KEY("exit.confirmation.message"),
+    DASHBOARD_ADMIN_VIEW_TITLE("dashboard.admin.view.title"),
     EXIT_CONFIRMATION_HEADER_KEY("exit.confirmation.header"),
     ERROR_DIALOG_MESSAGE_KEY("error.dialog.message"),
     ERROR_DIALOG_HEADER_MESSAGE_KEY("error.dialog.header"),

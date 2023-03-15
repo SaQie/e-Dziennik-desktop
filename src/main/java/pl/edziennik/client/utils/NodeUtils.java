@@ -25,6 +25,7 @@ import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.configuration.converter.PropertiesLanguageConverter;
 import pl.edziennik.client.controller.configuration.TableColumnViewConfigController;
 import pl.edziennik.client.controller.model.admin.TableViewSelection;
+import pl.edziennik.client.core.StageManager;
 import pl.edziennik.client.exception.TableViewException;
 
 import java.net.URL;
@@ -65,7 +66,7 @@ public class NodeUtils {
     public static void createCancelButtonAction(Button cancelButton) {
         cancelButton.setOnAction(button -> {
             Stage stage = (Stage) cancelButton.getScene().getWindow();
-            stage.close();
+            NodeUtils.closeCurrentStage(stage);
         });
     }
 
@@ -83,7 +84,7 @@ public class NodeUtils {
     }
 
     @SneakyThrows
-    public static void openNewStageAbove(String viewLocation, String title, int width, int height, Stage actualStage) {
+    public static void openNewStageAbove(String viewLocation, String title, int width, int height, Stage actualStage, Button buttonToDisable) {
         CommonStageBuilder.stageBuilder()
                 .withWidth(width)
                 .withHeight(height)
@@ -92,6 +93,7 @@ public class NodeUtils {
                 .withFocusRequest(true)
                 .withResizable(false)
                 .withOwner(actualStage)
+                .withButton(buttonToDisable)
                 .withSetPositionToCenter(true)
                 .withTitle(title)
                 .withShowMode(OPEN_ABOVE)
@@ -99,15 +101,16 @@ public class NodeUtils {
     }
 
     @SneakyThrows
-    public static <T> T openNewStageAboveWithController(String viewLocation, String title, int width, int height, Stage actualStage) {
+    public static <T> T openNewStageAboveWithController(String viewLocation, String title, int width, int height, Button buttonToDisable) {
         return CommonStageBuilder.stageBuilder()
                 .withTitle(title)
                 .withWidth(width)
                 .withHeight(height)
                 .withView(viewLocation)
                 .withStyle(StageStyle.DECORATED)
-                .withModality(Modality.APPLICATION_MODAL)
+                .withModality(Modality.NONE)
                 .withFocusRequest(true)
+                .withButton(buttonToDisable)
                 .withResizable(false)
                 .withSearchActualStage(true)
                 .withSetPositionToCenter(true)
@@ -219,6 +222,16 @@ public class NodeUtils {
         return idsSelectedRows;
     }
 
+    public static <T extends TableViewSelection> List<Long> getSelectedUserIdTableItems(TableView<T> tableView, ActionType actionType) {
+        List<Long> idsSelectedRows = tableView.getItems()
+                .stream()
+                .filter(TableViewSelection::isSelected)
+                .map(TableViewSelection::getUserId)
+                .toList();
+        checkSelectedTableRows(actionType, idsSelectedRows);
+        return idsSelectedRows;
+    }
+
     public static <T extends TableViewSelection> void setColumnConfigurationShortcut(TableView<T> tableView) {
         EventHandler<KeyEvent> eventHandler = event -> {
             if (tableView.isHover()) {
@@ -266,6 +279,6 @@ public class NodeUtils {
     }
 
     public static void closeCurrentStage(Stage actualStage) {
-        actualStage.close();
+        StageManager.close(actualStage);
     }
 }

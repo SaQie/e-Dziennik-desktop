@@ -13,6 +13,8 @@ import java.util.List;
 public class AdminListModel implements TableViewSelection {
 
     private final SimpleLongProperty id;
+    private final SimpleLongProperty userId;
+
     private final SimpleStringProperty username;
     private final SimpleStringProperty email;
     private final SimpleStringProperty role;
@@ -23,6 +25,7 @@ public class AdminListModel implements TableViewSelection {
         this.username = new SimpleStringProperty(pojo.getUsername());
         this.email = new SimpleStringProperty(pojo.getEmail());
         this.role = new SimpleStringProperty(pojo.getRole());
+        this.userId = new SimpleLongProperty(pojo.getUserId());
         this.select = Styles.tableViewSelectionCheckBox();
     }
 
@@ -32,7 +35,7 @@ public class AdminListModel implements TableViewSelection {
                 .toList();
     }
 
-    public static AdminListModel mapPojoToModel(AdminDto dto){
+    public static AdminListModel mapPojoToModel(AdminDto dto) {
         return new AdminListModel(dto);
     }
 
@@ -44,6 +47,11 @@ public class AdminListModel implements TableViewSelection {
     @Override
     public Long getId() {
         return this.id.getValue();
+    }
+
+    @Override
+    public Long getUserId() {
+        return this.userId.getValue();
     }
 
     @Override

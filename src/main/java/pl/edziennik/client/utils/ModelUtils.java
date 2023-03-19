@@ -14,17 +14,6 @@ public class ModelUtils {
 
     }
 
-    public static String getValueOrEmpty(Object obj) {
-        if (obj instanceof SimpleParentDto) {
-            return ((SimpleParentDto) obj).getFullName();
-        }
-        if (obj instanceof ParentDto) {
-            return ((ParentDto) obj).getPhoneNumber();
-        }
-        return " ";
-    }
-
-
     public static <T> Page<List<T>> convertToListPage(Page<T[]> page) {
         Page<List<T>> result = new Page<>();
         List<T> entitiesList = new ArrayList<>();

@@ -1,19 +1,23 @@
 package pl.edziennik.client.common;
 
+import javafx.collections.FXCollections;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceDialog;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.edziennik.client.common.builder.CommonStageBuilder;
+import pl.edziennik.client.controller.model.admin.DictionaryItem;
 import pl.edziennik.client.rest.client.response.ApiErrors;
 import pl.edziennik.client.utils.AuthorizationUtils;
 import pl.edziennik.client.utils.ResourceUtil;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 import static pl.edziennik.client.common.ResourceConst.*;
-import static pl.edziennik.client.common.builder.CommonStageBuilder.ALERT_STYLES_PATCH;
-import static pl.edziennik.client.common.builder.CommonStageBuilder.YES_BUTTON;
+import static pl.edziennik.client.common.builder.CommonStageBuilder.*;
 
 public class DialogFactory {
 
@@ -162,7 +166,7 @@ public class DialogFactory {
         }
     }
 
-    public boolean createQuestionInformationDialog(String message){
+    public boolean createQuestionInformationDialog(String message) {
         if (!isShowing) {
             Alert informationDialog = CommonStageBuilder.dialogBuilder()
                     .withSearchActualStage()
@@ -180,6 +184,22 @@ public class DialogFactory {
             return informationDialog.getResult() == YES_BUTTON;
         }
         return false;
+    }
+
+    public <T extends DictionaryItem> Optional<Long> createChoiceDialog(List<T> items, String message) {
+        if (!isShowing) {
+            ChoiceDialog<T> choiceDialog = new ChoiceDialog<>();
+            choiceDialog.setTitle(ResourceUtil.getMessage(CHOICE_DIALOG_TITLE_KEY.value()));
+            choiceDialog.getDialogPane().getStylesheets().add(ALERT_STYLES_PATCH);
+            choiceDialog.setGraphic(INFORMATION_ICON);
+            choiceDialog.setHeaderText(message);
+            choiceDialog.getItems().setAll(FXCollections.observableList(items));
+            Optional<T> choice = choiceDialog.showAndWait();
+            if (choice.isPresent()) {
+                return Optional.of(choice.get().getId());
+            }
+        }
+        return Optional.empty();
     }
 
 }

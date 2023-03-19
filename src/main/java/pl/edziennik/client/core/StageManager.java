@@ -29,6 +29,8 @@ public class StageManager {
 
     private static void disableButtonIfNeeded(Stage stage, boolean disable) {
         Button button = (Button) stage.getUserData();
-        button.setDisable(disable);
+        if (button != null) {
+            button.setDisable(disable);
+        }
     }
 }

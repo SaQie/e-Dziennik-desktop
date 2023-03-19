@@ -92,7 +92,7 @@ class AdminAccountsTabParentActionAbstractController extends AbstractController 
         postalCodeTextField.setText(dto.getPostalCode());
         peselTextField.setText(dto.getPesel());
         emailTextField.setText(dto.getEmail());
-        phoneNumberTextField.setText(ModelUtils.getValueOrEmpty(dto.getPhoneNumber()));
+        phoneNumberTextField.setText(dto.getPhoneNumber() == null ? "" : dto.getPhoneNumber());
         studentComboBox.getSelectionModel().select(new StudentComboBoxItem(dto.getStudent()));
         if (ActionType.SHOW_ACTION.equals(type)) {
             studentComboBox.setOnShown(show -> studentComboBox.hide());

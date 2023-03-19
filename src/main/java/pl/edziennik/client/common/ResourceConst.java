@@ -36,6 +36,7 @@ public enum ResourceConst {
     DASHBOARD_ADMIN_ACCOUNTS_ADD_PARENT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/parent/admin-dashboard-accounts-parents-add.fxml"),
     DASHBOARD_ADMIN_ACCOUNTS_EDIT_PARENT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/parent/admin-dashboard-accounts-parents-edit.fxml"),
     DASHBOARD_ADMIN_ACCOUNTS_SHOW_PARENT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/parent/admin-dashboard-accounts-parents-show.fxml"),
+    REGISTER_VIEW_ADDRESS("/pl/edziennik/client/view/auth/register-student-view.fxml"),
     // MESSAGES,
 
     EXIT_CONFIRMATION_MESSAGE_KEY("exit.confirmation.message"),
@@ -51,6 +52,7 @@ public enum ResourceConst {
     EDIT_STUDENT_VIEW_TITLE_KEY("edit.student.view.title"),
     EDIT_TEACHER_VIEW_TITLE_KEY("edit.teacher.view.title"),
     LOGOUT_DIALOG_HEADER_MESSAGE_KEY("logout.dialog.header"),
+    REGISTER_VIEW_TITLE("register.view.title"),
     BUTTON_YES_KEY("button.yes"),
     ADD_PARENT_TITLE_MESSAGE_KEY("add.parent.title"),
     EDIT_PARENT_TITLE_MESSAGE_KEY("edit.parent.title"),
@@ -135,6 +137,7 @@ public enum ResourceConst {
     TABLE_VIEW_TOO_MANY_ROWS_MESSAGE_KEY("too.many.rows.selected"),
     ARE_YOU_SURE_TO_PERFORM_THIS_OPERATION_MESSAGE_KEY("are.you.sure.to.perform.this.operation"),
     DIALOG_QUESTION_MESSAGE_KEY("dialog.perform.operation.question"),
+    CHOICE_DIALOG_TITLE_KEY("choice.dialog.title"),
     ARE_YOU_SURE_TO_PERFORM_DELETE_OPERATION_MESSAGE_KEY("are.you.sure.to.perform.delete.action"),
     VIEW_EXCEPTION_MESSAGE_KEY("view.exception.message.key"),
     FIRST_NAME_FIELD_IS_EMPTY_KEY("first.name.field.is.empty"),

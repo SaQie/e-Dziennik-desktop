@@ -30,7 +30,6 @@ public class ProgressFactory {
         return factory;
     }
 
-    @SneakyThrows
     public <T> void createLargeProgressBar(Task<T> task, Consumer<T> consumer) {
         ProgressController controller = createBasicProgressBarView(300, 200, ResourceConst.PROGRESS_BAR_LARGE_VIEW_ADDRESS.value());
         controller.startLarge(task, () -> checkTaskIsDone(task, consumer));

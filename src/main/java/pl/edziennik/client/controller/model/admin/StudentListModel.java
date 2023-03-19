@@ -47,7 +47,9 @@ public class StudentListModel implements TableViewSelection {
         this.select = Styles.tableViewSelectionCheckBox();
         this.phoneNumber = new SimpleStringProperty(pojo.getPhoneNumber());
         this.userId = new SimpleLongProperty(pojo.getUserId());
-        this.parentFullName = new SimpleStringProperty(ModelUtils.getValueOrEmpty(pojo.getParent()));
+        String parentFullName = pojo.getParent() == null ? "" : pojo.getParent().getFullName();
+        this.parentFullName = new SimpleStringProperty(parentFullName);
+
 
     }
 

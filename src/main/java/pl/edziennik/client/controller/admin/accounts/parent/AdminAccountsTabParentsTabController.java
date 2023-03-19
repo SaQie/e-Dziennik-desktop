@@ -118,6 +118,7 @@ public class AdminAccountsTabParentsTabController extends AbstractController {
     protected void setSceneSettings() {
         NodeUtils.setTableViewPlaceHolder(parentsTableView);
         NodeUtils.setTableViewRowFactory(parentsTableView);
+        NodeUtils.setColumnConfigurationShortcut(parentsTableView);
     }
 
     @Override

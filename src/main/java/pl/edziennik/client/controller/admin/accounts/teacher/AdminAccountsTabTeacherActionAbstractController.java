@@ -77,7 +77,7 @@ class AdminAccountsTabTeacherActionAbstractController extends AbstractController
         pojo.setPhoneNumber(phoneNumberTextField.getText());
         pojo.setPostalCode(postalCodeTextField.getText());
         pojo.setUsername(usernameTextField.getText());
-        pojo.setIdSchool(schoolComboBox.getValue().getId().getValue());
+        pojo.setIdSchool(schoolComboBox.getValue().getId());
         String password = UUID.randomUUID().toString();
         // TODO, ten print bedzie do zmiany, haslo bedzie wysylane mailem
         System.out.println("Random uuid: " + password);

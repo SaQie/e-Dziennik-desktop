@@ -37,7 +37,7 @@ public class CommonStageBuilder {
     public static final String ALERT_STYLES_PATCH = eDziennikApplication.class.getResource(ResourceConst.ALERT_STYLES_ADDRESS.value()).toExternalForm();
 
 
-    private static final ImageView INFORMATION_ICON = new ImageView(eDziennikApplication.class.getResource(ResourceConst.INFORMATION_ICON_ADDRESS.value()).toExternalForm());
+    public static final ImageView INFORMATION_ICON = new ImageView(eDziennikApplication.class.getResource(ResourceConst.INFORMATION_ICON_ADDRESS.value()).toExternalForm());
     private static final ImageView SUCCESS_ICON = new ImageView(eDziennikApplication.class.getResource(ResourceConst.SUCCESS_ICON_ADDRESS.value()).toExternalForm());
     private static final ImageView ERROR_ICON = new ImageView(eDziennikApplication.class.getResource(ResourceConst.ERROR_ICON_ADDRESS.value()).toExternalForm());
 

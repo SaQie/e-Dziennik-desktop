@@ -28,7 +28,7 @@ import static pl.edziennik.client.common.ResourceConst.*;
 
 public class RestClient {
 
-    public static final String BASE_URL = PropertiesLoader.readProperty(PROPERTIES_LOADER_SERVER_ADDRESS_KEY.value());
+    public static String BASE_URL;
 
     private static final Logger LOGGER = Logger.getLogger(RestClient.class.getName());
 
@@ -46,6 +46,7 @@ public class RestClient {
         this.restTemplate.setErrorHandler(new RestClientErrorLogger());
         this.dialogFactory = DialogFactory.getInstance();
         configureRestClient();
+        RestClient.BASE_URL = PropertiesLoader.readProperty(PROPERTIES_LOADER_SERVER_ADDRESS_KEY.value());
     }
 
     public static RestClient getInstance() {

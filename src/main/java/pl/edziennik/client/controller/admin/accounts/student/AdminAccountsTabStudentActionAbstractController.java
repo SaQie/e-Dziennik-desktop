@@ -77,7 +77,7 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
     private void fetchSchoolClassComboBoxItems() {
         schoolComboBox.valueProperty().addListener((value) -> {
             if (schoolComboBox.getValue() != null) {
-                Long idSchool = schoolComboBox.getValue().getId().getValue();
+                Long idSchool = schoolComboBox.getValue().getId();
                 progressFactory.createLittleProgressBar(new LoadSchoolClassesTask(idSchool), (response) -> {
                     List<SchoolClassComboBoxItem> comboBoxItems = response.stream().map(SchoolClassComboBoxItem::new).toList();
                     if (comboBoxItems.isEmpty()) {
@@ -112,7 +112,7 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
         studentPojo.setLastName(lastNameTextField.getText());
         studentPojo.setUsername(usernameTextField.getText());
         studentPojo.setPhoneNumber(phoneNumberTextField.getText());
-        studentPojo.setIdSchool(schoolComboBox.getValue().getId().getValue());
+        studentPojo.setIdSchool(schoolComboBox.getValue().getId());
         studentPojo.setIdSchoolClass(schoolClassComboBox.getValue().getId().getValue());
         studentPojo.setPesel(peselTextField.getText());
         String password = UUID.randomUUID().toString();

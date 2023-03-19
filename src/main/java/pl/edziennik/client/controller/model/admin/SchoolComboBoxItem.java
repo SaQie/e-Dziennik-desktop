@@ -7,7 +7,7 @@ import pl.edziennik.client.rest.dto.school.SchoolDto;
 import pl.edziennik.client.rest.dto.school.SimpleSchoolDto;
 
 @Getter
-public class SchoolComboBoxItem {
+public class SchoolComboBoxItem implements DictionaryItem{
 
     private final SimpleLongProperty id;
     private final SimpleStringProperty name;
@@ -20,6 +20,15 @@ public class SchoolComboBoxItem {
     public SchoolComboBoxItem(SimpleSchoolDto pojo){
         this.id = new SimpleLongProperty(pojo.getId());
         this.name = new SimpleStringProperty(pojo.getName());
+    }
+
+    @Override
+    public Long getId() {
+        return id.getValue();
+    }
+
+    public void setId(long id) {
+        this.id.set(id);
     }
 
     @Override

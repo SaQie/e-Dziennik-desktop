@@ -8,6 +8,8 @@ public class ConfigurationDto {
 
     private Long id;
     private String name;
-    private boolean enabled;
+    private boolean booleanValue;
+    private String stringValue;
+    private Long longValue;
 
 }

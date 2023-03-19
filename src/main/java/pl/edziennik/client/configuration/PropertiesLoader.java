@@ -8,6 +8,8 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static pl.edziennik.client.common.ResourceConst.PROPERTIES_LOADER_SERVER_ADDRESS_KEY;
+
 public class PropertiesLoader {
 
     private static final Logger LOGGER = Logger.getLogger(PropertiesLoader.class.getName());
@@ -65,6 +67,10 @@ public class PropertiesLoader {
         return value != null &&
                 !value.isEmpty() &&
                 !value.isBlank();
+    }
+
+    public static boolean isLoaded(){
+        return readProperty(PROPERTIES_LOADER_SERVER_ADDRESS_KEY.value()) != null;
     }
 
     public static void clearProperties() {

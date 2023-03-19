@@ -100,7 +100,38 @@ public class NodeUtils {
                 .build();
     }
 
-    @SneakyThrows
+    public static void openNewStageAbove(String viewLocation, String title, int width, int height, Stage stage) {
+        CommonStageBuilder.stageBuilder()
+                .withWidth(width)
+                .withHeight(height)
+                .withView(viewLocation)
+                .withStyle(StageStyle.UTILITY)
+                .withModality(Modality.APPLICATION_MODAL)
+                .withFocusRequest(true)
+                .withResizable(false)
+                .withSetPositionToCenter(true)
+                .withTitle(title)
+                .withOwner(stage)
+                .withShowMode(OPEN_ABOVE)
+                .build();
+    }
+
+    public static <T> T openNewStageAboveWithController(String viewLocation, String title, int width, int height, Stage stage) {
+        return CommonStageBuilder.stageBuilder()
+                .withWidth(width)
+                .withHeight(height)
+                .withView(viewLocation)
+                .withStyle(StageStyle.UTILITY)
+                .withModality(Modality.APPLICATION_MODAL)
+                .withFocusRequest(true)
+                .withResizable(false)
+                .withSetPositionToCenter(true)
+                .withTitle(title)
+                .withOwner(stage)
+                .withShowMode(OPEN_ABOVE_AND_RETURN_CONTROLLER)
+                .build();
+    }
+
     public static <T> T openNewStageAboveWithController(String viewLocation, String title, int width, int height, Button buttonToDisable) {
         return CommonStageBuilder.stageBuilder()
                 .withTitle(title)
@@ -237,7 +268,7 @@ public class NodeUtils {
             if (tableView.isHover()) {
                 if (TableColumnViewConfigController.KEY_COMBINATION_SHORTCUT.match(event)) {
                     TableColumnViewConfigController controller = openNewStageAboveWithController(TABLE_COLUMN_VIEW_CONFIG_VIEW_ADDRESS.value(),
-                            COLUMN_VIEW_CONFIGURATION_TITLE_MESSAGE_KEY.value(), 350, 450, null);
+                            COLUMN_VIEW_CONFIGURATION_TITLE_MESSAGE_KEY.value(), 350, 450, (Stage) tableView.getScene().getWindow());
                     controller.manageTableColumnVisible(tableView.getColumns());
                 }
             }

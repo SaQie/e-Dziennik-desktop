@@ -7,7 +7,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.edziennik.client.common.builder.CommonStageBuilder;
-import pl.edziennik.client.controller.model.admin.DictionaryItem;
+import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.rest.client.response.ApiErrors;
 import pl.edziennik.client.utils.AuthorizationUtils;
 import pl.edziennik.client.utils.ResourceUtil;
@@ -25,6 +25,9 @@ public class DialogFactory {
     private static DialogFactory factory;
 
     boolean isShowing;
+
+    private DialogFactory() {
+    }
 
     public static DialogFactory getInstance() {
         if (factory == null) {
@@ -73,7 +76,6 @@ public class DialogFactory {
     public void createErrorConfirmationDialog(String stackTrace, String message) {
         if (!isShowing) {
             Alert alert = CommonStageBuilder.dialogBuilder()
-                    .withSearchActualStage()
                     .withTitle(ERROR_DIALOG_TITLE_MESSAGE_KEY.value())
                     .withHeaderText(ERROR_DIALOG_HEADER_MESSAGE_KEY.value())
                     .withAlertType(Alert.AlertType.ERROR)
@@ -184,22 +186,6 @@ public class DialogFactory {
             return informationDialog.getResult() == YES_BUTTON;
         }
         return false;
-    }
-
-    public <T extends DictionaryItem> Optional<Long> createChoiceDialog(List<T> items, String message) {
-        if (!isShowing) {
-            ChoiceDialog<T> choiceDialog = new ChoiceDialog<>();
-            choiceDialog.setTitle(ResourceUtil.getMessage(CHOICE_DIALOG_TITLE_KEY.value()));
-            choiceDialog.getDialogPane().getStylesheets().add(ALERT_STYLES_PATCH);
-            choiceDialog.setGraphic(INFORMATION_ICON);
-            choiceDialog.setHeaderText(message);
-            choiceDialog.getItems().setAll(FXCollections.observableList(items));
-            Optional<T> choice = choiceDialog.showAndWait();
-            if (choice.isPresent()) {
-                return Optional.of(choice.get().getId());
-            }
-        }
-        return Optional.empty();
     }
 
 }

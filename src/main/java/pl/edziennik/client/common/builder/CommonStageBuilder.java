@@ -1,17 +1,22 @@
 package pl.edziennik.client.common.builder;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import pl.edziennik.client.common.ActionType;
 import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.core.StageManager;
 import pl.edziennik.client.eDziennikApplication;
 import pl.edziennik.client.exception.ViewException;
@@ -21,6 +26,7 @@ import pl.edziennik.client.utils.ResourceUtil;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -35,7 +41,9 @@ public class CommonStageBuilder {
     private static final Logger LOGGER = Logger.getLogger(CommonStageBuilder.class.getName());
 
     public static final String ALERT_STYLES_PATCH = eDziennikApplication.class.getResource(ResourceConst.ALERT_STYLES_ADDRESS.value()).toExternalForm();
-
+    public static final String TABLE_STYLES_PATCH = eDziennikApplication.class.getResource(ResourceConst.TABLE_STYLES_ADDRESS.value()).toExternalForm();
+    public static final String GLOBAL_COLORS_STYLES_PATCH = eDziennikApplication.class.getResource(ResourceConst.GLOBAL_COLOR_STYLES.value()).toExternalForm();
+    public static final String DICTIONARY_STYLES_ADDRESS = eDziennikApplication.class.getResource(ResourceConst.DICTIONARY_STYLES_ADDRESS.value()).toExternalForm();
 
     public static final ImageView INFORMATION_ICON = new ImageView(eDziennikApplication.class.getResource(ResourceConst.INFORMATION_ICON_ADDRESS.value()).toExternalForm());
     private static final ImageView SUCCESS_ICON = new ImageView(eDziennikApplication.class.getResource(ResourceConst.SUCCESS_ICON_ADDRESS.value()).toExternalForm());
@@ -50,6 +58,10 @@ public class CommonStageBuilder {
 
     public static DialogBuilder dialogBuilder() {
         return new DialogBuilder();
+    }
+
+    public static DictionaryBuilder dictionaryBuilder() {
+        return new DictionaryBuilder();
     }
 
     public static class DialogBuilder {
@@ -467,6 +479,79 @@ public class CommonStageBuilder {
             CLOSE_PREVIOUS_AND_RETURN_CONTROLLER,
             OPEN_ABOVE,
             OPEN_ABOVE_AND_RETURN_CONTROLLER
+
+        }
+
+    }
+
+    public static class DictionaryBuilder {
+
+        private ObservableList<DictionaryItemModel> items;
+
+        public DictionaryBuilder withItems(List<DictionaryItemModel> items) {
+            this.items = FXCollections.observableList(items);
+            return this;
+        }
+
+        public Dialog<Long> build() {
+            Dialog<Long> dictionaryDialog = new Dialog<>();
+            dictionaryDialog.setTitle(ResourceUtil.getMessage(ResourceConst.DICTIONARY_TITLE_KEY.value()));
+
+            DialogPane dialogPane = dictionaryDialog.getDialogPane();
+            dictionaryDialog.setWidth(900);
+            dictionaryDialog.setHeight(700);
+
+            ButtonType selectButton = new ButtonType("Wybierz", ButtonBar.ButtonData.APPLY);
+            dialogPane.getButtonTypes().addAll(selectButton, ButtonType.CANCEL);
+            dialogPane.getStylesheets().add(GLOBAL_COLORS_STYLES_PATCH);
+            dialogPane.getStylesheets().add(DICTIONARY_STYLES_ADDRESS);
+
+            TableView<DictionaryItemModel> table = new TableView<>();
+
+            TableColumn<DictionaryItemModel, Number> selectColumn = new TableColumn<>("");
+            selectColumn.setMaxWidth(45.0);
+            selectColumn.setMinWidth(45.0);
+            selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
+
+            TableColumn<DictionaryItemModel, Number> firstNameCol = new TableColumn<>("ID");
+            firstNameCol.setCellValueFactory(cellData -> cellData.getValue().getIdProperty());
+
+            TableColumn<DictionaryItemModel, String> lastNameCol = new TableColumn<>("NAME");
+            lastNameCol.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
+
+            table.getColumns().add(selectColumn);
+            table.getColumns().add(firstNameCol);
+            table.getColumns().add(lastNameCol);
+
+            NodeUtils.setTableViewRowFactory(table);
+            NodeUtils.setTableViewPlaceHolder(table);
+
+            HBox hBox = new HBox();
+            hBox.setAlignment(Pos.CENTER);
+
+            Pagination pagination = new Pagination();
+            hBox.getChildren().add(pagination);
+
+            BorderPane borderPane = new BorderPane();
+            borderPane.setCenter(table);
+            borderPane.setBottom(hBox);
+
+            borderPane.setMinWidth(900);
+            borderPane.setMinHeight(700);
+
+            dialogPane.setContent(borderPane);
+
+            dictionaryDialog.initModality(Modality.APPLICATION_MODAL);
+            dictionaryDialog.initStyle(StageStyle.UTILITY);
+
+            dictionaryDialog.setResultConverter(dialogButton -> {
+                if (dialogButton == selectButton) {
+                    return NodeUtils.getSelectedTableItems(table, ActionType.ADD_ACTION).get(0);
+                }
+                return null;
+            });
+
+            return dictionaryDialog;
 
         }
 

@@ -5,6 +5,9 @@ public enum ResourceConst {
     // PATHS
 
     ALERT_STYLES_ADDRESS("/pl/edziennik/client/css/alert-styles.css"),
+    TABLE_STYLES_ADDRESS("/pl/edziennik/client/css/global-table-styles.css"),
+    GLOBAL_COLOR_STYLES("/pl/edziennik/client/css/global-colors.css"),
+    DICTIONARY_STYLES_ADDRESS("/pl/edziennik/client/css/dictionary-styles.css"),
     INFORMATION_ICON_ADDRESS("/pl/edziennik/client/icons/Information.png"),
     MESSAGES_RESOURCES_ADDRESS("pl.edziennik.client.bundles.messages"),
     ERROR_ICON_ADDRESS("/pl/edziennik/client/icons/error.png"),
@@ -138,6 +141,7 @@ public enum ResourceConst {
     ARE_YOU_SURE_TO_PERFORM_THIS_OPERATION_MESSAGE_KEY("are.you.sure.to.perform.this.operation"),
     DIALOG_QUESTION_MESSAGE_KEY("dialog.perform.operation.question"),
     CHOICE_DIALOG_TITLE_KEY("choice.dialog.title"),
+    DICTIONARY_TITLE_KEY("dictionary.dialog.title"),
     ARE_YOU_SURE_TO_PERFORM_DELETE_OPERATION_MESSAGE_KEY("are.you.sure.to.perform.delete.action"),
     VIEW_EXCEPTION_MESSAGE_KEY("view.exception.message.key"),
     FIRST_NAME_FIELD_IS_EMPTY_KEY("first.name.field.is.empty"),

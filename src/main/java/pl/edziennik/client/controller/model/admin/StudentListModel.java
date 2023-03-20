@@ -5,8 +5,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.CheckBox;
 import lombok.Getter;
 import pl.edziennik.client.common.Styles;
+import pl.edziennik.client.core.TableViewSelection;
 import pl.edziennik.client.rest.dto.student.StudentDto;
-import pl.edziennik.client.utils.ModelUtils;
 
 import java.util.List;
 

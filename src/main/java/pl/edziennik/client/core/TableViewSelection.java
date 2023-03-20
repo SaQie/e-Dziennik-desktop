@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.model.admin;
+package pl.edziennik.client.core;
 
 import javafx.scene.control.CheckBox;
 import pl.edziennik.client.exception.ViewException;

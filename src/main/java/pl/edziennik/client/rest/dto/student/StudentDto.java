@@ -2,13 +2,14 @@ package pl.edziennik.client.rest.dto.student;
 
 import lombok.Getter;
 import lombok.Setter;
+import pl.edziennik.client.rest.dto.DictionaryItemDto;
 import pl.edziennik.client.rest.dto.parent.SimpleParentDto;
 import pl.edziennik.client.rest.dto.schoolclass.SimpleSchoolClassDto;
 import pl.edziennik.client.rest.dto.school.SimpleSchoolDto;
 
 @Getter
 @Setter
-public class StudentDto {
+public class StudentDto{
 
     private Long id;
     private Long userId;

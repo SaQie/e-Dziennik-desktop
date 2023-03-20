@@ -1,0 +1,127 @@
+.table-view{
+    -fx-background-color: transparent;
+}
+
+
+.table-view .column-header-background{
+    -fx-background-color: transparent;
+}
+
+.column-header{
+    -fx-text-fill: -fx-primary-color;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: -fx-primary-color;
+}
+
+.table-row-cell{
+    -fx-min-height: 25px;
+    -fx-font-family: Arial;
+}
+
+.table-row-cell:filled:selected {
+    -fx-background: -fx-control-inner-background ;
+    -fx-background-color: -fx-table-cell-border-color, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-table-cell-border-color: derive(-fx-color, 5%);
+}
+.table-row-cell:odd:filled:selected {
+    -fx-background: -fx-control-inner-background-alt ;
+}
+
+.table-row-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-column {
+    -fx-alignment: CENTER;
+}
+
+.check-box .box {
+
+    -fx-background-color: white;
+    -fx-border-color:grey;
+    -fx-border-radius:3px;
+
+}
+
+.pagination{
+    -fx-page-information-visible:false;
+}
+
+.page-information{
+    -fx-text-fill: black;
+}
+
+.number-button{
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: black;
+    -fx-focus-color: transparent;
+}
+
+.number-button:hover{
+    -fx-text-fill: #1094fa;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: #1094fa;
+}
+
+.pagination > .pagination-control > .control-box > .right-arrow-button{
+    -fx-background-color: transparent;
+}
+
+.pagination > .pagination-control > .control-box > .right-arrow-button:hover{
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: orange;
+}
+
+.pagination > .pagination-control > .control-box > .left-arrow-button{
+    -fx-background-color: transparent;
+}
+
+.pagination > .pagination-control > .control-box > .left-arrow-button:hover{
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: orange;
+}
+
+.pagination > .pagination-control > .control-box > .right-arrow-button > .right-arrow {
+    -fx-background-color: orange;
+}
+
+.pagination > .pagination-control > .control-box > .left-arrow-button > .left-arrow {
+    -fx-background-color: orange;
+}
+
+.number-button:selected{
+    -fx-text-fill: orange;
+    -fx-background-color: transparent;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: orange;
+}
+
+
+
+.dialog-pane > *.button-bar *.button{
+    -fx-background-color:  #52438f;
+    -fx-text-fill: white;
+    -fx-font-family: Arial;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.dialog-pane > .button-bar > .container > .details-button {
+    -fx-text-fill: white;
+}
+
+.dialog-pane > *.button-bar *.button:hover{
+    -fx-text-fill: lightgreen;
+}
+
+.label{
+    -fx-text-fill: black;
+}

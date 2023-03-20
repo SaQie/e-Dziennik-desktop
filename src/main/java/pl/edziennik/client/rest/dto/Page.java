@@ -2,6 +2,8 @@ package pl.edziennik.client.rest.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class Page<INPUT> {
 
@@ -17,4 +19,4 @@ public class Page<INPUT> {
         return new Page<>();
     }
 
-}
+ }

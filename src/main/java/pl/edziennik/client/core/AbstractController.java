@@ -7,8 +7,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.DialogFactory;
+import pl.edziennik.client.common.DictionaryFactory;
 import pl.edziennik.client.common.ProgressFactory;
-import pl.edziennik.client.controller.model.admin.TableViewSelection;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,10 +26,12 @@ public abstract class AbstractController implements Initializable {
 
     protected final DialogFactory dialogFactory;
     protected final ProgressFactory progressFactory;
+    protected final DictionaryFactory dictionaryFactory;
 
     public AbstractController() {
         this.dialogFactory = DialogFactory.getInstance();
         this.progressFactory = ProgressFactory.getInstance();
+        this.dictionaryFactory = DictionaryFactory.getInstance();
     }
 
     @Override

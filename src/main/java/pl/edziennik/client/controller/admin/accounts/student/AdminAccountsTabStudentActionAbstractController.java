@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import pl.edziennik.client.common.ActionType;
 import pl.edziennik.client.common.Role;
 import pl.edziennik.client.controller.model.admin.SchoolClassComboBoxItem;
-import pl.edziennik.client.controller.model.admin.SchoolComboBoxItem;
+import pl.edziennik.client.controller.model.admin.SchoolComboBoxItemModel;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.rest.dto.student.StudentRequestDto;
@@ -22,7 +22,7 @@ import java.util.UUID;
 class AdminAccountsTabStudentActionAbstractController extends AbstractController {
 
     @FXML
-    protected ComboBox<SchoolComboBoxItem> schoolComboBox;
+    protected ComboBox<SchoolComboBoxItemModel> schoolComboBox;
 
     @FXML
     protected ComboBox<SchoolClassComboBoxItem> schoolClassComboBox;
@@ -66,7 +66,7 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
         peselTextField.setText(studentDto.getPesel());
         emailTextField.setText(studentDto.getEmail());
         phoneNumberTextField.setText(studentDto.getPhoneNumber());
-        schoolComboBox.getSelectionModel().select(new SchoolComboBoxItem(studentDto.getSchool()));
+        schoolComboBox.getSelectionModel().select(new SchoolComboBoxItemModel(studentDto.getSchool()));
         schoolClassComboBox.getSelectionModel().select(new SchoolClassComboBoxItem(studentDto.getSchoolClass()));
         if (ActionType.SHOW_ACTION.equals(actionType)) {
             schoolComboBox.setOnShown(show -> schoolComboBox.hide());
@@ -97,7 +97,7 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
 
     private void fetchSchoolComboBoxItems() {
         progressFactory.createLittleProgressBar(new LoadSchoolsTask(), (response) -> {
-            List<SchoolComboBoxItem> comboBoxItems = response.getEntities().stream().map(SchoolComboBoxItem::new).toList();
+            List<SchoolComboBoxItemModel> comboBoxItems = response.getEntities().stream().map(SchoolComboBoxItemModel::new).toList();
             schoolComboBox.setItems(FXCollections.observableList(comboBoxItems));
         });
     }

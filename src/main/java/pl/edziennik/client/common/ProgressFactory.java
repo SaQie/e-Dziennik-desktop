@@ -63,7 +63,6 @@ public class ProgressFactory {
                 .withFillColor(Color.TRANSPARENT)
                 .withFocusRequest(true)
                 .withAlwaysOnTop(true)
-                .withSearchActualStage(true)
                 .withShowMode(OPEN_ABOVE_AND_RETURN_CONTROLLER)
                 .build();
     }

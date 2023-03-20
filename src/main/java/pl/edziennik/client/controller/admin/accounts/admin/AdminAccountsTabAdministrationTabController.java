@@ -49,11 +49,12 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
         instance = this;
     }
 
+
+
     public void fetchTabData(final Page<List<AdminDto>> page) {
         pagination.setPageCount(page.getPagesCount());
         paginationCacheMap.put(page.getActualPage() - 1, page.getEntities());
         loadTableItems(page);
-
     }
 
     private void loadTableItems(Page<List<AdminDto>> page) {

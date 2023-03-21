@@ -3,6 +3,7 @@ package pl.edziennik.client.task.schoolclass;
 import javafx.concurrent.Task;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;
+import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.schoolclass.SchoolClassDto;
 import pl.edziennik.client.utils.ResourceUtil;
 
@@ -11,7 +12,7 @@ import java.util.List;
 
 import static pl.edziennik.client.common.ResourceConst.*;
 
-public class LoadSchoolClassesTask extends Task<List<SchoolClassDto>> {
+public class LoadSchoolClassesTask extends Task<Page<List<SchoolClassDto>>> {
 
     private final AdminRestClient adminRestClient;
     private final Long idSchool;
@@ -22,13 +23,13 @@ public class LoadSchoolClassesTask extends Task<List<SchoolClassDto>> {
     }
 
     @Override
-    protected List<SchoolClassDto> call() throws Exception {
-        try{
+    protected Page<List<SchoolClassDto>> call() throws Exception {
+        try {
             updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
             return adminRestClient.getSchoolClassesBySchoolId(idSchool);
-        }catch (RestClientException e){
+        } catch (RestClientException e) {
             cancel(true);
-            return Collections.emptyList();
+            return Page.empty();
         }
     }
 }

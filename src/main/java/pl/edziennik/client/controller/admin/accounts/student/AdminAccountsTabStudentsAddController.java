@@ -23,6 +23,7 @@ public class AdminAccountsTabStudentsAddController extends AdminAccountsTabStude
 
     @Override
     protected void setSceneSettings() {
+        super.setSceneSettings();
         NodeUtils.enableButtonIfFieldsHasNoErrors(saveButton, usernameTextField, firstNameTextField, lastNameTextField,
                 addressTextField, postalCodeTextField, cityTextField,
                 peselTextField, emailTextField, phoneNumberTextField, schoolClassComboBox, schoolComboBox);

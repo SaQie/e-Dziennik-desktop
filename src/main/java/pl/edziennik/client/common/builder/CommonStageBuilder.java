@@ -486,37 +486,37 @@ public class CommonStageBuilder {
 
     public static class DictionaryBuilder {
 
-        private ObservableList<DictionaryItemModel> items;
-
-        public DictionaryBuilder withItems(List<DictionaryItemModel> items) {
-            this.items = FXCollections.observableList(items);
-            return this;
-        }
-
-        public Dialog<Long> build() {
-            Dialog<Long> dictionaryDialog = new Dialog<>();
+        public Dialog<DictionaryItemModel> build() {
+            Dialog<DictionaryItemModel> dictionaryDialog = new Dialog<>();
             dictionaryDialog.setTitle(ResourceUtil.getMessage(ResourceConst.DICTIONARY_TITLE_KEY.value()));
 
             DialogPane dialogPane = dictionaryDialog.getDialogPane();
-            dictionaryDialog.setWidth(900);
-            dictionaryDialog.setHeight(700);
+            dictionaryDialog.setWidth(600);
+            dictionaryDialog.setHeight(500);
 
-            ButtonType selectButton = new ButtonType("Wybierz", ButtonBar.ButtonData.APPLY);
+            Stage actualStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+
+            if (actualStage != null) {
+                dictionaryDialog.initOwner(actualStage);
+            }
+
+            ButtonType selectButton = new ButtonType(ResourceUtil.getMessage(BUTTON_SELECT_KEY.value()), ButtonBar.ButtonData.APPLY);
             dialogPane.getButtonTypes().addAll(selectButton, ButtonType.CANCEL);
             dialogPane.getStylesheets().add(GLOBAL_COLORS_STYLES_PATCH);
             dialogPane.getStylesheets().add(DICTIONARY_STYLES_ADDRESS);
 
             TableView<DictionaryItemModel> table = new TableView<>();
+            table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
             TableColumn<DictionaryItemModel, Number> selectColumn = new TableColumn<>("");
             selectColumn.setMaxWidth(45.0);
             selectColumn.setMinWidth(45.0);
             selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
 
-            TableColumn<DictionaryItemModel, Number> firstNameCol = new TableColumn<>("ID");
+            TableColumn<DictionaryItemModel, Number> firstNameCol = new TableColumn<>(ResourceUtil.getMessage(IDENTIFIER_COLUMN_KEY.value()));
             firstNameCol.setCellValueFactory(cellData -> cellData.getValue().getIdProperty());
 
-            TableColumn<DictionaryItemModel, String> lastNameCol = new TableColumn<>("NAME");
+            TableColumn<DictionaryItemModel, String> lastNameCol = new TableColumn<>(ResourceUtil.getMessage(NAME_COLUMN_KEY.value()));
             lastNameCol.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
 
             table.getColumns().add(selectColumn);
@@ -536,8 +536,8 @@ public class CommonStageBuilder {
             borderPane.setCenter(table);
             borderPane.setBottom(hBox);
 
-            borderPane.setMinWidth(900);
-            borderPane.setMinHeight(700);
+            borderPane.setMinWidth(600);
+            borderPane.setMinHeight(500);
 
             dialogPane.setContent(borderPane);
 
@@ -546,7 +546,7 @@ public class CommonStageBuilder {
 
             dictionaryDialog.setResultConverter(dialogButton -> {
                 if (dialogButton == selectButton) {
-                    return NodeUtils.getSelectedTableItems(table, ActionType.ADD_ACTION).get(0);
+                    return NodeUtils.getSelectedDictionaryItem(table);
                 }
                 return null;
             });

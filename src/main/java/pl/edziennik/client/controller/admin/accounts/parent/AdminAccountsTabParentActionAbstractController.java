@@ -9,6 +9,7 @@ import pl.edziennik.client.common.ActionType;
 import pl.edziennik.client.common.Role;
 import pl.edziennik.client.controller.model.admin.StudentComboBoxItem;
 import pl.edziennik.client.core.AbstractController;
+import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.rest.dto.parent.ParentDto;
 import pl.edziennik.client.rest.dto.parent.ParentRequestDto;
 import pl.edziennik.client.rest.dto.student.SimpleStudentDto;
@@ -23,7 +24,7 @@ class AdminAccountsTabParentActionAbstractController extends AbstractController 
 
 
     @FXML
-    protected ComboBox<StudentComboBoxItem> studentComboBox;
+    protected ComboBox<DictionaryItemModel> studentComboBox;
 
     @FXML
     protected TextField usernameTextField, firstNameTextField, lastNameTextField, addressTextField, postalCodeTextField, cityTextField,
@@ -37,24 +38,12 @@ class AdminAccountsTabParentActionAbstractController extends AbstractController 
 
     @Override
     protected void fetchStageData() {
-        fetchStudentComboBoxItems();
         roleTextField.setText(Role.ROLE_PARENT.name());
-    }
-
-    private void fetchStudentComboBoxItems() {
-        progressFactory.createLittleProgressBar(new LoadStudentsTask(), (response) -> {
-            List<StudentComboBoxItem> studentComboBoxItems = response.getEntities()
-                    .stream()
-                    .map(dto -> new SimpleStudentDto(dto.getId(), dto.getFullName()))
-                    .map(StudentComboBoxItem::new)
-                    .toList();
-            studentComboBox.setItems(FXCollections.observableList(studentComboBoxItems));
-        });
     }
 
     @Override
     protected void setSceneSettings() {
-
+        NodeUtils.initializeDictionary(LoadStudentsTask.class, studentComboBox);
     }
 
     @Override
@@ -74,7 +63,7 @@ class AdminAccountsTabParentActionAbstractController extends AbstractController 
         dto.setPhoneNumber(phoneNumberTextField.getText());
         dto.setPostalCode(postalCodeTextField.getText());
         dto.setUsername(usernameTextField.getText());
-        dto.setIdStudent(studentComboBox.getValue().getId().getValue());
+        dto.setIdStudent(studentComboBox.getValue().getId());
         String password = UUID.randomUUID().toString();
         // TODO, ten print bedzie do zmiany, haslo bedzie wysylane mailem
         System.out.println("Random uuid: " + password);
@@ -93,7 +82,7 @@ class AdminAccountsTabParentActionAbstractController extends AbstractController 
         peselTextField.setText(dto.getPesel());
         emailTextField.setText(dto.getEmail());
         phoneNumberTextField.setText(dto.getPhoneNumber() == null ? "" : dto.getPhoneNumber());
-        studentComboBox.getSelectionModel().select(new StudentComboBoxItem(dto.getStudent()));
+        studentComboBox.getSelectionModel().select(new DictionaryItemModel(dto.getStudent().getId(), dto.getStudent().getFullName()));
         if (ActionType.SHOW_ACTION.equals(type)) {
             studentComboBox.setOnShown(show -> studentComboBox.hide());
         }

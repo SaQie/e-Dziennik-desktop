@@ -27,6 +27,11 @@ public class DictionaryItemModel implements TableViewSelection {
     }
 
     @Override
+    public String toString() {
+        return name.getValue();
+    }
+
+    @Override
     public void setSelection() {
         this.select.setSelected(!select.isSelected());
     }

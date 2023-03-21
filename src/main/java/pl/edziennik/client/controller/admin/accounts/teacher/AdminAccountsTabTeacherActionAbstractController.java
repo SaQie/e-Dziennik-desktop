@@ -9,6 +9,7 @@ import pl.edziennik.client.common.ActionType;
 import pl.edziennik.client.common.Role;
 import pl.edziennik.client.controller.model.admin.SchoolComboBoxItemModel;
 import pl.edziennik.client.core.AbstractController;
+import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.rest.dto.teacher.TeacherDto;
 import pl.edziennik.client.rest.dto.teacher.TeacherRequestDto;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
@@ -20,7 +21,7 @@ import java.util.UUID;
 class AdminAccountsTabTeacherActionAbstractController extends AbstractController {
 
     @FXML
-    protected ComboBox<SchoolComboBoxItemModel> schoolComboBox;
+    protected ComboBox<DictionaryItemModel> schoolComboBox;
     @FXML
     protected TextField usernameTextField, firstNameTextField, lastNameTextField, addressTextField, postalCodeTextField, cityTextField,
             peselTextField, phoneNumberTextField, emailTextField, roleTextField;
@@ -33,12 +34,12 @@ class AdminAccountsTabTeacherActionAbstractController extends AbstractController
 
     @Override
     protected void fetchStageData() {
-        fetchSchoolComboBoxItems();
     }
 
     @Override
     protected void setSceneSettings() {
         NodeUtils.setTextFieldAsNumbersOnly(phoneNumberTextField, peselTextField);
+        NodeUtils.initializeDictionary(LoadSchoolsTask.class, schoolComboBox);
     }
 
     @Override
@@ -47,7 +48,7 @@ class AdminAccountsTabTeacherActionAbstractController extends AbstractController
     }
 
 
-    protected void loadStageFields(TeacherDto dto, ActionType actionType){
+    protected void loadStageFields(TeacherDto dto, ActionType actionType) {
         usernameTextField.setText(dto.getUsername());
         firstNameTextField.setText(dto.getFirstName());
         lastNameTextField.setText(dto.getLastName());
@@ -58,7 +59,7 @@ class AdminAccountsTabTeacherActionAbstractController extends AbstractController
         peselTextField.setText(dto.getPesel());
         emailTextField.setText(dto.getEmail());
         phoneNumberTextField.setText(dto.getPhoneNumber());
-        schoolComboBox.getSelectionModel().select(new SchoolComboBoxItemModel(dto.getSchool()));
+        schoolComboBox.getSelectionModel().select(new DictionaryItemModel(dto.getSchool().getId(), dto.getSchool().getName()));
         if (ActionType.SHOW_ACTION.equals(actionType)) {
             schoolComboBox.setOnShown(show -> schoolComboBox.hide());
         }
@@ -82,12 +83,5 @@ class AdminAccountsTabTeacherActionAbstractController extends AbstractController
         System.out.println("Random uuid: " + password);
         pojo.setPassword(password);
         return pojo;
-    }
-
-    private void fetchSchoolComboBoxItems() {
-        progressFactory.createLittleProgressBar(new LoadSchoolsTask(), (response) -> {
-            List<SchoolComboBoxItemModel> comboBoxItems = response.getEntities().stream().map(SchoolComboBoxItemModel::new).toList();
-            schoolComboBox.setItems(FXCollections.observableList(comboBoxItems));
-        });
     }
 }

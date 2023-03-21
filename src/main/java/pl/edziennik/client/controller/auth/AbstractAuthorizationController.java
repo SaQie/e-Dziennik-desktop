@@ -7,6 +7,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.edziennik.client.controller.model.admin.SchoolClassComboBoxItem;
 import pl.edziennik.client.core.AbstractController;
+import pl.edziennik.client.core.DictionaryItemModel;
+import pl.edziennik.client.exception.BusinessException;
 import pl.edziennik.client.rest.dto.config.ConfigurationDto;
 import pl.edziennik.client.rest.dto.student.StudentRequestDto;
 import pl.edziennik.client.task.config.LoadConfigurationsTask;
@@ -23,7 +25,7 @@ class AbstractAuthorizationController extends AbstractController {
     private Long idSchoolFromConfiguration;
 
     @FXML
-    protected ComboBox<SchoolClassComboBoxItem> schoolClassComboBox;
+    protected ComboBox<DictionaryItemModel> schoolClassComboBox;
 
     @FXML
     protected TextField usernameTextField, firstNameTextField, lastNameTextField, addressTextField, postalCodeTextField, cityTextField,
@@ -39,7 +41,9 @@ class AbstractAuthorizationController extends AbstractController {
         NodeUtils.enableButtonIfFieldsHasNoErrors(saveButton, usernameTextField, firstNameTextField, lastNameTextField, addressTextField, postalCodeTextField, cityTextField,
                 peselTextField, phoneNumberTextField, emailTextField, schoolClassComboBox);
         NodeUtils.setTextFieldAsNumbersOnly(peselTextField, phoneNumberTextField);
+        initializeSchoolClassDictionaryWhenDataIsLoaded();
     }
+
 
     @Override
     protected void setSceneValidators() {
@@ -48,7 +52,6 @@ class AbstractAuthorizationController extends AbstractController {
 
     @Override
     protected void fetchStageData() {
-        fetchSchoolClassComboBoxItems();
     }
 
     @Override
@@ -78,7 +81,7 @@ class AbstractAuthorizationController extends AbstractController {
         studentPojo.setUsername(usernameTextField.getText());
         studentPojo.setPhoneNumber(phoneNumberTextField.getText());
         studentPojo.setIdSchool(idSchoolFromConfiguration);
-        studentPojo.setIdSchoolClass(schoolClassComboBox.getValue().getId().getValue());
+        studentPojo.setIdSchoolClass(schoolClassComboBox.getValue().getId());
         studentPojo.setPesel(peselTextField.getText());
         String password = UUID.randomUUID().toString();
         // TODO, ten print bedzie do zmiany, haslo bedzie wysylane mailem
@@ -88,29 +91,20 @@ class AbstractAuthorizationController extends AbstractController {
     }
 
 
-    private void fetchSchoolClassComboBoxItems() {
+    private void initializeSchoolClassDictionaryWhenDataIsLoaded() {
         progressFactory.createLittleProgressBar(new LoadConfigurationsTask(), (configurationList) -> {
             idSchoolFromConfiguration = configurationList.stream()
                     .filter(config -> config.getId().equals(3L))
                     .map(ConfigurationDto::getLongValue)
                     .findFirst()
-                    .orElse(0L);
+                    .orElseThrow(() -> new BusinessException("Error during loading configuration"));
 
-            progressFactory.createLittleProgressBar(new LoadSchoolClassesTask(idSchoolFromConfiguration), (response) -> {
-                List<SchoolClassComboBoxItem> comboBoxItems = response.stream().map(SchoolClassComboBoxItem::new).toList();
-                if (comboBoxItems.isEmpty()) {
-                    schoolClassComboBox.setDisable(true);
-                    return;
-                }
-                schoolClassComboBox.setDisable(false);
-                schoolClassComboBox.setItems(FXCollections.observableList(comboBoxItems));
-                schoolClassComboBox.getSelectionModel().selectFirst();
-            });
+            schoolClassComboBox.setDisable(false);
+            NodeUtils.initializeDictionary(LoadSchoolClassesTask.class, schoolClassComboBox,idSchoolFromConfiguration);
+
         });
 
-
     }
-
 
     private void initializeValidators() {
         StudentValidator.builder()

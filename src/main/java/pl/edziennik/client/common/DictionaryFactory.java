@@ -7,6 +7,7 @@ import javafx.scene.control.Pagination;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.core.DictionaryItemModel;
@@ -29,6 +30,7 @@ public class DictionaryFactory {
     }
 
     private Map<Integer, List<DictionaryItemModel>> paginationCacheMap = new HashMap<>();
+    private volatile Optional<Long> value;
 
     public static DictionaryFactory getInstance() {
         if (factory == null) {
@@ -39,15 +41,23 @@ public class DictionaryFactory {
 
 
     @SneakyThrows
-    public <T extends DictionaryItemDto, E extends Task<Page<List<T>>>> Optional<Long> createAndGetDictionaryValue(Class<E> taskClass) {
-        Long value = null;
-        E task = taskClass.getConstructor().newInstance();
+    public <T extends DictionaryItemDto, E extends Task<Page<List<T>>>> Optional<DictionaryItemModel> createAndGetDictionaryValue(Class<E> taskClass, Long... params) {
+        E task;
+        boolean runWithPageable = true;
+        if (params.length == 0) {
+            task = taskClass.getConstructor().newInstance();
+        } else {
+            task = taskClass.getDeclaredConstructor(Long.class).newInstance(params[0]);
+            runWithPageable = false;
+        }
+
+        Dialog<DictionaryItemModel> dialog = CommonStageBuilder.dictionaryBuilder()
+                .build();
+
+        boolean finalRunWithPageable = runWithPageable;
         progressFactory.createLittleProgressBar(task, (response) -> {
 
             Page<List<DictionaryItemModel>> pageableItems = mapToModel(response);
-
-            Dialog<Long> dialog = CommonStageBuilder.dictionaryBuilder()
-                    .build();
 
             BorderPane content = (BorderPane) dialog.getDialogPane().getContent();
             TableView<DictionaryItemModel> tableView = (TableView<DictionaryItemModel>) content.getCenter();
@@ -57,35 +67,38 @@ public class DictionaryFactory {
             Pagination pagination = (Pagination) hBox.getChildren().get(0);
             pagination.setPageCount(pageableItems.getPagesCount());
 
-            pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
-                boolean isCacheContainsData = paginationCacheMap.containsKey(newIndex.intValue());
-
-                if (isCacheContainsData) {
-                    List<DictionaryItemModel> dictionaryItemModels = paginationCacheMap.get(newIndex.intValue());
-                    tableView.setItems(FXCollections.observableList(dictionaryItemModels));
-                    return;
-                }
-                E taskInstance;
-                try {
-
-                    taskInstance = taskClass.getDeclaredConstructor(int.class).newInstance(newIndex.intValue());
-                } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
-                         NoSuchMethodException e) {
-                    throw new RuntimeException(e);
-                }
-                progressFactory.createLittleProgressBar(taskInstance, (responseAfterPageChange) -> {
-                    Page<List<DictionaryItemModel>> pageableItemsAfterPageChange = mapToModel(responseAfterPageChange);
-                    paginationCacheMap.put(pageableItemsAfterPageChange.getActualPage() - 1, pageableItemsAfterPageChange.getEntities());
-                    tableView.setItems(FXCollections.observableList(pageableItemsAfterPageChange.getEntities()));
-                });
-
-            });
-
-            dialog.showAndWait();
+            if (finalRunWithPageable) {
+                createPageableFunctionality(taskClass, tableView, pagination);
+            }
         });
 
         paginationCacheMap = new HashMap<>();
-        return Optional.ofNullable(value);
+        return dialog.showAndWait();
+    }
+
+    private <T extends DictionaryItemDto, E extends Task<Page<List<T>>>> void createPageableFunctionality(Class<E> taskClass, TableView<DictionaryItemModel> tableView, Pagination pagination) {
+        pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            boolean isCacheContainsData = paginationCacheMap.containsKey(newIndex.intValue());
+
+            if (isCacheContainsData) {
+                List<DictionaryItemModel> dictionaryItemModels = paginationCacheMap.get(newIndex.intValue());
+                tableView.setItems(FXCollections.observableList(dictionaryItemModels));
+                return;
+            }
+            E taskInstance;
+            try {
+                taskInstance = taskClass.getDeclaredConstructor(int.class).newInstance(newIndex.intValue());
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                     NoSuchMethodException e) {
+                throw new RuntimeException(e);
+            }
+            progressFactory.createLittleProgressBar(taskInstance, (responseAfterPageChange) -> {
+                Page<List<DictionaryItemModel>> pageableItemsAfterPageChange = mapToModel(responseAfterPageChange);
+                paginationCacheMap.put(pageableItemsAfterPageChange.getActualPage() - 1, pageableItemsAfterPageChange.getEntities());
+                tableView.setItems(FXCollections.observableList(pageableItemsAfterPageChange.getEntities()));
+            });
+
+        });
     }
 
 

@@ -20,6 +20,6 @@ public class URLConstants {
     public static final String CONFIGURATION_URL = RestClient.BASE_URL + "/api" + API_VERSION + "settings/";
 
     public static String schoolClassBySchoolUrl(Long idSchool) {
-        return SCHOOL_CLASS_URL + "?schoolId=" + idSchool;
+        return SCHOOL_CLASS_URL + "?schoolId=" + idSchool + "&";
     }
 }

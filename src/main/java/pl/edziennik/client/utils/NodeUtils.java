@@ -3,6 +3,7 @@ package pl.edziennik.client.utils;
 import javafx.animation.AnimationTimer;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
+import javafx.concurrent.Task;
 import javafx.css.PseudoClass;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -15,20 +16,27 @@ import javafx.stage.StageStyle;
 import lombok.SneakyThrows;
 import pl.edziennik.client.common.ActionType;
 import pl.edziennik.client.common.DialogFactory;
+import pl.edziennik.client.common.DictionaryFactory;
 import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.configuration.converter.PropertiesLanguageConverter;
 import pl.edziennik.client.controller.configuration.TableColumnViewConfigController;
+import pl.edziennik.client.controller.model.admin.SchoolComboBoxItemModel;
+import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.core.TableViewSelection;
 import pl.edziennik.client.core.StageManager;
 import pl.edziennik.client.exception.TableViewException;
+import pl.edziennik.client.rest.dto.DictionaryItemDto;
+import pl.edziennik.client.rest.dto.Page;
+import pl.edziennik.client.task.school.LoadSchoolsTask;
 
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
@@ -40,6 +48,7 @@ public class NodeUtils {
 
 
     private static DialogFactory dialogFactory = DialogFactory.getInstance();
+    private static DictionaryFactory dictionaryFactory = DictionaryFactory.getInstance();
 
     public static void createTimer(Label displayTime) {
         AnimationTimer timer = new AnimationTimer() {
@@ -248,6 +257,17 @@ public class NodeUtils {
         return idsSelectedRows;
     }
 
+    public static <T extends DictionaryItemModel> DictionaryItemModel getSelectedDictionaryItem(TableView<T> tableView) {
+        List<T> items = tableView.getItems()
+                .stream()
+                .filter(DictionaryItemModel::isSelected)
+                .toList();
+        if (items.size() > 1) {
+            throw new TableViewException(TABLE_VIEW_TOO_MANY_ROWS_MESSAGE_KEY.value());
+        }
+        return items.isEmpty() ? null : items.get(0);
+    }
+
     public static <T extends TableViewSelection> List<Long> getSelectedUserIdTableItems(TableView<T> tableView, ActionType actionType) {
         List<Long> idsSelectedRows = tableView.getItems()
                 .stream()
@@ -306,5 +326,13 @@ public class NodeUtils {
 
     public static void closeCurrentStage(Stage actualStage) {
         StageManager.close(actualStage);
+    }
+
+    public static <T extends DictionaryItemDto, E extends Task<Page<List<T>>>> void initializeDictionary(Class<E> task, ComboBox<DictionaryItemModel> dictionaryComboBox, Long... params) {
+        dictionaryComboBox.setOnShown((show) -> {
+            dictionaryComboBox.hide();
+            Optional<DictionaryItemModel> valueFromDictionary = dictionaryFactory.createAndGetDictionaryValue(task, params);
+            valueFromDictionary.ifPresent(value -> dictionaryComboBox.getSelectionModel().select(value));
+        });
     }
 }

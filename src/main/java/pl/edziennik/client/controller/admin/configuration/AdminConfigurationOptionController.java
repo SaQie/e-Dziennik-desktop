@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import pl.edziennik.client.controller.model.admin.SchoolComboBoxItemModel;
 import pl.edziennik.client.core.AbstractController;
+import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.rest.dto.config.ConfigurationDto;
 import pl.edziennik.client.rest.dto.config.SettingsValueDto;
 import pl.edziennik.client.task.config.SaveConfigurationTask;
@@ -16,6 +17,7 @@ import pl.edziennik.client.utils.NodeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class AdminConfigurationOptionController extends AbstractController {
 
@@ -44,16 +46,12 @@ public class AdminConfigurationOptionController extends AbstractController {
 
     private void showChoiceDialogAfterSecondParameterIsChecked() {
         secondParameterValue.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) {
+            if (!oldValue) {
                 progressFactory.createLittleProgressBar(new LoadSchoolsTask(), (response) -> {
-                    List<SchoolComboBoxItemModel> comboBoxItems = response.getEntities().stream().map(SchoolComboBoxItemModel::new).toList();
-                    dictionaryFactory.createAndGetDictionaryValue(LoadSchoolsTask.class);
-//                    Optional<Long> result = dialogFactory.createChoiceDialog(comboBoxItems, "asd");
-//                    result.ifPresentOrElse((value) -> {
-//                        actualSelectedSchoolToWhichStudentsCanRegister = value;
-//                    }, () -> secondParameterValue.setSelected(false));
+                    Optional<DictionaryItemModel> idSchool = dictionaryFactory.createAndGetDictionaryValue(LoadSchoolsTask.class);
+                    idSchool.ifPresentOrElse((value) -> actualSelectedSchoolToWhichStudentsCanRegister = value.getId(),
+                            () -> secondParameterValue.setSelected(false));
                 });
-
             }
         });
     }

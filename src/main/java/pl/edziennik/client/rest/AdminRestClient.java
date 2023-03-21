@@ -38,9 +38,9 @@ public class AdminRestClient {
         return ModelUtils.convertToListPage(page);
     }
 
-    public List<SchoolClassDto> getSchoolClassesBySchoolId(Long schoolId) {
-        SchoolClassDto[] schoolClassResponses = restClient.send(HttpMethod.GET, URLConstants.schoolClassBySchoolUrl(schoolId), SchoolClassDto[].class);
-        return Arrays.asList(schoolClassResponses);
+    public Page<List<SchoolClassDto>> getSchoolClassesBySchoolId(Long schoolId) {
+        Page<SchoolClassDto[]> page = restClient.sendPageable(URLConstants.schoolClassBySchoolUrl(schoolId), 1, SchoolClassDto[].class);
+        return ModelUtils.convertToListPage(page);
     }
 
     public Page<List<TeacherDto>> getTeacherList(int actualPage) {

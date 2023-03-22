@@ -18,6 +18,7 @@ import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.task.parent.DeleteParentTask;
 import pl.edziennik.client.task.parent.LoadParentTask;
 import pl.edziennik.client.task.parent.LoadParentsTask;
+import pl.edziennik.client.task.student.LoadStudentsTask;
 import pl.edziennik.client.utils.NodeUtils;
 
 import java.util.HashMap;
@@ -45,11 +46,11 @@ public class AdminAccountsTabParentsTabController extends AbstractController {
     public void fetchTabData(final Page<List<ParentDto>> page) {
         pagination.setPageCount(page.getPagesCount());
         paginationCacheMap.put(page.getActualPage() - 1, page.getEntities());
-        loadTableItems(page);
+        loadTableItems(page.getEntities());
     }
 
-    private void loadTableItems(Page<List<ParentDto>> page) {
-        List<ParentListModel> parentListModels = ParentListModel.mapToModel(page.getEntities());
+    private void loadTableItems(List<ParentDto> dtos) {
+        List<ParentListModel> parentListModels = ParentListModel.mapToModel(dtos);
         ObservableList<ParentListModel> items = FXCollections.observableList(parentListModels);
         parentsTableView.setItems(items);
         parentsTableView.refresh();
@@ -59,6 +60,19 @@ public class AdminAccountsTabParentsTabController extends AbstractController {
         return parentsTableView.getItems().isEmpty();
     }
 
+
+    private void initializePaginationChangeAction() {
+        pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            boolean isCacheContainsData = paginationCacheMap.containsKey(newIndex.intValue());
+            if (isCacheContainsData) {
+                List<ParentDto> parentDtos = paginationCacheMap.get(newIndex.intValue());
+                loadTableItems(parentDtos);
+                return;
+            }
+            progressFactory.createLittleProgressBar(new LoadParentsTask(newIndex.intValue()), this::fetchTabData);
+        });
+    }
+
     @Override
     protected void createActions() {
         initializeAddButtonAction();
@@ -66,6 +80,7 @@ public class AdminAccountsTabParentsTabController extends AbstractController {
         initializeShowButtonAction();
         initializeDeleteButtonAction();
         initializeRereshButtonAction();
+        initializePaginationChangeAction();
     }
 
     private void initializeRereshButtonAction() {

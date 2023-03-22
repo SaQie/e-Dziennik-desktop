@@ -12,8 +12,10 @@ import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMak
 import pl.edziennik.client.controller.model.admin.TeacherListModel;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.rest.dto.Page;
+import pl.edziennik.client.rest.dto.school.SchoolDto;
 import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.rest.dto.teacher.TeacherDto;
+import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.task.teacher.DeleteTeacherTask;
 import pl.edziennik.client.task.teacher.LoadTeacherTask;
 import pl.edziennik.client.task.teacher.LoadTeachersTask;
@@ -44,12 +46,12 @@ public class AdminAccountsTabTeachersTabController extends AbstractController {
 
     public void fetchTabData(final Page<List<TeacherDto>> page) {
         pagination.setPageCount(page.getPagesCount());
-        paginationCacheMap.put(page.getActualPage() -1, page.getEntities());
-        loadTableItems(page);
+        paginationCacheMap.put(page.getActualPage() - 1, page.getEntities());
+        loadTableItems(page.getEntities());
     }
 
-    private void loadTableItems(Page<List<TeacherDto>> page) {
-        List<TeacherListModel> teacherListModels = TeacherListModel.mapPojoToModel(page.getEntities());
+    private void loadTableItems(List<TeacherDto> dtos) {
+        List<TeacherListModel> teacherListModels = TeacherListModel.mapPojoToModel(dtos);
         ObservableList<TeacherListModel> items = FXCollections.observableList(teacherListModels);
         teachersTableView.setItems(items);
         teachersTableView.refresh();
@@ -82,6 +84,7 @@ public class AdminAccountsTabTeachersTabController extends AbstractController {
         initializeDeleteButtonAction();
         initializeEditButtonAction();
         initializeShowButtonAction();
+        initializePaginationChangeAction();
     }
 
 
@@ -96,6 +99,18 @@ public class AdminAccountsTabTeachersTabController extends AbstractController {
     @Override
     protected Stage getActualStage() {
         return (Stage) teachersTableView.getScene().getWindow();
+    }
+
+    private void initializePaginationChangeAction() {
+        pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            boolean isCacheContainsData = paginationCacheMap.containsKey(newIndex.intValue());
+            if (isCacheContainsData) {
+                List<TeacherDto> schoolDtos = paginationCacheMap.get(newIndex.intValue());
+                loadTableItems(schoolDtos);
+                return;
+            }
+            progressFactory.createLittleProgressBar(new LoadTeachersTask(newIndex.intValue()), this::fetchTabData);
+        });
     }
 
     private void initializeTableColumns() {

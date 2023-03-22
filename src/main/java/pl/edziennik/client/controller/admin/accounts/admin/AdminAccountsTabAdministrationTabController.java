@@ -18,10 +18,12 @@ import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.exception.BusinessException;
 import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.admin.AdminDto;
+import pl.edziennik.client.rest.dto.parent.ParentDto;
 import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.task.admin.DeleteAdminTask;
 import pl.edziennik.client.task.admin.LoadAdminTask;
 import pl.edziennik.client.task.admin.LoadAdminsTask;
+import pl.edziennik.client.task.parent.LoadParentsTask;
 import pl.edziennik.client.task.student.DeleteStudentTask;
 import pl.edziennik.client.task.student.LoadStudentTask;
 import pl.edziennik.client.utils.NodeUtils;
@@ -50,15 +52,14 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
     }
 
 
-
     public void fetchTabData(final Page<List<AdminDto>> page) {
         pagination.setPageCount(page.getPagesCount());
         paginationCacheMap.put(page.getActualPage() - 1, page.getEntities());
-        loadTableItems(page);
+        loadTableItems(page.getEntities());
     }
 
-    private void loadTableItems(Page<List<AdminDto>> page) {
-        List<AdminListModel> adminListModels = AdminListModel.mapPojoToModel(page.getEntities());
+    private void loadTableItems(List<AdminDto> dtos) {
+        List<AdminListModel> adminListModels = AdminListModel.mapPojoToModel(dtos);
         ObservableList<AdminListModel> items = FXCollections.observableList(adminListModels);
         administrationTableView.setItems(items);
         administrationTableView.refresh();
@@ -79,6 +80,7 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
         initializeEditButtonAction();
         initializeShowButtonAction();
         initializeDeleteButtonAction();
+        initializePaginationChangeAction();
     }
 
 
@@ -98,6 +100,19 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
     @Override
     protected void setTableColumns() {
         initializeTableColumns();
+    }
+
+
+    private void initializePaginationChangeAction() {
+        pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            boolean isCacheContainsData = paginationCacheMap.containsKey(newIndex.intValue());
+            if (isCacheContainsData) {
+                List<AdminDto> adminDtos = paginationCacheMap.get(newIndex.intValue());
+                loadTableItems(adminDtos);
+                return;
+            }
+            progressFactory.createLittleProgressBar(new LoadAdminsTask(newIndex.intValue()), this::fetchTabData);
+        });
     }
 
     private void initializeTableColumns() {

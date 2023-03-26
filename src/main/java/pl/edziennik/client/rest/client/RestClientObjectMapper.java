@@ -1,11 +1,10 @@
 package pl.edziennik.client.rest.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import pl.edziennik.client.common.DialogFactory;
-import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.common.factory.DialogFactory;
+import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.client.response.ApiResponse;
 import pl.edziennik.client.rest.dto.Page;

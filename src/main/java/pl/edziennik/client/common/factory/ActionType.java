@@ -1,4 +1,4 @@
-package pl.edziennik.client.common;
+package pl.edziennik.client.common.factory;
 
 public enum ActionType {
 

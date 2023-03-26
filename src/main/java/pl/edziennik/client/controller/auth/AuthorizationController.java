@@ -1,31 +1,23 @@
 package pl.edziennik.client.controller.auth;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.ResourceConst;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.rest.AdminRestClient;
-import pl.edziennik.client.rest.client.RestClient;
 import pl.edziennik.client.rest.dto.config.ConfigurationDto;
 import pl.edziennik.client.utils.AuthorizationUtils;
 import pl.edziennik.client.utils.NodeUtils;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
 
-import static pl.edziennik.client.common.ResourceConst.REGISTER_VIEW_ADDRESS;
-import static pl.edziennik.client.common.ResourceConst.REGISTER_VIEW_TITLE;
+import static pl.edziennik.client.common.constants.ResourceConst.REGISTER_VIEW_ADDRESS;
+import static pl.edziennik.client.common.constants.ResourceConst.REGISTER_VIEW_TITLE;
 
 public class AuthorizationController implements Initializable {
 

@@ -33,6 +33,10 @@ public class AdminTableViewControllerMaker {
         return new ParentsTableViewBuilder();
     }
 
+    public static SchoolClassTableViewBuilder schoolClassTableViewBuilder() {
+        return new SchoolClassTableViewBuilder();
+    }
+
     /**
      * Table view builder for parents tab
      */
@@ -291,6 +295,39 @@ public class AdminTableViewControllerMaker {
         }
 
         public List<TableColumn<StudentListModel, ?>> build() {
+            return columns;
+        }
+
+    }
+
+    /**
+     * Table view builder for school classes tab
+     */
+    public static class SchoolClassTableViewBuilder{
+
+        private final List<TableColumn<SchoolClassListModel, ?>> columns = FXCollections.observableArrayList();
+
+        public SchoolClassTableViewBuilder withSchoolClassNameColumn(final boolean isDefaultVisible){
+            columns.add(SchoolClassTableViewColumns.getSchoolClassNameColumn(isDefaultVisible));
+            return this;
+        }
+
+        public SchoolClassTableViewBuilder withTeacherFullNameColumn(final boolean isDefaultVisible){
+            columns.add(SchoolClassTableViewColumns.getSupervisingTeacherNameColumn(isDefaultVisible));
+            return this;
+        }
+
+        public SchoolClassTableViewBuilder withSchoolNameColumn(final boolean isDefaultVisible){
+            columns.add(SchoolClassTableViewColumns.getSchoolNameColumn(isDefaultVisible));
+            return this;
+        }
+
+        public SchoolClassTableViewBuilder withSelectColumn(final boolean isDefaultVisible){
+            columns.add(SchoolClassTableViewColumns.getSelectColumn(isDefaultVisible));
+            return this;
+        }
+
+        public List<TableColumn<SchoolClassListModel, ?>> build() {
             return columns;
         }
 

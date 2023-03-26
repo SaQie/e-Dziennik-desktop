@@ -1,4 +1,4 @@
-package pl.edziennik.client.common;
+package pl.edziennik.client.common.constants;
 
 public enum ResourceConst {
 
@@ -69,12 +69,14 @@ public enum ResourceConst {
     ADMIN_ACCOUNTS_SHOW_ADMIN_TITLE_MESSAGE_KEY("show.admin.title"),
     WAITING_REGISTER_MESSAGE_KEY("waiting.register.message"),
     WAITING_FETCH_DATA("waiting.fetch.data"),
+    WAITING_SAVE_DATA("waiting.save.data"),
     WAITING_DELETE_DATA("waiting.delete.data"),
     NAME_COLUMN_KEY("name.column.text"),
     ADDRESS_COLUMN_KEY("address.column.text"),
     PHONE_COLUMN_KEY("phone.number.column.text"),
     REGON_COLUMN_KEY("regon.column.text"),
     NIP_COLUMN_KEY("nip.column.text"),
+    SUPERVISING_TEACHER_COLUMN_KEY("supervisingteacher.column.text"),
     USERNAME_COLUMN_KEY("username.column.text"),
     EMAIL_COLUMN_KEY("email.column.text"),
     ROLE_COLUMN_KEY("role.column.text"),

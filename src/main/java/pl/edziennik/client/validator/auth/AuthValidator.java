@@ -3,7 +3,7 @@ package pl.edziennik.client.validator.auth;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.utils.ValidationUtil;
 
 public class AuthValidator {

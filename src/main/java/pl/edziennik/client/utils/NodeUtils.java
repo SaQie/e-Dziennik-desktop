@@ -14,22 +14,20 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.SneakyThrows;
-import pl.edziennik.client.common.ActionType;
-import pl.edziennik.client.common.DialogFactory;
-import pl.edziennik.client.common.DictionaryFactory;
-import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.common.factory.ActionType;
+import pl.edziennik.client.common.factory.DialogFactory;
+import pl.edziennik.client.common.factory.DictionaryFactory;
+import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.configuration.converter.PropertiesLanguageConverter;
 import pl.edziennik.client.controller.configuration.TableColumnViewConfigController;
-import pl.edziennik.client.controller.model.admin.SchoolComboBoxItemModel;
 import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.core.TableViewSelection;
 import pl.edziennik.client.core.StageManager;
 import pl.edziennik.client.exception.TableViewException;
 import pl.edziennik.client.rest.dto.DictionaryItemDto;
 import pl.edziennik.client.rest.dto.Page;
-import pl.edziennik.client.task.school.LoadSchoolsTask;
 
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -40,7 +38,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
-import static pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 import static pl.edziennik.client.common.builder.CommonStageBuilder.StageBuilder.ShowMode.OPEN_ABOVE;
 import static pl.edziennik.client.common.builder.CommonStageBuilder.StageBuilder.ShowMode.OPEN_ABOVE_AND_RETURN_CONTROLLER;
 

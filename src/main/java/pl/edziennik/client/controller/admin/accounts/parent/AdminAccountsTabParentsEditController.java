@@ -1,6 +1,6 @@
 package pl.edziennik.client.controller.admin.accounts.parent;
 
-import pl.edziennik.client.common.ActionType;
+import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.rest.dto.parent.ParentDto;
 import pl.edziennik.client.validator.parent.ParentValidator;
 

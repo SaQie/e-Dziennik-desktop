@@ -8,7 +8,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
-import pl.edziennik.client.common.DialogFactory;
+import pl.edziennik.client.common.factory.DialogFactory;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.configuration.converter.PropertiesBackendLangugageConverter;
 import pl.edziennik.client.exception.RestClientException;
@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 
 public class RestClient {
 

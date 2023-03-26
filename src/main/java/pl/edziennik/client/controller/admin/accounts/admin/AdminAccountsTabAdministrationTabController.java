@@ -6,26 +6,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.ActionType;
-import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.configuration.converter.PropertiesStringToLongConverter;
-import pl.edziennik.client.controller.admin.accounts.student.AdminAccountsTabStudentsEditController;
 import pl.edziennik.client.controller.model.admin.AdminListModel;
-import pl.edziennik.client.controller.model.admin.StudentListModel;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.exception.BusinessException;
 import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.admin.AdminDto;
-import pl.edziennik.client.rest.dto.parent.ParentDto;
-import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.task.admin.DeleteAdminTask;
 import pl.edziennik.client.task.admin.LoadAdminTask;
 import pl.edziennik.client.task.admin.LoadAdminsTask;
-import pl.edziennik.client.task.parent.LoadParentsTask;
-import pl.edziennik.client.task.student.DeleteStudentTask;
-import pl.edziennik.client.task.student.LoadStudentTask;
 import pl.edziennik.client.utils.NodeUtils;
 
 import java.util.ArrayList;
@@ -33,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 
 public class AdminAccountsTabAdministrationTabController extends AbstractController {
 
@@ -54,8 +46,8 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
 
     public void fetchTabData(final Page<List<AdminDto>> page) {
         pagination.setPageCount(page.getPagesCount());
-        paginationCacheMap.put(page.getActualPage() - 1, page.getEntities());
-        loadTableItems(page.getEntities());
+        paginationCacheMap.put(page.getActualPage() - 1, page.getContent());
+        loadTableItems(page.getContent());
     }
 
     private void loadTableItems(List<AdminDto> dtos) {

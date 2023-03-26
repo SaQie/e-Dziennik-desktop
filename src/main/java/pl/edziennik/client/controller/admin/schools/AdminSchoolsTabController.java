@@ -7,8 +7,8 @@ import javafx.scene.control.Pagination;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import pl.edziennik.client.core.AbstractController;
-import pl.edziennik.client.common.ActionType;
-import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.common.factory.ActionType;
+import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
 import pl.edziennik.client.controller.model.admin.SchoolListModel;
 import pl.edziennik.client.rest.dto.Page;
@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 
 public class AdminSchoolsTabController extends AbstractController {
 
@@ -84,8 +84,8 @@ public class AdminSchoolsTabController extends AbstractController {
 
     public void fetchTabData(final Page<List<SchoolDto>> page) {
         pagination.setPageCount(page.getPagesCount());
-        paginationCacheMap.put(page.getActualPage() - 1, page.getEntities());
-        loadTableItems(page.getEntities());
+        paginationCacheMap.put(page.getActualPage() - 1, page.getContent());
+        loadTableItems(page.getContent());
     }
 
     private void loadTableItems(List<SchoolDto> data) {

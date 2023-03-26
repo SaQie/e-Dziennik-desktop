@@ -1,8 +1,7 @@
 package pl.edziennik.client.common.controller.columns;
 
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.PropertyValueFactory;
-import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.controller.model.admin.SchoolListModel;
 import pl.edziennik.client.utils.ResourceUtil;
 

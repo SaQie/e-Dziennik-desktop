@@ -1,6 +1,6 @@
 package pl.edziennik.client.configuration;
 
-import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.configuration.converter.PropertiesValueConverter;
 
 import java.io.*;
@@ -8,7 +8,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static pl.edziennik.client.common.ResourceConst.PROPERTIES_LOADER_SERVER_ADDRESS_KEY;
+import static pl.edziennik.client.common.constants.ResourceConst.PROPERTIES_LOADER_SERVER_ADDRESS_KEY;
 
 public class PropertiesLoader {
 

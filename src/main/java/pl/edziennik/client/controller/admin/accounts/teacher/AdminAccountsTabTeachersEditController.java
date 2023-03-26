@@ -1,10 +1,8 @@
 package pl.edziennik.client.controller.admin.accounts.teacher;
 
-import pl.edziennik.client.common.ActionType;
-import pl.edziennik.client.controller.model.admin.TeacherListModel;
+import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.rest.dto.teacher.TeacherDto;
 import pl.edziennik.client.rest.dto.teacher.TeacherRequestDto;
-import pl.edziennik.client.task.teacher.AddTeacherTask;
 import pl.edziennik.client.task.teacher.EditTeacherTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.validator.teacher.TeacherValidator;

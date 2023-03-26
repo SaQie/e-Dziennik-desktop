@@ -2,7 +2,7 @@ package pl.edziennik.client.validator;
 
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.utils.ValidationUtil;
 
 import java.util.regex.Pattern;

@@ -7,10 +7,9 @@ import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.admin.AdminDto;
 import pl.edziennik.client.utils.ResourceUtil;
 
-import java.util.Collections;
 import java.util.List;
 
-import static pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 
 public class LoadAdminsTask extends Task<Page<List<AdminDto>>> {
 

@@ -7,7 +7,7 @@ import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.rest.dto.student.StudentRequestDto;
 import pl.edziennik.client.utils.ResourceUtil;
 
-import static pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 
 public class EditStudentTask extends Task<StudentDto> {
 

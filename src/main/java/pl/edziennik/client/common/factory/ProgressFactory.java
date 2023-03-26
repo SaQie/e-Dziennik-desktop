@@ -1,10 +1,11 @@
-package pl.edziennik.client.common;
+package pl.edziennik.client.common.factory;
 
 import javafx.concurrent.Task;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 import lombok.SneakyThrows;
+import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.controller.ProgressController;
 

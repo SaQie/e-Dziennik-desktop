@@ -2,13 +2,11 @@ package pl.edziennik.client;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.DialogFactory;
+import pl.edziennik.client.common.factory.DialogFactory;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.controller.auth.AuthorizationController;
-import pl.edziennik.client.exception.BusinessException;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.exception.TableViewException;
-import pl.edziennik.client.exception.ViewException;
 
 import java.io.IOException;
 

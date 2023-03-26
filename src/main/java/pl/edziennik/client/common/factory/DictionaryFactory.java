@@ -1,4 +1,4 @@
-package pl.edziennik.client.common;
+package pl.edziennik.client.common.factory;
 
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
@@ -7,7 +7,6 @@ import javafx.scene.control.Pagination;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.core.DictionaryItemModel;
@@ -47,7 +46,7 @@ public class DictionaryFactory {
         if (params.length == 0) {
             task = taskClass.getConstructor().newInstance();
         } else {
-            task = taskClass.getDeclaredConstructor(Long.class).newInstance(params[0]);
+            task = taskClass.getDeclaredConstructor(Long.class, int.class).newInstance(params[0], 0);
             runWithPageable = false;
         }
 
@@ -61,8 +60,8 @@ public class DictionaryFactory {
 
             BorderPane content = (BorderPane) dialog.getDialogPane().getContent();
             TableView<DictionaryItemModel> tableView = (TableView<DictionaryItemModel>) content.getCenter();
-            tableView.setItems(FXCollections.observableList(pageableItems.getEntities()));
-            paginationCacheMap.put(pageableItems.getActualPage() - 1, pageableItems.getEntities());
+            tableView.setItems(FXCollections.observableList(pageableItems.getContent()));
+            paginationCacheMap.put(pageableItems.getActualPage() - 1, pageableItems.getContent());
             HBox hBox = (HBox) content.getBottom();
             Pagination pagination = (Pagination) hBox.getChildren().get(0);
             pagination.setPageCount(pageableItems.getPagesCount());
@@ -94,8 +93,8 @@ public class DictionaryFactory {
             }
             progressFactory.createLittleProgressBar(taskInstance, (responseAfterPageChange) -> {
                 Page<List<DictionaryItemModel>> pageableItemsAfterPageChange = mapToModel(responseAfterPageChange);
-                paginationCacheMap.put(pageableItemsAfterPageChange.getActualPage() - 1, pageableItemsAfterPageChange.getEntities());
-                tableView.setItems(FXCollections.observableList(pageableItemsAfterPageChange.getEntities()));
+                paginationCacheMap.put(pageableItemsAfterPageChange.getActualPage() - 1, pageableItemsAfterPageChange.getContent());
+                tableView.setItems(FXCollections.observableList(pageableItemsAfterPageChange.getContent()));
             });
 
         });
@@ -109,7 +108,7 @@ public class DictionaryFactory {
         result.setItemsTotalCount(pageDto.getItemsTotalCount());
         result.setPagesCount(pageDto.getPagesCount());
         result.setItemsOnPage(pageDto.getItemsOnPage());
-        result.setEntities(pageDto.getEntities()
+        result.setContent(pageDto.getContent()
                 .stream()
                 .map(dto -> new DictionaryItemModel(dto.getId(), dto.getName()))
                 .toList());

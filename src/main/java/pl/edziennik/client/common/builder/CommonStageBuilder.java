@@ -1,7 +1,5 @@
 package pl.edziennik.client.common.builder;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,8 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
-import pl.edziennik.client.common.ActionType;
-import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.core.StageManager;
 import pl.edziennik.client.eDziennikApplication;
@@ -26,11 +23,10 @@ import pl.edziennik.client.utils.ResourceUtil;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import static pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 
 public class CommonStageBuilder {
 

@@ -6,16 +6,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.ActionType;
-import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.common.factory.ActionType;
+import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
 import pl.edziennik.client.controller.model.admin.TeacherListModel;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.rest.dto.Page;
-import pl.edziennik.client.rest.dto.school.SchoolDto;
-import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.rest.dto.teacher.TeacherDto;
-import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.task.teacher.DeleteTeacherTask;
 import pl.edziennik.client.task.teacher.LoadTeacherTask;
 import pl.edziennik.client.task.teacher.LoadTeachersTask;
@@ -26,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 
 public class AdminAccountsTabTeachersTabController extends AbstractController {
 
@@ -46,8 +43,8 @@ public class AdminAccountsTabTeachersTabController extends AbstractController {
 
     public void fetchTabData(final Page<List<TeacherDto>> page) {
         pagination.setPageCount(page.getPagesCount());
-        paginationCacheMap.put(page.getActualPage() - 1, page.getEntities());
-        loadTableItems(page.getEntities());
+        paginationCacheMap.put(page.getActualPage() - 1, page.getContent());
+        loadTableItems(page.getContent());
     }
 
     private void loadTableItems(List<TeacherDto> dtos) {

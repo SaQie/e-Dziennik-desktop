@@ -1,6 +1,6 @@
 package pl.edziennik.client.controller.admin.accounts.admin;
 
-import pl.edziennik.client.common.ActionType;
+import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.rest.dto.admin.AdminDto;
 import pl.edziennik.client.task.admin.EditAdminTask;
 import pl.edziennik.client.utils.NodeUtils;

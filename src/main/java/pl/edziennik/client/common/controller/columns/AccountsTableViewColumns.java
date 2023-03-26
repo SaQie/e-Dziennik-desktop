@@ -1,14 +1,14 @@
 package pl.edziennik.client.common.controller.columns;
 
 import javafx.scene.control.TableColumn;
-import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.controller.model.admin.AdminListModel;
 import pl.edziennik.client.controller.model.admin.ParentListModel;
 import pl.edziennik.client.controller.model.admin.StudentListModel;
 import pl.edziennik.client.controller.model.admin.TeacherListModel;
 import pl.edziennik.client.utils.ResourceUtil;
 
-import static pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 
 class AccountsTableViewColumns extends BasicTableViewColumns {
 

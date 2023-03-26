@@ -6,9 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.DialogFactory;
-import pl.edziennik.client.common.DictionaryFactory;
-import pl.edziennik.client.common.ProgressFactory;
+import pl.edziennik.client.common.factory.DialogFactory;
+import pl.edziennik.client.common.factory.DictionaryFactory;
+import pl.edziennik.client.common.factory.ProgressFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;

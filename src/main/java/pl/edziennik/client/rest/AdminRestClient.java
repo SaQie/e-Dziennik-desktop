@@ -12,6 +12,7 @@ import pl.edziennik.client.rest.dto.parent.ParentDto;
 import pl.edziennik.client.rest.dto.parent.ParentRequestDto;
 import pl.edziennik.client.rest.dto.school.SchoolDto;
 import pl.edziennik.client.rest.dto.schoolclass.SchoolClassDto;
+import pl.edziennik.client.rest.dto.schoolclass.SchoolClassRequestDto;
 import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.rest.dto.student.StudentRequestDto;
 import pl.edziennik.client.rest.dto.teacher.TeacherDto;
@@ -29,8 +30,8 @@ public class AdminRestClient {
         this.restClient = RestClient.getInstance();
     }
 
-    public AdminDto register(AdminDto adminDto) {
-        return restClient.send(HttpMethod.POST, URLConstants.ADMIN_URL, adminDto, AdminDto.class);
+    public AdminDto register(AdminDto dto) {
+        return restClient.send(HttpMethod.POST, URLConstants.ADMIN_URL, dto, AdminDto.class);
     }
 
     public Page<List<SchoolDto>> getSchoolList(int actualPage) {
@@ -39,7 +40,7 @@ public class AdminRestClient {
     }
 
     public Page<List<SchoolClassDto>> getSchoolClassesBySchoolId(Long schoolId) {
-        Page<SchoolClassDto[]> page = restClient.sendPageable(URLConstants.schoolClassBySchoolUrl(schoolId), 1, SchoolClassDto[].class);
+        Page<SchoolClassDto[]> page = restClient.sendPageable(URLConstants.schoolClassBySchoolUrl(schoolId), 0, SchoolClassDto[].class);
         return ModelUtils.convertToListPage(page);
     }
 
@@ -71,28 +72,44 @@ public class AdminRestClient {
         return restClient.send(HttpMethod.GET, URLConstants.PARENT_URL + id, ParentDto.class);
     }
 
-    public ParentDto saveNewParent(ParentRequestDto parentDto) {
-        return restClient.send(HttpMethod.POST, URLConstants.PARENT_URL, parentDto, ParentDto.class);
+    public ParentDto saveNewParent(ParentRequestDto dto) {
+        return restClient.send(HttpMethod.POST, URLConstants.PARENT_URL, dto, ParentDto.class);
     }
 
-    public ParentDto editParent(Long id, ParentDto parentDto) {
-        return restClient.send(HttpMethod.PUT, URLConstants.PARENT_URL + id, parentDto, ParentDto.class);
+    public ParentDto editParent(Long id, ParentDto dto) {
+        return restClient.send(HttpMethod.PUT, URLConstants.PARENT_URL + id, dto, ParentDto.class);
     }
 
     public SchoolDto getSchoolPojo(Long id) {
         return restClient.send(HttpMethod.GET, URLConstants.SCHOOL_URL + id, SchoolDto.class);
     }
 
-    public StudentDto saveNewStudent(StudentRequestDto studentPojo) {
-        return restClient.send(HttpMethod.POST, URLConstants.STUDENT_URL, studentPojo, StudentDto.class);
+    public SchoolClassDto getSchoolClass(Long id){
+        return restClient.send(HttpMethod.GET, URLConstants.SCHOOL_CLASS_URL + id, SchoolClassDto.class);
     }
 
-    public SchoolDto saveNewSchool(SchoolDto schoolDto) {
-        return restClient.send(HttpMethod.POST, URLConstants.SCHOOL_URL, schoolDto, SchoolDto.class);
+    public SchoolClassDto saveNewSchoolClass(SchoolClassRequestDto dto){
+        return restClient.send(HttpMethod.POST, URLConstants.SCHOOL_CLASS_URL, dto, SchoolClassDto.class);
     }
 
-    public SchoolDto editSchool(Long id, SchoolDto schoolDto) {
-        return restClient.send(HttpMethod.PUT, URLConstants.SCHOOL_URL + id, schoolDto, SchoolDto.class);
+    public SchoolClassDto editSchoolClass(Long id, SchoolClassRequestDto dto){
+        return restClient.send(HttpMethod.PUT, URLConstants.SCHOOL_CLASS_URL + id, dto, SchoolClassDto.class);
+    }
+
+    public StudentDto saveNewStudent(StudentRequestDto dto) {
+        return restClient.send(HttpMethod.POST, URLConstants.STUDENT_URL, dto, StudentDto.class);
+    }
+
+    public void deleteSchoolClass(Long id){
+        restClient.send(HttpMethod.DELETE, URLConstants.SCHOOL_CLASS_URL, id);
+    }
+
+    public SchoolDto saveNewSchool(SchoolDto dto) {
+        return restClient.send(HttpMethod.POST, URLConstants.SCHOOL_URL, dto, SchoolDto.class);
+    }
+
+    public SchoolDto editSchool(Long id, SchoolDto dto) {
+        return restClient.send(HttpMethod.PUT, URLConstants.SCHOOL_URL + id, dto, SchoolDto.class);
     }
 
     public List<SchoolLevelComboBoxItem> loadComboBoxItems() {
@@ -124,12 +141,12 @@ public class AdminRestClient {
         return restClient.send(HttpMethod.GET, URLConstants.STUDENT_URL + idStudent, StudentDto.class);
     }
 
-    public StudentDto editStudent(Long idStudent, StudentRequestDto pojo) {
-        return restClient.send(HttpMethod.PUT, URLConstants.STUDENT_URL + idStudent, pojo, StudentDto.class);
+    public StudentDto editStudent(Long idStudent, StudentRequestDto dto) {
+        return restClient.send(HttpMethod.PUT, URLConstants.STUDENT_URL + idStudent, dto, StudentDto.class);
     }
 
-    public TeacherDto saveNewTeacher(TeacherRequestDto pojo) {
-        return restClient.send(HttpMethod.POST, URLConstants.TEACHER_URL, pojo, TeacherDto.class);
+    public TeacherDto saveNewTeacher(TeacherRequestDto dto) {
+        return restClient.send(HttpMethod.POST, URLConstants.TEACHER_URL, dto, TeacherDto.class);
     }
 
     public void deleteTeacher(Long idTeacher) {
@@ -161,4 +178,8 @@ public class AdminRestClient {
     }
 
 
+    public Page<List<SchoolClassDto>> getSchoolClassesList(int page) {
+        Page<SchoolClassDto[]> schoolClassDtos = restClient.sendPageable(URLConstants.SCHOOL_CLASS_URL, page, SchoolClassDto[].class);
+        return ModelUtils.convertToListPage(schoolClassDtos);
+    }
 }

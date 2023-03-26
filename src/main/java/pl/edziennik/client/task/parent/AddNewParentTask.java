@@ -7,7 +7,7 @@ import pl.edziennik.client.rest.dto.parent.ParentDto;
 import pl.edziennik.client.rest.dto.parent.ParentRequestDto;
 import pl.edziennik.client.utils.ResourceUtil;
 
-import static pl.edziennik.client.common.ResourceConst.WAITING_FETCH_DATA;
+import static pl.edziennik.client.common.constants.ResourceConst.WAITING_FETCH_DATA;
 
 public class AddNewParentTask extends Task<ParentDto> {
 

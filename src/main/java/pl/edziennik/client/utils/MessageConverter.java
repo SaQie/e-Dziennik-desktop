@@ -1,6 +1,6 @@
 package pl.edziennik.client.utils;
 
-import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.common.constants.ResourceConst;
 
 public class MessageConverter {
 

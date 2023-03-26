@@ -7,7 +7,7 @@ import javafx.stage.StageStyle;
 import lombok.SneakyThrows;
 import org.springframework.http.HttpHeaders;
 import pl.edziennik.client.common.builder.CommonStageBuilder;
-import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.common.Role;
 import pl.edziennik.client.configuration.PropertiesLoader;
 
@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import static pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 
 public class AuthorizationUtils {
 

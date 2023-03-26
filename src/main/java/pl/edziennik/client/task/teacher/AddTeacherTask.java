@@ -7,7 +7,7 @@ import pl.edziennik.client.rest.dto.teacher.TeacherDto;
 import pl.edziennik.client.rest.dto.teacher.TeacherRequestDto;
 import pl.edziennik.client.utils.ResourceUtil;
 
-import static pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 
 public class AddTeacherTask extends Task<TeacherDto> {
 

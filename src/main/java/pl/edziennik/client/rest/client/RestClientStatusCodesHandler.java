@@ -2,8 +2,8 @@ package pl.edziennik.client.rest.client;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import pl.edziennik.client.common.DialogFactory;
-import pl.edziennik.client.common.ResourceConst;
+import pl.edziennik.client.common.factory.DialogFactory;
+import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.client.response.ApiResponse;
 import pl.edziennik.client.utils.ThreadUtils;

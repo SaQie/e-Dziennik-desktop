@@ -8,7 +8,7 @@ import pl.edziennik.client.utils.ResourceUtil;
 
 import java.util.Arrays;
 
-import static pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 
 public class LoadSchoolTask extends Task<SchoolDto> {
 

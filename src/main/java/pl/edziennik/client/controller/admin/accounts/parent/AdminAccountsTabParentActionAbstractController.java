@@ -1,23 +1,18 @@
 package pl.edziennik.client.controller.admin.accounts.parent;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.ActionType;
+import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.common.Role;
-import pl.edziennik.client.controller.model.admin.StudentComboBoxItem;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.rest.dto.parent.ParentDto;
 import pl.edziennik.client.rest.dto.parent.ParentRequestDto;
-import pl.edziennik.client.rest.dto.student.SimpleStudentDto;
 import pl.edziennik.client.task.student.LoadStudentsTask;
-import pl.edziennik.client.utils.ModelUtils;
 import pl.edziennik.client.utils.NodeUtils;
 
-import java.util.List;
 import java.util.UUID;
 
 class AdminAccountsTabParentActionAbstractController extends AbstractController {

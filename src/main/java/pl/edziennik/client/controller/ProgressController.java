@@ -9,13 +9,11 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-import pl.edziennik.client.common.DialogFactory;
+import pl.edziennik.client.common.factory.DialogFactory;
 import pl.edziennik.client.utils.ThreadUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

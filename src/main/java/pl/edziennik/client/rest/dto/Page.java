@@ -12,7 +12,7 @@ public class Page<INPUT> {
     private Integer actualPage;
     private Integer itemsOnPage;
 
-    private INPUT entities;
+    private INPUT content;
 
 
     public static <INPUT> Page<INPUT> empty(){

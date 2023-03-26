@@ -1,22 +1,17 @@
-package pl.edziennik.client.common;
+package pl.edziennik.client.common.factory;
 
-import javafx.collections.FXCollections;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceDialog;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.edziennik.client.common.builder.CommonStageBuilder;
-import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.rest.client.response.ApiErrors;
 import pl.edziennik.client.utils.AuthorizationUtils;
 import pl.edziennik.client.utils.ResourceUtil;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 
-import static pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 import static pl.edziennik.client.common.builder.CommonStageBuilder.*;
 
 public class DialogFactory {

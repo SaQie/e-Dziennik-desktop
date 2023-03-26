@@ -8,14 +8,16 @@ import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 import pl.edziennik.client.controller.admin.accounts.AdminAccountsTabController;
 import pl.edziennik.client.controller.admin.configuration.AdminConfigurationOptionController;
+import pl.edziennik.client.controller.admin.schoolclasses.AdminSchoolClassesTabController;
 import pl.edziennik.client.controller.admin.schools.AdminSchoolsTabController;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.task.config.LoadConfigurationsTask;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
+import pl.edziennik.client.task.schoolclass.LoadSchoolClassesTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.utils.ThreadUtils;
 
-import static pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 
 public class AdminController extends AbstractController {
 
@@ -24,6 +26,9 @@ public class AdminController extends AbstractController {
 
     @FXML
     private AdminAccountsTabController accountsTabController;
+
+    @FXML
+    private AdminSchoolClassesTabController schoolClassesTabController;
 
     @FXML
     private Label timerLabel;
@@ -35,7 +40,7 @@ public class AdminController extends AbstractController {
     private TabPane mainViewPane;
 
     @FXML
-    private Tab schoolsTab, statisticsTab, chartsTab, accountsTab;
+    private Tab schoolsTab, statisticsTab, chartsTab, accountsTab, schoolClassesTab;
 
     @Override
     protected void createActions() {
@@ -77,7 +82,16 @@ public class AdminController extends AbstractController {
             if (newValue.equals(accountsTab)) {
                 accountsTabController.fetchSelectedTabTableItems();
             }
+            if (newValue.equals(schoolClassesTab)){
+                fetchSchoolClassTabTableItems();
+            }
         });
+    }
+
+    private void fetchSchoolClassTabTableItems() {
+        ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new LoadSchoolClassesTask(), (response) -> {
+            schoolClassesTabController.fetchTabData(response);
+        }));
     }
 
     private void fetchSchoolsTabTableItems() {

@@ -6,8 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -186,8 +184,9 @@
                               </ImageView>
                            </graphic>
                       </Tab>
-                        <fx:include fx:id="accountsTab" source="account/admin-dashboard-accounts-tab.fxml"/>
+                        <fx:include fx:id="accountsTab" source="account/admin-dashboard-accounts-tab.fxml" />
                         <fx:include fx:id="schoolsTab" source="school/admin-dashboard-schools-tab.fxml" />
+                        <fx:include fx:id="schoolClassesTab" source="schoolclasses/admin-dashboard-schoolclasses-tab.fxml" />
                     </tabs>
                   </TabPane>
                </children>

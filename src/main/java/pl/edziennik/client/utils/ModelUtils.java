@@ -18,17 +18,17 @@ public class ModelUtils {
         Page<List<T>> result = new Page<>();
         List<T> entitiesList = new ArrayList<>();
 
-        if (page.getEntities() != null) {
-            if (page.getEntities().getClass().isArray()) {
-                for (int i = 0; i < Array.getLength(page.getEntities()); i++) {
-                    entitiesList.add((T) Array.get(page.getEntities(), i));
+        if (page.getContent() != null) {
+            if (page.getContent().getClass().isArray()) {
+                for (int i = 0; i < Array.getLength(page.getContent()); i++) {
+                    entitiesList.add((T) Array.get(page.getContent(), i));
                 }
             } else {
-                entitiesList.add(page.getEntities()[0]);
+                entitiesList.add(page.getContent()[0]);
             }
         }
 
-        result.setEntities(entitiesList);
+        result.setContent(entitiesList);
         result.setItemsOnPage(page.getItemsOnPage());
         result.setItemsTotalCount(page.getItemsTotalCount());
         result.setActualPage(page.getActualPage());

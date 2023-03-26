@@ -9,7 +9,7 @@ import pl.edziennik.client.utils.ResourceUtil;
 import java.util.Collections;
 import java.util.List;
 
-import static pl.edziennik.client.common.ResourceConst.*;
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 
 public class LoadConfigurationsTask extends Task<List<ConfigurationDto>> {
 

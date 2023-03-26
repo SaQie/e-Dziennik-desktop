@@ -7,8 +7,7 @@ import pl.edziennik.client.utils.ResourceUtil;
 
 import java.util.List;
 
-import static pl.edziennik.client.common.ResourceConst.WAITING_DELETE_DATA;
-import static pl.edziennik.client.common.ResourceConst.WAITING_FETCH_DATA;
+import static pl.edziennik.client.common.constants.ResourceConst.WAITING_DELETE_DATA;
 
 public class DeleteParentTask extends Task<Void> {
 

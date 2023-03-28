@@ -2,11 +2,12 @@ package pl.edziennik.client.rest.dto.teacher;
 
 import lombok.Getter;
 import lombok.Setter;
+import pl.edziennik.client.rest.dto.DictionaryItemDto;
 import pl.edziennik.client.rest.dto.school.SimpleSchoolDto;
 
 @Getter
 @Setter
-public class TeacherDto {
+public class TeacherDto implements DictionaryItemDto {
 
     private Long id;
     private Long userId;
@@ -24,4 +25,8 @@ public class TeacherDto {
     private String role;
     private SimpleSchoolDto school;
 
+    @Override
+    public String getName() {
+        return fullName;
+    }
 }

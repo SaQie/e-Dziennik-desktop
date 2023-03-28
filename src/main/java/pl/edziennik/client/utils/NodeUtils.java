@@ -8,12 +8,16 @@ import javafx.css.PseudoClass;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.SneakyThrows;
+import pl.edziennik.client.common.Styles;
 import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.common.factory.DialogFactory;
 import pl.edziennik.client.common.factory.DictionaryFactory;
@@ -25,6 +29,7 @@ import pl.edziennik.client.controller.configuration.TableColumnViewConfigControl
 import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.core.TableViewSelection;
 import pl.edziennik.client.core.StageManager;
+import pl.edziennik.client.eDziennikApplication;
 import pl.edziennik.client.exception.TableViewException;
 import pl.edziennik.client.rest.dto.DictionaryItemDto;
 import pl.edziennik.client.rest.dto.Page;
@@ -327,10 +332,23 @@ public class NodeUtils {
     }
 
     public static <T extends DictionaryItemDto, E extends Task<Page<List<T>>>> void initializeDictionary(Class<E> task, ComboBox<DictionaryItemModel> dictionaryComboBox, Long... params) {
-        dictionaryComboBox.setOnShown((show) -> {
+        ContextMenu menu = Styles.clearDictionaryAction();
+
+        dictionaryComboBox.setOnMouseClicked(event -> {
+            // TODO fix context menu styles
             dictionaryComboBox.hide();
-            Optional<DictionaryItemModel> valueFromDictionary = dictionaryFactory.createAndGetDictionaryValue(task, params);
-            valueFromDictionary.ifPresent(value -> dictionaryComboBox.getSelectionModel().select(value));
+            if (MouseButton.SECONDARY.equals(event.getButton())){
+                menu.show(dictionaryComboBox, event.getScreenX(), event.getScreenY());
+                menu.getItems().get(0).setOnAction(action -> {
+                    dictionaryComboBox.hide();
+                    dictionaryComboBox.getSelectionModel().select(null);
+                });
+            }
+            if (MouseButton.PRIMARY.equals(event.getButton())){
+                Optional<DictionaryItemModel> valueFromDictionary = dictionaryFactory.createAndGetDictionaryValue(task, params);
+                valueFromDictionary.ifPresent(value -> dictionaryComboBox.getSelectionModel().select(value));
+            }
         });
+
     }
 }

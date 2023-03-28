@@ -1,20 +1,25 @@
 package pl.edziennik.client.rest.dto.schoolclass;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class SchoolClassRequestDto {
 
     private final String className;
-    private final Long idSupervisingTeacher;
+    private final Long idClassTeacher;
     private final Long idSchool;
 
-    public SchoolClassRequestDto(String className, Long idSupervisingTeacher, Long idSchool) {
+    public SchoolClassRequestDto(String className, Long idClassTeacher, Long idSchool) {
         this.className = className;
-        this.idSupervisingTeacher = idSupervisingTeacher;
+        this.idClassTeacher = idClassTeacher;
         this.idSchool = idSchool;
     }
 
     public SchoolClassRequestDto(String className, Long idSchool) {
         this.className = className;
         this.idSchool = idSchool;
-        this.idSupervisingTeacher = null;
+        this.idClassTeacher = null;
     }
 }

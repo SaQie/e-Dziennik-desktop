@@ -8,12 +8,12 @@ import pl.edziennik.client.utils.ResourceUtil;
 
 import static pl.edziennik.client.common.constants.ResourceConst.*;
 
-public class LoadSchoolClass extends Task<SchoolClassDto> {
+public class LoadSchoolClassTask extends Task<SchoolClassDto> {
 
     private final Long idSchoolClass;
     private final AdminRestClient restClient;
 
-    public LoadSchoolClass(Long idSchoolClass) {
+    public LoadSchoolClassTask(Long idSchoolClass) {
         this.idSchoolClass = idSchoolClass;
         this.restClient = new AdminRestClient();
     }

@@ -59,6 +59,7 @@ public class AdminSchoolsTabAddSchoolController extends AdminSchoolsTabActionAbs
             ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new AddNewSchoolTask(schoolDto), (response) -> {
                 AdminSchoolsTabController controller = AdminSchoolsTabController.getInstance();
                 controller.addItem(SchoolListModel.mapPojoToModel(response));
+                NodeUtils.closeCurrentStage(getActualStage());
                 dialogFactory.createSuccessInformationDialog(null);
             }));
         });

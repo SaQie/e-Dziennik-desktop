@@ -9,12 +9,14 @@ import pl.edziennik.client.utils.ResourceUtil;
 
 import static pl.edziennik.client.common.constants.ResourceConst.*;
 
-public class AddSchoolClass extends Task<SchoolClassDto> {
+public class EditSchoolClassTask extends Task<SchoolClassDto> {
 
-    private final AdminRestClient restClient;
+    private final Long idSchoolClass;
     private final SchoolClassRequestDto dto;
+    private final AdminRestClient restClient;
 
-    public AddSchoolClass(SchoolClassRequestDto dto) {
+    public EditSchoolClassTask(Long idSchoolClass, SchoolClassRequestDto dto) {
+        this.idSchoolClass = idSchoolClass;
         this.restClient = new AdminRestClient();
         this.dto = dto;
     }
@@ -23,7 +25,7 @@ public class AddSchoolClass extends Task<SchoolClassDto> {
     protected SchoolClassDto call() throws Exception {
         try{
             updateMessage(ResourceUtil.getMessage(WAITING_SAVE_DATA.value()));
-            return restClient.saveNewSchoolClass(dto);
+            restClient.editSchoolClass(idSchoolClass, dto);
         }catch (RestClientException e){
             cancel(true);
         }

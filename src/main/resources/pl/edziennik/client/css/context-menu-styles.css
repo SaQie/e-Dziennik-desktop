@@ -1,0 +1,20 @@
+.context-menu{
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+.menu-item .label{
+    -fx-text-fill: white;
+}
+
+.menu-item{
+    -fx-background-color: black;
+}
+
+.menu-item:focused{
+    -fx-background-color: black;
+}
+
+.menu-item:focused .label{
+    -fx-text-fill: white;
+}

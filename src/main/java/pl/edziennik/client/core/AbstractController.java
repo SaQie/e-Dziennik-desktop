@@ -41,6 +41,7 @@ public abstract class AbstractController implements Initializable {
         setTableColumns();
         setSceneValidators();
         fetchStageData();
+        createDictionaries();
     }
 
     protected void fetchStageData() {
@@ -52,6 +53,10 @@ public abstract class AbstractController implements Initializable {
     }
 
     protected void setSceneValidators() {
+
+    }
+
+    protected void createDictionaries(){
 
     }
 

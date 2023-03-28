@@ -148,6 +148,16 @@ public abstract class BasicValidator {
         });
     }
 
+    protected void createNotEmptyFieldValidatorListener(TextField field) {
+        field.textProperty().addListener(input -> {
+            if (ValidationUtil.isEmpty(field)) {
+                ValidationUtil.addErrorTooltipToField(ResourceConst.FIELD_CANNOT_BE_EMPTY.value(), field);
+            } else {
+                ValidationUtil.unmarkTextFieldAsError(field);
+            }
+        });
+    }
+
     protected void createSchoolValidatorListener(ComboBox<?> comboBox) {
         comboBox.valueProperty().addListener(input -> {
             if (ValidationUtil.isComboBoxEmpty(comboBox)) {
@@ -158,7 +168,7 @@ public abstract class BasicValidator {
         });
     }
 
-    protected void createStudentValidatorListener(ComboBox<?> comboBox){
+    protected void createStudentValidatorListener(ComboBox<?> comboBox) {
         ValidationUtil.addErrorTooltipToComboBox(ResourceConst.STUDENT_CANNOT_BE_EMPTY.value(), comboBox);
         comboBox.valueProperty().addListener(input -> {
             if (ValidationUtil.isComboBoxEmpty(comboBox)) {
@@ -178,6 +188,11 @@ public abstract class BasicValidator {
             }
         });
     }
+
+    protected void withAlwaysCorrectComboBox(ComboBox<?> comboBox){
+        ValidationUtil.unmarkComboBoxAsError(comboBox);
+    }
+
 
     protected void withAlwaysCorrectField(TextField field) {
         ValidationUtil.unmarkTextFieldAsError(field);

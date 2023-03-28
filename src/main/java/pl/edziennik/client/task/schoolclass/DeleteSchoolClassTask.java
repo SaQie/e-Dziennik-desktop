@@ -9,12 +9,12 @@ import java.util.List;
 
 import static pl.edziennik.client.common.constants.ResourceConst.*;
 
-public class DeleteSchoolClass extends Task<Void> {
+public class DeleteSchoolClassTask extends Task<Void> {
 
     private final List<Long> idsToDelete;
     private final AdminRestClient restClient;
 
-    public DeleteSchoolClass(List<Long> idsToDelete) {
+    public DeleteSchoolClassTask(List<Long> idsToDelete) {
         this.idsToDelete = idsToDelete;
         this.restClient = new AdminRestClient();
     }

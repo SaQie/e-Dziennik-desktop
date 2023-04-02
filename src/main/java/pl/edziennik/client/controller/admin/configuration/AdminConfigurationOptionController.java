@@ -1,69 +1,53 @@
 package pl.edziennik.client.controller.admin.configuration;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
+import pl.edziennik.client.common.factory.ActionType;
+import pl.edziennik.client.controller.model.admin.ConfigurationListModel;
 import pl.edziennik.client.core.AbstractController;
-import pl.edziennik.client.core.DictionaryItemModel;
+import pl.edziennik.client.core.TableSelectionMode;
 import pl.edziennik.client.rest.dto.config.ConfigurationDto;
-import pl.edziennik.client.rest.dto.config.SettingsValueDto;
-import pl.edziennik.client.task.config.SaveConfigurationTask;
-import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.utils.NodeUtils;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
+import static pl.edziennik.client.common.constants.ResourceConst.*;
 
 public class AdminConfigurationOptionController extends AbstractController {
 
-    @FXML
-    private Label firstParameterLabel, secondParameterLabel;
 
     @FXML
-    private CheckBox firstParameterValue, secondParameterValue;
+    private TableView<ConfigurationListModel> tableView;
 
     @FXML
-    private Button cancelButton, saveButton;
-
-    private Long firstParameterId, secondParameterId, actualSelectedSchoolToWhichStudentsCanRegister;
+    private Button exitButton, saveButton;
 
 
     @Override
     protected void createActions() {
-        NodeUtils.createCancelButtonAction(cancelButton);
-        initializeSaveButtonAction();
+        NodeUtils.createCancelButtonAction(exitButton);
+        initializeEditButtonAction();
     }
+
 
     @Override
     protected void setSceneSettings() {
-        showChoiceDialogAfterSecondParameterIsChecked();
+        NodeUtils.setTableSelectOption(tableView, TableSelectionMode.SINGLE);
+        NodeUtils.setTableViewPlaceHolder(tableView);
     }
 
-    private void showChoiceDialogAfterSecondParameterIsChecked() {
-        secondParameterValue.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!oldValue) {
-                Optional<DictionaryItemModel> idSchool = dictionaryFactory.createAndGetDictionaryValue(LoadSchoolsTask.class);
-                idSchool.ifPresentOrElse((value) -> actualSelectedSchoolToWhichStudentsCanRegister = value.getId(),
-                        () -> secondParameterValue.setSelected(false));
-            }
-        });
-    }
+    @Override
+    protected void setTableColumns() {
+        AdminTableViewControllerMaker.ConfigurationTableViewBuilder builder = AdminTableViewControllerMaker.configurationTableViewBuilder()
+                .withSelectionColumn(true)
+                .withNameColumn(true);
 
-
-    private void initializeSaveButtonAction() {
-        saveButton.setOnAction(button -> {
-            List<SettingsValueDto> configurationPojos = new ArrayList<>();
-            configurationPojos.add(new SettingsValueDto(firstParameterId, firstParameterValue.isSelected()));
-            configurationPojos.add(new SettingsValueDto(secondParameterId, secondParameterValue.isSelected()));
-            configurationPojos.add(new SettingsValueDto(3L, actualSelectedSchoolToWhichStudentsCanRegister));
-            progressFactory.createLittleProgressBar(new SaveConfigurationTask(configurationPojos), (response) -> {
-                dialogFactory.createSuccessInformationDialog(null);
-                NodeUtils.closeCurrentStage(getActualStage());
-            });
-        });
+        tableView.getColumns().addAll(builder.build());
     }
 
     @Override
@@ -72,22 +56,22 @@ public class AdminConfigurationOptionController extends AbstractController {
     }
 
     public void fetchData(List<ConfigurationDto> configurationList) {
-        // TODO trzeba wymyslec lepszy sposob na operowanie konfiguracjami w desktopie, to jest do bani,to jest rozwiazanie tymczasowe
-        for (ConfigurationDto configurationDto : configurationList) {
-            if (configurationDto.getId().equals(1L)) {
-                firstParameterLabel.setText(configurationDto.getName());
-                firstParameterValue.setSelected(configurationDto.isBooleanValue());
-                firstParameterId = configurationDto.getId();
-            }
-            if (configurationDto.getId().equals(2L)) {
-                secondParameterLabel.setText(configurationDto.getName());
-                secondParameterValue.setSelected(configurationDto.isBooleanValue());
-                secondParameterId = configurationDto.getId();
-            }
-            if (configurationDto.getId().equals(3L)) {
-                actualSelectedSchoolToWhichStudentsCanRegister = configurationDto.getLongValue();
-            }
+        try {
+            List<ConfigurationListModel> models = ConfigurationListModel.mapToModel(configurationList);
+            ObservableList<ConfigurationListModel> items = FXCollections.observableList(models);
+            tableView.setItems(items);
+            tableView.refresh();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
+    }
 
+    private void initializeEditButtonAction() {
+        editButton.setOnAction(button -> {
+            List<Long> items = NodeUtils.getSelectedTableItems(tableView, ActionType.EDIT_ACTION);
+            AdminConfigurationValueOptionController controller = NodeUtils.openNewStageAboveWithController(DASHBOARD_ADMIN_CONFIGURATION_VALUE_VIEW_ADDRESS.value()
+                    ,CONFIGURATION_LIST_ADMIN_VIEW_TITLE_MESSAGE_KEY.value(),450,300,editButton);
+            controller.fetchData(items.get(0));
+        });
     }
 }

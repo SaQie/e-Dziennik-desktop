@@ -5,7 +5,6 @@ public enum ResourceConst {
     // PATHS
 
     ALERT_STYLES_ADDRESS("/pl/edziennik/client/css/alert-styles.css"),
-    CONTEXT_MENU_STYLES("/pl/edziennik/client/css/context-menu-styles.css"),
     TABLE_STYLES_ADDRESS("/pl/edziennik/client/css/global-table-styles.css"),
     GLOBAL_COLOR_STYLES("/pl/edziennik/client/css/global-colors.css"),
     DICTIONARY_STYLES_ADDRESS("/pl/edziennik/client/css/dictionary-styles.css"),
@@ -44,6 +43,7 @@ public enum ResourceConst {
     DASHBOARD_ADMIN_ACCOUNTS_ADD_PARENT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/parent/admin-dashboard-accounts-parents-add.fxml"),
     DASHBOARD_ADMIN_ACCOUNTS_EDIT_PARENT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/parent/admin-dashboard-accounts-parents-edit.fxml"),
     DASHBOARD_ADMIN_ACCOUNTS_SHOW_PARENT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/account/parent/admin-dashboard-accounts-parents-show.fxml"),
+    DASHBOARD_ADMIN_CONFIGURATION_VALUE_VIEW_ADDRESS("/pl/edziennik/client/view/admin/configuration/admin-dashboard-configuration-value-view.fxml"),
     REGISTER_VIEW_ADDRESS("/pl/edziennik/client/view/auth/register-student-view.fxml"),
     // MESSAGES,
 

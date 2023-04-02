@@ -8,12 +8,9 @@ import javafx.css.PseudoClass;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.SneakyThrows;
@@ -27,9 +24,9 @@ import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.configuration.converter.PropertiesLanguageConverter;
 import pl.edziennik.client.controller.configuration.TableColumnViewConfigController;
 import pl.edziennik.client.core.DictionaryItemModel;
+import pl.edziennik.client.core.TableSelectionMode;
 import pl.edziennik.client.core.TableViewSelection;
 import pl.edziennik.client.core.StageManager;
-import pl.edziennik.client.eDziennikApplication;
 import pl.edziennik.client.exception.TableViewException;
 import pl.edziennik.client.rest.dto.DictionaryItemDto;
 import pl.edziennik.client.rest.dto.Page;
@@ -302,11 +299,17 @@ public class NodeUtils {
         });
     }
 
-    public static <T extends TableViewSelection> void setTableViewRowFactory(TableView<T> tableView) {
+    public static <T extends TableViewSelection> void setTableSelectOption(TableView<T> tableView, TableSelectionMode selectionMode) {
         tableView.setRowFactory(factory -> {
             TableRow<T> row = new TableRow<>();
             row.setOnMouseClicked(mouseEvent -> {
                 if (mouseEvent.getButton() == MouseButton.PRIMARY && (!row.isEmpty())) {
+                    if (TableSelectionMode.SINGLE.equals(selectionMode)){
+                        tableView.getItems()
+                                .stream()
+                                .filter(TableViewSelection::isSelected)
+                                .forEach(tableItem -> tableItem.getSelect().setSelected(false));
+                    }
                     tableView.getSelectionModel().getSelectedItem().setSelection();
                 }
             });
@@ -333,13 +336,13 @@ public class NodeUtils {
 
     public static <T extends DictionaryItemDto, E extends Task<Page<List<T>>>> void initializeDictionary(Class<E> task, ComboBox<DictionaryItemModel> dictionaryComboBox, Long... params) {
         ContextMenu menu = Styles.clearDictionaryAction();
+        MenuItem item = menu.getItems().get(0);
 
         dictionaryComboBox.setOnMouseClicked(event -> {
-            // TODO fix context menu styles
             dictionaryComboBox.hide();
             if (MouseButton.SECONDARY.equals(event.getButton())){
                 menu.show(dictionaryComboBox, event.getScreenX(), event.getScreenY());
-                menu.getItems().get(0).setOnAction(action -> {
+                item.setOnAction(action -> {
                     dictionaryComboBox.hide();
                     dictionaryComboBox.getSelectionModel().select(null);
                 });

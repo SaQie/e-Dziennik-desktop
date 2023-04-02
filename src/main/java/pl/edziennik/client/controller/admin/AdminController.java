@@ -66,8 +66,8 @@ public class AdminController extends AbstractController {
                 AdminConfigurationOptionController controller = NodeUtils.openNewStageAboveWithController(
                         DASHBOARD_ADMIN_CONFIGURATION_VIEW_ADDRESS.value(),
                         CONFIGURATION_LIST_ADMIN_VIEW_TITLE_MESSAGE_KEY.value(),
+                        550,
                         450,
-                        300,
                         configurationButton);
                 controller.fetchData(configurationList);
             });

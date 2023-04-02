@@ -10,6 +10,7 @@ import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
 import pl.edziennik.client.controller.model.admin.ParentListModel;
 import pl.edziennik.client.core.AbstractController;
+import pl.edziennik.client.core.TableSelectionMode;
 import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.parent.ParentDto;
 import pl.edziennik.client.task.parent.DeleteParentTask;
@@ -128,7 +129,7 @@ public class AdminAccountsTabParentsTabController extends AbstractController {
     @Override
     protected void setSceneSettings() {
         NodeUtils.setTableViewPlaceHolder(parentsTableView);
-        NodeUtils.setTableViewRowFactory(parentsTableView);
+        NodeUtils.setTableSelectOption(parentsTableView, TableSelectionMode.MULTIPLE);
         NodeUtils.setColumnConfigurationShortcut(parentsTableView);
     }
 

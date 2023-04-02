@@ -169,6 +169,10 @@ public class AdminRestClient {
         return restClient.send(HttpMethod.PUT, URLConstants.ADMIN_URL + idAdmin, dto, AdminDto.class);
     }
 
+    public ConfigurationDto getConfigurationById(Long id) {
+        return restClient.send(HttpMethod.GET, URLConstants.CONFIGURATION_URL + id, ConfigurationDto.class);
+    }
+
     public AdminDto getAdmin(Long idAdmin) {
         return restClient.send(HttpMethod.GET, URLConstants.ADMIN_URL + idAdmin, AdminDto.class);
     }
@@ -182,4 +186,6 @@ public class AdminRestClient {
         Page<SchoolClassDto[]> schoolClassDtos = restClient.sendPageable(URLConstants.SCHOOL_CLASS_URL, page, SchoolClassDto[].class);
         return ModelUtils.convertToListPage(schoolClassDtos);
     }
+
+
 }

@@ -11,6 +11,7 @@ import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
 import pl.edziennik.client.controller.model.admin.StudentListModel;
 import pl.edziennik.client.core.AbstractController;
+import pl.edziennik.client.core.TableSelectionMode;
 import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.task.student.DeleteStudentTask;
@@ -90,7 +91,7 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
 
     @Override
     protected void setSceneSettings() {
-        NodeUtils.setTableViewRowFactory(studentsTableView);
+        NodeUtils.setTableSelectOption(studentsTableView, TableSelectionMode.MULTIPLE);
         NodeUtils.setColumnConfigurationShortcut(studentsTableView);
         NodeUtils.setTableViewPlaceHolder(studentsTableView);
         initializeSelectUnselectAllMenuItemAction(studentsTableView);

@@ -35,4 +35,17 @@ public class SettingsValueDto {
         this.stringValue = null;
     }
 
+    public static SettingsValueDto getSettingValueDto(ConfigurationDto dto){
+        if (dto.getBooleanValue() != null){
+            return new SettingsValueDto(dto.getId(), dto.getBooleanValue());
+        }
+        if (dto.getStringValue() != null){
+            return new SettingsValueDto(dto.getId(), dto.getStringValue());
+        }
+        if (dto.getLongValue() != null){
+            return new SettingsValueDto(dto.getId(), dto.getLongValue());
+        }
+        return null;
+    }
+
 }

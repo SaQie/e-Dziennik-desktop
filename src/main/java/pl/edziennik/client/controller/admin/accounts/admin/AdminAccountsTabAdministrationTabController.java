@@ -12,6 +12,7 @@ import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.configuration.converter.PropertiesStringToLongConverter;
 import pl.edziennik.client.controller.model.admin.AdminListModel;
 import pl.edziennik.client.core.AbstractController;
+import pl.edziennik.client.core.TableSelectionMode;
 import pl.edziennik.client.exception.BusinessException;
 import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.admin.AdminDto;
@@ -78,7 +79,7 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
 
     @Override
     protected void setSceneSettings() {
-        NodeUtils.setTableViewRowFactory(administrationTableView);
+        NodeUtils.setTableSelectOption(administrationTableView, TableSelectionMode.MULTIPLE);
         NodeUtils.setColumnConfigurationShortcut(administrationTableView);
         NodeUtils.setTableViewPlaceHolder(administrationTableView);
         initializeSelectUnselectAllMenuItemAction(administrationTableView);

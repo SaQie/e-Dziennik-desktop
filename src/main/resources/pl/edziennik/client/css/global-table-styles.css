@@ -58,3 +58,7 @@
 
     -fx-background-color: #1094fa;
 }
+
+.check-box:disabled{
+    -fx-opacity: 1.0 ;
+}

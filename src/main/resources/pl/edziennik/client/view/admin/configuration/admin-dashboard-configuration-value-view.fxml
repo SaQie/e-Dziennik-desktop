@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="450.0" stylesheets="@../../../css/global-colors.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.admin.configuration.AdminConfigurationValueOptionController">
+    <children>
+        <BorderPane layoutX="120.0" layoutY="89.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <HBox alignment="CENTER" prefHeight="58.0" prefWidth="450.0" styleClass="background-color-dark" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label text="%label.configuration" textFill="WHITE">
+                            <font>
+                                <Font name="Arial Bold" size="16.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="43.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/Services.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Label>
+                    </children>
+                </HBox>
+            </top>
+            <bottom>
+                <HBox alignment="CENTER" prefHeight="59.0" prefWidth="450.0" spacing="100.0" styleClass="background-color-dark" stylesheets="@../../../css/global-button-styles.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="%cancel.button">
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/Close.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="%save.button">
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../icons/Done.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </HBox>
+            </bottom>
+         <center>
+            <HBox fx:id="hBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="background-color-dark" BorderPane.alignment="CENTER_LEFT" />
+         </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

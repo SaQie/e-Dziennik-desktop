@@ -33,6 +33,10 @@ public class AdminTableViewControllerMaker {
         return new ParentsTableViewBuilder();
     }
 
+    public static ConfigurationTableViewBuilder configurationTableViewBuilder() {
+        return new ConfigurationTableViewBuilder();
+    }
+
     public static SchoolClassTableViewBuilder schoolClassTableViewBuilder() {
         return new SchoolClassTableViewBuilder();
     }
@@ -106,6 +110,29 @@ public class AdminTableViewControllerMaker {
         }
 
         public List<TableColumn<ParentListModel, ?>> build() {
+            return columns;
+        }
+
+    }
+
+    /**
+     * Builder class for configuration columns
+     */
+    public static class ConfigurationTableViewBuilder{
+
+        private final List<TableColumn<ConfigurationListModel, ?>> columns = FXCollections.observableArrayList();
+
+        public ConfigurationTableViewBuilder withNameColumn(final boolean isDefaultVisible){
+            columns.add(ConfigurationTableViewColumns.getConfigurationNameColumn(isDefaultVisible));
+            return this;
+        }
+
+        public ConfigurationTableViewBuilder withSelectionColumn(final boolean isDefaultVisible) {
+            columns.add(ConfigurationTableViewColumns.getSelectColumn(isDefaultVisible));
+            return this;
+        }
+
+        public List<TableColumn<ConfigurationListModel, ?>> build() {
             return columns;
         }
 

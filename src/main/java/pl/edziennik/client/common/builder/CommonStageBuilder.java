@@ -15,6 +15,7 @@ import javafx.stage.Window;
 import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.core.StageManager;
+import pl.edziennik.client.core.TableSelectionMode;
 import pl.edziennik.client.eDziennikApplication;
 import pl.edziennik.client.exception.ViewException;
 import pl.edziennik.client.rest.client.response.ApiErrors;
@@ -519,7 +520,7 @@ public class CommonStageBuilder {
             table.getColumns().add(firstNameCol);
             table.getColumns().add(lastNameCol);
 
-            NodeUtils.setTableViewRowFactory(table);
+            NodeUtils.setTableSelectOption(table, TableSelectionMode.MULTIPLE);
             NodeUtils.setTableViewPlaceHolder(table);
 
             HBox hBox = new HBox();

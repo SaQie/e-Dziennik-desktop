@@ -75,6 +75,10 @@ public class AdminSchoolClassesTabController extends AbstractController {
         loadTableItems(page.getContent());
     }
 
+    public boolean isTableDataEmpty() {
+        return tableView.getItems().isEmpty();
+    }
+
     public void addItem(SchoolClassListModel model){
         ArrayList<SchoolClassListModel> acutalItems = new ArrayList<>(tableView.getItems());
         acutalItems.add(model);

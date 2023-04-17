@@ -74,8 +74,8 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
         peselTextField.setText(studentDto.getPesel());
         emailTextField.setText(studentDto.getEmail());
         phoneNumberTextField.setText(studentDto.getPhoneNumber());
-        schoolComboBox.getSelectionModel().select(new DictionaryItemModel(studentDto.getId(), studentDto.getFullName()));
-        schoolClassComboBox.getSelectionModel().select(new DictionaryItemModel(studentDto.getSchoolClass().getId(), studentDto.getSchoolClass().getClassName()));
+        schoolComboBox.getSelectionModel().select(new DictionaryItemModel(studentDto.getStudentId(), studentDto.getFullName()));
+        schoolClassComboBox.getSelectionModel().select(new DictionaryItemModel(studentDto.getSchoolClass().getSchoolClassId(), studentDto.getSchoolClass().getClassName()));
         if (ActionType.SHOW_ACTION.equals(actionType)) {
             schoolComboBox.setOnShown(show -> schoolComboBox.hide());
             schoolClassComboBox.setOnShown(show -> schoolClassComboBox.hide());
@@ -92,8 +92,8 @@ class AdminAccountsTabStudentActionAbstractController extends AbstractController
         studentPojo.setLastName(lastNameTextField.getText());
         studentPojo.setUsername(usernameTextField.getText());
         studentPojo.setPhoneNumber(phoneNumberTextField.getText());
-        studentPojo.setIdSchool(schoolComboBox.getValue().getId());
-        studentPojo.setIdSchoolClass(schoolClassComboBox.getValue().getId());
+        studentPojo.setSchoolId(schoolComboBox.getValue().getId());
+        studentPojo.setSchoolClassId(schoolClassComboBox.getValue().getId());
         studentPojo.setPesel(peselTextField.getText());
         String password = UUID.randomUUID().toString();
         // TODO, ten print bedzie do zmiany, haslo bedzie wysylane mailem

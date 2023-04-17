@@ -88,7 +88,6 @@ public class AdminConfigurationValueOptionController extends AbstractController 
                 value.setText(response.getStringValue());
                 hBox.getChildren().add(value);
             } else if (response.getLongValue() != null) {
-                NodeUtils.setTextFieldAsNumbersOnly(value);
                 value.setText(response.getLongValue().toString());
                 hBox.getChildren().add(value);
             } else {

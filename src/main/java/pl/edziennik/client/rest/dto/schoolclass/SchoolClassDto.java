@@ -10,10 +10,15 @@ import pl.edziennik.client.rest.dto.teacher.SimpleTeacherDto;
 @Setter
 public class SchoolClassDto implements DictionaryItemDto {
 
-    private Long id;
+    private Long schoolClassId;
     private String className;
     private SimpleTeacherDto supervisingTeacher;
     private SimpleSchoolDto school;
+
+    @Override
+    public Long getId() {
+        return schoolClassId;
+    }
 
     @Override
     public String getName() {

@@ -33,7 +33,7 @@ public class AdminAccountsTabAdministrationEditController extends AdminAccountsT
     @Override
     protected void loadStageFields(AdminDto dto, ActionType type) {
         super.loadStageFields(dto, type);
-        this.objectId = dto.getId();
+        this.objectId = dto.getAdminId();
     }
 
     private void initializeValidators() {

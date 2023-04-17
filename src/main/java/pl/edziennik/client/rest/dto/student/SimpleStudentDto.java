@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SimpleStudentDto {
 
-    private Long id;
+    private Long studentId;
     private String fullName;
 
 }

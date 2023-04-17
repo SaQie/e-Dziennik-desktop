@@ -9,7 +9,7 @@ import pl.edziennik.client.rest.dto.schoollevel.SimpleSchoolLevelDto;
 @Setter
 public class SchoolDto implements DictionaryItemDto {
 
-    private Long id;
+    private Long schoolId;
     private String name;
     private String postalCode;
     private String city;
@@ -17,7 +17,12 @@ public class SchoolDto implements DictionaryItemDto {
     private String regon;
     private String address;
     private String phoneNumber;
-    private Long idSchoolLevel;
+    private Long schoolLevelId;
     private SimpleSchoolLevelDto schoolLevel;
 
+
+    @Override
+    public Long getId() {
+        return schoolId;
+    }
 }

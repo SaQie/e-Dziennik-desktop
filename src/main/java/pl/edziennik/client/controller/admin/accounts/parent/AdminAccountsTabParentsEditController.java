@@ -11,7 +11,7 @@ public class AdminAccountsTabParentsEditController extends AdminAccountsTabParen
     @Override
     protected void loadStageFields(ParentDto dto, ActionType type) {
         super.loadStageFields(dto, type);
-        this.objectId = dto.getId();
+        this.objectId = dto.getParentId();
     }
 
     @Override

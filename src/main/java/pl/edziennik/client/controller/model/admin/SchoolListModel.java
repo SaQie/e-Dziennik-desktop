@@ -34,7 +34,7 @@ public class SchoolListModel implements TableViewSelection {
         this.address = new SimpleStringProperty(pojo.getAddress());
         this.phoneNumber = new SimpleStringProperty(pojo.getPhoneNumber());
         this.schoolLevel = new SimpleStringProperty(pojo.getSchoolLevel().getName());
-        this.id = new SimpleLongProperty(pojo.getId());
+        this.id = new SimpleLongProperty(pojo.getSchoolId());
         this.select = Styles.tableViewSelectionCheckBox();
     }
 

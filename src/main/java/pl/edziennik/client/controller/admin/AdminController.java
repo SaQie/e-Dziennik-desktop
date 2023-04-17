@@ -82,7 +82,7 @@ public class AdminController extends AbstractController {
             if (newValue.equals(accountsTab)) {
                 accountsTabController.fetchSelectedTabTableItems();
             }
-            if (newValue.equals(schoolClassesTab)){
+            if (newValue.equals(schoolClassesTab) && schoolClassesTabController.isTableDataEmpty()){
                 fetchSchoolClassTabTableItems();
             }
         });

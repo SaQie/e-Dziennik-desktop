@@ -56,21 +56,17 @@ public class AdminConfigurationOptionController extends AbstractController {
     }
 
     public void fetchData(List<ConfigurationDto> configurationList) {
-        try {
-            List<ConfigurationListModel> models = ConfigurationListModel.mapToModel(configurationList);
-            ObservableList<ConfigurationListModel> items = FXCollections.observableList(models);
-            tableView.setItems(items);
-            tableView.refresh();
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+        List<ConfigurationListModel> models = ConfigurationListModel.mapToModel(configurationList);
+        ObservableList<ConfigurationListModel> items = FXCollections.observableList(models);
+        tableView.setItems(items);
+        tableView.refresh();
     }
 
     private void initializeEditButtonAction() {
         editButton.setOnAction(button -> {
             List<Long> items = NodeUtils.getSelectedTableItems(tableView, ActionType.EDIT_ACTION);
             AdminConfigurationValueOptionController controller = NodeUtils.openNewStageAboveWithController(DASHBOARD_ADMIN_CONFIGURATION_VALUE_VIEW_ADDRESS.value()
-                    ,CONFIGURATION_LIST_ADMIN_VIEW_TITLE_MESSAGE_KEY.value(),450,300,editButton);
+                    , CONFIGURATION_LIST_ADMIN_VIEW_TITLE_MESSAGE_KEY.value(), 450, 300, editButton);
             controller.fetchData(items.get(0));
         });
     }

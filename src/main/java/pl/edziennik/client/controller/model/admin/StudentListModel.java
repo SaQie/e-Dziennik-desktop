@@ -32,7 +32,7 @@ public class StudentListModel implements TableViewSelection {
     private final CheckBox select;
 
     public StudentListModel(StudentDto pojo) {
-        this.id = new SimpleLongProperty(pojo.getId());
+        this.id = new SimpleLongProperty(pojo.getStudentId());
         this.username = new SimpleStringProperty(pojo.getUsername());
         this.firstName = new SimpleStringProperty(pojo.getFirstName());
         this.lastName = new SimpleStringProperty(pojo.getLastName());

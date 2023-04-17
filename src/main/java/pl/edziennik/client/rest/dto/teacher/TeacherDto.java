@@ -9,7 +9,7 @@ import pl.edziennik.client.rest.dto.school.SimpleSchoolDto;
 @Setter
 public class TeacherDto implements DictionaryItemDto {
 
-    private Long id;
+    private Long teacherId;
     private Long userId;
 
     private String username;
@@ -24,6 +24,11 @@ public class TeacherDto implements DictionaryItemDto {
     private String phoneNumber;
     private String role;
     private SimpleSchoolDto school;
+
+    @Override
+    public Long getId() {
+        return teacherId;
+    }
 
     @Override
     public String getName() {

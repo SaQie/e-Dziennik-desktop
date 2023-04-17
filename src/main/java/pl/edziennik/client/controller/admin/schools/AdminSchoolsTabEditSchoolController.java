@@ -39,7 +39,7 @@ public class AdminSchoolsTabEditSchoolController extends AdminSchoolsTabActionAb
     @Override
     protected void loadStageFields(SchoolDto schoolDto) {
         super.loadStageFields(schoolDto);
-        this.objectId = schoolDto.getId();
+        this.objectId = schoolDto.getSchoolId();
     }
 
     @Override

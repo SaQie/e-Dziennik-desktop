@@ -6,7 +6,7 @@ import lombok.*;
 @Setter
 public class SimpleSchoolClassDto {
 
-    private Long id;
+    private Long schoolClassId;
     private String className;
 
 }

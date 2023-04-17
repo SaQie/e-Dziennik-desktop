@@ -16,8 +16,8 @@ public class StudentRequestDto {
     private String pesel;
     private String email;
     private String phoneNumber;
-    private Long idSchool;
-    private Long idSchoolClass;
+    private Long schoolId;
+    private Long schoolClassId;
     private String password;
 
 }

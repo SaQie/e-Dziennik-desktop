@@ -20,7 +20,7 @@ public class SchoolClassListModel implements TableViewSelection {
     private final CheckBox select;
 
     public SchoolClassListModel(SchoolClassDto dto) {
-        this.id = new SimpleLongProperty(dto.getId());
+        this.id = new SimpleLongProperty(dto.getSchoolClassId());
         this.className = new SimpleStringProperty(dto.getClassName());
         String supervisingTeacherName = dto.getSupervisingTeacher() == null ? "" : dto.getSupervisingTeacher().getFullName();
         this.supervisingTeacherFullName = new SimpleStringProperty(supervisingTeacherName);

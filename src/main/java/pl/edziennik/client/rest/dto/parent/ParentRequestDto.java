@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class ParentRequestDto {
 
-    private Long id;
+    private Long parentId;
     private String username;
     private String firstName;
     private String lastName;
@@ -18,7 +18,7 @@ public class ParentRequestDto {
     private String email;
     private String phoneNumber;
     private String role;
-    private Long idStudent;
+    private Long studentId;
     private String password;
 
 }

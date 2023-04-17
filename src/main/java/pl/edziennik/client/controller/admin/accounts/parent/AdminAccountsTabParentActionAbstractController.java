@@ -58,7 +58,7 @@ class AdminAccountsTabParentActionAbstractController extends AbstractController 
         dto.setPhoneNumber(phoneNumberTextField.getText());
         dto.setPostalCode(postalCodeTextField.getText());
         dto.setUsername(usernameTextField.getText());
-        dto.setIdStudent(studentComboBox.getValue().getId());
+        dto.setStudentId(studentComboBox.getValue().getId());
         String password = UUID.randomUUID().toString();
         // TODO, ten print bedzie do zmiany, haslo bedzie wysylane mailem
         System.out.println("Random uuid: " + password);
@@ -77,7 +77,7 @@ class AdminAccountsTabParentActionAbstractController extends AbstractController 
         peselTextField.setText(dto.getPesel());
         emailTextField.setText(dto.getEmail());
         phoneNumberTextField.setText(dto.getPhoneNumber() == null ? "" : dto.getPhoneNumber());
-        studentComboBox.getSelectionModel().select(new DictionaryItemModel(dto.getStudent().getId(), dto.getStudent().getFullName()));
+        studentComboBox.getSelectionModel().select(new DictionaryItemModel(dto.getStudent().getStudentId(), dto.getStudent().getFullName()));
         if (ActionType.SHOW_ACTION.equals(type)) {
             studentComboBox.setOnShown(show -> studentComboBox.hide());
         }

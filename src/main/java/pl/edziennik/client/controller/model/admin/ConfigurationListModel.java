@@ -1,6 +1,5 @@
 package pl.edziennik.client.controller.model.admin;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -23,7 +22,7 @@ public class ConfigurationListModel implements TableViewSelection {
     private final CheckBox select;
 
     public ConfigurationListModel(ConfigurationDto dto) {
-        this.id = new SimpleLongProperty(dto.getId());
+        this.id = new SimpleLongProperty(dto.getSettingId());
         this.name = new SimpleStringProperty(dto.getName());
         this.stringValue = new SimpleStringProperty(dto.getStringValue());
         this.booleanValue = new SimpleObjectProperty<>(dto.getBooleanValue());

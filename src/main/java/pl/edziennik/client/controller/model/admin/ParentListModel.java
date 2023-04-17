@@ -30,7 +30,7 @@ public class ParentListModel implements TableViewSelection {
     private final CheckBox select;
 
     public ParentListModel(ParentDto dto) {
-        this.id = new SimpleLongProperty(dto.getId());
+        this.id = new SimpleLongProperty(dto.getParentId());
         this.username = new SimpleStringProperty(dto.getUsername());
         this.firstName = new SimpleStringProperty(dto.getFirstName());
         this.lastName = new SimpleStringProperty(dto.getLastName());
@@ -43,7 +43,7 @@ public class ParentListModel implements TableViewSelection {
         this.select = Styles.tableViewSelectionCheckBox();
         this.phoneNumber = new SimpleStringProperty(dto.getPhoneNumber());
         this.studentFullName = new SimpleStringProperty(dto.getStudent().getFullName());
-        this.idStudent = new SimpleLongProperty(dto.getStudent().getId());
+        this.idStudent = new SimpleLongProperty(dto.getStudent().getStudentId());
 
     }
 

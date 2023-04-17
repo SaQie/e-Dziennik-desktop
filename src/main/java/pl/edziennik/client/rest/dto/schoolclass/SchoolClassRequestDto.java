@@ -8,18 +8,18 @@ import lombok.Setter;
 public class SchoolClassRequestDto {
 
     private final String className;
-    private final Long idClassTeacher;
-    private final Long idSchool;
+    private final Long classTeacherId;
+    private final Long schoolId;
 
-    public SchoolClassRequestDto(String className, Long idClassTeacher, Long idSchool) {
+    public SchoolClassRequestDto(String className, Long idClassTeacher, Long schoolId) {
         this.className = className;
-        this.idClassTeacher = idClassTeacher;
-        this.idSchool = idSchool;
+        this.classTeacherId = idClassTeacher;
+        this.schoolId = schoolId;
     }
 
-    public SchoolClassRequestDto(String className, Long idSchool) {
+    public SchoolClassRequestDto(String className, Long schoolId) {
         this.className = className;
-        this.idSchool = idSchool;
-        this.idClassTeacher = null;
+        this.schoolId = schoolId;
+        this.classTeacherId = null;
     }
 }

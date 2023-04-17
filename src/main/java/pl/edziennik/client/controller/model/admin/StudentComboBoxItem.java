@@ -12,7 +12,7 @@ public class StudentComboBoxItem {
     private final SimpleStringProperty fullName;
 
     public StudentComboBoxItem(SimpleStudentDto dto) {
-        this.id = new SimpleLongProperty(dto.getId());
+        this.id = new SimpleLongProperty(dto.getStudentId());
         this.fullName = new SimpleStringProperty(dto.getFullName());
     }
 

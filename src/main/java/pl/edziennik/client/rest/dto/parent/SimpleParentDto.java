@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class SimpleParentDto {
 
-    private Long id;
+    private Long parentId;
     private String fullName;
 
 }

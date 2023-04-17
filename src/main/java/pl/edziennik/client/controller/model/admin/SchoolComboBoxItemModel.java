@@ -4,7 +4,6 @@ import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.CheckBox;
 import pl.edziennik.client.common.Styles;
-import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.core.TableViewSelection;
 import pl.edziennik.client.rest.dto.school.SchoolDto;
 import pl.edziennik.client.rest.dto.school.SimpleSchoolDto;
@@ -17,13 +16,13 @@ public class SchoolComboBoxItemModel implements TableViewSelection {
     private final CheckBox select;
 
     public SchoolComboBoxItemModel(SchoolDto pojo) {
-        this.id = new SimpleLongProperty(pojo.getId());
+        this.id = new SimpleLongProperty(pojo.getSchoolId());
         this.name = new SimpleStringProperty(pojo.getName());
         this.select = Styles.tableViewSelectionCheckBox();
     }
 
     public SchoolComboBoxItemModel(SimpleSchoolDto pojo) {
-        this.id = new SimpleLongProperty(pojo.getId());
+        this.id = new SimpleLongProperty(pojo.getSchoolId());
         this.name = new SimpleStringProperty(pojo.getName());
         this.select = Styles.tableViewSelectionCheckBox();
     }

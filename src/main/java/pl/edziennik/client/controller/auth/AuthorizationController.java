@@ -48,7 +48,7 @@ public class AuthorizationController implements Initializable {
             AdminRestClient adminRestClient = new AdminRestClient();
             Boolean isRegistrationEnabled = adminRestClient.getConfigurationList()
                     .stream()
-                    .filter(config -> config.getId().equals(2L))
+                    .filter(config -> config.getSettingId().equals(2L))
                     .map(ConfigurationDto::getBooleanValue)
                     .findFirst()
                     .orElse(Boolean.FALSE);

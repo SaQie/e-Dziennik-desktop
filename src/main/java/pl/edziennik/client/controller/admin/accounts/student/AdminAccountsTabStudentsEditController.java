@@ -53,7 +53,7 @@ public class AdminAccountsTabStudentsEditController extends AdminAccountsTabStud
     @Override
     protected void loadStageFields(StudentDto studentDto, ActionType actionType) {
         super.loadStageFields(studentDto, actionType);
-        this.objectId = studentDto.getId();
+        this.objectId = studentDto.getStudentId();
     }
 
     private void initializeSaveButtonAction() {

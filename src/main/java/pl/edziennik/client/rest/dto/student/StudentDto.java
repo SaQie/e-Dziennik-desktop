@@ -11,7 +11,7 @@ import pl.edziennik.client.rest.dto.school.SimpleSchoolDto;
 @Setter
 public class StudentDto implements DictionaryItemDto {
 
-    private Long id;
+    private Long studentId;
     private Long userId;
 
     private String username;
@@ -29,6 +29,11 @@ public class StudentDto implements DictionaryItemDto {
     private SimpleSchoolDto school;
     private SimpleSchoolClassDto schoolClass;
     private String role;
+
+    @Override
+    public Long getId() {
+        return studentId;
+    }
 
     @Override
     public String getName() {

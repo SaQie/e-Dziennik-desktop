@@ -49,10 +49,10 @@ abstract class AdminSchoolClassesTabActionAbstractController extends AbstractCon
     protected void loadStageData(SchoolClassDto dto, ActionType actionType){
         this.classNameTextField.setText(dto.getClassName());
         this.schoolComboBox.getSelectionModel().select(
-                new DictionaryItemModel(dto.getSchool().getId(), dto.getSchool().getName()));
+                new DictionaryItemModel(dto.getSchool().getSchoolId(), dto.getSchool().getName()));
         if (dto.getSupervisingTeacher() != null) {
             this.supervisingTeacherComboBox.getSelectionModel().select(
-                    new DictionaryItemModel(dto.getSupervisingTeacher().getId(), dto.getSupervisingTeacher().getFullName()));
+                    new DictionaryItemModel(dto.getSupervisingTeacher().getTeacherId(), dto.getSupervisingTeacher().getFullName()));
         }
         if (ActionType.SHOW_ACTION.equals(actionType)){
             supervisingTeacherComboBox.setOnShown(show -> supervisingTeacherComboBox.hide());

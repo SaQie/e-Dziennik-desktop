@@ -22,7 +22,7 @@ public class AdminListModel implements TableViewSelection {
     private final CheckBox select;
 
     public AdminListModel(AdminDto pojo) {
-        this.id = new SimpleLongProperty(pojo.getId());
+        this.id = new SimpleLongProperty(pojo.getAdminId());
         this.username = new SimpleStringProperty(pojo.getUsername());
         this.email = new SimpleStringProperty(pojo.getEmail());
         this.role = new SimpleStringProperty(pojo.getRole());

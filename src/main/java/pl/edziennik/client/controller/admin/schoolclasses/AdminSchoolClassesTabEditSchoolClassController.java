@@ -5,7 +5,6 @@ import pl.edziennik.client.controller.model.admin.SchoolClassListModel;
 import pl.edziennik.client.rest.dto.schoolclass.SchoolClassDto;
 import pl.edziennik.client.rest.dto.schoolclass.SchoolClassRequestDto;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
-import pl.edziennik.client.task.schoolclass.AddSchoolClassTask;
 import pl.edziennik.client.task.schoolclass.EditSchoolClassTask;
 import pl.edziennik.client.task.teacher.LoadTeachersTask;
 import pl.edziennik.client.utils.NodeUtils;
@@ -40,7 +39,7 @@ public class AdminSchoolClassesTabEditSchoolClassController extends AdminSchoolC
     @Override
     protected void loadStageData(SchoolClassDto dto, ActionType actionType) {
         super.loadStageData(dto, actionType);
-        this.idSchoolClass = dto.getId();
+        this.idSchoolClass = dto.getSchoolClassId();
     }
 
     private void initializeSaveButtonAction() {

@@ -6,7 +6,7 @@ import lombok.*;
 @Setter
 public class ConfigurationDto {
 
-    private Long id;
+    private Long settingId;
     private String name;
     private Boolean booleanValue;
     private String stringValue;

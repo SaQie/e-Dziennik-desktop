@@ -56,7 +56,7 @@ class AdminAccountsTabTeacherActionAbstractController extends AbstractController
         peselTextField.setText(dto.getPesel());
         emailTextField.setText(dto.getEmail());
         phoneNumberTextField.setText(dto.getPhoneNumber());
-        schoolComboBox.getSelectionModel().select(new DictionaryItemModel(dto.getSchool().getId(), dto.getSchool().getName()));
+        schoolComboBox.getSelectionModel().select(new DictionaryItemModel(dto.getSchool().getSchoolId(), dto.getSchool().getName()));
         if (ActionType.SHOW_ACTION.equals(actionType)) {
             schoolComboBox.setOnShown(show -> schoolComboBox.hide());
         }
@@ -74,7 +74,7 @@ class AdminAccountsTabTeacherActionAbstractController extends AbstractController
         pojo.setPhoneNumber(phoneNumberTextField.getText());
         pojo.setPostalCode(postalCodeTextField.getText());
         pojo.setUsername(usernameTextField.getText());
-        pojo.setIdSchool(schoolComboBox.getValue().getId());
+        pojo.setSchoolId(schoolComboBox.getValue().getId());
         String password = UUID.randomUUID().toString();
         // TODO, ten print bedzie do zmiany, haslo bedzie wysylane mailem
         System.out.println("Random uuid: " + password);

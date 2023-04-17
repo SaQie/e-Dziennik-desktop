@@ -8,7 +8,7 @@ import pl.edziennik.client.rest.dto.student.SimpleStudentDto;
 @Setter
 public class ParentDto {
 
-    private Long id;
+    private Long parentId;
     private String username;
     private String firstName;
     private String lastName;
@@ -20,7 +20,7 @@ public class ParentDto {
     private String email;
     private String phoneNumber;
     private String role;
-    private Long idStudent;
+    private Long studentId;
     private SimpleStudentDto student;
 
 }

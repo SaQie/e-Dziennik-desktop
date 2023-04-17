@@ -9,7 +9,7 @@ import pl.edziennik.client.utils.MessageConverter;
 @Getter
 public class SchoolLevelComboBoxItem {
 
-    private SimpleLongProperty id;
+    private SimpleLongProperty schoolLevelId;
     private SimpleStringProperty name;
 
     public SchoolLevelComboBoxItem(SimpleSchoolLevelDto schoolLevel) {
@@ -19,8 +19,8 @@ public class SchoolLevelComboBoxItem {
     public SchoolLevelComboBoxItem() {
     }
 
-    public void setId(Long id) {
-        this.id = new SimpleLongProperty(id);
+    public void setSchoolLevelId(Long id) {
+        this.schoolLevelId = new SimpleLongProperty(id);
     }
 
     public void setName(String name) {

@@ -13,12 +13,12 @@ public class SchoolClassComboBoxItem {
     private final SimpleStringProperty className;
 
     public SchoolClassComboBoxItem(SchoolClassDto pojo) {
-        this.id = new SimpleLongProperty(pojo.getId());
+        this.id = new SimpleLongProperty(pojo.getSchoolClassId());
         this.className = new SimpleStringProperty(pojo.getClassName());
     }
 
     public SchoolClassComboBoxItem(SimpleSchoolClassDto pojo) {
-        this.id = new SimpleLongProperty(pojo.getId());
+        this.id = new SimpleLongProperty(pojo.getSchoolClassId());
         this.className = new SimpleStringProperty(pojo.getClassName());
     }
 

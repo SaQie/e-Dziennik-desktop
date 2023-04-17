@@ -129,7 +129,7 @@ public class AdminRestClient {
 
 
     public void saveConfiguration(SettingsValueDto value) {
-        restClient.send(HttpMethod.PATCH, URLConstants.CONFIGURATION_URL + value.getId(), value);
+        restClient.send(HttpMethod.PATCH, URLConstants.CONFIGURATION_URL + value.getSettingId(), value);
     }
 
 

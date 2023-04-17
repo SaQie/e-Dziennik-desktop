@@ -41,10 +41,10 @@ abstract class AdminSchoolsTabActionAbstractController extends AbstractControlle
         schoolDto.setName(nameTextField.getText());
         schoolDto.setCity(cityTextField.getText());
         SimpleSchoolLevelDto simpleSchoolLevelDto = new SimpleSchoolLevelDto();
-        simpleSchoolLevelDto.setId(schoolLevelComboBox.getSelectionModel().getSelectedItem().getId().getValue());
+        simpleSchoolLevelDto.setSchoolLevelId(schoolLevelComboBox.getSelectionModel().getSelectedItem().getSchoolLevelId().getValue());
         simpleSchoolLevelDto.setName(schoolLevelComboBox.getSelectionModel().getSelectedItem().getName().getValue());
         schoolDto.setSchoolLevel(simpleSchoolLevelDto);
-        schoolDto.setIdSchoolLevel(schoolLevelComboBox.getSelectionModel().getSelectedItem().getId().getValue());
+        schoolDto.setSchoolLevelId(schoolLevelComboBox.getSelectionModel().getSelectedItem().getSchoolLevelId().getValue());
         schoolDto.setNip(nipTextField.getText());
         schoolDto.setRegon(regonTextField.getText());
         schoolDto.setPhoneNumber(phoneNumberTextField.getText());

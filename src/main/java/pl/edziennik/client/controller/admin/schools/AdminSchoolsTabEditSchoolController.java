@@ -65,7 +65,7 @@ public class AdminSchoolsTabEditSchoolController extends AdminSchoolsTabActionAb
             ThreadUtils.runInNewFxThread(() -> progressFactory.createLittleProgressBar(new EditSchoolTask(objectId, schoolDto), (response) -> {
                 AdminSchoolsTabController controller = AdminSchoolsTabController.getInstance();
                 controller.refreshButton.fire();
-                dialogFactory.createSuccessInformationDialog(null);
+                NodeUtils.showSuccessOperationToast();
             }));
         });
     }

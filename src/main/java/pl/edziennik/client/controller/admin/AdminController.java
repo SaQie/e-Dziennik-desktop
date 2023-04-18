@@ -11,6 +11,7 @@ import pl.edziennik.client.controller.admin.configuration.AdminConfigurationOpti
 import pl.edziennik.client.controller.admin.schoolclasses.AdminSchoolClassesTabController;
 import pl.edziennik.client.controller.admin.schools.AdminSchoolsTabController;
 import pl.edziennik.client.core.AbstractController;
+import pl.edziennik.client.core.StageManager;
 import pl.edziennik.client.task.config.LoadConfigurationsTask;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.task.schoolclass.LoadSchoolClassesTask;
@@ -82,7 +83,7 @@ public class AdminController extends AbstractController {
             if (newValue.equals(accountsTab)) {
                 accountsTabController.fetchSelectedTabTableItems();
             }
-            if (newValue.equals(schoolClassesTab) && schoolClassesTabController.isTableDataEmpty()){
+            if (newValue.equals(schoolClassesTab) && schoolClassesTabController.isTableDataEmpty()) {
                 fetchSchoolClassTabTableItems();
             }
         });

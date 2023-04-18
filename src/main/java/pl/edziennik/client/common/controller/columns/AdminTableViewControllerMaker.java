@@ -413,6 +413,11 @@ public class AdminTableViewControllerMaker {
             return this;
         }
 
+        public SchoolTableViewBuilder withIdentifierColumn(final boolean isDefaultVisible){
+            columns.add(SchoolTableViewColumns.getIdentifierColumn(isDefaultVisible));
+            return this;
+        }
+
         public List<TableColumn<SchoolListModel, ?>> build() {
             return columns;
         }

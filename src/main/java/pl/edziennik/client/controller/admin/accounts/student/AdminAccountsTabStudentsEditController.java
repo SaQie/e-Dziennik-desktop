@@ -63,7 +63,7 @@ public class AdminAccountsTabStudentsEditController extends AdminAccountsTabStud
                 AdminAccountsTabStudentsTabController controller = AdminAccountsTabStudentsTabController.getInstance();
                 controller.refreshButton.fire();
                 NodeUtils.closeCurrentStage(getActualStage());
-                dialogFactory.createSuccessInformationDialog(null);
+                NodeUtils.showSuccessOperationToast();
             }));
         });
     }

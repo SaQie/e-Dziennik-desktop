@@ -39,7 +39,7 @@ public class AdminSchoolClassesTabAddSchoolClassController extends AdminSchoolCl
                 AdminSchoolClassesTabController controller = AdminSchoolClassesTabController.getInstance();
                 controller.addItem(SchoolClassListModel.mapToModel(response));
                 NodeUtils.closeCurrentStage(getActualStage());
-                dialogFactory.createSuccessInformationDialog(null);
+                NodeUtils.showSuccessOperationToast();
             });
         });
     }

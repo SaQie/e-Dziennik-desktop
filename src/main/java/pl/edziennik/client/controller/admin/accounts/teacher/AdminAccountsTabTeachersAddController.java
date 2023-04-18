@@ -42,7 +42,7 @@ public class AdminAccountsTabTeachersAddController extends AdminAccountsTabTeach
                 AdminAccountsTabTeachersTabController teachersController = AdminAccountsTabTeachersTabController.getInstance();
                 teachersController.addItem(TeacherListModel.mapPojoToModel(response));
                 NodeUtils.closeCurrentStage(getActualStage());
-                dialogFactory.createSuccessInformationDialog(null);
+                NodeUtils.showSuccessOperationToast();
             });
         });
     }

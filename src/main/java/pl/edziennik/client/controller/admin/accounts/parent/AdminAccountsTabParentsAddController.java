@@ -30,7 +30,7 @@ public class AdminAccountsTabParentsAddController extends AdminAccountsTabParent
                 AdminAccountsTabParentsTabController controller = AdminAccountsTabParentsTabController.getInstance();
                 controller.refreshButton.fire();
                 NodeUtils.closeCurrentStage(getActualStage());
-                dialogFactory.createSuccessInformationDialog(null);
+                NodeUtils.showSuccessOperationToast();
             });
         });
     }

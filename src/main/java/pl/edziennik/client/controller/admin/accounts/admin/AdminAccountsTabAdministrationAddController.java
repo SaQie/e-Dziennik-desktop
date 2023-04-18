@@ -56,7 +56,7 @@ public class AdminAccountsTabAdministrationAddController extends AdminAccountsTa
                 AdminAccountsTabAdministrationTabController adminController = AdminAccountsTabAdministrationTabController.getInstance();
                 adminController.addItem(AdminListModel.mapPojoToModel(response));
                 NodeUtils.closeCurrentStage(getActualStage());
-                dialogFactory.createSuccessInformationDialog(null);
+                NodeUtils.showSuccessOperationToast();
             });
         });
     }

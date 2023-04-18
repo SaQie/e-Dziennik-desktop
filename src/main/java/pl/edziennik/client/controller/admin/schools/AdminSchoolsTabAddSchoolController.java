@@ -60,7 +60,7 @@ public class AdminSchoolsTabAddSchoolController extends AdminSchoolsTabActionAbs
                 AdminSchoolsTabController controller = AdminSchoolsTabController.getInstance();
                 controller.addItem(SchoolListModel.mapPojoToModel(response));
                 NodeUtils.closeCurrentStage(getActualStage());
-                dialogFactory.createSuccessInformationDialog(null);
+                NodeUtils.showSuccessOperationToast();
             }));
         });
     }

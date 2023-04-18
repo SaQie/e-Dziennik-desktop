@@ -50,7 +50,7 @@ public class AdminSchoolClassesTabEditSchoolClassController extends AdminSchoolC
                 controller.addItem(SchoolClassListModel.mapToModel(response));
                 controller.refreshButton.fire();
                 NodeUtils.closeCurrentStage(getActualStage());
-                dialogFactory.createSuccessInformationDialog(null);
+                NodeUtils.showSuccessOperationToast();
             });
         });
     }

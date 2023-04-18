@@ -6,6 +6,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 import pl.edziennik.client.configuration.PropertiesLoader;
+import pl.edziennik.client.core.StageManager;
 import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.dto.config.ConfigurationDto;
 import pl.edziennik.client.utils.AuthorizationUtils;

@@ -10,6 +10,16 @@ public class StageManager {
 
     }
 
+    private static Stage MAIN_STAGE = null;
+
+    public static Stage getMainStage() {
+        return MAIN_STAGE;
+    }
+
+    public static void setMainStage(Stage stage) {
+        MAIN_STAGE = stage;
+    }
+
     public static boolean isShowing(Stage stage) {
         Button button = (Button) stage.getUserData();
         return button.isDisabled();

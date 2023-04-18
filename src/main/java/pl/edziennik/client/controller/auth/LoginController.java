@@ -7,7 +7,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.AccountType;
+import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.core.AbstractController;
+import pl.edziennik.client.core.toast.Toast;
 import pl.edziennik.client.rest.AuthorizationRestClient;
 import pl.edziennik.client.rest.dto.auth.LoginCredentialsDto;
 import pl.edziennik.client.utils.AuthorizationUtils;
@@ -59,6 +61,7 @@ public class LoginController extends AbstractController {
             credentialsPojo.setPassword(passwordInput.getText());
             authorizationRestClient.login(credentialsPojo);
             AuthorizationUtils.showCorrectSceneAfterLogin(getActualStage());
+            Toast.show(ResourceConst.LOGIN_SUCCESSFULL.value());
         });
     }
 

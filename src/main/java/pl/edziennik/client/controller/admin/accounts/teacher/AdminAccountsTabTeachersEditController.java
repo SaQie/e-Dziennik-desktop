@@ -43,7 +43,7 @@ public class AdminAccountsTabTeachersEditController extends AdminAccountsTabTeac
                 AdminAccountsTabTeachersTabController teachersController = AdminAccountsTabTeachersTabController.getInstance();
                 teachersController.refreshButton.fire();
                 NodeUtils.closeCurrentStage(getActualStage());
-                dialogFactory.createSuccessInformationDialog(null);
+                NodeUtils.showSuccessOperationToast();
             });
         });
     }

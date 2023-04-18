@@ -52,7 +52,7 @@ public class AdminAccountsTabAdministrationEditController extends AdminAccountsT
                 AdminAccountsTabAdministrationTabController controller = AdminAccountsTabAdministrationTabController.getInstance();
                 controller.refreshButton.fire();
                 NodeUtils.closeCurrentStage(getActualStage());
-                dialogFactory.createSuccessInformationDialog(null);
+                NodeUtils.showSuccessOperationToast();
             }));
         });
     }

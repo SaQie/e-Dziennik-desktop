@@ -27,6 +27,8 @@ import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.core.TableSelectionMode;
 import pl.edziennik.client.core.TableViewSelection;
 import pl.edziennik.client.core.StageManager;
+import pl.edziennik.client.core.toast.Toast;
+import pl.edziennik.client.exception.TableRowException;
 import pl.edziennik.client.exception.TableViewException;
 import pl.edziennik.client.rest.dto.DictionaryItemDto;
 import pl.edziennik.client.rest.dto.Page;
@@ -73,6 +75,11 @@ public class NodeUtils {
             NodeUtils.closeCurrentStage(stage);
         });
     }
+
+    public static void showSuccessOperationToast(){
+        Toast.show(ResourceConst.SUCCESS_DIALOG_CONTENT_MESSAGE_KEY.value());
+    }
+
 
 
     public static void createLogoutButton(Button logoutButton) {
@@ -319,12 +326,12 @@ public class NodeUtils {
 
     private static void checkSelectedTableRows(ActionType actionType, List<Long> idsSelectedRows) {
         if (idsSelectedRows.isEmpty()) {
-            throw new TableViewException(TABLE_VIEW_ROW_NOT_SELECTED_MESSAGE_KEY.value());
+            throw new TableRowException(TABLE_VIEW_ROW_NOT_SELECTED_MESSAGE_KEY.value());
         }
         switch (actionType) {
             case EDIT_ACTION, SHOW_ACTION -> {
                 if (idsSelectedRows.size() > 1) {
-                    throw new TableViewException(TABLE_VIEW_TOO_MANY_ROWS_MESSAGE_KEY.value());
+                    throw new TableRowException(TABLE_VIEW_TOO_MANY_ROWS_MESSAGE_KEY.value());
                 }
             }
         }

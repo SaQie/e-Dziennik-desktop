@@ -5,6 +5,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.edziennik.client.common.builder.CommonStageBuilder;
+import pl.edziennik.client.core.toast.Toast;
 import pl.edziennik.client.rest.client.response.ApiErrors;
 import pl.edziennik.client.utils.AuthorizationUtils;
 import pl.edziennik.client.utils.ResourceUtil;
@@ -141,6 +142,7 @@ public class DialogFactory {
                 stage.close();
                 AuthorizationUtils.clearAuthorizationData();
                 AuthorizationUtils.loadAuthorizationPage();
+                Toast.show(LOGOUT_SUCCESSFULL.value());
             }
             isShowing = false;
         }

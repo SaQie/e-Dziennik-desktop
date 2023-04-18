@@ -60,6 +60,7 @@ public class AuthorizationUtils {
                 .withResizable(false)
                 .withStyle(StageStyle.UTILITY)
                 .withShowMode(CLOSE_PREVIOUS)
+                .isMainStage(true)
                 .build();
     }
     public static void showCorrectSceneAfterLogin(Stage currentStage){
@@ -79,6 +80,7 @@ public class AuthorizationUtils {
                     .withOwner(currentStage)
                     .withTitle(ResourceConst.DASHBOARD_ADMIN_VIEW_TITLE.value())
                     .withShowMode(CLOSE_PREVIOUS)
+                    .isMainStage(true)
                     .build();
             return;
 

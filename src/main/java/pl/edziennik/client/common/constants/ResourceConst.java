@@ -8,6 +8,7 @@ public enum ResourceConst {
     TABLE_STYLES_ADDRESS("/pl/edziennik/client/css/global-table-styles.css"),
     GLOBAL_COLOR_STYLES("/pl/edziennik/client/css/global-colors.css"),
     DICTIONARY_STYLES_ADDRESS("/pl/edziennik/client/css/dictionary-styles.css"),
+    POPUP_STYLES_ADDRESS("/pl/edziennik/client/css/popup-styles.css"),
     INFORMATION_ICON_ADDRESS("/pl/edziennik/client/icons/Information.png"),
     CLEAR_ICON_ADDRESS("/pl/edziennik/client/icons/Close.png"),
     MESSAGES_RESOURCES_ADDRESS("pl.edziennik.client.bundles.messages"),
@@ -65,9 +66,11 @@ public enum ResourceConst {
     ADD_PARENT_TITLE_MESSAGE_KEY("add.parent.title"),
     EDIT_PARENT_TITLE_MESSAGE_KEY("edit.parent.title"),
     SHOW_PARENT_TITLE_MESSAGE_KEY("show.parent.title"),
+    LOGIN_SUCCESSFULL("login.succesfull"),
     BUTTON_NO_KEY("button.no"),
     SHOW_TEACHER_VIEW_TITLE("label.show.teacher"),
     BUTTON_OK_KEY("button.ok"),
+    LOGOUT_SUCCESSFULL("logout.successfull"),
     ADMIN_ACCOUNTS_ADD_TEACHER_TITLE_MESSAGE_KEY("add.teacher.title"),
     ADMIN_ACCOUNTS_ADD_ADMIN_TITLE_MESSAGE_KEY("add.admin.title"),
     ADMIN_ACCOUNTS_EDIT_ADMIN_TITLE_MESSAGE_KEY("edit.admin.title"),
@@ -116,6 +119,7 @@ public enum ResourceConst {
     AUTHORIZATION_VIEW_TITLE_MESSAGE_KEY("authorization.title.message"),
     CONFIGURATION_LIST_ADMIN_VIEW_TITLE_MESSAGE_KEY("show.admin.configuration.title.label"),
     ADMIN_ACCOUNTS_ADD_STUDENT_TITLE_MESSAGE_KEY("admin.accounts.student.add.title"),
+    HINT_INSERT_SCHOOL_IDENTIFIER_CONFIGURATION("hint.insert.school.identifier"),
 
     // ERROR CODES
 

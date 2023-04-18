@@ -41,6 +41,7 @@ public class CommonStageBuilder {
     public static final String TABLE_STYLES_PATCH = eDziennikApplication.class.getResource(ResourceConst.TABLE_STYLES_ADDRESS.value()).toExternalForm();
     public static final String GLOBAL_COLORS_STYLES_PATCH = eDziennikApplication.class.getResource(ResourceConst.GLOBAL_COLOR_STYLES.value()).toExternalForm();
     public static final String DICTIONARY_STYLES_ADDRESS = eDziennikApplication.class.getResource(ResourceConst.DICTIONARY_STYLES_ADDRESS.value()).toExternalForm();
+    public static final String POPUP_STYLES_ADDRESS = eDziennikApplication.class.getResource(ResourceConst.POPUP_STYLES_ADDRESS.value()).toExternalForm();
 
     public static final ImageView INFORMATION_ICON = new ImageView(eDziennikApplication.class.getResource(ResourceConst.INFORMATION_ICON_ADDRESS.value()).toExternalForm());
     private static final ImageView SUCCESS_ICON = new ImageView(eDziennikApplication.class.getResource(ResourceConst.SUCCESS_ICON_ADDRESS.value()).toExternalForm());
@@ -274,6 +275,8 @@ public class CommonStageBuilder {
         private boolean isSearchActualStage;
         private boolean isSetPositionCenter;
 
+        private boolean isMainStage;
+
 
         public StageBuilder withSetPositionToCenter(boolean isSetPositionCenter) {
             this.isSetPositionCenter = isSetPositionCenter;
@@ -337,6 +340,11 @@ public class CommonStageBuilder {
 
         public StageBuilder withResizable(boolean isResizable) {
             this.isResizable = isResizable;
+            return this;
+        }
+
+        public StageBuilder isMainStage(boolean isMainStage){
+            this.isMainStage = isMainStage;
             return this;
         }
 
@@ -430,6 +438,10 @@ public class CommonStageBuilder {
             if (button != null) {
                 stage.setUserData(button);
                 StageManager.setIsShowing(stage);
+            }
+
+            if (isMainStage){
+                StageManager.setMainStage(stage);
             }
 
             switch (showMode) {

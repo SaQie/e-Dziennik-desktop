@@ -42,7 +42,7 @@ public class AdminAccountsTabStudentsAddController extends AdminAccountsTabStude
                 AdminAccountsTabStudentsTabController studentController = AdminAccountsTabStudentsTabController.getInstance();
                 studentController.addItem(StudentListModel.mapPojoToModel(response));
                 NodeUtils.closeCurrentStage(getActualStage());
-                dialogFactory.createSuccessInformationDialog(null);
+                NodeUtils.showSuccessOperationToast();
             });
         });
     }

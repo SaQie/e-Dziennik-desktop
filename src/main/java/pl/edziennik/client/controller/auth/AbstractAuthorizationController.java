@@ -62,7 +62,7 @@ class AbstractAuthorizationController extends AbstractController {
             StudentRequestDto studentPojo = mapToStudentRequestPojo();
             progressFactory.createLittleProgressBar(new AddStudentTask(studentPojo), (response) -> {
                 cancelButton.fire();
-                dialogFactory.createSuccessInformationDialog(null);
+                NodeUtils.showSuccessOperationToast();
             });
         });
     }
@@ -90,6 +90,7 @@ class AbstractAuthorizationController extends AbstractController {
 
     private void initializeSchoolClassDictionaryWhenDataIsLoaded() {
         progressFactory.createLittleProgressBar(new LoadConfigurationsTask(), (configurationList) -> {
+
             idSchoolFromConfiguration = configurationList.stream()
                     .filter(config -> config.getSettingId().equals(3L))
                     .map(ConfigurationDto::getLongValue)

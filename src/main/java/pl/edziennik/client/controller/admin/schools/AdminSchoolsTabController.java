@@ -114,6 +114,7 @@ public class AdminSchoolsTabController extends AbstractController {
     private void initializeTableColumns() {
         AdminTableViewControllerMaker.SchoolTableViewBuilder builder = AdminTableViewControllerMaker.schoolTableViewBuilder()
                 .withSelectColumn(true)
+                .withIdentifierColumn(true)
                 .withSchoolCityColumn(true)
                 .withSchoolNameColumn(true)
                 .withSchoolPhoneNumberColumn(true)

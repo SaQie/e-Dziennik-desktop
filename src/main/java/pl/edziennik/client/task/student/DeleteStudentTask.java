@@ -21,15 +21,10 @@ public class DeleteStudentTask extends Task<Void> {
 
     @Override
     protected Void call() throws Exception {
-        try {
-            updateMessage(ResourceUtil.getMessage(WAITING_DELETE_DATA.value()));
-            for (Long id : idToDelete) {
-                restClient.deleteStudent(id);
-            }
-            return null;
-        } catch (RestClientException e) {
-            cancel(true);
-            return null;
+        updateMessage(ResourceUtil.getMessage(WAITING_DELETE_DATA.value()));
+        for (Long id : idToDelete) {
+            restClient.deleteStudent(id);
         }
+        return null;
     }
 }

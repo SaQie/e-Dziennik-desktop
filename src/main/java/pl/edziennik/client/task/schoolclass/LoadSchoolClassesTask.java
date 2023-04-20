@@ -24,13 +24,13 @@ public class LoadSchoolClassesTask extends Task<Page<List<SchoolClassDto>>> {
         this.page = page;
     }
 
-    public LoadSchoolClassesTask(int page){
+    public LoadSchoolClassesTask(int page) {
         this.adminRestClient = new AdminRestClient();
         this.idSchool = null;
         this.page = page;
     }
 
-    public LoadSchoolClassesTask(){
+    public LoadSchoolClassesTask() {
         this.adminRestClient = new AdminRestClient();
         this.idSchool = null;
     }
@@ -38,15 +38,10 @@ public class LoadSchoolClassesTask extends Task<Page<List<SchoolClassDto>>> {
 
     @Override
     protected Page<List<SchoolClassDto>> call() throws Exception {
-        try {
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
-            if (idSchool == null){
-                return adminRestClient.getSchoolClassesList(page);
-            }
-            return adminRestClient.getSchoolClassesBySchoolId(idSchool);
-        } catch (RestClientException e) {
-            cancel(true);
-            return Page.empty();
+        updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
+        if (idSchool == null) {
+            return adminRestClient.getSchoolClassesList(page);
         }
+        return adminRestClient.getSchoolClassesBySchoolId(idSchool);
     }
 }

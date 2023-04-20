@@ -27,12 +27,7 @@ public class LoadAdminsTask extends Task<Page<List<AdminDto>>> {
 
     @Override
     protected Page<List<AdminDto>> call() throws Exception {
-        try {
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
-            return adminRestClient.getAdminList(actualPage);
-        } catch (RestClientException e) {
-            cancel(true);
-            return Page.empty();
-        }
+        updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
+        return adminRestClient.getAdminList(actualPage);
     }
 }

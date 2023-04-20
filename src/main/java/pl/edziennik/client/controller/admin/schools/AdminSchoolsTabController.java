@@ -12,6 +12,8 @@ import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
 import pl.edziennik.client.controller.model.admin.SchoolListModel;
 import pl.edziennik.client.core.TableSelectionMode;
+import pl.edziennik.client.core.toast.Toast;
+import pl.edziennik.client.core.toast.ToastType;
 import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.school.SchoolDto;
 import pl.edziennik.client.task.school.DeleteSchoolTask;
@@ -171,6 +173,7 @@ public class AdminSchoolsTabController extends AbstractController {
             if (dialogFactory.createQuestionInformationDialog(ARE_YOU_SURE_TO_PERFORM_DELETE_OPERATION_MESSAGE_KEY.value())) {
                 progressFactory.createLittleProgressBar(new DeleteSchoolTask(selectedTableItems), (action) -> {
                     refreshButton.fire();
+                    Toast.show(ToastType.INFORMATION, SUCCESS_DIALOG_CONTENT_MESSAGE_KEY.value());
                 });
             }
         });

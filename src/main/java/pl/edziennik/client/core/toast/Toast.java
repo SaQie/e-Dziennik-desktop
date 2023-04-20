@@ -12,15 +12,16 @@ import static pl.edziennik.client.common.Styles.createPopup;
 public class Toast {
 
     private static final int TOAST_TIMEOUT = 3500;
-    private static final int POPUP_OFFSET = 15;
+    private static final int POPUP_OFFSET = 10;
 
     private static volatile boolean isShowing = false;
 
-    public static void show(final String messageKey) {
+
+    public static void show(final ToastType type, final String messageKey) {
         if (!isShowing) {
 
             Stage stage = StageManager.getMainStage();
-            final Popup popup = createPopup(messageKey);
+            final Popup popup = createPopup(type, messageKey);
             popup.setOnShown(event -> {
                 double x = stage.getX() + stage.getWidth() - popup.getWidth() - POPUP_OFFSET;
                 double y = stage.getY() + stage.getHeight() - popup.getHeight() - POPUP_OFFSET;

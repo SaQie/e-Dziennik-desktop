@@ -21,13 +21,7 @@ public class AddNewSchoolTask extends Task<SchoolDto> {
 
     @Override
     protected SchoolDto call() {
-        try{
-            updateMessage(ResourceUtil.getMessage(ResourceConst.SAVING_NEW_SCHOOL_MESSAGE_KEY.value()));
-            return restClient.saveNewSchool(pojo);
-        }catch (RestClientException e){
-            updateMessage(Arrays.toString(e.getStackTrace()));
-            cancel(true);
-            return null;
-        }
+        updateMessage(ResourceUtil.getMessage(ResourceConst.SAVING_NEW_SCHOOL_MESSAGE_KEY.value()));
+        return restClient.saveNewSchool(pojo);
     }
 }

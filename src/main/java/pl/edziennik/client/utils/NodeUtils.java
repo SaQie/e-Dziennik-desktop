@@ -28,6 +28,7 @@ import pl.edziennik.client.core.TableSelectionMode;
 import pl.edziennik.client.core.TableViewSelection;
 import pl.edziennik.client.core.StageManager;
 import pl.edziennik.client.core.toast.Toast;
+import pl.edziennik.client.core.toast.ToastType;
 import pl.edziennik.client.exception.TableRowException;
 import pl.edziennik.client.exception.TableViewException;
 import pl.edziennik.client.rest.dto.DictionaryItemDto;
@@ -77,7 +78,7 @@ public class NodeUtils {
     }
 
     public static void showSuccessOperationToast(){
-        Toast.show(ResourceConst.SUCCESS_DIALOG_CONTENT_MESSAGE_KEY.value());
+        Toast.show(ToastType.INFORMATION,ResourceConst.SUCCESS_DIALOG_CONTENT_MESSAGE_KEY.value());
     }
 
 

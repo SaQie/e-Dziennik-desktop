@@ -19,12 +19,8 @@ public class SaveConfigurationTask extends Task<Void> {
 
     @Override
     protected Void call() throws Exception {
-        try {
-            for (SettingsValueDto values : settingsValueDtos) {
-                adminRestClient.saveConfiguration(values);
-            }
-        } catch (RestClientException e) {
-            cancel(true);
+        for (SettingsValueDto values : settingsValueDtos) {
+            adminRestClient.saveConfiguration(values);
         }
         return null;
     }

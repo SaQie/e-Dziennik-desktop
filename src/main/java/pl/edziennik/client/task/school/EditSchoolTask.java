@@ -9,7 +9,7 @@ import pl.edziennik.client.utils.ResourceUtil;
 
 import java.util.Arrays;
 
-public class EditSchoolTask extends Task<SchoolDto>  {
+public class EditSchoolTask extends Task<SchoolDto> {
 
     private final AdminRestClient restClient;
     private final SchoolDto pojo;
@@ -23,13 +23,7 @@ public class EditSchoolTask extends Task<SchoolDto>  {
 
     @Override
     protected SchoolDto call() throws Exception {
-        try{
-            updateMessage(ResourceUtil.getMessage(ResourceConst.SAVING_NEW_SCHOOL_MESSAGE_KEY.value()));
-            return restClient.editSchool(id,pojo);
-        }catch (RestClientException e){
-            updateMessage(Arrays.toString(e.getStackTrace()));
-            cancel(true);
-            return null;
-        }
+        updateMessage(ResourceUtil.getMessage(ResourceConst.SAVING_NEW_SCHOOL_MESSAGE_KEY.value()));
+        return restClient.editSchool(id, pojo);
     }
 }

@@ -23,13 +23,7 @@ public class LoadSchoolLevelsTask extends Task<List<SchoolLevelComboBoxItem>> {
 
     @Override
     protected List<SchoolLevelComboBoxItem> call() throws Exception {
-        try {
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
-            return restClient.loadComboBoxItems();
-        } catch (RestClientException e) {
-            updateMessage(Arrays.toString(e.getStackTrace()));
-            cancel(true);
-            return Collections.emptyList();
-        }
+        updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
+        return restClient.loadComboBoxItems();
     }
 }

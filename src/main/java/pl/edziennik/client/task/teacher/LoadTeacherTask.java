@@ -20,12 +20,7 @@ public class LoadTeacherTask extends Task<TeacherDto> {
 
     @Override
     protected TeacherDto call() throws Exception {
-        try{
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
-            return restClient.getTeacher(idTeacher);
-        }catch (RestClientException e){
-            cancel(true);
-        }
-        return null;
+        updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
+        return restClient.getTeacher(idTeacher);
     }
 }

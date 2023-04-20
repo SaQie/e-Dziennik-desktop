@@ -59,47 +59,33 @@ public class RestClient {
     public <T> T send(HttpMethod method, String url, Class<T> response) {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
         HttpEntity<Void> entityToSend = new HttpEntity<>(null, authorizationHeader);
-        try {
-            ResponseEntity<ApiResponse<T>> result = restTemplate.exchange(url, method, entityToSend, new ParameterizedTypeReference<>() {
-            });
-            statusCodesHandler.checkStatusCodes(result);
-            LOGGER.log(Level.INFO, "Request send " + method.name() + " URL: " + url);
-            return mapper.mapToObject(result.getBody(), response);
-        } catch (ResourceAccessException e) {
-            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
-            LOGGER.severe(e.getMessage());
-            throw new RestClientException(e);
-        }
+        ResponseEntity<ApiResponse<T>> apiResponse = callRestTemplate(url, method, entityToSend);
+        return mapper.mapToObject(apiResponse.getBody(), response);
     }
 
     public <T> Page<T> sendPageable(String url, int page, Class<T> response) {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
         HttpEntity<Void> entityToSend = new HttpEntity<>(null, authorizationHeader);
         url = url + "?page=" + page;
-        try {
-            ResponseEntity<ApiResponse<T>> result = restTemplate.exchange(url, HttpMethod.GET, entityToSend, new ParameterizedTypeReference<>() {
-            });
-            statusCodesHandler.checkStatusCodes(result);
-            LOGGER.log(Level.INFO, "Request send " + HttpMethod.GET.name() + " URL: " + url);
-            return mapper.mapToPage(result.getBody(), response);
-        } catch (ResourceAccessException e) {
-            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
-            LOGGER.severe(e.getMessage());
-            throw new RestClientException(e);
-        }
+        ResponseEntity<ApiResponse<T>> apiResponse = callRestTemplate(url, HttpMethod.GET, entityToSend);
+        return mapper.mapToPage(apiResponse.getBody(), response);
     }
 
     public <T, E> T send(HttpMethod method, String url, E request, Class<T> response) {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
         HttpEntity<E> entityToSend = new HttpEntity<>(request, authorizationHeader);
+        ResponseEntity<ApiResponse<T>> apiResponse = callRestTemplate(url, method, entityToSend);
+        return mapper.mapToObject(apiResponse.getBody(), response);
+    }
+
+    private <T, E> ResponseEntity<ApiResponse<T>> callRestTemplate(String url, HttpMethod method, HttpEntity<E> request) {
         try {
-            ResponseEntity<ApiResponse<T>> result = restTemplate.exchange(url, method, entityToSend, new ParameterizedTypeReference<>() {
+            ResponseEntity<ApiResponse<T>> result = restTemplate.exchange(url, method, request, new ParameterizedTypeReference<>() {
             });
             statusCodesHandler.checkStatusCodes(result);
             LOGGER.log(Level.INFO, "Request send " + method.name() + " URL: " + url);
-            return mapper.mapToObject(result.getBody(), response);
+            return result;
         } catch (ResourceAccessException e) {
-            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
             LOGGER.severe(e.getMessage());
             throw new RestClientException(e);
         }
@@ -108,31 +94,14 @@ public class RestClient {
     public <E> void send(HttpMethod method, String url, E request) {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
         HttpEntity<E> entityToSend = new HttpEntity<>(request, authorizationHeader);
-        try {
-            ResponseEntity<ApiResponse<Void>> result = restTemplate.exchange(url, method, entityToSend, new ParameterizedTypeReference<>() {
-            });
-            statusCodesHandler.checkStatusCodes(result);
-            LOGGER.log(Level.INFO, "Request send " + method.name() + " URL: " + url);
-        } catch (ResourceAccessException e) {
-            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
-            LOGGER.severe(e.getMessage());
-            throw new RestClientException(e);
-        }
+        callRestTemplate(url, method, entityToSend);
     }
 
     public void send(HttpMethod method, String url, Long id) {
         HttpHeaders authorizationHeader = createAuthorizationHeader();
         HttpEntity<Long> entityToSend = new HttpEntity<>(null, authorizationHeader);
-        try {
-            ResponseEntity<ApiResponse<Void>> result = restTemplate.exchange(url + id, method, entityToSend, new ParameterizedTypeReference<>() {
-            });
-            statusCodesHandler.checkStatusCodes(result);
-            LOGGER.log(Level.INFO, "Request send " + method.name() + " URL: " + url);
-        } catch (ResourceAccessException e) {
-            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
-            LOGGER.severe(e.getMessage());
-            throw new RestClientException(e);
-        }
+        url = url + id;
+        callRestTemplate(url, method, entityToSend);
     }
 
     public <E> void login(String url, E request) {
@@ -146,7 +115,6 @@ public class RestClient {
             HttpHeaders headers = result.getHeaders();
             AuthorizationUtils.readAuthorizationDataAndSaveLocally(headers);
         } catch (HttpServerErrorException | ResourceAccessException e) {
-            ThreadUtils.runInFxThread(() -> dialogFactory.createErrorConfirmationDialogFromRawStackTrace(e.getStackTrace(), SERVER_NOT_RESPONDING_MESSAGE_KEY.value()));
             LOGGER.severe(e.getMessage());
             throw new RestClientException(e);
         }

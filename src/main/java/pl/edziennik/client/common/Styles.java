@@ -1,26 +1,28 @@
 package pl.edziennik.client.common;
 
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.skin.ContextMenuSkin;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Popup;
 import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.common.constants.ResourceConst;
+import pl.edziennik.client.core.toast.ToastType;
 import pl.edziennik.client.eDziennikApplication;
 import pl.edziennik.client.utils.ResourceUtil;
 
 public class Styles {
 
     private static final ImageView CLEAR_ICON = new ImageView(eDziennikApplication.class.getResource(ResourceConst.CLEAR_ICON_ADDRESS.value()).toExternalForm());
+    private static final ImageView INFORMATION_ICON = new ImageView(eDziennikApplication.class.getResource(ResourceConst.INFORMATION_ICON_ADDRESS.value()).toExternalForm());
+    private static final ImageView WARNING_ICON = new ImageView(eDziennikApplication.class.getResource(ResourceConst.WARNING_ICON_ADDRESS.value()).toExternalForm());
+    private static final ImageView ERROR_ICON = new ImageView(eDziennikApplication.class.getResource(ResourceConst.ERROR_ICON_ADDRESS.value()).toExternalForm());
 
     private Styles() {
+
     }
 
     public static String getToolTipValidationStyles() {
@@ -60,18 +62,37 @@ public class Styles {
         menuItem.setStyle("-fx-background-color:#52438f; -fx-text-fill:#52438f");
     }
 
-    public static Popup createPopup(final String messageKey) {
+    public static Popup createPopup(ToastType type, final String messageKey) {
         final Popup popup = new Popup();
-        ImageView informationIcon = new ImageView(eDziennikApplication.class.getResource(ResourceConst.INFORMATION_ICON_ADDRESS.value()).toExternalForm());
-        informationIcon.setFitHeight(20);
-        informationIcon.setFitWidth(20);
+
         popup.setAutoFix(true);
         HBox hBox = new HBox();
         hBox.setSpacing(15);
         Label label = new Label(ResourceUtil.getMessage(messageKey));
+        label.setWrapText(true);
+        label.setMinWidth(150);
+        label.setMaxWidth(300);
+        hBox.setMaxHeight(150);
+        switch (type) {
+            case ERROR -> {
+                ERROR_ICON.setFitHeight(20);
+                ERROR_ICON.setFitWidth(20);
+                hBox.getChildren().add(ERROR_ICON);
+            }
+            case INFORMATION -> {
+                INFORMATION_ICON.setFitHeight(20);
+                INFORMATION_ICON.setFitWidth(20);
+                hBox.getChildren().add(INFORMATION_ICON);
+            }
+            case WARNING -> {
+                WARNING_ICON.setFitHeight(20);
+                WARNING_ICON.setFitWidth(20);
+                hBox.getChildren().add(WARNING_ICON);
+            }
+        }
+
         hBox.getStylesheets().add(CommonStageBuilder.POPUP_STYLES_ADDRESS);
         hBox.getStyleClass().add("popup");
-        hBox.getChildren().add(informationIcon);
         hBox.getChildren().add(label);
         popup.getContent().add(hBox);
         return popup;

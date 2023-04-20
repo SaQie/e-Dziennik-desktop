@@ -10,6 +10,7 @@ public enum ResourceConst {
     DICTIONARY_STYLES_ADDRESS("/pl/edziennik/client/css/dictionary-styles.css"),
     POPUP_STYLES_ADDRESS("/pl/edziennik/client/css/popup-styles.css"),
     INFORMATION_ICON_ADDRESS("/pl/edziennik/client/icons/Information.png"),
+    WARNING_ICON_ADDRESS("/pl/edziennik/client/icons/Warning.png"),
     CLEAR_ICON_ADDRESS("/pl/edziennik/client/icons/Close.png"),
     MESSAGES_RESOURCES_ADDRESS("pl.edziennik.client.bundles.messages"),
     ERROR_ICON_ADDRESS("/pl/edziennik/client/icons/error.png"),

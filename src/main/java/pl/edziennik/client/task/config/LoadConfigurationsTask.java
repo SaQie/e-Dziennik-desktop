@@ -21,12 +21,7 @@ public class LoadConfigurationsTask extends Task<List<ConfigurationDto>> {
 
     @Override
     protected List<ConfigurationDto> call() throws Exception {
-        try {
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
-            return restClient.getConfigurationList();
-        } catch (RestClientException e) {
-            cancel(true);
-            return Collections.emptyList();
-        }
+        updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
+        return restClient.getConfigurationList();
     }
 }

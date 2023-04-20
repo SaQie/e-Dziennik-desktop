@@ -23,12 +23,8 @@ public class EditSchoolClassTask extends Task<SchoolClassDto> {
 
     @Override
     protected SchoolClassDto call() throws Exception {
-        try{
-            updateMessage(ResourceUtil.getMessage(WAITING_SAVE_DATA.value()));
-            restClient.editSchoolClass(idSchoolClass, dto);
-        }catch (RestClientException e){
-            cancel(true);
-        }
+        updateMessage(ResourceUtil.getMessage(WAITING_SAVE_DATA.value()));
+        restClient.editSchoolClass(idSchoolClass, dto);
         return null;
     }
 }

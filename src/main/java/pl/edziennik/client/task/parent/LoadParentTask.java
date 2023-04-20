@@ -20,12 +20,7 @@ public class LoadParentTask extends Task<ParentDto> {
 
     @Override
     protected ParentDto call() throws Exception {
-        try {
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
-            return restClient.getParent(id);
-        } catch (RestClientException e) {
-            cancel(true);
-            return null;
-        }
+        updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
+        return restClient.getParent(id);
     }
 }

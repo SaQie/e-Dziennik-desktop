@@ -9,9 +9,15 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.common.factory.DialogFactory;
+import pl.edziennik.client.core.toast.Toast;
+import pl.edziennik.client.core.toast.ToastType;
+import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.utils.ThreadUtils;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -103,9 +109,12 @@ public class ProgressController implements Initializable {
     private void cancelTask(Task task, Event event, Stage progressStage) {
         progressStage.close();
         String taskSimpleName = event.getTarget().getClass().getSimpleName();
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+        task.getException().printStackTrace(printWriter);
         LOGGER.log(Level.SEVERE, "Error during execute task " + taskSimpleName);
-        LOGGER.log(Level.SEVERE, "Cause: " + task.getMessage());
-        dialogFactory.createErrorProgressDialog(task.getMessage(), taskSimpleName);
+        LOGGER.log(Level.SEVERE, "Cause: " + stringWriter.toString());
+        Toast.show(ToastType.ERROR, ResourceConst.SERVER_ERROR_MESSAGE_KEY.value());
     }
 
 }

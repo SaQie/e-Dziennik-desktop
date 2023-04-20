@@ -22,13 +22,7 @@ public class LoadSchoolTask extends Task<SchoolDto> {
 
     @Override
     protected SchoolDto call() throws Exception {
-        try {
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
-            return adminRestClient.getSchoolPojo(id);
-        }catch (RestClientException e){
-            updateMessage(Arrays.toString(e.getStackTrace()));
-            cancel(true);
-            return null;
-        }
+        updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
+        return adminRestClient.getSchoolPojo(id);
     }
 }

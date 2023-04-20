@@ -11,6 +11,8 @@ import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMak
 import pl.edziennik.client.controller.model.admin.ParentListModel;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.core.TableSelectionMode;
+import pl.edziennik.client.core.toast.Toast;
+import pl.edziennik.client.core.toast.ToastType;
 import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.parent.ParentDto;
 import pl.edziennik.client.task.parent.DeleteParentTask;
@@ -92,6 +94,7 @@ public class AdminAccountsTabParentsTabController extends AbstractController {
             if (dialogFactory.createQuestionInformationDialog(ARE_YOU_SURE_TO_PERFORM_DELETE_OPERATION_MESSAGE_KEY.value())) {
                 progressFactory.createLittleProgressBar(new DeleteParentTask(selectedTableItems), (action) -> {
                     refreshButton.fire();
+                    Toast.show(ToastType.INFORMATION, SUCCESS_DIALOG_CONTENT_MESSAGE_KEY.value());
                 });
             }
         });

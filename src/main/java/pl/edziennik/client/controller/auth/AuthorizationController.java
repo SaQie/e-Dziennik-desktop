@@ -5,10 +5,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
+import pl.edziennik.client.common.factory.ProgressFactory;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.core.StageManager;
 import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.dto.config.ConfigurationDto;
+import pl.edziennik.client.task.config.LoadConfigurationsTask;
 import pl.edziennik.client.utils.AuthorizationUtils;
 import pl.edziennik.client.utils.NodeUtils;
 
@@ -28,6 +30,8 @@ public class AuthorizationController implements Initializable {
     @FXML
     private Tab registerTab;
 
+    private ProgressFactory progressFactory;
+
 
     public void loadAuthorizationView(Stage stage) throws IOException {
         AuthorizationUtils.loadAuthorizationPage();
@@ -36,6 +40,7 @@ public class AuthorizationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.progressFactory = ProgressFactory.getInstance();
         hideRegisterTabIfNeeded();
         initializeOnRegisterTabClick();
     }
@@ -46,16 +51,16 @@ public class AuthorizationController implements Initializable {
 
         // check application configuration allows to create student accounts independent
         clientAvailable.thenAccept((value) -> {
-            AdminRestClient adminRestClient = new AdminRestClient();
-            Boolean isRegistrationEnabled = adminRestClient.getConfigurationList()
-                    .stream()
-                    .filter(config -> config.getSettingId().equals(2L))
-                    .map(ConfigurationDto::getBooleanValue)
-                    .findFirst()
-                    .orElse(Boolean.FALSE);
-            if (!isRegistrationEnabled) {
-                authorizationTabPane.getTabs().remove(registerTab);
-            }
+            progressFactory.createLittleProgressBar(new LoadConfigurationsTask(),(response) -> {
+                Boolean isRegistrationEnabled = response.stream()
+                        .filter(config -> config.getSettingId().equals(2L))
+                        .map(ConfigurationDto::getBooleanValue)
+                        .findFirst()
+                        .orElse(Boolean.FALSE);
+                if (!isRegistrationEnabled) {
+                    authorizationTabPane.getTabs().remove(registerTab);
+                }
+            });
         });
     }
 

@@ -1,7 +1,9 @@
 package pl.edziennik.client.task.school;
 
 import javafx.concurrent.Task;
+
 import static pl.edziennik.client.common.constants.ResourceConst.*;
+
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.dto.Page;
@@ -20,20 +22,14 @@ public class LoadSchoolsTask extends Task<Page<List<SchoolDto>>> {
         this.adminRestClient = new AdminRestClient();
     }
 
-    public LoadSchoolsTask(int page){
+    public LoadSchoolsTask(int page) {
         this.adminRestClient = new AdminRestClient();
         this.page = page;
     }
 
     @Override
     protected Page<List<SchoolDto>> call() throws Exception {
-        try {
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
-            return adminRestClient.getSchoolList(page);
-        }catch (RestClientException e){
-            updateMessage(Arrays.toString(e.getStackTrace()));
-            cancel(true);
-            return Page.empty();
-        }
+        updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
+        return adminRestClient.getSchoolList(page);
     }
 }

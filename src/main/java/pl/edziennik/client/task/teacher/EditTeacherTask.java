@@ -8,6 +8,7 @@ import pl.edziennik.client.rest.dto.teacher.TeacherRequestDto;
 import pl.edziennik.client.utils.ResourceUtil;
 
 import static pl.edziennik.client.common.constants.ResourceConst.*;
+
 public class EditTeacherTask extends Task<TeacherDto> {
 
     private final AdminRestClient restClient;
@@ -22,12 +23,7 @@ public class EditTeacherTask extends Task<TeacherDto> {
 
     @Override
     protected TeacherDto call() throws Exception {
-        try{
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
-            return restClient.editTeacher(dto, id);
-        }catch (RestClientException e){
-            cancel(true);
-            return null;
-        }
+        updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
+        return restClient.editTeacher(dto, id);
     }
 }

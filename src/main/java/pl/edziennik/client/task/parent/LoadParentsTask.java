@@ -27,12 +27,7 @@ public class LoadParentsTask extends Task<Page<List<ParentDto>>> {
 
     @Override
     protected Page<List<ParentDto>> call() throws Exception {
-        try {
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
-            return restClient.getParentsList(actualPage);
-        } catch (RestClientException e) {
-            cancel(true);
-            return Page.empty();
-        }
+        updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
+        return restClient.getParentsList(actualPage);
     }
 }

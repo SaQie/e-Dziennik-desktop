@@ -23,26 +23,23 @@ class RestClientStatusCodesHandler {
             throw new RestClientException("500 - internal server error");
         }
 
-        if (result.getStatusCode().value() == HttpStatus.UNAUTHORIZED.value()){
+        if (result.getStatusCode().value() == HttpStatus.UNAUTHORIZED.value()) {
             ThreadUtils.runInFxThread(() ->
                     dialogFactory.createErrorConfirmationDialog(null, ResourceConst.UNAUTHORIZED_ERROR_MESSAGE_KEY.value()));
             throw new RestClientException("401 - unauthorized");
         }
 
-        if (result.getStatusCode().value() == HttpStatus.FORBIDDEN.value()){
+        if (result.getStatusCode().value() == HttpStatus.FORBIDDEN.value()) {
             ThreadUtils.runInFxThread(() ->
                     dialogFactory.createErrorConfirmationDialog(null, ResourceConst.ACCESS_DENIED_ERROR_MESSAGE_KEY.value()));
             throw new RestClientException("403 - access denied");
         }
 
-        if (result.getStatusCode().is4xxClientError()) {
-            ApiResponse<T> responseBody = result.getBody();
-            ThreadUtils.runInFxThread(() ->
-                    dialogFactory.createErrorConfirmationDialog(responseBody.getErrors()));
+        if (result.getStatusCode().is4xxClientError())
             throw new RestClientException("400 - Bad request");
-        }
-
     }
 
-
 }
+
+
+

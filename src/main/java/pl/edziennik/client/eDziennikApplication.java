@@ -2,10 +2,12 @@ package pl.edziennik.client;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.springframework.web.client.ResourceAccessException;
 import pl.edziennik.client.common.factory.DialogFactory;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.controller.auth.AuthorizationController;
 import pl.edziennik.client.core.toast.Toast;
+import pl.edziennik.client.core.toast.ToastType;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.exception.TableRowException;
 import pl.edziennik.client.exception.TableViewException;
@@ -40,8 +42,8 @@ public class eDziennikApplication extends Application {
                 dialogFactory.createErrorConfirmationDialog(null, exception.getMessage());
                 return;
             }
-            if (exception instanceof TableRowException){
-                Toast.show(exception.getMessage());
+            if (exception instanceof TableRowException) {
+                Toast.show(ToastType.ERROR, exception.getMessage());
                 return;
             }
             if (!(exception instanceof RestClientException)) {

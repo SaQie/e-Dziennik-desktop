@@ -21,12 +21,7 @@ public class AddSchoolClassTask extends Task<SchoolClassDto> {
 
     @Override
     protected SchoolClassDto call() throws Exception {
-        try{
-            updateMessage(ResourceUtil.getMessage(WAITING_SAVE_DATA.value()));
-            return restClient.saveNewSchoolClass(dto);
-        }catch (RestClientException e){
-            cancel(true);
-        }
-        return null;
+        updateMessage(ResourceUtil.getMessage(WAITING_SAVE_DATA.value()));
+        return restClient.saveNewSchoolClass(dto);
     }
 }

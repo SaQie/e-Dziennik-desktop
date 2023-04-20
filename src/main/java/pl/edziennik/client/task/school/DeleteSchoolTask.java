@@ -22,15 +22,10 @@ public class DeleteSchoolTask extends Task<Void> {
 
     @Override
     protected Void call() throws Exception {
-        try {
-            updateMessage(ResourceUtil.getMessage(WAITING_DELETE_SCHOOL_MESSAGE_KEY.value()));
-            for (Long idSchool : idsSchool) {
-                // zastanowic sie czy to jest ok, czy nie lepiej wyslac 1 zapytanie z kolekcja
-                restClient.deleteSchool(idSchool);
-            }
-        }catch (RestClientException e){
-            updateMessage(Arrays.toString(e.getStackTrace()));
-            cancel(true);
+        updateMessage(ResourceUtil.getMessage(WAITING_DELETE_SCHOOL_MESSAGE_KEY.value()));
+        for (Long idSchool : idsSchool) {
+            // zastanowic sie czy to jest ok, czy nie lepiej wyslac 1 zapytanie z kolekcja
+            restClient.deleteSchool(idSchool);
         }
         return null;
     }

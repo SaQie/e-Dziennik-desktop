@@ -1,7 +1,9 @@
 package pl.edziennik.client.task.register;
 
 import javafx.concurrent.Task;
+
 import static pl.edziennik.client.common.constants.ResourceConst.*;
+
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.dto.admin.AdminDto;
@@ -23,14 +25,8 @@ public class RegisterAdminTask extends Task<AdminDto> {
 
     @Override
     protected AdminDto call() throws Exception {
-        try{
-            updateMessage(ResourceUtil.getMessage(WAITING_REGISTER_MESSAGE_KEY.value()));
-            adminDto = restClient.register(adminDto);
-        }catch (RestClientException e){
-            updateMessage(Arrays.toString(e.getStackTrace()));
-            cancel(true);
-            return null;
-        }
+        updateMessage(ResourceUtil.getMessage(WAITING_REGISTER_MESSAGE_KEY.value()));
+        adminDto = restClient.register(adminDto);
         return adminDto;
     }
 }

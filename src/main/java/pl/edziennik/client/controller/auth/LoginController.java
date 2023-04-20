@@ -10,19 +10,15 @@ import pl.edziennik.client.common.AccountType;
 import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.core.toast.Toast;
+import pl.edziennik.client.core.toast.ToastType;
 import pl.edziennik.client.rest.AuthorizationRestClient;
 import pl.edziennik.client.rest.dto.auth.LoginCredentialsDto;
+import pl.edziennik.client.task.auth.LoginUserTask;
 import pl.edziennik.client.utils.AuthorizationUtils;
 import pl.edziennik.client.utils.NodeUtils;
 
 public class LoginController extends AbstractController {
 
-
-    private final AuthorizationRestClient authorizationRestClient;
-
-    public LoginController() {
-        this.authorizationRestClient = new AuthorizationRestClient();
-    }
 
     @FXML
     private ComboBox<String> accountTypeCheckBox;
@@ -59,9 +55,10 @@ public class LoginController extends AbstractController {
             LoginCredentialsDto credentialsPojo = new LoginCredentialsDto();
             credentialsPojo.setUsername(usernameInput.getText());
             credentialsPojo.setPassword(passwordInput.getText());
-            authorizationRestClient.login(credentialsPojo);
-            AuthorizationUtils.showCorrectSceneAfterLogin(getActualStage());
-            Toast.show(ResourceConst.LOGIN_SUCCESSFULL.value());
+            progressFactory.createLittleProgressBar(new LoginUserTask(credentialsPojo), (response) -> {
+                AuthorizationUtils.showCorrectSceneAfterLogin(getActualStage());
+                Toast.show(ToastType.INFORMATION,ResourceConst.LOGIN_SUCCESSFULL.value());
+            });
         });
     }
 

@@ -12,6 +12,7 @@ import pl.edziennik.client.common.Styles;
 import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.core.toast.Toast;
+import pl.edziennik.client.core.toast.ToastType;
 import pl.edziennik.client.exception.ViewException;
 import pl.edziennik.client.rest.dto.config.ConfigurationDto;
 import pl.edziennik.client.rest.dto.config.SettingsValueDto;
@@ -92,7 +93,7 @@ public class AdminConfigurationValueOptionController extends AbstractController 
             } else if (response.getLongValue() != null) {
                 value.setText(response.getLongValue().toString());
                 hBox.getChildren().add(value);
-                Toast.show(ResourceConst.HINT_INSERT_SCHOOL_IDENTIFIER_CONFIGURATION.value());
+                Toast.show(ToastType.INFORMATION,ResourceConst.HINT_INSERT_SCHOOL_IDENTIFIER_CONFIGURATION.value());
             } else {
                 throw new ViewException(ResourceUtil.getMessage("unsupported.configuration.type"));
             }

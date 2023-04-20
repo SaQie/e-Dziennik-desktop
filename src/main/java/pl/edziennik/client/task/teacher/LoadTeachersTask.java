@@ -27,12 +27,7 @@ public class LoadTeachersTask extends Task<Page<List<TeacherDto>>> {
 
     @Override
     protected Page<List<TeacherDto>> call() throws Exception {
-        try {
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
-            return adminRestClient.getTeacherList(actualPage);
-        } catch (RestClientException e) {
-            cancel(true);
-            return Page.empty();
-        }
+        updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
+        return adminRestClient.getTeacherList(actualPage);
     }
 }

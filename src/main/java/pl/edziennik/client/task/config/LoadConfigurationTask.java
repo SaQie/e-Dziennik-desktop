@@ -20,12 +20,7 @@ public class LoadConfigurationTask extends Task<ConfigurationDto> {
 
     @Override
     protected ConfigurationDto call() throws Exception {
-        try{
-            updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
-            return restClient.getConfigurationById(id);
-        }catch (RestClientException e){
-            cancel(true);
-        }
-        return null;
+        updateMessage(ResourceUtil.getMessage(WAITING_FETCH_DATA.value()));
+        return restClient.getConfigurationById(id);
     }
 }

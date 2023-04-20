@@ -1,6 +1,7 @@
 package pl.edziennik.client.utils;
 
 import javafx.application.Platform;
+import pl.edziennik.client.exception.RestClientException;
 
 import java.util.Objects;
 
@@ -21,11 +22,15 @@ public class ThreadUtils {
     }
 
     public static void runInBackgroundThread(Runnable runnable){
-        Objects.requireNonNull(runnable);
-        if (Platform.isFxApplicationThread()){
-            new Thread(runnable).start();
-        }else{
-            runnable.run();
+        try {
+            Objects.requireNonNull(runnable);
+            if (Platform.isFxApplicationThread()) {
+                new Thread(runnable).start();
+            } else {
+                runnable.run();
+            }
+        }catch (RestClientException e){
+            System.out.println("xxxx");
         }
     }
 

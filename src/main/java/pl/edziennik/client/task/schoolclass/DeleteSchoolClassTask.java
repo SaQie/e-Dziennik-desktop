@@ -21,13 +21,9 @@ public class DeleteSchoolClassTask extends Task<Void> {
 
     @Override
     protected Void call() throws Exception {
-        try{
-            updateMessage(ResourceUtil.getMessage(WAITING_DELETE_DATA.value()));
-            for (Long id : idsToDelete){
-                restClient.deleteSchoolClass(id);
-            }
-        }catch (RestClientException e){
-            cancel(true);
+        updateMessage(ResourceUtil.getMessage(WAITING_DELETE_DATA.value()));
+        for (Long id : idsToDelete) {
+            restClient.deleteSchoolClass(id);
         }
         return null;
     }

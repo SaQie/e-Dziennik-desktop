@@ -13,6 +13,8 @@ import pl.edziennik.client.configuration.converter.PropertiesStringToLongConvert
 import pl.edziennik.client.controller.model.admin.AdminListModel;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.core.TableSelectionMode;
+import pl.edziennik.client.core.toast.Toast;
+import pl.edziennik.client.core.toast.ToastType;
 import pl.edziennik.client.exception.BusinessException;
 import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.admin.AdminDto;
@@ -157,6 +159,7 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
             if (dialogFactory.createQuestionInformationDialog(ARE_YOU_SURE_TO_PERFORM_DELETE_OPERATION_MESSAGE_KEY.value())) {
                 progressFactory.createLittleProgressBar(new DeleteAdminTask(selectedTableItems), (action) -> {
                     refreshButton.fire();
+                    Toast.show(ToastType.INFORMATION, SUCCESS_DIALOG_CONTENT_MESSAGE_KEY.value());
                 });
             }
         });

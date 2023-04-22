@@ -2,9 +2,7 @@ package pl.edziennik.client.core;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.factory.DialogFactory;
 import pl.edziennik.client.common.factory.DictionaryFactory;
@@ -20,6 +18,9 @@ public abstract class AbstractController implements Initializable {
 
     @FXML
     public Button refreshButton;
+
+    @FXML
+    public MenuButton menuButton;
 
     @FXML
     protected MenuItem selectAllMenuItem, unselectAllMenuItem;
@@ -56,7 +57,7 @@ public abstract class AbstractController implements Initializable {
 
     }
 
-    protected void createDictionaries(){
+    protected void createDictionaries() {
 
     }
 

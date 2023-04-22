@@ -3,14 +3,15 @@ package pl.edziennik.client.controller.admin.schoolclasses;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Pagination;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
 import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.controller.model.admin.SchoolClassListModel;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.core.TableSelectionMode;
+import pl.edziennik.client.core.contextmenu.ContextMenuAction;
+import pl.edziennik.client.core.contextmenu.ContextMenuActionBuilder;
 import pl.edziennik.client.core.toast.Toast;
 import pl.edziennik.client.core.toast.ToastType;
 import pl.edziennik.client.rest.dto.Page;
@@ -59,6 +60,13 @@ public class AdminSchoolClassesTabController extends AbstractController {
         NodeUtils.setTableSelectOption(tableView, TableSelectionMode.MULTIPLE);
         NodeUtils.setTableViewPlaceHolder(tableView);
         NodeUtils.setColumnConfigurationShortcut(tableView);
+//        ContextMenuActionBuilder.builder()
+//                .addAction(new ContextMenuAction("test1", new TestContextMenuActionExecutorImpl())
+//                        .setParameters("Test !", 1L, new SchoolClassDto()))
+//                .addAction(new ContextMenuAction("test2", new Test2ContextMenuActionExecutorImpl())
+//                        .setParameters("test2", 2L, new SchoolClassDto()))
+//                .build(tableView);
+
     }
 
     @Override
@@ -81,7 +89,7 @@ public class AdminSchoolClassesTabController extends AbstractController {
         return tableView.getItems().isEmpty();
     }
 
-    public void addItem(SchoolClassListModel model){
+    public void addItem(SchoolClassListModel model) {
         ArrayList<SchoolClassListModel> acutalItems = new ArrayList<>(tableView.getItems());
         acutalItems.add(model);
         tableView.setItems(FXCollections.observableList(acutalItems));
@@ -114,7 +122,7 @@ public class AdminSchoolClassesTabController extends AbstractController {
         addButton.setOnAction(button -> {
             NodeUtils.openNewStageAbove(DASHBOARD_ADMIN_SCHOOL_CLASS_ADD_ADDRESS.value(),
                     ADD_SCHOOL_CLASS_VIEW_TITLE_KEY.value(),
-                    500,350, getActualStage(), addButton);
+                    500, 350, getActualStage(), addButton);
         });
     }
 

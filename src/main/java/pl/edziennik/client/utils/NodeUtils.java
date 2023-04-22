@@ -77,10 +77,9 @@ public class NodeUtils {
         });
     }
 
-    public static void showSuccessOperationToast(){
-        Toast.show(ToastType.INFORMATION,ResourceConst.SUCCESS_DIALOG_CONTENT_MESSAGE_KEY.value());
+    public static void showSuccessOperationToast() {
+        Toast.show(ToastType.INFORMATION, ResourceConst.SUCCESS_DIALOG_CONTENT_MESSAGE_KEY.value());
     }
-
 
 
     public static void createLogoutButton(Button logoutButton) {
@@ -312,12 +311,19 @@ public class NodeUtils {
             TableRow<T> row = new TableRow<>();
             row.setOnMouseClicked(mouseEvent -> {
                 if (mouseEvent.getButton() == MouseButton.PRIMARY && (!row.isEmpty())) {
-                    if (TableSelectionMode.SINGLE.equals(selectionMode)){
+                    if (TableSelectionMode.SINGLE.equals(selectionMode)) {
                         tableView.getItems()
                                 .stream()
                                 .filter(TableViewSelection::isSelected)
                                 .forEach(tableItem -> tableItem.getSelect().setSelected(false));
                     }
+                    tableView.getSelectionModel().getSelectedItem().setSelection();
+                }
+                if (mouseEvent.getButton() == MouseButton.SECONDARY && (!row.isEmpty())) {
+                    tableView.getItems()
+                            .stream()
+                            .filter(TableViewSelection::isSelected)
+                            .forEach(tableItem -> tableItem.getSelect().setSelected(false));
                     tableView.getSelectionModel().getSelectedItem().setSelection();
                 }
             });
@@ -348,14 +354,14 @@ public class NodeUtils {
 
         dictionaryComboBox.setOnMouseClicked(event -> {
             dictionaryComboBox.hide();
-            if (MouseButton.SECONDARY.equals(event.getButton())){
+            if (MouseButton.SECONDARY.equals(event.getButton())) {
                 menu.show(dictionaryComboBox, event.getScreenX(), event.getScreenY());
                 item.setOnAction(action -> {
                     dictionaryComboBox.hide();
                     dictionaryComboBox.getSelectionModel().select(null);
                 });
             }
-            if (MouseButton.PRIMARY.equals(event.getButton())){
+            if (MouseButton.PRIMARY.equals(event.getButton())) {
                 Optional<DictionaryItemModel> valueFromDictionary = dictionaryFactory.createAndGetDictionaryValue(task, params);
                 valueFromDictionary.ifPresent(value -> dictionaryComboBox.getSelectionModel().select(value));
             }

@@ -1,5 +1,7 @@
 package pl.edziennik.client.core.contextmenu;
 
+import javafx.scene.image.ImageView;
+import pl.edziennik.client.eDziennikApplication;
 import pl.edziennik.client.utils.ResourceUtil;
 
 import java.util.ArrayList;
@@ -13,10 +15,21 @@ public class ContextMenuAction {
     private final String actionName;
     private final ActionExecutor actionExecutor;
     private final List<Object> parameters = new ArrayList<>();
+    private final ImageView icon;
 
     public ContextMenuAction(String actionNameKey, ActionExecutor actionExecutor) {
         this.actionName = ResourceUtil.getMessage(actionNameKey);
         this.actionExecutor = actionExecutor;
+        this.icon = null;
+    }
+
+    public ContextMenuAction(String actionName, ActionExecutor actionExecutor, String iconAddress) {
+        this.actionName = actionName;
+        this.actionExecutor = actionExecutor;
+        ImageView imageView = new ImageView(eDziennikApplication.class.getResource(iconAddress).toExternalForm());
+        imageView.setFitWidth(25);
+        imageView.setFitHeight(25);
+        this.icon = imageView;
     }
 
     /**
@@ -37,6 +50,15 @@ public class ContextMenuAction {
      */
     public String getActionName() {
         return actionName;
+    }
+
+    /**
+     * Returns action icon
+     *
+     * @return
+     */
+    protected ImageView getIcon() {
+        return this.icon;
     }
 
     /**

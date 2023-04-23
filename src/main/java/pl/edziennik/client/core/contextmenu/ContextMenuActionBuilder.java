@@ -3,6 +3,7 @@ package pl.edziennik.client.core.contextmenu;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import pl.edziennik.client.core.TableViewSelection;
 
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class ContextMenuActionBuilder {
             for (ContextMenuAction action : actions) {
 
                 MenuItem item = new MenuItem(action.getActionName());
+                item.setGraphic(action.getIcon());
                 item.setOnAction(event -> {
                     Long rowId = tableView.getSelectionModel().getSelectedItem().getId();
                     action.execute(rowId);

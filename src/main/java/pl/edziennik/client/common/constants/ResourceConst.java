@@ -10,6 +10,7 @@ public enum ResourceConst {
     DICTIONARY_STYLES_ADDRESS("/pl/edziennik/client/css/dictionary-styles.css"),
     POPUP_STYLES_ADDRESS("/pl/edziennik/client/css/popup-styles.css"),
     INFORMATION_ICON_ADDRESS("/pl/edziennik/client/icons/Information.png"),
+    MARK_ICON_ADDRESS("/pl/edziennik/client/icons/Easy.png"),
     WARNING_ICON_ADDRESS("/pl/edziennik/client/icons/Warning.png"),
     CLEAR_ICON_ADDRESS("/pl/edziennik/client/icons/Close.png"),
     MESSAGES_RESOURCES_ADDRESS("pl.edziennik.client.bundles.messages"),
@@ -121,6 +122,7 @@ public enum ResourceConst {
     CONFIGURATION_LIST_ADMIN_VIEW_TITLE_MESSAGE_KEY("show.admin.configuration.title.label"),
     ADMIN_ACCOUNTS_ADD_STUDENT_TITLE_MESSAGE_KEY("admin.accounts.student.add.title"),
     HINT_INSERT_SCHOOL_IDENTIFIER_CONFIGURATION("hint.insert.school.identifier"),
+    QUESTION_ASSIGN_SCHOOL_AS_DEFAULT_TO_REGISTER("question.assign.school.as.default.to.register"),
 
     // ERROR CODES
 

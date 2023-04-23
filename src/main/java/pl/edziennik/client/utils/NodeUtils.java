@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -42,6 +43,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
+import java.util.stream.Stream;
 
 import static pl.edziennik.client.common.constants.ResourceConst.*;
 import static pl.edziennik.client.common.builder.CommonStageBuilder.StageBuilder.ShowMode.OPEN_ABOVE;
@@ -309,21 +311,27 @@ public class NodeUtils {
     public static <T extends TableViewSelection> void setTableSelectOption(TableView<T> tableView, TableSelectionMode selectionMode) {
         tableView.setRowFactory(factory -> {
             TableRow<T> row = new TableRow<>();
+            ContextMenu contextMenu = tableView.getContextMenu();
             row.setOnMouseClicked(mouseEvent -> {
-                if (mouseEvent.getButton() == MouseButton.PRIMARY && (!row.isEmpty())) {
+                Stream<T> selectedItems = tableView.getItems()
+                        .stream()
+                        .filter(TableViewSelection::isSelected);
+                if (row.isEmpty()) {
+                    selectedItems.forEach(tableItem -> tableItem.getSelect().setSelected(false));
+                    if (contextMenu != null && contextMenu.isShowing()) {
+                        contextMenu.hide();
+                    }
+                    return;
+                }
+                if (mouseEvent.getButton() == MouseButton.PRIMARY) {
                     if (TableSelectionMode.SINGLE.equals(selectionMode)) {
-                        tableView.getItems()
-                                .stream()
-                                .filter(TableViewSelection::isSelected)
-                                .forEach(tableItem -> tableItem.getSelect().setSelected(false));
+                        selectedItems.forEach(tableItem -> tableItem.getSelect().setSelected(false));
                     }
                     tableView.getSelectionModel().getSelectedItem().setSelection();
+                    return;
                 }
-                if (mouseEvent.getButton() == MouseButton.SECONDARY && (!row.isEmpty())) {
-                    tableView.getItems()
-                            .stream()
-                            .filter(TableViewSelection::isSelected)
-                            .forEach(tableItem -> tableItem.getSelect().setSelected(false));
+                if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+                    selectedItems.forEach(tableItem -> tableItem.getSelect().setSelected(false));
                     tableView.getSelectionModel().getSelectedItem().setSelection();
                 }
             });

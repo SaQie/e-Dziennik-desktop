@@ -10,6 +10,8 @@ module pl.edziennik.client {
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
     requires org.apache.httpcomponents.client5.httpclient5;
+    requires com.fasterxml.jackson.datatype.jdk8;
+    requires com.fasterxml.jackson.datatype.jsr310;
 
 
     exports pl.edziennik.client;
@@ -22,7 +24,7 @@ module pl.edziennik.client {
     exports pl.edziennik.client.exception;
     exports pl.edziennik.client.utils;
     exports pl.edziennik.client.validator.auth;
-    exports pl.edziennik.client.controller.model.admin;
+    exports pl.edziennik.client.common.model.admin;
     exports pl.edziennik.client.controller.configuration;
     exports pl.edziennik.client.common;
     exports pl.edziennik.client.core;
@@ -33,6 +35,8 @@ module pl.edziennik.client {
     exports pl.edziennik.client.task.school;
     exports pl.edziennik.client.controller.admin.schoolclasses;
     exports pl.edziennik.client.core.toast;
+    exports pl.edziennik.client.controller.student;
+    exports pl.edziennik.client.controller.student.grades;
     opens pl.edziennik.client to javafx.fxml;
     opens pl.edziennik.client.controller.auth to javafx.fxml;
     opens pl.edziennik.client.controller.admin to javafx.fxml;
@@ -50,7 +54,10 @@ module pl.edziennik.client {
     opens pl.edziennik.client.controller.admin.accounts.teacher to javafx.fxml;
     opens pl.edziennik.client.controller.admin.accounts.parent to javafx.fxml;
     opens pl.edziennik.client.controller.admin.schoolclasses to javafx.fxml;
+    opens pl.edziennik.client.controller.student to javafx.fxml;
+    opens pl.edziennik.client.controller.student.grades to javafx.fxml;
     exports pl.edziennik.client.rest.dto.student;
+    exports pl.edziennik.client.rest.dto.subject;
     exports pl.edziennik.client.rest.dto.teacher;
     exports pl.edziennik.client.rest.dto.admin;
     exports pl.edziennik.client.rest.dto.school;
@@ -63,6 +70,8 @@ module pl.edziennik.client {
     exports pl.edziennik.client.controller.admin.accounts.parent;
     exports pl.edziennik.client.controller.admin.accounts.admin;
     opens pl.edziennik.client.controller.admin.accounts.admin to javafx.fxml;
+    opens pl.edziennik.client.rest.dto.grade to com.fasterxml.jackson.annotation;
     exports pl.edziennik.client.common.factory;
     exports pl.edziennik.client.common.constants;
+    exports pl.edziennik.client.rest.dto.grade;
 }

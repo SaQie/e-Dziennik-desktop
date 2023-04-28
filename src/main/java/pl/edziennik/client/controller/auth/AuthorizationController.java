@@ -51,7 +51,7 @@ public class AuthorizationController implements Initializable {
 
         // check application configuration allows to create student accounts independent
         clientAvailable.thenAccept((value) -> {
-            progressFactory.createLittleProgressBar(new LoadConfigurationsTask(),(response) -> {
+            progressFactory.createLittleProgressBar(new LoadConfigurationsTask(), (response) -> {
                 Boolean isRegistrationEnabled = response.stream()
                         .filter(config -> config.getSettingId().equals(2L))
                         .map(ConfigurationDto::getBooleanValue)

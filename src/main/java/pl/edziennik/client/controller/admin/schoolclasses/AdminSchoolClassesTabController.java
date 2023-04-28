@@ -5,13 +5,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
+import pl.edziennik.client.common.controller.columns.admin.AdminTableViewControllerMaker;
 import pl.edziennik.client.common.factory.ActionType;
-import pl.edziennik.client.controller.model.admin.SchoolClassListModel;
+import pl.edziennik.client.common.model.admin.SchoolClassListModel;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.core.TableSelectionMode;
-import pl.edziennik.client.core.contextmenu.ContextMenuAction;
-import pl.edziennik.client.core.contextmenu.ContextMenuActionBuilder;
 import pl.edziennik.client.core.toast.Toast;
 import pl.edziennik.client.core.toast.ToastType;
 import pl.edziennik.client.rest.dto.Page;
@@ -60,12 +58,6 @@ public class AdminSchoolClassesTabController extends AbstractController {
         NodeUtils.setTableSelectOption(tableView, TableSelectionMode.MULTIPLE);
         NodeUtils.setTableViewPlaceHolder(tableView);
         NodeUtils.setColumnConfigurationShortcut(tableView);
-//        ContextMenuActionBuilder.builder()
-//                .addAction(new ContextMenuAction("test1", new TestContextMenuActionExecutorImpl())
-//                        .setParameters("Test !", 1L, new SchoolClassDto()))
-//                .addAction(new ContextMenuAction("test2", new Test2ContextMenuActionExecutorImpl())
-//                        .setParameters("test2", 2L, new SchoolClassDto()))
-//                .build(tableView);
 
     }
 

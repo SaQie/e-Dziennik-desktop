@@ -1,8 +1,8 @@
-package pl.edziennik.client.common.controller.columns;
+package pl.edziennik.client.common.controller.columns.admin;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableColumn;
-import pl.edziennik.client.controller.model.admin.*;
+import pl.edziennik.client.common.model.admin.*;
 
 import java.util.List;
 

@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import pl.edziennik.client.controller.model.admin.SchoolLevelComboBoxItem;
+import pl.edziennik.client.common.model.admin.SchoolLevelComboBoxItem;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.rest.dto.school.SchoolDto;
 import pl.edziennik.client.rest.dto.schoollevel.SimpleSchoolLevelDto;

@@ -1,12 +1,8 @@
 package pl.edziennik.client.controller.admin.accounts.admin;
 
-import pl.edziennik.client.controller.admin.accounts.student.AdminAccountsTabStudentsTabController;
-import pl.edziennik.client.controller.model.admin.AdminListModel;
-import pl.edziennik.client.controller.model.admin.StudentListModel;
+import pl.edziennik.client.common.model.admin.AdminListModel;
 import pl.edziennik.client.rest.dto.admin.AdminDto;
-import pl.edziennik.client.rest.dto.student.StudentRequestDto;
 import pl.edziennik.client.task.admin.AddAdminTask;
-import pl.edziennik.client.task.student.AddStudentTask;
 import pl.edziennik.client.utils.NodeUtils;
 import pl.edziennik.client.validator.admin.AdminValidator;
 

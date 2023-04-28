@@ -66,6 +66,19 @@ public class AuthorizationUtils {
     public static void showCorrectSceneAfterLogin(Stage currentStage){
         String role = PropertiesLoader.readProperty(ResourceConst.PROPERTIES_LOADER_ROLE_KEY.value());
         if (role.equals(Role.ROLE_STUDENT.name())){
+            CommonStageBuilder.stageBuilder()
+                    .withView(DASHBOARD_STUDENT_VIEW_ADDRESS.value())
+                    .withWidth(1200)
+                    .withHeight(800)
+                    .withStyle(StageStyle.UTILITY)
+                    .withResizable(true)
+                    .withMinWidth(1100)
+                    .withFocusRequest(true)
+                    .withOwner(currentStage)
+                    .withTitle(ResourceConst.DASHBOARD_ADMIN_VIEW_TITLE.value())
+                    .withShowMode(CLOSE_PREVIOUS)
+                    .isMainStage(true)
+                    .build();
             return;
         }
         if (role.equals(Role.ROLE_ADMIN.name())){

@@ -3,7 +3,7 @@ package pl.edziennik.client.controller.admin.schools;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import pl.edziennik.client.controller.model.admin.SchoolListModel;
+import pl.edziennik.client.common.model.admin.SchoolListModel;
 import pl.edziennik.client.rest.dto.school.SchoolDto;
 import pl.edziennik.client.task.school.AddNewSchoolTask;
 import pl.edziennik.client.utils.NodeUtils;

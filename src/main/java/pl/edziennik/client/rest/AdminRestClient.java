@@ -1,7 +1,7 @@
 package pl.edziennik.client.rest;
 
 import org.springframework.http.HttpMethod;
-import pl.edziennik.client.controller.model.admin.SchoolLevelComboBoxItem;
+import pl.edziennik.client.common.model.admin.SchoolLevelComboBoxItem;
 import pl.edziennik.client.rest.client.RestClient;
 import pl.edziennik.client.rest.client.URLConstants;
 import pl.edziennik.client.rest.dto.Page;

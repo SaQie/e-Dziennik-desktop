@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<Tab fx:id="gradesTab" text="%student.grades" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.student.grades.StudentGradesTabController">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@../../../css/global-colors.css">
+            <children>
+                <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <top>
+                        <HBox prefHeight="40.0" prefWidth="1040.0" spacing="15.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Button fx:id="showButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="dashboard-crud-button" text="%button.show">
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../icons/show.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="refreshButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" styleClass="dashboard-crud-button" text="%button.refresh">
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../icons/Rotate%20Right.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="130.0" styleClass="dashboard-crud-button" text="%button.menu">
+                                    <items>
+                                        <MenuItem fx:id="selectAllMenuItem" mnemonicParsing="false" text="%label.select.all">
+                                            <graphic>
+                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../../../icons/Choose.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </MenuItem>
+                                        <MenuItem fx:id="unselectAllMenuItem" mnemonicParsing="false" text="%label.unselect.all">
+                                            <graphic>
+                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../../../icons/Choose.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </MenuItem>
+                                    </items>
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../icons/Drag%20List%20Down.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </MenuButton>
+                            </children>
+                            <BorderPane.margin>
+                                <Insets left="5.0" top="5.0" />
+                            </BorderPane.margin>
+                        </HBox>
+                    </top>
+                    <center>
+                        <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../css/global-table-styles.css" BorderPane.alignment="CENTER">
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                    </center>
+                    <bottom>
+                        <HBox alignment="TOP_CENTER" prefHeight="20.0" prefWidth="200.0" styleClass="background-color-dark" BorderPane.alignment="CENTER">
+                        </HBox>
+                    </bottom>
+                </BorderPane>
+            </children>
+        </AnchorPane>
+    </content>
+    <graphic>
+        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../icons/Graduation%20Cap.png" />
+            </image>
+        </ImageView>
+    </graphic>
+</Tab>

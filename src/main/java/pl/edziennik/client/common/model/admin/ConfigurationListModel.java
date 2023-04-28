@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.model.admin;
+package pl.edziennik.client.common.model.admin;
 
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;

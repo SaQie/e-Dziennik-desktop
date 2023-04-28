@@ -38,7 +38,7 @@ public class PropertiesLoader {
     }
 
     public static void writeConfigurationDataToFile(String language, String serverAddress) {
-        try (OutputStream outputStream = new FileOutputStream("src/main/resources/pl/edziennik/client/application.properties");) {
+        try (OutputStream outputStream = new FileOutputStream("pl.edziennik.client.application.properties");) {
             properties.setProperty("serverAddress", serverAddress);
             properties.setProperty("language", language);
             properties.store(outputStream, null);

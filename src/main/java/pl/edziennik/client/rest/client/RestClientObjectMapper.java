@@ -3,6 +3,7 @@ package pl.edziennik.client.rest.client;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import pl.edziennik.client.common.factory.DialogFactory;
 import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.exception.RestClientException;
@@ -23,6 +24,7 @@ class RestClientObjectMapper {
 
     public RestClientObjectMapper() {
         this.objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
         this.dialogFactory = DialogFactory.getInstance();
     }
 

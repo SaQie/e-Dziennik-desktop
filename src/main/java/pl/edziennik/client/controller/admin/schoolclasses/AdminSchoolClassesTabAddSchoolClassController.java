@@ -1,6 +1,6 @@
 package pl.edziennik.client.controller.admin.schoolclasses;
 
-import pl.edziennik.client.controller.model.admin.SchoolClassListModel;
+import pl.edziennik.client.common.model.admin.SchoolClassListModel;
 import pl.edziennik.client.rest.dto.schoolclass.SchoolClassRequestDto;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.task.schoolclass.AddSchoolClassTask;

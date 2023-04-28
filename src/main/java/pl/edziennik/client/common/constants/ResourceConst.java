@@ -21,6 +21,7 @@ public enum ResourceConst {
 
     // VIEWS
 
+    DASHBOARD_STUDENT_VIEW_ADDRESS("/pl/edziennik/client/view/student/student-dashboard-view.fxml"),
     DASHBOARD_ADMIN_VIEW_ADDRESS("/pl/edziennik/client/view/admin/admin-dashboard-view.fxml"),
     DASHBOARD_ADMIN_SCHOOL_ADD_VIEW_ADDRESS("/pl/edziennik/client/view/admin/school/admin-dashboard-schools-tab-add.fxml"),
     DASHBOARD_ADMIN_SCHOOL_EDIT_VIEW_ADDRESS("/pl/edziennik/client/view/admin/school/admin-dashboard-schools-tab-edit.fxml"),
@@ -52,6 +53,7 @@ public enum ResourceConst {
 
     EXIT_CONFIRMATION_MESSAGE_KEY("exit.confirmation.message"),
     DASHBOARD_ADMIN_VIEW_TITLE("dashboard.admin.view.title"),
+    DASHBOARD_STUDENT_VIEW_TITLE("dashboard.student.view.title"),
     EXIT_CONFIRMATION_HEADER_KEY("exit.confirmation.header"),
     ERROR_DIALOG_MESSAGE_KEY("error.dialog.message"),
     ERROR_DIALOG_HEADER_MESSAGE_KEY("error.dialog.header"),
@@ -102,6 +104,7 @@ public enum ResourceConst {
     PARENT_LAST_NAME_COLUMN_KEY("parent.last.name.column.text"),
     CITY_COLUMN_KEY("city.column.text"),
     IDENTIFIER_COLUMN_KEY("identifier.column.text"),
+    SUBJECT_NAME_COLUMN_KEY("subject.name.column.text"),
     POSTAL_CODE_COLUMN_KEY("postal.code.column.text"),
     SCHOOL_LEVEL_NAME_COLUMN_KEY("school.level.column.text"),
     SUCCESS_DIALOG_SAVE_CONFIGURATION_MESSAGE("success.dialog.configuration.message"),

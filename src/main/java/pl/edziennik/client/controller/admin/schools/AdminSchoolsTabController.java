@@ -10,8 +10,8 @@ import pl.edziennik.client.controller.admin.schools.actions.AdminSchoolsTabMarkS
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.common.constants.ResourceConst;
-import pl.edziennik.client.common.controller.columns.AdminTableViewControllerMaker;
-import pl.edziennik.client.controller.model.admin.SchoolListModel;
+import pl.edziennik.client.common.controller.columns.admin.AdminTableViewControllerMaker;
+import pl.edziennik.client.common.model.admin.SchoolListModel;
 import pl.edziennik.client.core.TableSelectionMode;
 import pl.edziennik.client.core.contextmenu.ContextMenuAction;
 import pl.edziennik.client.core.contextmenu.ContextMenuActionBuilder;

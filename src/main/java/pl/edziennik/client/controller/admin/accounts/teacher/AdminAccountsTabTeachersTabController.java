@@ -166,7 +166,7 @@ public class AdminAccountsTabTeachersTabController extends AbstractController {
                         DASHBOARD_ADMIN_ACCOUNTS_EDIT_TEACHER_VIEW_ADDRESS.value(),
                         EDIT_TEACHER_VIEW_TITLE_KEY.value(),
                         1000, 550,
-                        editButton);
+                        editButton, false);
                 controller.loadStageFields(teacherPojo, ActionType.EDIT_ACTION);
             });
         });
@@ -180,7 +180,7 @@ public class AdminAccountsTabTeachersTabController extends AbstractController {
                         DASHBOARD_ADMIN_ACCOUNTS_SHOW_TEACHER_VIEW_ADDRESS.value(),
                         ResourceConst.SHOW_TEACHER_VIEW_TITLE.value(),
                         1000, 550,
-                        showButton);
+                        showButton, false);
                 controller.loadStageFields(teacherPojo, ActionType.SHOW_ACTION);
             });
         });

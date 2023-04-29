@@ -27,6 +27,7 @@ module pl.edziennik.client {
     exports pl.edziennik.client.common.model.admin;
     exports pl.edziennik.client.controller.configuration;
     exports pl.edziennik.client.common;
+    exports pl.edziennik.client.common.model.student;
     exports pl.edziennik.client.core;
     exports pl.edziennik.client.controller.admin.schools;
     exports pl.edziennik.client.controller.admin.accounts;

@@ -143,7 +143,7 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
                         DASHBOARD_ADMIN_ACCOUNTS_EDIT_ADMIN_VIEW_ADDRESS.value(),
                         ADMIN_ACCOUNTS_EDIT_ADMIN_TITLE_MESSAGE_KEY.value(),
                         500, 350,
-                        editButton);
+                        editButton, false);
                 controller.loadStageFields(adminDto, ActionType.EDIT_ACTION);
             });
         });
@@ -173,7 +173,7 @@ public class AdminAccountsTabAdministrationTabController extends AbstractControl
                         DASHBOARD_ADMIN_ACCOUNTS_SHOW_ADMIN_VIEW_ADDRESS.value(),
                         ADMIN_ACCOUNTS_SHOW_ADMIN_TITLE_MESSAGE_KEY.value(),
                         500, 350,
-                        showButton);
+                        showButton, false);
                 controller.loadStageFields(adminDto, ActionType.SHOW_ACTION);
             });
         });

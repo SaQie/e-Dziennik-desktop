@@ -145,7 +145,7 @@ public class NodeUtils {
                 .build();
     }
 
-    public static <T> T openNewStageAboveWithController(String viewLocation, String title, int width, int height, Button buttonToDisable) {
+    public static <T> T openNewStageAboveWithController(String viewLocation, String title, int width, int height, Button buttonToDisable, boolean isResizable) {
         return CommonStageBuilder.stageBuilder()
                 .withTitle(title)
                 .withWidth(width)
@@ -155,7 +155,7 @@ public class NodeUtils {
                 .withModality(Modality.NONE)
                 .withFocusRequest(true)
                 .withButton(buttonToDisable)
-                .withResizable(false)
+                .withResizable(isResizable)
                 .withSearchActualStage(true)
                 .withSetPositionToCenter(true)
                 .withShowMode(OPEN_ABOVE_AND_RETURN_CONTROLLER)
@@ -264,6 +264,14 @@ public class NodeUtils {
                 .toList();
         checkSelectedTableRows(actionType, idsSelectedRows);
         return idsSelectedRows;
+    }
+
+    public static <T extends TableViewSelection> T getSelectedTableItem(TableView<T> tableView) {
+        return tableView.getItems()
+                .stream()
+                .filter(TableViewSelection::isSelected)
+                .findFirst()
+                .orElseThrow(() -> new TableViewException(TABLE_VIEW_ROW_NOT_SELECTED_MESSAGE_KEY.value()));
     }
 
     public static <T extends DictionaryItemModel> DictionaryItemModel getSelectedDictionaryItem(TableView<T> tableView) {

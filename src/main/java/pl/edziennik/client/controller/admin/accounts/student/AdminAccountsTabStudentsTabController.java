@@ -160,7 +160,7 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
                         ResourceConst.DASHBOARD_ADMIN_ACCOUNTS_SHOW_STUDENT_VIEW_ADDRESS.value(),
                         ResourceConst.SHOW_STUDENT_VIEW_TITLE_KEY.value(),
                         1000, 500,
-                        showButton);
+                        showButton, false);
                 controller.loadStageFields(schoolPojo, ActionType.SHOW_ACTION);
             });
         });
@@ -174,7 +174,7 @@ public class AdminAccountsTabStudentsTabController extends AbstractController {
                         ResourceConst.DASHBOARD_ADMIN_ACCOUNTS_EDIT_STUDENT_VIEW_ADDRESS.value(),
                         ResourceConst.EDIT_STUDENT_VIEW_TITLE_KEY.value(),
                         1000, 500,
-                        editButton);
+                        editButton, false);
                 controller.loadStageFields(schoolPojo, ActionType.EDIT_ACTION);
             });
         });

@@ -19,6 +19,7 @@ public class GradeDto {
     private Integer grade;
     private Integer weight;
     private String description;
+    private String teacherName;
     private Long teacherId;
 
     private LocalDate createdDate;

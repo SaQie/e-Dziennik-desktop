@@ -124,7 +124,7 @@ public class AdminSchoolClassesTabController extends AbstractController {
             progressFactory.createLittleProgressBar(new LoadSchoolClassTask(items.get(0)), (response) -> {
                 AdminSchoolClassesTabEditSchoolClassController editController = NodeUtils.openNewStageAboveWithController(DASHBOARD_ADMIN_SCHOOL_CLASS_EDIT_ADDRESS.value(),
                         EDIT_SCHOOL_CLASS_VIEW_TITLE_KEY.value(),
-                        500, 350, editButton);
+                        500, 350, editButton, false);
                 editController.loadStageData(response, ActionType.EDIT_ACTION);
             });
         });
@@ -136,7 +136,7 @@ public class AdminSchoolClassesTabController extends AbstractController {
             progressFactory.createLittleProgressBar(new LoadSchoolClassTask(items.get(0)), (response) -> {
                 AdminSchoolClassesTabShowSchoolClassController showController = NodeUtils.openNewStageAboveWithController(DASHBOARD_ADMIN_SCHOOL_CLASS_SHOW_ADDRESS.value(),
                         SHOW_SCHOOL_CLASS_VIEW_TITLE_KEY.value(),
-                        500, 350, showButton);
+                        500, 350, showButton, false);
                 showController.loadStageData(response, ActionType.SHOW_ACTION);
             });
 

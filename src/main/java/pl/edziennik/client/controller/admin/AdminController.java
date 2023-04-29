@@ -69,7 +69,7 @@ public class AdminController extends AbstractController {
                         CONFIGURATION_LIST_ADMIN_VIEW_TITLE_MESSAGE_KEY.value(),
                         550,
                         450,
-                        configurationButton);
+                        configurationButton, false);
                 controller.fetchData(configurationList);
             });
         });

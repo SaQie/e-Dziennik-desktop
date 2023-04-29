@@ -66,7 +66,7 @@ public class AdminConfigurationOptionController extends AbstractController {
         editButton.setOnAction(button -> {
             List<Long> items = NodeUtils.getSelectedTableItems(tableView, ActionType.EDIT_ACTION);
             AdminConfigurationValueOptionController controller = NodeUtils.openNewStageAboveWithController(DASHBOARD_ADMIN_CONFIGURATION_VALUE_VIEW_ADDRESS.value()
-                    , CONFIGURATION_LIST_ADMIN_VIEW_TITLE_MESSAGE_KEY.value(), 450, 300, editButton);
+                    , CONFIGURATION_LIST_ADMIN_VIEW_TITLE_MESSAGE_KEY.value(), 450, 300, editButton, false);
             controller.fetchData(items.get(0));
         });
     }

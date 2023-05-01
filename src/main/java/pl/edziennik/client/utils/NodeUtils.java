@@ -3,10 +3,13 @@ package pl.edziennik.client.utils;
 import javafx.animation.AnimationTimer;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.css.PseudoClass;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
@@ -176,6 +179,17 @@ public class NodeUtils {
                 return column;
             }
         return null;
+    }
+
+    public static void closeAllTooltipsOnScene(Scene scene) {
+        ObservableList<Node> nodes = scene.getRoot().getChildrenUnmodifiable().filtered(node -> node instanceof Label);
+        for (Node node : nodes) {
+            Label label = (Label) node;
+            Tooltip tooltip = label.getTooltip();
+            if (tooltip != null && tooltip.isShowing()) {
+                tooltip.hide();
+            }
+        }
     }
 
     public static void setTextFieldAsNumbersOnly(TextField textField) {

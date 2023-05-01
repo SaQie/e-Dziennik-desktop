@@ -2,6 +2,7 @@ package pl.edziennik.client.common.controller.columns.student;
 
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import pl.edziennik.client.common.Styles;
 import pl.edziennik.client.common.model.student.StudentSpecificSubjectGradeModel;
 import pl.edziennik.client.utils.ResourceUtil;
 
@@ -18,7 +19,7 @@ class StudentSpecificSubjectGradesTableViewColumns {
         gradeColumn.setCellValueFactory(cellData -> cellData.getValue().getGrade());
         gradeColumn.setVisible(isDefaultVisible);
 
-        gradeColumn.setCellFactory(column -> new TableCell<StudentSpecificSubjectGradeModel, Number>() {
+        gradeColumn.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Number item, boolean empty) {
                 super.updateItem(item, empty);
@@ -28,12 +29,12 @@ class StudentSpecificSubjectGradesTableViewColumns {
                 } else {
                     setText(String.valueOf(item));
                     switch (item.intValue()) {
-                        case 6 -> setStyle("-fx-background-color: rgba(55, 58, 235, 0.5);");
-                        case 5 -> setStyle("-fx-background-color: rgba(60, 183, 22, 0.5);");
-                        case 4 -> setStyle("-fx-background-color: rgba(138, 231, 99, 0.5);");
-                        case 3 -> setStyle("-fx-background-color: rgba(242, 242, 22, 0.5);");
-                        case 2 -> setStyle("-fx-background-color: rgba(234, 110, 12, 0.5);");
-                        case 1 -> setStyle("-fx-background-color: rgba(218, 17, 28, 0.5);");
+                        case 6 -> setStyle(Styles.GRADE_6_COLOR_STYLE);
+                        case 5 -> setStyle(Styles.GRADE_5_COLOR_STYLE);
+                        case 4 -> setStyle(Styles.GRADE_4_COLOR_STYLE);
+                        case 3 -> setStyle(Styles.GRADE_3_COLOR_STYLE);
+                        case 2 -> setStyle(Styles.GRADE_2_COLOR_STYLE);
+                        case 1 -> setStyle(Styles.GRADE_1_COLOR_STYLE);
                         default -> setStyle("");
                     }
                 }

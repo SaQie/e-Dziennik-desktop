@@ -1,15 +1,27 @@
 package pl.edziennik.client.common.controller.columns.student;
 
+import javafx.animation.PauseTransition;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleListProperty;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Popup;
+import javafx.stage.PopupWindow;
+import javafx.stage.Window;
 import javafx.util.Duration;
+import pl.edziennik.client.common.Styles;
 import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.common.model.student.StudentSubjectModel;
 import pl.edziennik.client.common.model.student.StudentSpecificSubjectGradeModel;
 import pl.edziennik.client.utils.ResourceUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static pl.edziennik.client.common.constants.ResourceConst.*;
@@ -45,30 +57,48 @@ class StudentSubjectTableViewColumns {
         tooltip.setAutoHide(true);
         tooltip.setShowDelay(Duration.ZERO);
         tooltip.setHideDelay(Duration.ZERO);
+        List<Tooltip> tooltips = new ArrayList<>();
 
         subjectGradesColumn.setCellFactory(column -> new TableCell<>() {
             // create tooltip on grades column
             @Override
             protected void updateItem(List<StudentSpecificSubjectGradeModel> item, boolean empty) {
+                // set graphic column view for each grade
                 super.updateItem(item, empty);
-                setText(empty || item == null ? "" : item.toString());
-            }
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                    return;
+                }
 
-            {
+                HBox hbox = new HBox();
+                hbox.setSpacing(5);
 
-                setOnMouseClicked(event -> {
-                    if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
-                        List<StudentSpecificSubjectGradeModel> grades = getItem();
-                        if (grades != null && !grades.isEmpty()) {
-                            createGradeTooltip(grades, tooltip);
-                            tooltip.show(getScene().getWindow(), event.getScreenX(), event.getScreenY());
+                for (StudentSpecificSubjectGradeModel specificItem : item) {
+                    Label gradeLabel = new Label(specificItem.toString());
+
+                    Tooltip gradeTooltip = createGradeTooltip(specificItem);
+                    tooltips.add(gradeTooltip);
+
+                    Styles.setGradeLabelStyles(gradeLabel, specificItem.getGrade().getValue());
+
+                    // Open tooltip after mouse click
+                    gradeLabel.setOnMouseClicked(e -> {
+                        if (e.getButton().equals(MouseButton.PRIMARY)) {
+                            tooltips.stream().filter(Window::isShowing).forEach(PopupWindow::hide);
+                            gradeTooltip.show(gradeLabel, e.getScreenX(), e.getScreenY());
                         }
-                    } else {
-                        tooltip.hide();
-                    }
+                        if (e.getButton().equals(MouseButton.SECONDARY)){
+                            tooltips.stream().filter(Window::isShowing).forEach(PopupWindow::hide);
+                        }
+                    });
 
-                });
+                    hbox.getChildren().add(gradeLabel);
+
+                }
+                setGraphic(hbox);
             }
+
         });
         subjectGradesColumn.setVisible(isDefaultVisible);
         return subjectGradesColumn;
@@ -76,23 +106,22 @@ class StudentSubjectTableViewColumns {
     }
 
 
-    private static void createGradeTooltip(List<StudentSpecificSubjectGradeModel> grades, Tooltip tooltip) {
-        StringBuilder stringBuilder = new StringBuilder();
+    private static Tooltip createGradeTooltip(StudentSpecificSubjectGradeModel grade) {
+        Tooltip tooltip = new Tooltip();
+
 
         String gradeText = ResourceUtil.getMessage(ResourceConst.GRADE_TOOLTIP_TEXT.value());
         String teacherText = ResourceUtil.getMessage(ResourceConst.TEACHER_TOOLTIP_TEXT.value());
-        String dateText = ResourceUtil.getMessage(ResourceConst.GRADE_DATE_TOOLTIP_TEXT.value());
+        String descriptionText = ResourceUtil.getMessage(DESCRIPTION_TOOLTIP_TEXT.value());
 
-        Label label = new Label();
-        for (StudentSpecificSubjectGradeModel grade : grades) {
-            stringBuilder.append(String.format(gradeText + ": %d, " + dateText + " %s, " + teacherText + ": %s \n",
-                    grade.getGrade().getValue(),
-                    grade.getCreatedDate().getValue(),
-                    grade.getTeacherName().getValue()));
-        }
 
-        label.setText(stringBuilder.toString());
-        tooltip.setText(label.getText());
+        String formattedText = String.format(gradeText + ": %d, \n" + descriptionText + ": %s, \n" + teacherText + ": %s \n",
+                grade.getGrade().getValue(),
+                grade.getDescription().getValue(),
+                grade.getTeacherName().getValue());
+
+        tooltip.setText(formattedText);
+        return tooltip;
     }
 
 }

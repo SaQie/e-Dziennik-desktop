@@ -1,12 +1,15 @@
 package pl.edziennik.client.common;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Popup;
 import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.common.constants.ResourceConst;
@@ -20,6 +23,14 @@ public class Styles {
     private static final ImageView INFORMATION_ICON = new ImageView(eDziennikApplication.class.getResource(ResourceConst.INFORMATION_ICON_ADDRESS.value()).toExternalForm());
     private static final ImageView WARNING_ICON = new ImageView(eDziennikApplication.class.getResource(ResourceConst.WARNING_ICON_ADDRESS.value()).toExternalForm());
     private static final ImageView ERROR_ICON = new ImageView(eDziennikApplication.class.getResource(ResourceConst.ERROR_ICON_ADDRESS.value()).toExternalForm());
+
+    public static final String GRADE_6_COLOR_STYLE = "-fx-background-color: rgba(55, 58, 235, 0.5);";
+    public static final String GRADE_5_COLOR_STYLE = "-fx-background-color: rgba(60, 183, 22, 0.5);";
+    public static final String GRADE_4_COLOR_STYLE = "-fx-background-color: rgba(138, 231, 99, 0.5);";
+    public static final String GRADE_3_COLOR_STYLE = "-fx-background-color: rgba(242, 242, 22, 0.5);";
+    public static final String GRADE_2_COLOR_STYLE = "-fx-background-color: rgba(234, 110, 12, 0.5);";
+    public static final String GRADE_1_COLOR_STYLE = "-fx-background-color: rgba(218, 17, 28, 0.5);";
+
 
     private Styles() {
 
@@ -96,5 +107,19 @@ public class Styles {
         hBox.getChildren().add(label);
         popup.getContent().add(hBox);
         return popup;
+    }
+
+    public static void setGradeLabelStyles(Label gradeLabel, int grade) {
+        gradeLabel.setPadding(new Insets(5));
+
+        switch (grade) {
+            case 6 -> gradeLabel.setStyle(GRADE_6_COLOR_STYLE);
+            case 5 -> gradeLabel.setStyle(GRADE_5_COLOR_STYLE);
+            case 4 -> gradeLabel.setStyle(GRADE_4_COLOR_STYLE);
+            case 3 -> gradeLabel.setStyle(GRADE_3_COLOR_STYLE);
+            case 2 -> gradeLabel.setStyle(GRADE_2_COLOR_STYLE);
+            case 1 -> gradeLabel.setStyle(GRADE_1_COLOR_STYLE);
+            default -> gradeLabel.setStyle("");
+        }
     }
 }

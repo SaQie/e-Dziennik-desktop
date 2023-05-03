@@ -4,7 +4,7 @@ import javafx.concurrent.Task;
 import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.teacher.TeacherDto;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.ResourceUtil;
 
 import java.util.List;
 

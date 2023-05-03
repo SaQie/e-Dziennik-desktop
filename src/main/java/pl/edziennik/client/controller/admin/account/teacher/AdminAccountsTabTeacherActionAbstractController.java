@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.admin.accounts.teacher;
+package pl.edziennik.client.controller.admin.account.teacher;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -11,7 +11,7 @@ import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.rest.dto.teacher.TeacherDto;
 import pl.edziennik.client.rest.dto.teacher.TeacherRequestDto;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 
 import java.util.UUID;
 

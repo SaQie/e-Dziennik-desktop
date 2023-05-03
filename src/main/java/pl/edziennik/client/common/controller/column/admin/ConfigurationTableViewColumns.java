@@ -1,10 +1,10 @@
-package pl.edziennik.client.common.controller.columns.admin;
+package pl.edziennik.client.common.controller.column.admin;
 
 import javafx.scene.control.TableColumn;
 import pl.edziennik.client.common.constants.ResourceConst;
-import pl.edziennik.client.common.controller.columns.BasicTableViewColumns;
+import pl.edziennik.client.common.controller.column.BasicTableViewColumns;
 import pl.edziennik.client.common.model.admin.ConfigurationListModel;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.ResourceUtil;
 
 class ConfigurationTableViewColumns extends BasicTableViewColumns {
 

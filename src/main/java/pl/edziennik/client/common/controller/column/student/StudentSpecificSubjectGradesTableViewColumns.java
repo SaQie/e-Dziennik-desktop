@@ -1,10 +1,10 @@
-package pl.edziennik.client.common.controller.columns.student;
+package pl.edziennik.client.common.controller.column.student;
 
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import pl.edziennik.client.common.Styles;
 import pl.edziennik.client.common.model.student.StudentSpecificSubjectGradeModel;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.ResourceUtil;
 
 import static pl.edziennik.client.common.constants.ResourceConst.*;
 

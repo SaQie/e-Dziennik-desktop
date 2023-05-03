@@ -1,6 +1,6 @@
 package pl.edziennik.client.common;
 
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.ResourceUtil;
 
 public enum AccountType {
 

@@ -13,8 +13,7 @@ import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.common.factory.DialogFactory;
 import pl.edziennik.client.core.toast.Toast;
 import pl.edziennik.client.core.toast.ToastType;
-import pl.edziennik.client.exception.RestClientException;
-import pl.edziennik.client.utils.ThreadUtils;
+import pl.edziennik.client.util.ThreadUtils;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

@@ -127,7 +127,7 @@
                                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                                  AnchorPane.topAnchor="0.0">
                             <tabs>
-                                <fx:include fx:id="gradesTab" source="grades/student-dashboard-grades-tab.fxml"/>
+                                <fx:include fx:id="gradesTab" source="grade/student-dashboard-grades-tab.fxml"/>
                             </tabs>
                         </TabPane>
                     </children>

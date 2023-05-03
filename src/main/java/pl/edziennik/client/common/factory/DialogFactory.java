@@ -8,8 +8,8 @@ import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.core.toast.Toast;
 import pl.edziennik.client.core.toast.ToastType;
 import pl.edziennik.client.rest.client.response.ApiErrors;
-import pl.edziennik.client.utils.AuthorizationUtils;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.AuthorizationUtils;
+import pl.edziennik.client.util.ResourceUtil;
 
 import java.util.Arrays;
 

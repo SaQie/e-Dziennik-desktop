@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.admin.schools;
+package pl.edziennik.client.controller.admin.school;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;

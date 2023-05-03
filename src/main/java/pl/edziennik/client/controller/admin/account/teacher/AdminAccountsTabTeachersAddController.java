@@ -1,10 +1,10 @@
-package pl.edziennik.client.controller.admin.accounts.teacher;
+package pl.edziennik.client.controller.admin.account.teacher;
 
 import pl.edziennik.client.common.Role;
 import pl.edziennik.client.common.model.admin.TeacherListModel;
 import pl.edziennik.client.rest.dto.teacher.TeacherRequestDto;
 import pl.edziennik.client.task.teacher.AddTeacherTask;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 import pl.edziennik.client.validator.teacher.TeacherValidator;
 
 public class AdminAccountsTabTeachersAddController extends AdminAccountsTabTeacherActionAbstractController {

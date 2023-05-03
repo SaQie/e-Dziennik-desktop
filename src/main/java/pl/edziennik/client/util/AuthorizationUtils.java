@@ -40,18 +40,19 @@ public class AuthorizationUtils {
             PropertiesLoader.writeProperty(ResourceConst.PROPERTIES_LOADER_REFRESH_TOKEN_KEY.value(), refreshToken);
             PropertiesLoader.writeProperty(ResourceConst.PROPERTIES_LOADER_NAME_KEY.value(), dataFromJWT.get(ResourceConst.PROPERTIES_LOADER_NAME_KEY.value()));
             PropertiesLoader.writeProperty(ResourceConst.PROPERTIES_LOADER_ID_KEY.value(), dataFromJWT.get(ResourceConst.PROPERTIES_LOADER_ID_KEY.value()));
-            if (dataFromJWT.get(ResourceConst.PROPERTIES_LOADER_ROLE_KEY.value()) != null){
+            PropertiesLoader.writeProperty(ResourceConst.PROPERTIES_LOADER_SUPER_ID_KEY.value(), dataFromJWT.get(PROPERTIES_LOADER_SUPER_ID_KEY.value()));
+            if (dataFromJWT.get(ResourceConst.PROPERTIES_LOADER_ROLE_KEY.value()) != null) {
                 PropertiesLoader.writeProperty(ResourceConst.PROPERTIES_LOADER_ROLE_KEY.value(), dataFromJWT.get(ResourceConst.PROPERTIES_LOADER_ROLE_KEY.value()));
             }
         }
     }
 
-    public static void clearAuthorizationData(){
+    public static void clearAuthorizationData() {
         PropertiesLoader.clearProperties();
     }
 
     @SneakyThrows
-    public static void loadAuthorizationPage(){
+    public static void loadAuthorizationPage() {
         CommonStageBuilder.stageBuilder()
                 .withView(ResourceConst.AUTHORIZATION_VIEW_ADDRESS.value())
                 .withTitle(AUTHORIZATION_VIEW_TITLE_MESSAGE_KEY.value())
@@ -63,47 +64,42 @@ public class AuthorizationUtils {
                 .isMainStage(true)
                 .build();
     }
-    public static void showCorrectSceneAfterLogin(Stage currentStage){
+
+    public static void showCorrectSceneAfterLogin(Stage currentStage) {
         String role = PropertiesLoader.readProperty(ResourceConst.PROPERTIES_LOADER_ROLE_KEY.value());
-        if (role.equals(Role.ROLE_STUDENT.name())){
-            CommonStageBuilder.stageBuilder()
-                    .withView(DASHBOARD_STUDENT_VIEW_ADDRESS.value())
-                    .withWidth(1200)
-                    .withHeight(800)
-                    .withStyle(StageStyle.UTILITY)
-                    .withResizable(true)
-                    .withMinWidth(1100)
-                    .withFocusRequest(true)
-                    .withOwner(currentStage)
-                    .withTitle(ResourceConst.DASHBOARD_ADMIN_VIEW_TITLE.value())
-                    .withShowMode(CLOSE_PREVIOUS)
-                    .isMainStage(true)
+
+        CommonStageBuilder.StageBuilder builder = CommonStageBuilder.stageBuilder()
+                .withWidth(1200)
+                .withHeight(800)
+                .withStyle(StageStyle.UTILITY)
+                .withResizable(true)
+                .withMinWidth(1100)
+                .withFocusRequest(true)
+                .withOwner(currentStage)
+                .withShowMode(CLOSE_PREVIOUS)
+                .isMainStage(true);
+
+        if (role.equals(Role.ROLE_STUDENT.name())) {
+            builder.withView(DASHBOARD_STUDENT_VIEW_ADDRESS.value())
+                    .withTitle(ResourceConst.DASHBOARD_STUDENT_VIEW_TITLE.value())
                     .build();
             return;
         }
-        if (role.equals(Role.ROLE_ADMIN.name())){
-            CommonStageBuilder.stageBuilder()
-                    .withView(ResourceConst.DASHBOARD_ADMIN_VIEW_ADDRESS.value())
-                    .withWidth(1200)
-                    .withHeight(800)
-                    .withStyle(StageStyle.UTILITY)
-                    .withResizable(true)
-                    .withMinWidth(1100)
-                    .withFocusRequest(true)
-                    .withOwner(currentStage)
+        if (role.equals(Role.ROLE_ADMIN.name())) {
+            builder.withView(ResourceConst.DASHBOARD_ADMIN_VIEW_ADDRESS.value())
                     .withTitle(ResourceConst.DASHBOARD_ADMIN_VIEW_TITLE.value())
-                    .withShowMode(CLOSE_PREVIOUS)
-                    .isMainStage(true)
                     .build();
             return;
 
         }
-        if (role.equals(Role.ROLE_PARENT.name())){
+        if (role.equals(Role.ROLE_PARENT.name())) {
             // parent
             return;
         }
-        if (role.equals(Role.ROLE_TEACHER.name())){
-
+        if (role.equals(Role.ROLE_TEACHER.name())) {
+            builder.withView(ResourceConst.DASHBOARD_TEACHER_VIEW_ADDRESS.value())
+                    .withTitle(ResourceConst.DASHBOARD_TEACHER_VIEW_TITLE.value())
+                    .build();
         }
     }
 
@@ -119,6 +115,8 @@ public class AuthorizationUtils {
         jwtData.put("id", id.asText());
         JsonNode name = jsonNode.get("sub");
         jwtData.put("name", name.asText());
+        JsonNode superId = jsonNode.get("superId");
+        jwtData.put("superId", superId.asText());
         if (jsonNode.has("roles")) {
             JsonNode roles = jsonNode.get("roles");
             jwtData.put("role", roles.get(0).asText());

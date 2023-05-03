@@ -1,9 +1,9 @@
-package pl.edziennik.client.controller.admin.schools;
+package pl.edziennik.client.controller.admin.school;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 
 public class AdminSchoolsTabShowSchoolController extends AdminSchoolsTabActionAbstractController {
 

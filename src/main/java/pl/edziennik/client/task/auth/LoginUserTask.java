@@ -4,7 +4,7 @@ import javafx.concurrent.Task;
 import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.rest.AuthorizationRestClient;
 import pl.edziennik.client.rest.dto.auth.LoginCredentialsDto;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.ResourceUtil;
 
 public class LoginUserTask extends Task<Void> {
 

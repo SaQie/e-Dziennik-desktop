@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 
 <?import javafx.scene.control.Pagination?>
-<Tab fx:id="studentsTab" text="%tab.students" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.admin.accounts.student.AdminAccountsTabStudentsTabController">
+<Tab fx:id="studentsTab" text="%tab.students" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.admin.account.student.AdminAccountsTabStudentsTabController">
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
             <children>

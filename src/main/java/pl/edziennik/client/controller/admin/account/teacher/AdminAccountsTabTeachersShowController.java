@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.admin.accounts.teacher;
+package pl.edziennik.client.controller.admin.account.teacher;
 
 public class AdminAccountsTabTeachersShowController extends AdminAccountsTabTeacherActionAbstractController{
 }

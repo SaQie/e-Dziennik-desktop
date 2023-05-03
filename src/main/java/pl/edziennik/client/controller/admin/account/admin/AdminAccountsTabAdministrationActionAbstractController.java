@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.admin.accounts.admin;
+package pl.edziennik.client.controller.admin.account.admin;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -8,7 +8,7 @@ import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.common.Role;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.rest.dto.admin.AdminDto;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 
 class AdminAccountsTabAdministrationActionAbstractController extends AbstractController {
 

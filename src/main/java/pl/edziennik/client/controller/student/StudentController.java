@@ -9,11 +9,11 @@ import javafx.stage.Stage;
 import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.configuration.PropertiesLoader;
 import pl.edziennik.client.configuration.converter.PropertiesStringToLongConverter;
-import pl.edziennik.client.controller.student.grades.StudentGradesTabController;
+import pl.edziennik.client.controller.student.grade.StudentGradesTabController;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.task.student.LoadAllStudentGradesTask;
-import pl.edziennik.client.utils.NodeUtils;
-import pl.edziennik.client.utils.ThreadUtils;
+import pl.edziennik.client.util.NodeUtils;
+import pl.edziennik.client.util.ThreadUtils;
 
 public class StudentController extends AbstractController {
 
@@ -51,10 +51,10 @@ public class StudentController extends AbstractController {
     }
 
     private void fetchGradesTableData() {
-        Long idUser = PropertiesLoader.readProperty(ResourceConst.PROPERTIES_LOADER_ID_KEY.value(), new PropertiesStringToLongConverter());
+        Long superId = PropertiesLoader.readProperty(ResourceConst.PROPERTIES_LOADER_SUPER_ID_KEY.value(), new PropertiesStringToLongConverter());
 
         ThreadUtils.runInNewFxThread(() ->
-                progressFactory.createLittleProgressBar(new LoadAllStudentGradesTask(3L),
+                progressFactory.createLittleProgressBar(new LoadAllStudentGradesTask(superId),
                         (response) -> gradesTabController.fetchTabData(response)));
     }
 

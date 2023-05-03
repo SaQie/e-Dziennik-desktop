@@ -6,7 +6,7 @@ import pl.edziennik.client.common.factory.DialogFactory;
 import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.client.response.ApiResponse;
-import pl.edziennik.client.utils.ThreadUtils;
+import pl.edziennik.client.util.ThreadUtils;
 
 class RestClientStatusCodesHandler {
 

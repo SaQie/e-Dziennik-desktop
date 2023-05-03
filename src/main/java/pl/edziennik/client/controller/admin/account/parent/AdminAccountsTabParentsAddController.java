@@ -1,8 +1,8 @@
-package pl.edziennik.client.controller.admin.accounts.parent;
+package pl.edziennik.client.controller.admin.account.parent;
 
 import pl.edziennik.client.rest.dto.parent.ParentRequestDto;
 import pl.edziennik.client.task.parent.AddNewParentTask;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 import pl.edziennik.client.validator.parent.ParentValidator;
 
 public class AdminAccountsTabParentsAddController extends AdminAccountsTabParentActionAbstractController {

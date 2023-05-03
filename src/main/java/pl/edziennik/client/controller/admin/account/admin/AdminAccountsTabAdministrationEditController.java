@@ -1,10 +1,10 @@
-package pl.edziennik.client.controller.admin.accounts.admin;
+package pl.edziennik.client.controller.admin.account.admin;
 
 import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.rest.dto.admin.AdminDto;
 import pl.edziennik.client.task.admin.EditAdminTask;
-import pl.edziennik.client.utils.NodeUtils;
-import pl.edziennik.client.utils.ThreadUtils;
+import pl.edziennik.client.util.NodeUtils;
+import pl.edziennik.client.util.ThreadUtils;
 import pl.edziennik.client.validator.admin.AdminValidator;
 
 public class AdminAccountsTabAdministrationEditController extends AdminAccountsTabAdministrationActionAbstractController {

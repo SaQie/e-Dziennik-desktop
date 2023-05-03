@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<Tab fx:id="schoolClassesTab" text="%tab.schoolclasses" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.admin.schoolclasses.AdminSchoolClassesTabController">
+<Tab fx:id="schoolClassesTab" text="%tab.schoolclasses" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.admin.schoolclass.AdminSchoolClassesTabController">
    <graphic>
       <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
          <image>

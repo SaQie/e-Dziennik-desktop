@@ -1,9 +1,9 @@
-package pl.edziennik.client.controller.admin.accounts.admin;
+package pl.edziennik.client.controller.admin.account.admin;
 
 import pl.edziennik.client.common.model.admin.AdminListModel;
 import pl.edziennik.client.rest.dto.admin.AdminDto;
 import pl.edziennik.client.task.admin.AddAdminTask;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 import pl.edziennik.client.validator.admin.AdminValidator;
 
 import java.util.UUID;

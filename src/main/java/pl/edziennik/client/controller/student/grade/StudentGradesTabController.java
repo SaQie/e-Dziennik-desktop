@@ -1,18 +1,20 @@
-package pl.edziennik.client.controller.student.grades;
+package pl.edziennik.client.controller.student.grade;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.controller.columns.student.StudentTableViewControllerMaker;
-import pl.edziennik.client.common.factory.ActionType;
+import pl.edziennik.client.common.constants.ResourceConst;
+import pl.edziennik.client.common.controller.column.student.StudentTableViewControllerMaker;
 import pl.edziennik.client.common.model.student.StudentSubjectModel;
-import pl.edziennik.client.controller.admin.accounts.parent.AdminAccountsTabParentsShowController;
+import pl.edziennik.client.configuration.PropertiesLoader;
+import pl.edziennik.client.configuration.converter.PropertiesStringToLongConverter;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.core.TableSelectionMode;
-import pl.edziennik.client.rest.dto.student.StudentGradeDto;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.rest.dto.student.StudentSubjectsGradeDto;
+import pl.edziennik.client.task.student.LoadAllStudentGradesTask;
+import pl.edziennik.client.util.NodeUtils;
 
 import java.util.List;
 
@@ -26,7 +28,10 @@ public class StudentGradesTabController extends AbstractController {
     @Override
     protected void createActions() {
         initializeShowGradesAction();
+        initializeRefreshButtonAction();
     }
+
+
 
     @Override
     protected void setTableColumns() {
@@ -34,7 +39,7 @@ public class StudentGradesTabController extends AbstractController {
     }
 
     private void initializeTableColumns() {
-        StudentTableViewControllerMaker.StudentAllSubjectGradesViewBuilder builder = StudentTableViewControllerMaker.getStudentAllSubjectGradesViewBuilder()
+        StudentTableViewControllerMaker.StudentAllSubjectGradesColumnBuilder builder = StudentTableViewControllerMaker.getStudentAllSubjectGradesColumnBuilder()
                 .withSelectColumn()
                 .withSubjectIdentifierColumn(true)
                 .withSubjectGradesColumn(true)
@@ -55,7 +60,7 @@ public class StudentGradesTabController extends AbstractController {
         return (Stage) showButton.getScene().getWindow();
     }
 
-    public void fetchTabData(final StudentGradeDto dto) {
+    public void fetchTabData(final StudentSubjectsGradeDto dto) {
         List<StudentSubjectModel> studentGradeModels = StudentSubjectModel.mapDtoToModel(dto.getSubjects());
         ObservableList<StudentSubjectModel> items = FXCollections.observableList(studentGradeModels);
         tableView.setItems(items);
@@ -72,6 +77,15 @@ public class StudentGradesTabController extends AbstractController {
             StudentShowGradesOptionController controller = NodeUtils.openNewStageAboveWithController(DASHBOARD_STUDENT_SPECIFIC_SUBJECT_GRADES_VIEW_ADDRESS.value(), SHOW_GRADES_TITLE_MESSAGE_KEY.value(),
                     550, 650, showButton, true);
             controller.fetchTableData(selectedTableItem.getGrades());
+        });
+    }
+
+    private void initializeRefreshButtonAction() {
+        refreshButton.setOnAction(button -> {
+            Long superId = PropertiesLoader.readProperty(ResourceConst.PROPERTIES_LOADER_SUPER_ID_KEY.value(), new PropertiesStringToLongConverter());
+
+            progressFactory.createLittleProgressBar(new LoadAllStudentGradesTask(superId),
+                    this::fetchTabData);
         });
     }
 }

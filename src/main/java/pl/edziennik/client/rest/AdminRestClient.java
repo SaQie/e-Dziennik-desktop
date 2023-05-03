@@ -17,7 +17,7 @@ import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.rest.dto.student.StudentRequestDto;
 import pl.edziennik.client.rest.dto.teacher.TeacherDto;
 import pl.edziennik.client.rest.dto.teacher.TeacherRequestDto;
-import pl.edziennik.client.utils.ModelUtils;
+import pl.edziennik.client.util.ModelUtils;
 
 import java.util.Arrays;
 import java.util.List;

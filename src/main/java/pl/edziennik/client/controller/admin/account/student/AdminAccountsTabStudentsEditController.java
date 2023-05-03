@@ -1,11 +1,11 @@
-package pl.edziennik.client.controller.admin.accounts.student;
+package pl.edziennik.client.controller.admin.account.student;
 
 import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.rest.dto.student.StudentRequestDto;
 import pl.edziennik.client.task.student.EditStudentTask;
-import pl.edziennik.client.utils.NodeUtils;
-import pl.edziennik.client.utils.ThreadUtils;
+import pl.edziennik.client.util.NodeUtils;
+import pl.edziennik.client.util.ThreadUtils;
 import pl.edziennik.client.validator.student.StudentValidator;
 
 public class AdminAccountsTabStudentsEditController extends AdminAccountsTabStudentActionAbstractController {

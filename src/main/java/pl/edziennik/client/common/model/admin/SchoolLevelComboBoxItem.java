@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import lombok.Getter;
 import pl.edziennik.client.rest.dto.schoollevel.SimpleSchoolLevelDto;
-import pl.edziennik.client.utils.MessageConverter;
+import pl.edziennik.client.util.MessageConverter;
 
 @Getter
 public class SchoolLevelComboBoxItem {

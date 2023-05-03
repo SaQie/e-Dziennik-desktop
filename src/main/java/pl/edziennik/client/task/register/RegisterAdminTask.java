@@ -4,12 +4,9 @@ import javafx.concurrent.Task;
 
 import static pl.edziennik.client.common.constants.ResourceConst.*;
 
-import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.dto.admin.AdminDto;
-import pl.edziennik.client.utils.ResourceUtil;
-
-import java.util.Arrays;
+import pl.edziennik.client.util.ResourceUtil;
 
 public class RegisterAdminTask extends Task<AdminDto> {
 

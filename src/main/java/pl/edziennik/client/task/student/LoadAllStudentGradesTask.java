@@ -2,9 +2,9 @@ package pl.edziennik.client.task.student;
 
 import javafx.concurrent.Task;
 import pl.edziennik.client.rest.StudentRestClient;
-import pl.edziennik.client.rest.dto.student.StudentGradeDto;
+import pl.edziennik.client.rest.dto.student.StudentSubjectsGradeDto;
 
-public class LoadAllStudentGradesTask extends Task<StudentGradeDto> {
+public class LoadAllStudentGradesTask extends Task<StudentSubjectsGradeDto> {
 
     private final Long idStudent;
     private final StudentRestClient restClient;
@@ -15,7 +15,7 @@ public class LoadAllStudentGradesTask extends Task<StudentGradeDto> {
     }
 
     @Override
-    protected StudentGradeDto call() throws Exception {
+    protected StudentSubjectsGradeDto call() throws Exception {
         return restClient.getAllStudentSubjectGrades(idStudent);
     }
 }

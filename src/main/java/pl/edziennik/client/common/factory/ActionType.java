@@ -6,6 +6,8 @@ public enum ActionType {
     SHOW_ACTION,
     EDIT_ACTION,
     REFRESH_ACTION,
-    DELETE_ACTION
+    DELETE_ACTION,
+    ONE_ROW,
+    MULTIPLE_ROWS
 
 }

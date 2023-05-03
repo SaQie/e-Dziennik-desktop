@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.admin.schoolclasses;
+package pl.edziennik.client.controller.admin.schoolclass;
 
 import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.common.model.admin.SchoolClassListModel;
@@ -7,7 +7,7 @@ import pl.edziennik.client.rest.dto.schoolclass.SchoolClassRequestDto;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.task.schoolclass.EditSchoolClassTask;
 import pl.edziennik.client.task.teacher.LoadTeachersTask;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 import pl.edziennik.client.validator.schoolclass.SchoolClassValidator;
 
 public class AdminSchoolClassesTabEditSchoolClassController extends AdminSchoolClassesTabActionAbstractController{

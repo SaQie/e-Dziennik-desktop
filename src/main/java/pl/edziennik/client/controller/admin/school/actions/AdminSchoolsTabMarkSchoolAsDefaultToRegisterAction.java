@@ -1,11 +1,11 @@
-package pl.edziennik.client.controller.admin.schools.actions;
+package pl.edziennik.client.controller.admin.school.actions;
 
 import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.core.contextmenu.ActionExecutor;
 import pl.edziennik.client.core.contextmenu.MenuAction;
 import pl.edziennik.client.rest.dto.config.SettingsValueDto;
 import pl.edziennik.client.task.config.SaveConfigurationTask;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 
 import java.util.Arrays;
 

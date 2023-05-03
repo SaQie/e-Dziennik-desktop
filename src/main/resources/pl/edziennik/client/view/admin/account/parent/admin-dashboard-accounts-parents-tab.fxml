@@ -14,7 +14,7 @@
 
 <?import javafx.scene.control.Pagination?>
 <Tab fx:id="parentsTab" text="%tab.parents" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-     fx:controller="pl.edziennik.client.controller.admin.accounts.parent.AdminAccountsTabParentsTabController">
+     fx:controller="pl.edziennik.client.controller.admin.account.parent.AdminAccountsTabParentsTabController">
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
             <children>

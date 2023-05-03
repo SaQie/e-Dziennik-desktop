@@ -1,11 +1,11 @@
-package pl.edziennik.client.controller.admin.schoolclasses;
+package pl.edziennik.client.controller.admin.schoolclass;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.controller.columns.admin.AdminTableViewControllerMaker;
+import pl.edziennik.client.common.controller.column.admin.AdminTableViewControllerMaker;
 import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.common.model.admin.SchoolClassListModel;
 import pl.edziennik.client.core.AbstractController;
@@ -17,7 +17,7 @@ import pl.edziennik.client.rest.dto.schoolclass.SchoolClassDto;
 import pl.edziennik.client.task.schoolclass.DeleteSchoolClassTask;
 import pl.edziennik.client.task.schoolclass.LoadSchoolClassTask;
 import pl.edziennik.client.task.schoolclass.LoadSchoolClassesTask;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -6,17 +6,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
-import pl.edziennik.client.controller.admin.accounts.AdminAccountsTabController;
+import pl.edziennik.client.controller.admin.account.AdminAccountsTabController;
 import pl.edziennik.client.controller.admin.configuration.AdminConfigurationOptionController;
-import pl.edziennik.client.controller.admin.schoolclasses.AdminSchoolClassesTabController;
-import pl.edziennik.client.controller.admin.schools.AdminSchoolsTabController;
+import pl.edziennik.client.controller.admin.schoolclass.AdminSchoolClassesTabController;
+import pl.edziennik.client.controller.admin.school.AdminSchoolsTabController;
 import pl.edziennik.client.core.AbstractController;
-import pl.edziennik.client.core.StageManager;
 import pl.edziennik.client.task.config.LoadConfigurationsTask;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.task.schoolclass.LoadSchoolClassesTask;
-import pl.edziennik.client.utils.NodeUtils;
-import pl.edziennik.client.utils.ThreadUtils;
+import pl.edziennik.client.util.NodeUtils;
+import pl.edziennik.client.util.ThreadUtils;
 
 import static pl.edziennik.client.common.constants.ResourceConst.*;
 

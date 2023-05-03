@@ -1,10 +1,9 @@
 package pl.edziennik.client.task.student;
 
 import javafx.concurrent.Task;
-import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.dto.student.StudentDto;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.ResourceUtil;
 
 import static pl.edziennik.client.common.constants.ResourceConst.*;
 

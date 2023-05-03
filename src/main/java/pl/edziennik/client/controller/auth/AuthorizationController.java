@@ -7,12 +7,10 @@ import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.factory.ProgressFactory;
 import pl.edziennik.client.configuration.PropertiesLoader;
-import pl.edziennik.client.core.StageManager;
-import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.dto.config.ConfigurationDto;
 import pl.edziennik.client.task.config.LoadConfigurationsTask;
-import pl.edziennik.client.utils.AuthorizationUtils;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.AuthorizationUtils;
+import pl.edziennik.client.util.NodeUtils;
 
 import java.io.IOException;
 import java.net.URL;

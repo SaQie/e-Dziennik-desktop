@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.admin.accounts.student;
+package pl.edziennik.client.controller.admin.account.student;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -12,7 +12,7 @@ import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.rest.dto.student.StudentRequestDto;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
 import pl.edziennik.client.task.schoolclass.LoadSchoolClassesTask;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 
 import java.util.UUID;
 

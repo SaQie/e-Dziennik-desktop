@@ -12,11 +12,10 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentGradeDto {
+public class StudentSubjectsGradeDto {
 
     private Long studentId;
-    private String firstName;
-    private String lastName;
+    private String fullName;
 
     private List<SubjectGradeDto> subjects;
 

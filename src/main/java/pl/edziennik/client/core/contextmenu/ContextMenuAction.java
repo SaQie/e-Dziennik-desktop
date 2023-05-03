@@ -1,8 +1,10 @@
 package pl.edziennik.client.core.contextmenu;
 
+import javafx.scene.control.MenuButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import pl.edziennik.client.eDziennikApplication;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.ResourceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,21 +17,22 @@ public class ContextMenuAction {
     private final String actionName;
     private final ActionExecutor actionExecutor;
     private final List<Object> parameters = new ArrayList<>();
-    private final ImageView icon;
+    private final Image icon;
+    private final ContextMenuActionExecutorMode mode;
+    private boolean assignToMenuButton;
 
-    public ContextMenuAction(String actionNameKey, ActionExecutor actionExecutor) {
+    public ContextMenuAction(String actionNameKey, ActionExecutor actionExecutor, ContextMenuActionExecutorMode mode) {
         this.actionName = ResourceUtil.getMessage(actionNameKey);
         this.actionExecutor = actionExecutor;
         this.icon = null;
+        this.mode = mode;
     }
 
-    public ContextMenuAction(String actionName, ActionExecutor actionExecutor, String iconAddress) {
-        this.actionName = actionName;
+    public ContextMenuAction(String actionName, ActionExecutor actionExecutor, String iconAddress, ContextMenuActionExecutorMode mode) {
+        this.actionName = ResourceUtil.getMessage(actionName);
         this.actionExecutor = actionExecutor;
-        ImageView imageView = new ImageView(eDziennikApplication.class.getResource(iconAddress).toExternalForm());
-        imageView.setFitWidth(25);
-        imageView.setFitHeight(25);
-        this.icon = imageView;
+        this.icon = new Image(eDziennikApplication.class.getResource(iconAddress).toExternalForm());
+        this.mode = mode;
     }
 
     /**
@@ -43,6 +46,11 @@ public class ContextMenuAction {
         return this;
     }
 
+    public ContextMenuAction assignToMenuButton(boolean assignToMenuButton) {
+        this.assignToMenuButton = assignToMenuButton;
+        return this;
+    }
+
     /**
      * Returns translated action name
      *
@@ -52,24 +60,35 @@ public class ContextMenuAction {
         return actionName;
     }
 
+    public boolean isAssignToMenuButton() {
+        return assignToMenuButton;
+    }
+
+    public ContextMenuActionExecutorMode getExecutorMode() {
+        return mode;
+    }
+
     /**
      * Returns action icon
      *
      * @return
      */
-    protected ImageView getIcon() {
+    protected Image getIcon() {
         return this.icon;
     }
 
     /**
      * Execute action
-     *
-     * @param id
      */
-    public void execute(Long id) {
-        if (id == null) {
-            actionExecutor.execute(parameters.toArray());
-        }
+    public void execute() {
+        actionExecutor.execute(parameters.toArray());
+
+    }
+
+    /**
+     * Execute action on current selected row
+     */
+    public void executeOnCurrentRow(Long id) {
         actionExecutor.executeOnCurrentRow(id, parameters.toArray());
     }
 

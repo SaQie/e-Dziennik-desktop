@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.admin.accounts.student;
+package pl.edziennik.client.controller.admin.account.student;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,7 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.common.constants.ResourceConst;
-import pl.edziennik.client.common.controller.columns.admin.AdminTableViewControllerMaker;
+import pl.edziennik.client.common.controller.column.admin.AdminTableViewControllerMaker;
 import pl.edziennik.client.common.model.admin.StudentListModel;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.core.TableSelectionMode;
@@ -19,7 +19,7 @@ import pl.edziennik.client.rest.dto.student.StudentDto;
 import pl.edziennik.client.task.student.DeleteStudentTask;
 import pl.edziennik.client.task.student.LoadStudentTask;
 import pl.edziennik.client.task.student.LoadStudentsTask;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;

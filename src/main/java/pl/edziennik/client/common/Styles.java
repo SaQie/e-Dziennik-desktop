@@ -7,15 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Popup;
 import pl.edziennik.client.common.builder.CommonStageBuilder;
 import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.core.toast.ToastType;
 import pl.edziennik.client.eDziennikApplication;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.ResourceUtil;
 
 public class Styles {
 

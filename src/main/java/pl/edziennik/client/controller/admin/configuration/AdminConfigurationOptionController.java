@@ -6,13 +6,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.controller.columns.admin.AdminTableViewControllerMaker;
+import pl.edziennik.client.common.controller.column.admin.AdminTableViewControllerMaker;
 import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.common.model.admin.ConfigurationListModel;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.core.TableSelectionMode;
 import pl.edziennik.client.rest.dto.config.ConfigurationDto;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 
 import java.util.List;
 

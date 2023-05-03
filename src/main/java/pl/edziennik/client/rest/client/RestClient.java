@@ -15,8 +15,7 @@ import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.client.response.ApiAuthResponse;
 import pl.edziennik.client.rest.client.response.ApiResponse;
 import pl.edziennik.client.rest.dto.Page;
-import pl.edziennik.client.utils.AuthorizationUtils;
-import pl.edziennik.client.utils.ThreadUtils;
+import pl.edziennik.client.util.AuthorizationUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;

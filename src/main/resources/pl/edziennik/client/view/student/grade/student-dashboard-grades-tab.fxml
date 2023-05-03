@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -39,26 +38,6 @@
                                     </graphic>
                                 </Button>
                                 <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="130.0" styleClass="dashboard-crud-button" text="%button.menu">
-                                    <items>
-                                        <MenuItem fx:id="selectAllMenuItem" mnemonicParsing="false" text="%label.select.all">
-                                            <graphic>
-                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../../../icons/Choose.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </MenuItem>
-                                        <MenuItem fx:id="unselectAllMenuItem" mnemonicParsing="false" text="%label.unselect.all">
-                                            <graphic>
-                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../../../icons/Choose.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                        </MenuItem>
-                                    </items>
                                     <graphic>
                                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                             <image>

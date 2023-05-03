@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="background-color-dark" stylesheets="@../../../../css/global-colors.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.admin.accounts.parent.AdminAccountsTabParentsEditController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="background-color-dark" stylesheets="@../../../../css/global-colors.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edziennik.client.controller.admin.account.parent.AdminAccountsTabParentsEditController">
     <children>
         <BorderPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>

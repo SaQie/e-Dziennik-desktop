@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.admin.schools;
+package pl.edziennik.client.controller.admin.school;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -6,8 +6,8 @@ import javafx.stage.Stage;
 import pl.edziennik.client.common.model.admin.SchoolListModel;
 import pl.edziennik.client.rest.dto.school.SchoolDto;
 import pl.edziennik.client.task.school.AddNewSchoolTask;
-import pl.edziennik.client.utils.NodeUtils;
-import pl.edziennik.client.utils.ThreadUtils;
+import pl.edziennik.client.util.NodeUtils;
+import pl.edziennik.client.util.ThreadUtils;
 import pl.edziennik.client.validator.school.SchoolValidator;
 
 public class AdminSchoolsTabAddSchoolController extends AdminSchoolsTabActionAbstractController {

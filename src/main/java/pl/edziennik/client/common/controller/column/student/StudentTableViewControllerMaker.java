@@ -1,8 +1,8 @@
-package pl.edziennik.client.common.controller.columns.student;
+package pl.edziennik.client.common.controller.column.student;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableColumn;
-import pl.edziennik.client.common.controller.columns.BasicTableViewColumns;
+import pl.edziennik.client.common.controller.column.BasicTableViewColumns;
 import pl.edziennik.client.common.model.student.StudentSpecificSubjectGradeModel;
 import pl.edziennik.client.common.model.student.StudentSubjectModel;
 
@@ -15,8 +15,8 @@ public class StudentTableViewControllerMaker {
 
     }
 
-    public static StudentAllSubjectGradesViewBuilder getStudentAllSubjectGradesViewBuilder() {
-        return new StudentAllSubjectGradesViewBuilder();
+    public static StudentAllSubjectGradesColumnBuilder getStudentAllSubjectGradesColumnBuilder() {
+        return new StudentAllSubjectGradesColumnBuilder();
     }
 
     public static StudentSpecificSubjectGradesColumnBuilder getStudentSpecificSubjectGradesColumnBuilder() {
@@ -24,26 +24,26 @@ public class StudentTableViewControllerMaker {
     }
 
 
-    public static class StudentAllSubjectGradesViewBuilder extends BasicTableViewColumns {
+    public static class StudentAllSubjectGradesColumnBuilder extends BasicTableViewColumns {
 
         private final List<TableColumn<StudentSubjectModel, ?>> columns = FXCollections.observableArrayList();
 
-        public StudentAllSubjectGradesViewBuilder withSubjectIdentifierColumn(final boolean isDefaultVisible) {
+        public StudentAllSubjectGradesColumnBuilder withSubjectIdentifierColumn(final boolean isDefaultVisible) {
             columns.add(StudentSubjectTableViewColumns.getSubjectIdentifierColumn(isDefaultVisible));
             return this;
         }
 
-        public StudentAllSubjectGradesViewBuilder withSubjectNameColumn(final boolean isDefaultVisible) {
+        public StudentAllSubjectGradesColumnBuilder withSubjectNameColumn(final boolean isDefaultVisible) {
             columns.add(StudentSubjectTableViewColumns.getSubjectNameColumn(isDefaultVisible));
             return this;
         }
 
-        public StudentAllSubjectGradesViewBuilder withSubjectGradesColumn(final boolean isDefaultVisible) {
+        public StudentAllSubjectGradesColumnBuilder withSubjectGradesColumn(final boolean isDefaultVisible) {
             columns.add(StudentSubjectTableViewColumns.getSubjectGradesColumn(isDefaultVisible));
             return this;
         }
 
-        public StudentAllSubjectGradesViewBuilder withSelectColumn() {
+        public StudentAllSubjectGradesColumnBuilder withSelectColumn() {
             columns.add(getSelectColumn(true));
             return this;
         }

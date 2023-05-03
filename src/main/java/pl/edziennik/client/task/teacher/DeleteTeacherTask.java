@@ -1,9 +1,8 @@
 package pl.edziennik.client.task.teacher;
 
 import javafx.concurrent.Task;
-import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.ResourceUtil;
 
 import java.util.List;
 

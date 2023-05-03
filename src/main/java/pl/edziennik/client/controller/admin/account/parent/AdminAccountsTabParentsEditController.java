@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.admin.accounts.parent;
+package pl.edziennik.client.controller.admin.account.parent;
 
 import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.rest.dto.parent.ParentDto;

@@ -4,13 +4,11 @@ import javafx.concurrent.Task;
 
 import static pl.edziennik.client.common.constants.ResourceConst.*;
 
-import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.dto.Page;
 import pl.edziennik.client.rest.dto.school.SchoolDto;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.ResourceUtil;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class LoadSchoolsTask extends Task<Page<List<SchoolDto>>> {

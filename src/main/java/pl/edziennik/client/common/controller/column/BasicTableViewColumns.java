@@ -1,9 +1,9 @@
-package pl.edziennik.client.common.controller.columns;
+package pl.edziennik.client.common.controller.column;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pl.edziennik.client.common.constants.ResourceConst;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.ResourceUtil;
 
 public class BasicTableViewColumns {
 

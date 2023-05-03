@@ -12,7 +12,7 @@ import pl.edziennik.client.rest.dto.student.StudentRequestDto;
 import pl.edziennik.client.task.config.LoadConfigurationsTask;
 import pl.edziennik.client.task.schoolclass.LoadSchoolClassesTask;
 import pl.edziennik.client.task.student.AddStudentTask;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 import pl.edziennik.client.validator.student.StudentValidator;
 
 import java.util.UUID;

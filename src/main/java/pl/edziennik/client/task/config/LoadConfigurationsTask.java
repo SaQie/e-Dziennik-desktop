@@ -1,12 +1,10 @@
 package pl.edziennik.client.task.config;
 
 import javafx.concurrent.Task;
-import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.AdminRestClient;
 import pl.edziennik.client.rest.dto.config.ConfigurationDto;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.ResourceUtil;
 
-import java.util.Collections;
 import java.util.List;
 
 import static pl.edziennik.client.common.constants.ResourceConst.*;

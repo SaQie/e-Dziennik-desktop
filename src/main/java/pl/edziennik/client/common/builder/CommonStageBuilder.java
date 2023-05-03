@@ -19,8 +19,8 @@ import pl.edziennik.client.core.TableSelectionMode;
 import pl.edziennik.client.eDziennikApplication;
 import pl.edziennik.client.exception.ViewException;
 import pl.edziennik.client.rest.client.response.ApiErrors;
-import pl.edziennik.client.utils.NodeUtils;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.NodeUtils;
+import pl.edziennik.client.util.ResourceUtil;
 
 import java.io.IOException;
 import java.util.Arrays;

@@ -1,17 +1,10 @@
-package pl.edziennik.client.common.controller.columns.student;
+package pl.edziennik.client.common.controller.column.student;
 
-import javafx.animation.PauseTransition;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleListProperty;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Popup;
 import javafx.stage.PopupWindow;
 import javafx.stage.Window;
 import javafx.util.Duration;
@@ -19,7 +12,7 @@ import pl.edziennik.client.common.Styles;
 import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.common.model.student.StudentSubjectModel;
 import pl.edziennik.client.common.model.student.StudentSpecificSubjectGradeModel;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.ResourceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +82,8 @@ class StudentSubjectTableViewColumns {
                             gradeTooltip.show(gradeLabel, e.getScreenX(), e.getScreenY());
                         }
                         if (e.getButton().equals(MouseButton.SECONDARY)){
-                            tooltips.stream().filter(Window::isShowing).forEach(PopupWindow::hide);
+                            tooltips.stream().filter(
+                                    Window::isShowing).forEach(PopupWindow::hide);
                         }
                     });
 

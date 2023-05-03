@@ -18,8 +18,8 @@ import pl.edziennik.client.rest.dto.config.ConfigurationDto;
 import pl.edziennik.client.rest.dto.config.SettingsValueDto;
 import pl.edziennik.client.task.config.LoadConfigurationTask;
 import pl.edziennik.client.task.config.SaveConfigurationTask;
-import pl.edziennik.client.utils.NodeUtils;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.NodeUtils;
+import pl.edziennik.client.util.ResourceUtil;
 
 import java.util.Arrays;
 

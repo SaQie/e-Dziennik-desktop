@@ -3,7 +3,7 @@ package pl.edziennik.client.rest;
 import org.springframework.http.HttpMethod;
 import pl.edziennik.client.rest.client.RestClient;
 import pl.edziennik.client.rest.client.URLConstants;
-import pl.edziennik.client.rest.dto.student.StudentGradeDto;
+import pl.edziennik.client.rest.dto.student.StudentSubjectsGradeDto;
 
 public class StudentRestClient {
 
@@ -14,9 +14,9 @@ public class StudentRestClient {
     }
 
 
-    public StudentGradeDto getAllStudentSubjectGrades(final Long idStudent) {
+    public StudentSubjectsGradeDto getAllStudentSubjectGrades(final Long idStudent) {
         return restClient.send(HttpMethod.GET,
-                URLConstants.ALL_STUDENT_GRADES_URL + idStudent + "/subjects/grades", StudentGradeDto.class);
+                URLConstants.ALL_STUDENT_GRADES_URL + idStudent + "/subjects/grades", StudentSubjectsGradeDto.class);
 
     }
 

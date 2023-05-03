@@ -9,7 +9,7 @@ import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.exception.RestClientException;
 import pl.edziennik.client.rest.client.response.ApiResponse;
 import pl.edziennik.client.rest.dto.Page;
-import pl.edziennik.client.utils.ThreadUtils;
+import pl.edziennik.client.util.ThreadUtils;
 
 import java.util.Arrays;
 import java.util.logging.Logger;

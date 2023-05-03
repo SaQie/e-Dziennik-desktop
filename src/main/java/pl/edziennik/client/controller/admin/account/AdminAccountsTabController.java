@@ -1,19 +1,19 @@
-package pl.edziennik.client.controller.admin.accounts;
+package pl.edziennik.client.controller.admin.account;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
-import pl.edziennik.client.controller.admin.accounts.admin.AdminAccountsTabAdministrationTabController;
-import pl.edziennik.client.controller.admin.accounts.parent.AdminAccountsTabParentsTabController;
-import pl.edziennik.client.controller.admin.accounts.student.AdminAccountsTabStudentsTabController;
-import pl.edziennik.client.controller.admin.accounts.teacher.AdminAccountsTabTeachersTabController;
+import pl.edziennik.client.controller.admin.account.admin.AdminAccountsTabAdministrationTabController;
+import pl.edziennik.client.controller.admin.account.parent.AdminAccountsTabParentsTabController;
+import pl.edziennik.client.controller.admin.account.student.AdminAccountsTabStudentsTabController;
+import pl.edziennik.client.controller.admin.account.teacher.AdminAccountsTabTeachersTabController;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.task.admin.LoadAdminsTask;
 import pl.edziennik.client.task.parent.LoadParentsTask;
 import pl.edziennik.client.task.student.LoadStudentsTask;
 import pl.edziennik.client.task.teacher.LoadTeachersTask;
-import pl.edziennik.client.utils.ThreadUtils;
+import pl.edziennik.client.util.ThreadUtils;
 
 public class AdminAccountsTabController extends AbstractController {
 

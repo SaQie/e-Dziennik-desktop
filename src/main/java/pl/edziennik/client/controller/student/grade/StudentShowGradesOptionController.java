@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.student.grades;
+package pl.edziennik.client.controller.student.grade;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,11 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import pl.edziennik.client.common.controller.columns.student.StudentTableViewControllerMaker;
+import pl.edziennik.client.common.controller.column.student.StudentTableViewControllerMaker;
 import pl.edziennik.client.common.model.student.StudentSpecificSubjectGradeModel;
-import pl.edziennik.client.common.model.student.StudentSubjectModel;
 import pl.edziennik.client.core.AbstractController;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 
 import java.util.List;
 

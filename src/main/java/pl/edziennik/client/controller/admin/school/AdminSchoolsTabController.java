@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.admin.schools;
+package pl.edziennik.client.controller.admin.school;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,15 +6,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import pl.edziennik.client.controller.admin.schools.actions.AdminSchoolsTabMarkSchoolAsDefaultToRegisterAction;
+import pl.edziennik.client.controller.admin.school.actions.AdminSchoolsTabMarkSchoolAsDefaultToRegisterAction;
 import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.common.factory.ActionType;
 import pl.edziennik.client.common.constants.ResourceConst;
-import pl.edziennik.client.common.controller.columns.admin.AdminTableViewControllerMaker;
+import pl.edziennik.client.common.controller.column.admin.AdminTableViewControllerMaker;
 import pl.edziennik.client.common.model.admin.SchoolListModel;
 import pl.edziennik.client.core.TableSelectionMode;
 import pl.edziennik.client.core.contextmenu.ContextMenuAction;
 import pl.edziennik.client.core.contextmenu.ContextMenuActionBuilder;
+import pl.edziennik.client.core.contextmenu.ContextMenuActionExecutorMode;
 import pl.edziennik.client.core.toast.Toast;
 import pl.edziennik.client.core.toast.ToastType;
 import pl.edziennik.client.rest.dto.Page;
@@ -22,7 +23,7 @@ import pl.edziennik.client.rest.dto.school.SchoolDto;
 import pl.edziennik.client.task.school.DeleteSchoolTask;
 import pl.edziennik.client.task.school.LoadSchoolTask;
 import pl.edziennik.client.task.school.LoadSchoolsTask;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,8 +63,8 @@ public class AdminSchoolsTabController extends AbstractController {
     private void initializeContextMenuActions() {
         ContextMenuActionBuilder.builder()
                 .addAction(new ContextMenuAction("Oznacz szkołę jaką domyślną do rejestracji",
-                        new AdminSchoolsTabMarkSchoolAsDefaultToRegisterAction(), MARK_ICON_ADDRESS.value()).setParameters(3L))
-                .build(tableView);
+                        new AdminSchoolsTabMarkSchoolAsDefaultToRegisterAction(), MARK_ICON_ADDRESS.value(), ContextMenuActionExecutorMode.CURRENT_ROW).setParameters(3L))
+                .build(tableView, menuButton);
     }
 
     private void initializePaginationChangeAction() {

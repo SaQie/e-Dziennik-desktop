@@ -3,7 +3,7 @@ package pl.edziennik.client.task.school;
 import javafx.concurrent.Task;
 import pl.edziennik.client.common.model.admin.SchoolLevelComboBoxItem;
 import pl.edziennik.client.rest.AdminRestClient;
-import pl.edziennik.client.utils.ResourceUtil;
+import pl.edziennik.client.util.ResourceUtil;
 
 import java.util.List;
 

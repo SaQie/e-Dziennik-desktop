@@ -287,6 +287,15 @@ public class NodeUtils {
                 .orElseThrow(() -> new TableViewException(TABLE_VIEW_ROW_NOT_SELECTED_MESSAGE_KEY.value()));
     }
 
+    public static <T extends TableViewSelection> Long getSelectedTableItemIdentifier(TableView<T> tableView) {
+        return tableView.getItems()
+                .stream()
+                .filter(TableViewSelection::isSelected)
+                .map(TableViewSelection::getId)
+                .findFirst()
+                .orElseThrow(() -> new TableViewException(TABLE_VIEW_ROW_NOT_SELECTED_MESSAGE_KEY.value()));
+    }
+
     public static <T extends DictionaryItemModel> DictionaryItemModel getSelectedDictionaryItem(TableView<T> tableView) {
         List<T> items = tableView.getItems()
                 .stream()

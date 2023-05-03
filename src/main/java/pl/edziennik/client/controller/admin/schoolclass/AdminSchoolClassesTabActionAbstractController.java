@@ -1,4 +1,4 @@
-package pl.edziennik.client.controller.admin.schoolclasses;
+package pl.edziennik.client.controller.admin.schoolclass;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -9,7 +9,7 @@ import pl.edziennik.client.core.AbstractController;
 import pl.edziennik.client.core.DictionaryItemModel;
 import pl.edziennik.client.rest.dto.schoolclass.SchoolClassDto;
 import pl.edziennik.client.rest.dto.schoolclass.SchoolClassRequestDto;
-import pl.edziennik.client.utils.NodeUtils;
+import pl.edziennik.client.util.NodeUtils;
 
 abstract class AdminSchoolClassesTabActionAbstractController extends AbstractController {
 

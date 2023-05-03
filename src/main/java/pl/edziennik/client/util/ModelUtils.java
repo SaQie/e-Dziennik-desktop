@@ -1,8 +1,6 @@
-package pl.edziennik.client.utils;
+package pl.edziennik.client.util;
 
 import pl.edziennik.client.rest.dto.Page;
-import pl.edziennik.client.rest.dto.parent.ParentDto;
-import pl.edziennik.client.rest.dto.parent.SimpleParentDto;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

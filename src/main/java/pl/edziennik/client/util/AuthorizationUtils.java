@@ -1,4 +1,4 @@
-package pl.edziennik.client.utils;
+package pl.edziennik.client.util;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

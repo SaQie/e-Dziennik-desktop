@@ -1,4 +1,4 @@
-package pl.edziennik.client.utils;
+package pl.edziennik.client.util;
 
 import pl.edziennik.client.common.constants.ResourceConst;
 import pl.edziennik.client.configuration.PropertiesLoader;

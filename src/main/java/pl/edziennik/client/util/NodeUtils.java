@@ -1,4 +1,4 @@
-package pl.edziennik.client.utils;
+package pl.edziennik.client.util;
 
 import javafx.animation.AnimationTimer;
 import javafx.beans.binding.Bindings;
@@ -13,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;

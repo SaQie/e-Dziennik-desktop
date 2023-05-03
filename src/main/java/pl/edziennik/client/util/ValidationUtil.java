@@ -1,4 +1,4 @@
-package pl.edziennik.client.utils;
+package pl.edziennik.client.util;
 
 import javafx.css.PseudoClass;
 import javafx.scene.control.ComboBox;

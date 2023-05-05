@@ -19,6 +19,7 @@ import pl.edziennik.client.core.contextmenu.ContextMenuAction;
 import pl.edziennik.client.core.contextmenu.ContextMenuActionBuilder;
 import pl.edziennik.client.core.contextmenu.ContextMenuActionExecutorMode;
 import pl.edziennik.client.rest.dto.student.StudentSpecificSubjectGradeDto;
+import pl.edziennik.client.task.teacher.LoadAllStudentsSpecificSubjectGradesTask;
 import pl.edziennik.client.util.NodeUtils;
 
 import java.util.List;
@@ -31,11 +32,14 @@ public class TeacherGradesManagmentController extends AbstractController {
     @FXML
     private TableView<TeacherAllStudentGradesForSpecificSubjectModel> tableView;
 
+    private volatile Long subjectId;
+
     @Override
     protected void createActions() {
         NodeUtils.createCancelButtonAction(exitButton);
-        initializeContextMenuActions();
+        initializeRefreshButtonAction();
     }
+
 
     private void initializeContextMenuActions() {
         ContextMenuActionBuilder.builder()
@@ -45,7 +49,10 @@ public class TeacherGradesManagmentController extends AbstractController {
                                 new AddGradeToStudentAction(),
                                 ResourceConst.ADD_GRADE_ACTION_ICON.value(),
                                 ContextMenuActionExecutorMode.CURRENT_ROW
-                        ).assignToMenuButton(true)
+                        )
+                                .setRefreshSceneAfterExecuteUsingButton(refreshButton)
+                                .setParameters(subjectId)
+                                .assignToMenuButton(true)
                 )
                 .addAction(
                         new ContextMenuAction(
@@ -53,7 +60,9 @@ public class TeacherGradesManagmentController extends AbstractController {
                                 new AddGradesToAllStudentsAction(),
                                 ResourceConst.ADD_GRADES_ACTION_ICON.value(),
                                 ContextMenuActionExecutorMode.NO_ROW
-                        ).assignToMenuButton(true)
+                        )
+                                .setParameters(subjectId)
+                                .assignToMenuButton(true)
                 ).build(tableView, menuButton);
     }
 
@@ -84,6 +93,11 @@ public class TeacherGradesManagmentController extends AbstractController {
         tableView.refresh();
     }
 
+    public void setSubjectIdContext(final Long subjectId) {
+        this.subjectId = subjectId;
+        initializeContextMenuActions();
+    }
+
     private void initializeTableColumns() {
         TeacherTableViewControllerMaker.TeacherSpecificSubjectAllStudentGradesColumnBuilder builder = TeacherTableViewControllerMaker.getTeacherSpecificSubjectAllStudentGradesColumnBuilder()
                 .withSelectColumn(true)
@@ -95,4 +109,13 @@ public class TeacherGradesManagmentController extends AbstractController {
 
         tableView.getColumns().addAll(builder.build());
     }
+
+    private void initializeRefreshButtonAction() {
+        refreshButton.setOnAction(button ->
+                progressFactory.createLittleProgressBar(new LoadAllStudentsSpecificSubjectGradesTask(subjectId),
+                        this::fetchSceneData
+                ));
+
+    }
+
 }

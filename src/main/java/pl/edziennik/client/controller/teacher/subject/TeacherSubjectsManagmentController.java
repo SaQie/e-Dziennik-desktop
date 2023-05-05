@@ -97,6 +97,7 @@ public class TeacherSubjectsManagmentController extends AbstractController {
                         ResourceConst.TEACHER_GRADE_MANAGMENT_VIEW_TITLE.value(),
                         850, 650, manageButton, true);
 
+                controller.setSubjectIdContext(subjectId);
                 controller.fetchSceneData(response);
 
             });

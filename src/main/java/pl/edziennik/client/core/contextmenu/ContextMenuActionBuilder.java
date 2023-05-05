@@ -63,6 +63,8 @@ public class ContextMenuActionBuilder {
 
             tableView.setContextMenu(contextMenu);
 
+            // i have to do items in two loops because the same MenuItem reference cannot be
+            // assigned to context menu and menu button
             for (ContextMenuAction action : actions) {
 
                 if (action.isAssignToMenuButton()) {
@@ -88,8 +90,14 @@ public class ContextMenuActionBuilder {
                     throw new TableRowException(ResourceConst.TABLE_VIEW_ROW_NOT_SELECTED_MESSAGE_KEY.value());
                 }
                 action.executeOnCurrentRow(rowId);
+                if (action.getRefreshButton() != null) {
+                    action.getRefreshButton().fire();
+                }
             } else {
                 action.execute();
+                if (action.getRefreshButton() != null) {
+                    action.getRefreshButton().fire();
+                }
             }
         });
         return item;

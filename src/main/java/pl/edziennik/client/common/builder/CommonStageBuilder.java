@@ -34,7 +34,8 @@ public class CommonStageBuilder {
     public static final ButtonType YES_BUTTON = new ButtonType(ResourceUtil.getMessage(ResourceConst.BUTTON_YES_KEY.value()));
     public static final ButtonType NO_BUTTON = new ButtonType(ResourceUtil.getMessage(ResourceConst.BUTTON_NO_KEY.value()));
     public static final ButtonType OK_BUTTON = new ButtonType(ResourceUtil.getMessage(ResourceConst.BUTTON_OK_KEY.value()));
-
+    public static final ButtonType CANCEL_BUTTON = new ButtonType(ResourceUtil.getMessage(ResourceConst.BUTTON_CANCEL_KEY.value()), ButtonBar.ButtonData.NO);
+    public static final ButtonType SAVE_BUTTON = new ButtonType(ResourceUtil.getMessage(ResourceConst.BUTTON_SAVE_KEY.value()), ButtonBar.ButtonData.FINISH);
     private static final Logger LOGGER = Logger.getLogger(CommonStageBuilder.class.getName());
 
     public static final String ALERT_STYLES_PATCH = eDziennikApplication.class.getResource(ResourceConst.ALERT_STYLES_ADDRESS.value()).toExternalForm();
@@ -343,7 +344,7 @@ public class CommonStageBuilder {
             return this;
         }
 
-        public StageBuilder isMainStage(boolean isMainStage){
+        public StageBuilder isMainStage(boolean isMainStage) {
             this.isMainStage = isMainStage;
             return this;
         }
@@ -383,7 +384,7 @@ public class CommonStageBuilder {
             Scene scene;
             try {
                 scene = new Scene(fxmlLoader.load(), width, height);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 LOGGER.severe(e.getMessage());
                 LOGGER.severe(e.getCause().getMessage());
                 throw new ViewException(VIEW_EXCEPTION_MESSAGE_KEY.value());
@@ -440,7 +441,7 @@ public class CommonStageBuilder {
                 StageManager.setIsShowing(stage);
             }
 
-            if (isMainStage){
+            if (isMainStage) {
                 StageManager.setMainStage(stage);
             }
 

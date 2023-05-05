@@ -46,10 +46,10 @@ public class TeacherAllStudentGradesForSpecificSubjectModel implements TableView
         this.select.setSelected(!select.isSelected());
     }
 
-    @Override
     public Long getId() {
-        return this.subjectId.getValue();
+        return id.getValue();
     }
+
 
     @Override
     public boolean isSelected() {

@@ -1,5 +1,6 @@
 package pl.edziennik.client.core.contextmenu;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,6 +20,7 @@ public class ContextMenuAction {
     private final List<Object> parameters = new ArrayList<>();
     private final Image icon;
     private final ContextMenuActionExecutorMode mode;
+    private Button refreshButton;
     private boolean assignToMenuButton;
 
     public ContextMenuAction(String actionNameKey, ActionExecutor actionExecutor, ContextMenuActionExecutorMode mode) {
@@ -26,6 +28,7 @@ public class ContextMenuAction {
         this.actionExecutor = actionExecutor;
         this.icon = null;
         this.mode = mode;
+        this.refreshButton = null;
     }
 
     public ContextMenuAction(String actionName, ActionExecutor actionExecutor, String iconAddress, ContextMenuActionExecutorMode mode) {
@@ -33,6 +36,7 @@ public class ContextMenuAction {
         this.actionExecutor = actionExecutor;
         this.icon = new Image(eDziennikApplication.class.getResource(iconAddress).toExternalForm());
         this.mode = mode;
+        this.refreshButton = null;
     }
 
     /**
@@ -43,6 +47,11 @@ public class ContextMenuAction {
      */
     public ContextMenuAction setParameters(Object... parameters) {
         this.parameters.addAll(List.of(parameters));
+        return this;
+    }
+
+    public ContextMenuAction setRefreshSceneAfterExecuteUsingButton(Button refreshButton) {
+        this.refreshButton = refreshButton;
         return this;
     }
 
@@ -66,6 +75,10 @@ public class ContextMenuAction {
 
     public ContextMenuActionExecutorMode getExecutorMode() {
         return mode;
+    }
+
+    public Button getRefreshButton() {
+        return refreshButton;
     }
 
     /**

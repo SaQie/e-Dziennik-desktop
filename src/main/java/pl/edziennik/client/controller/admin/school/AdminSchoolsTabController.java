@@ -57,15 +57,8 @@ public class AdminSchoolsTabController extends AbstractController {
         initializeEditButtonAction();
         initializeRefreshButtonAction();
         initializePaginationChangeAction();
-        initializeContextMenuActions();
     }
 
-    private void initializeContextMenuActions() {
-        ContextMenuActionBuilder.builder()
-                .addAction(new ContextMenuAction("Oznacz szkołę jaką domyślną do rejestracji",
-                        new AdminSchoolsTabMarkSchoolAsDefaultToRegisterAction(), MARK_ICON_ADDRESS.value(), ContextMenuActionExecutorMode.CURRENT_ROW).setParameters(3L))
-                .build(tableView, menuButton);
-    }
 
     private void initializePaginationChangeAction() {
         pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
